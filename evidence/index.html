@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence Appendix — Ga Hing Woo (Jiaxing Hu)</title>
+<meta name="description" content="Verifiable record of upstream firmware and kernel work: merged patches, reviewer names, and public discussion threads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+  :root[data-theme="dark"] {
+    --bg: #11151a;
+    --ink: #d7dce1;
+    --ink-dim: #7c8791;
+    --ink-faint: #4b545d;
+    --accent: #5fb3a0;
+    --line: #232a32;
+    --card-bg: #161b21;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f2f4f5;
+    --ink: #1b2126;
+    --ink-dim: #55626b;
+    --ink-faint: #8b959c;
+    --accent: #2f8a78;
+    --line: #d7dce0;
+    --card-bg: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    line-height: 1.6;
+    padding: 24px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  main {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--ink-dim);
+    cursor: pointer;
+  }
+  .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--accent); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle .sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .moon { display: none; }
+  :root[data-theme="dark"] .theme-toggle .sun { display: block; }
+
+  .prompt {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin: 40px 0 10px 0;
+    letter-spacing: 0.01em;
+  }
+
+  a.back {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 13px;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+  a.back:hover, a.back:focus-visible { color: var(--accent); }
+
+  h1 {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: clamp(22px, 3.4vw, 36px);
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .lede {
+    color: var(--ink-dim);
+    font-size: 15px;
+    max-width: 60ch;
+    margin: 0 0 8px 0;
+  }
+
+  .name-note {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    border-left: 2px solid var(--accent);
+    padding: 10px 14px;
+    margin: 20px 0 36px 0;
+    background: var(--card-bg);
+  }
+  .name-note strong { color: var(--ink); font-weight: 500; }
+
+  .group-label {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 40px 0 14px 0;
+  }
+  .group-label:first-of-type { margin-top: 0; }
+
+  .entry {
+    border: 1px solid var(--line);
+    background: var(--card-bg);
+    border-radius: 4px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+
+  .entry-title {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 6px 0;
+  }
+
+  .entry-desc {
+    font-size: 14px;
+    color: var(--ink-dim);
+    margin: 0 0 10px 0;
+  }
+
+  .entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    align-items: baseline;
+  }
+
+  .entry-meta a {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+    margin-right: 14px;
+    display: inline-block;
+  }
+  .entry-meta a:hover, .entry-meta a:focus-visible { text-decoration: underline; }
+
+  .entry-meta .tag {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 6px;
+  }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+  footer a { color: var(--ink-faint); }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
+  <div class="prompt">gahing@gahingwoo:~$ cat evidence.md</div>
+  <a class="back" href="/">&larr; back to gahingwoo.com</a>
+
+  <h1>Evidence Appendix</h1>
+  <p class="lede">A plain list of the claims made in my scholarship applications, each with a link to the original public record: a merged commit, a review thread, or a published DOI. Nothing here is summarised from memory; every line links to a source you can check yourself.</p>
+  <p class="lede">Full profile, all repositories: <a href="https://github.com/gahingwoo" target="_blank" rel="noopener" style="color:var(--accent)">github.com/gahingwoo</a></p>
+
+  <div class="name-note">
+    <strong>A note on names.</strong> The Linux kernel mailing list requires patches to be signed off with a real legal name, so kernel and IOMMU work below is under <strong>Jiaxing Hu</strong>. Everywhere else (GitHub, this site), I go by my handle, <strong><a href="https://github.com/gahingwoo" target="_blank" rel="noopener" style="color:inherit">gahingwoo</a></strong> (Ga Hing Woo). "Jiaxing Hu" alone is a common name that returns many unrelated people in search results, so if you're trying to verify any of this independently, searching gahingwoo or following the direct links below is more reliable than searching my legal name on its own.
+  </div>
+
+  <div class="group-label">Merged upstream</div>
+
+  <div class="entry">
+    <p class="entry-title">Trusted Firmware-A — removed a redundant secure-boot override</p>
+    <p class="entry-desc">Fixed a copy-paste build-configuration defect that would have silently broken secure-boot on any build without a secure OS. Reviewed by engineers at STMicroelectronics, Arm, and Rockchip. Merged into mainline.</p>
+    <div class="entry-meta">
+      <a href="https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/51089" target="_blank" rel="noopener">review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/51089</a>
+      <span class="tag">merged</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="entry-title">OP-TEE — first RK3576 platform port</p>
+    <p class="entry-desc">Ported the open-source Trusted Execution Environment to a new Rockchip chip. Passed all 57 automated checks, independently reproduced on separate hardware, and merged into mainline with a formal Reviewed-by from a Cherry Embedded Solutions maintainer.</p>
+    <div class="entry-meta">
+      <a href="https://github.com/OP-TEE/optee_os/pull/7821" target="_blank" rel="noopener">github.com/OP-TEE/optee_os/pull/7821</a>
+      <span class="tag">merged</span>
+    </div>
+  </div>
+
+  <div class="group-label">Withdrawn on maintainer guidance</div>
+
+  <div class="entry">
+    <p class="entry-title">iommu/rockchip: implement .flush_iotlb_all</p>
+    <p class="entry-desc">Found while bringing up the RK3576 NPU driver: Rockchip's IOMMU never implemented an optional TLB-flush op the hardware could support. Posted a standalone fix; Will Deacon and Robin Murphy (IOMMU subsystem maintainers) pushed back that a standalone flush_iotlb_all isn't the right direction without also moving invalidation into a proper iotlb_sync/gather path. I agreed and withdrew it rather than defend a fix I no longer thought was correct. Heiko Stübner (Rockchip maintainer) used the thread to suggest posting the wider RK3576 bring-up as an RFC instead, which is what became the 9-patch series below.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/20260710060513.863714-1-huhuvmb88@gmail.com/" target="_blank" rel="noopener">lore.kernel.org — iommu/rockchip: flush_iotlb_all</a>
+      <span class="tag">withdrawn, led to RFC below</span>
+    </div>
+  </div>
+
+  <div class="group-label">Under review</div>
+
+  <div class="entry">
+    <p class="entry-title">Linux kernel — RK3576 NPU (rocket driver) enablement, 9-patch RFC</p>
+    <p class="entry-desc">RFC series adding RK3576 NPU support across device-tree bindings, power-domain, IOMMU, and the accel/rocket driver. Posted to the mainline kernel list for review; not yet merged.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/20260717085220.3212274-1-gahing@gahingwoo.com/T/#u" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH 0/9</a>
+      <span class="tag">RFC, under review</span>
+    </div>
+  </div>
+
+  <div class="group-label">Published research</div>
+
+  <div class="entry">
+    <p class="entry-title">RK3576 NPU bring-up: a falsification-first negative result</p>
+    <p class="entry-desc">First byte-exact int8 convolution from the open-source driver stack on this chip, followed by a rigorous, disprove-first account of why the chained-layer failure sits below what software can reach. Archived preprint with a DOI. Independently written up by CNX Software, an embedded-systems industry news site, which quoted the work and linked both the preprint and the source repository. A separate developer (gregordinary), reverse-engineering the sibling RK3588 chip by a different method, later found that five of the same findings held on his silicon too &mdash; independent cross-validation, not a citation of authority.</p>
+    <div class="entry-meta">
+      <a href="https://doi.org/10.5281/zenodo.21348017" target="_blank" rel="noopener">doi.org/10.5281/zenodo.21348017</a>
+      <a href="https://www.cnx-software.com/2026/07/15/reverse-engineering-brings-rk3576-npu-support-to-open-source-rocket-driver-for-mainline-linux/" target="_blank" rel="noopener">CNX Software coverage</a>
+      <a href="https://github.com/gregordinary/rockchip-npu-notes" target="_blank" rel="noopener">gregordinary/rockchip-npu-notes (RK3588 corroboration)</a>
+      <span class="tag">Zenodo, DOI</span>
+    </div>
+  </div>
+
+  <div class="group-label">Tools in use by others</div>
+
+  <div class="entry">
+    <p class="entry-title">SoC-Consistency — static analysis for hardware power-tree configuration</p>
+    <p class="entry-desc">Catches hardware misconfiguration before it reaches physical devices. Ships rule packs for five chip families, runs in CI pipelines. Published on PyPI and independently packaged into Arch Linux by an unaffiliated maintainer.</p>
+    <div class="entry-meta">
+      <a href="https://github.com/gahingwoo/SoC-Consistency" target="_blank" rel="noopener">github.com/gahingwoo/SoC-Consistency</a>
+      <span class="tag">PyPI, AUR</span>
+    </div>
+  </div>
+
+  <div class="group-label">Third-party validation</div>
+
+  <div class="entry">
+    <p class="entry-title">edk2-rk3576 &mdash; UEFI port pinned by a Radxa engineer</p>
+    <p class="entry-desc">A complete EDK2/TianoCore UEFI port for the RK3576, booting a mainline Fedora 44 desktop. Builds for six boards, hardware-verified on two (Radxa ROCK 4D, ArmSoM CM5-IO). The write-up was pinned to the ROCK 4 series section of the official Radxa community forum by Zhang Yuntian, a Radxa engineer, not by me.</p>
+    <div class="entry-meta">
+      <a href="https://forum.radxa.com/t/uefi-firmware-support-for-rock-4d-rk3576/30790/" target="_blank" rel="noopener">forum.radxa.com &mdash; pinned thread</a>
+      <a href="https://github.com/gahingwoo/edk2-rk3576" target="_blank" rel="noopener">github.com/gahingwoo/edk2-rk3576</a>
+      <span class="tag">third-party</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="entry-title">Flipper Devices — production validation of the OP-TEE port</p>
+    <p class="entry-desc">Flipper Devices validated the RK3576 OP-TEE port on Flipper One hardware: 114 xtest cases, 35,681 subtests, zero failures. Credited by name in their official developer documentation.</p>
+    <div class="entry-meta">
+      <a href="https://docs.flipper.net/one/dev-log/3" target="_blank" rel="noopener">docs.flipper.net/one/dev-log/3</a>
+      <span class="tag">third-party</span>
+    </div>
+  </div>
+
+  <footer>
+    Full CV and supporting-evidence PDF available on request.<br>
+    Work / upstream: <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a> &middot; Personal / study: <a href="mailto:huhuvmb88@gmail.com">huhuvmb88@gmail.com</a>
+  </footer>
+</main>
+
+<script>
+  var toggleBtn = document.getElementById('theme-toggle');
+  toggleBtn.addEventListener('click', function () {
+    var root = document.documentElement;
+    var current = root.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+</script>
+</body>
+</html>
