@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ga Hing Woo (Jiaxing Hu)</title>
+<meta name="description" content="Upstream firmware and embedded Linux — Rockchip bring-up, secure boot, and NPU work from the gaps between hardware and mainline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+  :root[data-theme="dark"] {
+    --bg: #11151a;
+    --ink: #d7dce1;
+    --ink-dim: #7c8791;
+    --ink-faint: #4b545d;
+    --accent: #5fb3a0;
+    --line: #232a32;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f2f4f5;
+    --ink: #1b2126;
+    --ink-dim: #55626b;
+    --ink-faint: #8b959c;
+    --accent: #2f8a78;
+    --line: #d7dce0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    line-height: 1.6;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  main {
+    width: 100%;
+    max-width: clamp(420px, 40vw, 880px);
+    position: relative;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--ink-dim);
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .theme-toggle:hover,
+  .theme-toggle:focus-visible {
+    color: var(--accent);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle .sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .moon { display: none; }
+  :root[data-theme="dark"] .theme-toggle .sun { display: block; }
+
+  .prompt {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  h1 {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: clamp(24px, 3.8vw, 56px);
+    font-weight: 600;
+    margin: 0 0 22px 0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .typewriter-row {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: clamp(14px, 1.8vw, 21px);
+    color: var(--ink-dim);
+    min-height: 1.8em;
+    margin-bottom: 40px;
+  }
+
+  .typewriter-row .arrow {
+    color: var(--accent);
+    margin-right: 8px;
+  }
+
+  #tw-text {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    background: var(--accent);
+    margin-left: 2px;
+    transform: translateY(2px);
+    animation: blink 1s steps(1) infinite;
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+
+  nav a {
+    color: var(--ink-dim);
+    display: flex;
+    align-items: center;
+    transition: color 0.15s ease;
+  }
+
+  nav a svg { width: clamp(20px, 1.6vw, 28px); height: clamp(20px, 1.6vw, 28px); }
+
+  nav a:hover,
+  nav a:focus-visible {
+    color: var(--accent);
+  }
+
+  nav a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  footer {
+    margin-top: 28px;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; opacity: 1; }
+  }
+
+  @media (min-width: 1000px) {
+    #tw-text {
+      white-space: nowrap;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
+  <div class="prompt">gahing@gahingwoo:~$</div>
+  <h1>Ga Hing Woo (Jiaxing Hu)</h1>
+
+  <div class="typewriter-row">
+    <span class="arrow">&gt;</span><span id="tw-text"></span><span class="cursor"></span>
+  </div>
+
+  <nav>
+    <a href="https://blog.gahingwoo.com" title="Blog" aria-label="Blog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg>
+      <span class="sr-only">Blog</span>
+    </a>
+    <a href="https://github.com/gahingwoo" title="GitHub" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.27 10.27 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+      <span class="sr-only">GitHub</span>
+    </a>
+    <a href="mailto:gahing@gahingwoo.com" title="Email" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      <span class="sr-only">Email</span>
+    </a>
+    <a href="https://orcid.org/0009-0002-0840-8951" title="ORCID" aria-label="ORCID">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><circle cx="8.2" cy="8.1" r="0.9" fill="currentColor" stroke="none"/><line x1="8.2" y1="10.6" x2="8.2" y2="16.4"/><path d="M11 10.6h1.9a3 3 0 0 1 0 5.8H11z" fill="none"/></svg>
+      <span class="sr-only">ORCID</span>
+    </a>
+  </nav>
+
+  <footer>Auckland, NZ — embedded &amp; firmware</footer>
+</main>
+
+<script>
+  var lines = [
+    "helping Linux run on a chip nobody had documented before.",
+    "finding why a chip's AI hardware returned nothing but zeros.",
+    "keeping a tiny computer's secrets locked away in hardware.",
+    "getting a new chip to boot properly for the first time.",
+    "fixing the one line of code a chip's security depended on."
+  ];
+
+  var el = document.getElementById('tw-text');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    el.textContent = lines[0];
+  } else {
+    var lineIdx = 0, charIdx = 0, deleting = false;
+    var typeSpeed = 65, deleteSpeed = 38, holdTime = 2200, gapTime = 500;
+
+    function tick() {
+      var current = lines[lineIdx];
+      if (!deleting) {
+        charIdx++;
+        el.textContent = current.slice(0, charIdx);
+        if (charIdx === current.length) {
+          deleting = true;
+          setTimeout(tick, holdTime);
+          return;
+        }
+        setTimeout(tick, typeSpeed);
+      } else {
+        charIdx--;
+        el.textContent = current.slice(0, charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          lineIdx = (lineIdx + 1) % lines.length;
+          setTimeout(tick, gapTime);
+          return;
+        }
+        setTimeout(tick, deleteSpeed);
+      }
+    }
+    tick();
+  }
+
+  var toggleBtn = document.getElementById('theme-toggle');
+  toggleBtn.addEventListener('click', function () {
+    var root = document.documentElement;
+    var current = root.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+</script>
+</body>
+</html>
