@@ -230,6 +230,19 @@
     </div>
   </div>
 
+  <div class="group-label">Applied by maintainer — in linux-next</div>
+
+  <div class="entry">
+    <p class="entry-title">iommu/rockchip — two fixes applied by the IOMMU co-maintainer</p>
+    <p class="entry-desc">Found while bringing up the RK3576 NPU. The IOMMU driver only requested a fixed {aclk,iface} clock pair, but the RK3576 NPU's IOMMU instances sit behind additional CBUF/DSU gates, so register writes were silently dropped until those clocks also ran; fixed by taking every clock the devicetree provides instead of a fixed pair. Separately, boot firmware could leave an IOMMU bank in PAGE_FAULT_ACTIVE with no handler, which made that bank ignore CMD_ENABLE_STALL and hang the stall-enable poll; fixed by acknowledging the stale fault first. Split out of the RK3576 NPU RFC below and applied directly by Will Deacon (IOMMU subsystem co-maintainer) into the IOMMU tree, with his own Signed-off-by on both commits. Live in linux-next as of next-20260727; not yet in Linus's mainline tree.</p>
+    <div class="entry-meta">
+      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20260727&id=841363ebb5082a06c69ac34719e26659fe63dbd6" target="_blank" rel="noopener">linux-next — iommu/rockchip: Take all DT clocks</a>
+      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20260727&id=b10d5920cafa292ee3cab9c20f813da4fe4f00b8" target="_blank" rel="noopener">linux-next — iommu/rockchip: Clear stale page faults before enabling stall</a>
+      <a href="https://lore.kernel.org/all/178507139795.2055528.4355657426833307310.b4-ty@kernel.org/" target="_blank" rel="noopener">lore.kernel.org — Will Deacon: "Applied driver changes to iommu (rockchip)"</a>
+      <span class="tag">applied, in linux-next</span>
+    </div>
+  </div>
+
   <div class="group-label">Withdrawn on maintainer guidance</div>
 
   <div class="entry">
@@ -241,14 +254,52 @@
     </div>
   </div>
 
+  <div class="entry">
+    <p class="entry-title">net: stmmac: dwmac-rk — reference-clock fix, wrong layer</p>
+    <p class="entry-desc">Posted a fix for boards where the RGMII PHY needs a SoC-sourced 25&nbsp;MHz reference with no local crystal, routing the clock enable through the MAC driver. Maxime Chevallier (Bootlin) and Andrew Lunn (net/phy subsystem maintainer) pointed out that the PHY, not the MAC, should own and request this clock. Agreed, and withdrew the series in favour of fixing it at the correct layer &mdash; the motorcomm PHY driver, below.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/20260717065933.2629501-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — dwmac-rk refclk v2 (withdrawn)</a>
+      <span class="tag">withdrawn, redesigned below</span>
+    </div>
+  </div>
+
   <div class="group-label">Under review</div>
 
   <div class="entry">
-    <p class="entry-title">Linux kernel — RK3576 NPU (rocket driver) enablement, 9-patch RFC</p>
-    <p class="entry-desc">RFC series adding RK3576 NPU support across device-tree bindings, power-domain, IOMMU, and the accel/rocket driver. Posted to the mainline kernel list for review; not yet merged.</p>
+    <p class="entry-title">Linux kernel — RK3576 NPU (rocket driver) enablement, RFC series</p>
+    <p class="entry-desc">RFC series adding RK3576 NPU support across device-tree bindings, power-domain, IOMMU, and the accel/rocket driver; now on v2 (8 patches), with the two IOMMU fixes already split out and applied &mdash; see the linux-next entry above. The remaining driver itself is still RFC: full inference is not yet correct, and a review exchange with Alexey Charkov (Flipper Devices) traced a suspicious polled-interrupt workaround back to a real hardware gating state, narrowing the search considerably. Posted to the mainline kernel list for review; not yet merged.</p>
     <div class="entry-meta">
-      <a href="https://lore.kernel.org/all/20260717085220.3212274-1-gahing@gahingwoo.com/T/#u" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH 0/9</a>
+      <a href="https://lore.kernel.org/all/20260717085220.3212274-1-gahing@gahingwoo.com/T/#u" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH 0/9 (v1)</a>
+      <a href="https://lore.kernel.org/all/20260718031146.3368811-1-gahing@gahingwoo.com/T/#u" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH v2 0/8</a>
       <span class="tag">RFC, under review</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="entry-title">net: phy: motorcomm — reference-clock fix, Reviewed-by from the PHY subsystem maintainer</p>
+    <p class="entry-desc">Redesigned fix for the same crystal-less RGMII PHY problem above, this time enabling the clock from the PHY driver itself. Tested on an ArmSoM CM5-IO: the YT8531 links at 1000&nbsp;Mbit/s with no MAC-driver or devicetree-binding change. Carries a formal Reviewed-by from Andrew Lunn. A v2 extends the same fix to the YT8521, after Gavin Gao hit the identical problem on a different RK3576 board using that PHY. Not yet merged into net-next.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — YT8531 v1 (Reviewed-by: Andrew Lunn)</a>
+      <a href="https://lore.kernel.org/all/20260727205602.1188008-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — YT8521 + YT8531 v2</a>
+      <span class="tag">Reviewed-by: Andrew Lunn</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="entry-title">arm64: dts: rockchip — ArmSoM CM5 and CM5-IO board support</p>
+    <p class="entry-desc">Devicetree support for the ArmSoM CM5 compute module and CM5-IO carrier board, through five review rounds. Sashiko, an automated AI patch-review tool used on the list, flagged a real hardware-sequencing risk in the GMAC0/YT8531 clock ordering &mdash; resolved by the motorcomm PHY fix above. Posted for mainline review; not yet merged.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/20260719034611.3623066-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — PATCH v5 0/2</a>
+      <span class="tag">v5, under review</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="entry-title">media: rockchip — RFC V4L2 driver for the RK3576 VEPU510 H.264 encoder</p>
+    <p class="entry-desc">RFC for a from-scratch mainline video-encoder driver. Reviewed by Heiko Stübner (Rockchip kernel maintainer) and Nicolas Dufresne (Collabora, GStreamer/V4L2 maintainer), with Paul Kocialkowski (upstream stateless-codec author) also weighing in. Based on that discussion, decided to abandon the stateful V4L2 interface and converge instead on a DRM/Vulkan-Video-style kernel/userspace split being developed for the sibling RK3588 chip &mdash; judged the better long-term direction rather than defend the original design.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/20260722073417.2064667-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH 0/3</a>
+      <span class="tag">RFC, design pivot after review</span>
     </div>
   </div>
 
