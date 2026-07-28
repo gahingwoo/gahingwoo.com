@@ -343,11 +343,12 @@
 
   <div class="entry">
     <p class="entry-title">RKDevelopTool-GUI — cross-platform Rockchip flashing GUI</p>
-    <p class="entry-desc">A Qt/PySide6 graphical front-end for Rockchip firmware flashing on macOS and Linux. Independently packaged into the Arch AUR by the same community maintainer as SoC-Consistency (taotieren), and pulled in as an optional dependency of the SoC-Consistency AUR package &mdash; the two tools now have a real dependency relationship in the wild, not just two separate uploads.</p>
+    <p class="entry-desc">A Qt/PySide6 graphical front-end for Rockchip firmware flashing on macOS and Linux. Independently packaged into the Arch AUR by the same community maintainer as SoC-Consistency (taotieren), and pulled in as an optional dependency of the SoC-Consistency AUR package &mdash; the two tools now have a real dependency relationship in the wild, not just two separate uploads. Radxa's own documentation now carries a dedicated page for it under CM3 low-level development, with per-platform install steps, positioned in their docs alongside their own rkdeveloptool CLI.</p>
     <div class="entry-meta">
       <a href="https://github.com/gahingwoo/RKDevelopTool-GUI" target="_blank" rel="noopener">github.com/gahingwoo/RKDevelopTool-GUI</a>
       <a href="https://aur.archlinux.org/packages/rkdeveloptool-git" target="_blank" rel="noopener">AUR: rkdeveloptool-git</a>
-      <span class="tag">AUR</span>
+      <a href="https://docs.radxa.com/en/template/module/radxa-os/low-level-dev/rkdeveloptool-gui" target="_blank" rel="noopener">docs.radxa.com — RKDevelopTool-GUI</a>
+      <span class="tag">AUR, in Radxa docs</span>
     </div>
   </div>
 
@@ -371,6 +372,16 @@
       <a href="https://forum.radxa.com/t/uefi-firmware-support-for-rock-4d-rk3576/30790/" target="_blank" rel="noopener">forum.radxa.com &mdash; pinned thread</a>
       <a href="https://github.com/gahingwoo/edk2-rk3576" target="_blank" rel="noopener">github.com/gahingwoo/edk2-rk3576</a>
       <span class="tag">third-party</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="entry-title">kiln &mdash; official Radxa tutorial for local LLM/vision on the RK3576 NPU</p>
+    <p class="entry-desc">A deliberate stopgap, not a mainline driver: builds the vendor GPL rknpu driver out-of-tree against a mainline kernel (linux-7.1.3), drives it with the closed librkllmrt/librknnrt runtimes, and carries the RK3576 NPU clock/power-domain/IOMMU kernel patches from above so the NPU comes up at all without the vendor's 6.1 BSP. Radxa wrote and hosts a full step-by-step tutorial for it under ROCK 4D &gt; Application Development &gt; NPU Usage &mdash; install, health checks, local LLM chat, vision inference, and an OpenAI-compatible API server &mdash; explicitly labelled as a third-party project rather than official support, but given the same tutorial treatment as Radxa's own guides.</p>
+    <div class="entry-meta">
+      <a href="https://github.com/gahingwoo/kiln" target="_blank" rel="noopener">github.com/gahingwoo/kiln</a>
+      <a href="https://docs.radxa.com/en/rock4/rock4d/application-dev/npu/kiln" target="_blank" rel="noopener">docs.radxa.com &mdash; Kiln tutorial</a>
+      <span class="tag">third-party, official tutorial</span>
     </div>
   </div>
 
