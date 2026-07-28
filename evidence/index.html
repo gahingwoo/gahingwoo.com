@@ -276,12 +276,12 @@
   </div>
 
   <div class="entry">
-    <p class="entry-title">net: phy: motorcomm — reference-clock fix, Reviewed-by from the PHY subsystem maintainer</p>
-    <p class="entry-desc">Redesigned fix for the same crystal-less RGMII PHY problem above, this time enabling the clock from the PHY driver itself. Tested on an ArmSoM CM5-IO: the YT8531 links at 1000&nbsp;Mbit/s with no MAC-driver or devicetree-binding change. Carries a formal Reviewed-by from Andrew Lunn. A v2 extends the same fix to the YT8521, after Gavin Gao hit the identical problem on a different RK3576 board using that PHY. Not yet merged into net-next.</p>
+    <p class="entry-title">net: phy: motorcomm — reference-clock fix, Reviewed-by and Tested-by from independent boards</p>
+    <p class="entry-desc">Redesigned fix for the same crystal-less RGMII PHY problem above, this time enabling the clock from the PHY driver itself. Tested on an ArmSoM CM5-IO: the YT8531 links at 1000&nbsp;Mbit/s with no MAC-driver or devicetree-binding change. Carries a formal Reviewed-by from Andrew Lunn. A v2 extends the same fix to the YT8521, after Gavin Gao hit the identical problem on a different RK3576 board using that PHY &mdash; and Gavin came back with a Tested-by on his own hardware (PicoCOM RK3576 ACP, YT8521), confirming the clock stays active and Ethernet works on a board I don't own. Not yet merged into net-next.</p>
     <div class="entry-meta">
       <a href="https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — YT8531 v1 (Reviewed-by: Andrew Lunn)</a>
-      <a href="https://lore.kernel.org/all/20260727205602.1188008-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — YT8521 + YT8531 v2</a>
-      <span class="tag">Reviewed-by: Andrew Lunn</span>
+      <a href="https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/" target="_blank" rel="noopener">lore.kernel.org — YT8521 + YT8531 v2 (Tested-by: Gavin Gao)</a>
+      <span class="tag">Reviewed-by: Andrew Lunn · Tested-by: Gavin Gao</span>
     </div>
   </div>
 
