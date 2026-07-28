@@ -230,7 +230,7 @@
     </div>
   </div>
 
-  <div class="group-label">Applied by maintainer — in linux-next</div>
+  <div class="group-label">Applied by maintainer</div>
 
   <div class="entry">
     <p class="entry-title">iommu/rockchip — two fixes applied by the IOMMU co-maintainer</p>
@@ -240,6 +240,17 @@
       <a href="https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20260727&id=b10d5920cafa292ee3cab9c20f813da4fe4f00b8" target="_blank" rel="noopener">linux-next — iommu/rockchip: Clear stale page faults before enabling stall</a>
       <a href="https://lore.kernel.org/all/178507139795.2055528.4355657426833307310.b4-ty@kernel.org/" target="_blank" rel="noopener">lore.kernel.org — Will Deacon: "Applied driver changes to iommu (rockchip)"</a>
       <span class="tag">applied, in linux-next</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="entry-title">arm64: dts: rockchip — ArmSoM CM5 and CM5-IO board support, applied by the Rockchip SoC maintainer</p>
+    <p class="entry-desc">Devicetree support for the ArmSoM CM5 compute module and CM5-IO carrier board, through five review rounds. Sashiko, an automated AI patch-review tool used on the list, flagged a real hardware-sequencing risk in the GMAC0/YT8531 clock ordering &mdash; resolved by the motorcomm PHY fix above. The dt-bindings patch also carries an Acked-by from Krzysztof Kozlowski (devicetree bindings maintainer). Applied by Heiko Stübner (Rockchip SoC maintainer) into his own tree, with his own Signed-off-by on both commits; he adjusted styling and fixed a couple of dt-checker warnings on the way in.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/178526609483.300371.1972096741019410847.b4-ty@sntech.de/" target="_blank" rel="noopener">lore.kernel.org — Heiko Stübner: "Applied, thanks!"</a>
+      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v7.3-armsoc/dts64&id=f60f44c24b10fe7fd1fa76b360646def1bea193a" target="_blank" rel="noopener">linux-rockchip — dt-bindings: Add ArmSoM CM5 and CM5-IO</a>
+      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v7.3-armsoc/dts64&id=44a48a23974b86d2c551afbabee15ad70b249df5" target="_blank" rel="noopener">linux-rockchip — arm64: dts: Add ArmSoM CM5 and CM5-IO</a>
+      <span class="tag">applied, v7.3-armsoc/dts64</span>
     </div>
   </div>
 
@@ -282,15 +293,6 @@
       <a href="https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — YT8531 v1 (Reviewed-by: Andrew Lunn)</a>
       <a href="https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/" target="_blank" rel="noopener">lore.kernel.org — YT8521 + YT8531 v2 (Tested-by: Gavin Gao)</a>
       <span class="tag">Reviewed-by: Andrew Lunn · Tested-by: Gavin Gao</span>
-    </div>
-  </div>
-
-  <div class="entry">
-    <p class="entry-title">arm64: dts: rockchip — ArmSoM CM5 and CM5-IO board support</p>
-    <p class="entry-desc">Devicetree support for the ArmSoM CM5 compute module and CM5-IO carrier board, through five review rounds. Sashiko, an automated AI patch-review tool used on the list, flagged a real hardware-sequencing risk in the GMAC0/YT8531 clock ordering &mdash; resolved by the motorcomm PHY fix above. Posted for mainline review; not yet merged.</p>
-    <div class="entry-meta">
-      <a href="https://lore.kernel.org/all/20260719034611.3623066-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — PATCH v5 0/2</a>
-      <span class="tag">v5, under review</span>
     </div>
   </div>
 
