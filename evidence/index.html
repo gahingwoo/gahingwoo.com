@@ -278,20 +278,23 @@
 
   <div class="entry">
     <p class="entry-title">Linux kernel — RK3576 NPU (rocket driver) enablement, RFC series</p>
-    <p class="entry-desc">RFC series adding RK3576 NPU support across device-tree bindings, power-domain, IOMMU, and the accel/rocket driver; now on v2 (8 patches), with the two IOMMU fixes already split out and applied &mdash; see the linux-next entry above. The remaining driver itself is still RFC: full inference is not yet correct, and a review exchange with Alexey Charkov (Flipper Devices) traced a suspicious polled-interrupt workaround back to a real hardware gating state, narrowing the search considerably. Posted to the mainline kernel list for review; not yet merged.</p>
+    <p class="entry-desc">RFC series adding RK3576 NPU support across device-tree bindings, power-domain, IOMMU, and the accel/rocket driver; now on v3 (6 patches, down from 9 as the IOMMU fixes were split out and applied &mdash; see the linux-next entry above &mdash; and the driver was refactored to share code with RK3588 via a soc_data table). The remaining driver itself is still RFC: full inference is not yet correct, and a review exchange with Alexey Charkov (Flipper Devices) traced a suspicious polled-interrupt workaround back to a real hardware gating state, narrowing the search considerably. On v3, Igor Paunovic independently tested the RK3588 side on his own Orange Pi 5 Plus &mdash; hardware I don't have &mdash; and got bit-identical MobileNetV1 output across 4260 inference iterations against the stock driver, plus confirmation that the soc_data refactor leaves RK3588's existing behaviour untouched. Posted to the mainline kernel list for review; not yet merged.</p>
     <div class="entry-meta">
       <a href="https://lore.kernel.org/all/20260717085220.3212274-1-gahing@gahingwoo.com/T/#u" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH 0/9 (v1)</a>
       <a href="https://lore.kernel.org/all/20260718031146.3368811-1-gahing@gahingwoo.com/T/#u" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH v2 0/8</a>
-      <span class="tag">RFC, under review</span>
+      <a href="https://lore.kernel.org/all/20260731043507.1832277-1-gahing@gahingwoo.com/T/#u" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH v3 0/6 (Tested-by: Igor Paunovic, RK3588)</a>
+      <span class="tag">RFC, under review · Tested-by: Igor Paunovic</span>
     </div>
   </div>
 
   <div class="entry">
     <p class="entry-title">net: phy: motorcomm — reference-clock fix, Reviewed-by and Tested-by from independent boards</p>
-    <p class="entry-desc">Redesigned fix for the same crystal-less RGMII PHY problem above, this time enabling the clock from the PHY driver itself. Tested on an ArmSoM CM5-IO: the YT8531 links at 1000&nbsp;Mbit/s with no MAC-driver or devicetree-binding change. Carries a formal Reviewed-by from Andrew Lunn. A v2 extends the same fix to the YT8521, after Gavin Gao hit the identical problem on a different RK3576 board using that PHY &mdash; and Gavin came back with a Tested-by on his own hardware (PicoCOM RK3576 ACP, YT8521), confirming the clock stays active and Ethernet works on a board I don't own. Not yet merged into net-next.</p>
+    <p class="entry-desc">Redesigned fix for the same crystal-less RGMII PHY problem above, this time enabling the clock from the PHY driver itself. Tested on an ArmSoM CM5-IO: the YT8531 links at 1000&nbsp;Mbit/s with no MAC-driver or devicetree-binding change. Carried a formal Reviewed-by from Andrew Lunn on v1. A v2 extended the fix to the YT8521 after Gavin Gao hit the identical problem on a different RK3576 board using that PHY, and Gavin came back with a Tested-by on his own hardware (PicoCOM RK3576 ACP). While v2/v3 were in review &mdash; Alexey Charkov (Flipper Devices) flagged a needless helper function; Jakub Kicinski, the net maintainer, asked for a rebase &mdash; a different contributor's equivalent YT8531 fix, for an unrelated board, landed in net-next first as commit 42310a24389c. That's independent confirmation the diagnosis was right, even though someone else's patch text got there first. v4 drops the now-redundant YT8531 hunk and keeps just the YT8521 addition, carrying the Reviewed-by and Tested-by forward. Not yet merged.</p>
     <div class="entry-meta">
       <a href="https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — YT8531 v1 (Reviewed-by: Andrew Lunn)</a>
-      <a href="https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/" target="_blank" rel="noopener">lore.kernel.org — YT8521 + YT8531 v2 (Tested-by: Gavin Gao)</a>
+      <a href="https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/" target="_blank" rel="noopener">lore.kernel.org — v2 (Tested-by: Gavin Gao)</a>
+      <a href="https://lore.kernel.org/all/20260731013807.1488843-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — v4 (YT8521 only, rebased)</a>
+      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/commit/?id=42310a24389c" target="_blank" rel="noopener">net-next — Yanan He's independent YT8531 fix</a>
       <span class="tag">Reviewed-by: Andrew Lunn · Tested-by: Gavin Gao</span>
     </div>
   </div>
@@ -302,6 +305,20 @@
     <div class="entry-meta">
       <a href="https://lore.kernel.org/all/20260722073417.2064667-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — RFC PATCH 0/3</a>
       <span class="tag">RFC, design pivot after review</span>
+    </div>
+  </div>
+
+  <div class="group-label">Reviews given to other contributors</div>
+
+  <div class="entry">
+    <p class="entry-title">accel/rocket — Reviewed-by given to another contributor, twice, on real bugs</p>
+    <p class="entry-desc">As the RK3576 NPU work drew other people to the accel/rocket driver, Igor Paunovic asked before sending a fix, rather than after, and I gave two patches a formal Reviewed-by after checking them properly rather than rubber-stamping. The first (requesting clocks by name instead of by index) I cross-checked against the devicetree binding and my own board-tested RK3576 values. The second (fixing a shared-device lifecycle bug on probe failure) I did not wave through on v1: I traced a real out-of-bounds write in the driver's scheduler array back to a stale "live" core slot left over from a partial probe failure, with the exact one-line fix, and only gave the Reviewed-by once v2 addressed all three points. It came back around: Igor then gave my own RK3576 NPU RFC v3 a Tested-by on RK3588 hardware I don't have, including 4260 bit-identical inference iterations against the stock driver &mdash; a genuine two-way review relationship in the subsystem, not a one-off. When Igor posted his own RFC on an RK3588 DVFS hardware constraint, I brought in a third contributor's (Olaf001au) vendor-BSP clock trace to correct an assumption about which clock the driver actually scales, and cross-checked the constraint against RK3576 &mdash; discussion and analysis rather than a formal tag, but the same pattern of being asked in.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/20260729105013.1255526-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — clocks-by-name (Reviewed-by given)</a>
+      <a href="https://lore.kernel.org/all/20260730113256.1418091-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — lifecycle fix v1 (bug found)</a>
+      <a href="https://lore.kernel.org/all/20260801033614.2008530-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — lifecycle fix v2 (Reviewed-by given)</a>
+      <a href="https://lore.kernel.org/all/20260801193237.2539957-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — RK3588 DVFS RFC (discussion)</a>
+      <span class="tag">Reviewed-by given &times;2</span>
     </div>
   </div>
 
