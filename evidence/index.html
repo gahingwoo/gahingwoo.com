@@ -245,12 +245,24 @@
 
   <div class="entry">
     <p class="entry-title">arm64: dts: rockchip — ArmSoM CM5 and CM5-IO board support, applied by the Rockchip SoC maintainer</p>
-    <p class="entry-desc">Devicetree support for the ArmSoM CM5 compute module and CM5-IO carrier board, through five review rounds. Sashiko, an automated AI patch-review tool used on the list, flagged a real hardware-sequencing risk in the GMAC0/YT8531 clock ordering &mdash; resolved by the motorcomm PHY fix above. The dt-bindings patch also carries an Acked-by from Krzysztof Kozlowski (devicetree bindings maintainer). Applied by Heiko Stübner (Rockchip SoC maintainer) into his own tree, with his own Signed-off-by on both commits; he adjusted styling and fixed a couple of dt-checker warnings on the way in.</p>
+    <p class="entry-desc">Devicetree support for the ArmSoM CM5 compute module and CM5-IO carrier board, through five review rounds. Sashiko, an automated AI patch-review tool used on the list, flagged a real hardware-sequencing risk in the GMAC0/YT8531 clock ordering &mdash; resolved by the motorcomm PHY fix below. The dt-bindings patch also carries an Acked-by from Krzysztof Kozlowski (devicetree bindings maintainer). Applied by Heiko Stübner (Rockchip SoC maintainer) into his own tree, with his own Signed-off-by on both commits; he adjusted styling and fixed a couple of dt-checker warnings on the way in.</p>
     <div class="entry-meta">
       <a href="https://lore.kernel.org/all/178526609483.300371.1972096741019410847.b4-ty@sntech.de/" target="_blank" rel="noopener">lore.kernel.org — Heiko Stübner: "Applied, thanks!"</a>
       <a href="https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v7.3-armsoc/dts64&id=f60f44c24b10fe7fd1fa76b360646def1bea193a" target="_blank" rel="noopener">linux-rockchip — dt-bindings: Add ArmSoM CM5 and CM5-IO</a>
       <a href="https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v7.3-armsoc/dts64&id=44a48a23974b86d2c551afbabee15ad70b249df5" target="_blank" rel="noopener">linux-rockchip — arm64: dts: Add ArmSoM CM5 and CM5-IO</a>
       <span class="tag">applied, v7.3-armsoc/dts64</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="entry-title">net: phy: motorcomm — reference-clock fix, applied by the net maintainer</p>
+    <p class="entry-desc">Redesigned fix for a crystal-less RGMII PHY problem (see the withdrawn dwmac-rk attempt below), enabling the clock from the PHY driver itself. Tested on an ArmSoM CM5-IO: the YT8531 links at 1000&nbsp;Mbit/s with no MAC-driver or devicetree-binding change. Carried a formal Reviewed-by from Andrew Lunn on v1. A v2 extended the fix to the YT8521 after Gavin Gao hit the identical problem on a different RK3576 board using that PHY, and Gavin came back with a Tested-by on his own hardware (PicoCOM RK3576 ACP). While v2/v3 were in review &mdash; Alexey Charkov (Flipper Devices) flagged a needless helper function; Jakub Kicinski, the net maintainer, asked for a rebase &mdash; a different contributor's equivalent YT8531 fix, for an unrelated board, landed in net-next first as commit 42310a24389c. That's independent confirmation the diagnosis was right, even though someone else's patch text got there first. v4 dropped the now-redundant YT8531 hunk, kept the YT8521 addition with the Reviewed-by and Tested-by carried forward, and was applied by Jakub Kicinski himself into net-next, with his own Signed-off-by.</p>
+    <div class="entry-meta">
+      <a href="https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — YT8531 v1 (Reviewed-by: Andrew Lunn)</a>
+      <a href="https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/" target="_blank" rel="noopener">lore.kernel.org — v2 (Tested-by: Gavin Gao)</a>
+      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/commit/?id=dc3b7209b5d32194b9088fb40f1787130f34ea5e" target="_blank" rel="noopener">net-next — applied by Jakub Kicinski</a>
+      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/commit/?id=42310a24389c" target="_blank" rel="noopener">net-next — Yanan He's independent YT8531 fix</a>
+      <span class="tag">applied, net-next</span>
     </div>
   </div>
 
@@ -267,10 +279,10 @@
 
   <div class="entry">
     <p class="entry-title">net: stmmac: dwmac-rk — reference-clock fix, wrong layer</p>
-    <p class="entry-desc">Posted a fix for boards where the RGMII PHY needs a SoC-sourced 25&nbsp;MHz reference with no local crystal, routing the clock enable through the MAC driver. Maxime Chevallier (Bootlin) and Andrew Lunn (net/phy subsystem maintainer) pointed out that the PHY, not the MAC, should own and request this clock. Agreed, and withdrew the series in favour of fixing it at the correct layer &mdash; the motorcomm PHY driver, below.</p>
+    <p class="entry-desc">Posted a fix for boards where the RGMII PHY needs a SoC-sourced 25&nbsp;MHz reference with no local crystal, routing the clock enable through the MAC driver. Maxime Chevallier (Bootlin) and Andrew Lunn (net/phy subsystem maintainer) pointed out that the PHY, not the MAC, should own and request this clock. Agreed, and withdrew the series in favour of fixing it at the correct layer &mdash; the motorcomm PHY driver, above, which is what ended up applied to net-next.</p>
     <div class="entry-meta">
       <a href="https://lore.kernel.org/all/20260717065933.2629501-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — dwmac-rk refclk v2 (withdrawn)</a>
-      <span class="tag">withdrawn, redesigned below</span>
+      <span class="tag">withdrawn, redesigned above</span>
     </div>
   </div>
 
@@ -288,17 +300,6 @@
     </div>
   </div>
 
-  <div class="entry">
-    <p class="entry-title">net: phy: motorcomm — reference-clock fix, Reviewed-by and Tested-by from independent boards</p>
-    <p class="entry-desc">Redesigned fix for the same crystal-less RGMII PHY problem above, this time enabling the clock from the PHY driver itself. Tested on an ArmSoM CM5-IO: the YT8531 links at 1000&nbsp;Mbit/s with no MAC-driver or devicetree-binding change. Carried a formal Reviewed-by from Andrew Lunn on v1. A v2 extended the fix to the YT8521 after Gavin Gao hit the identical problem on a different RK3576 board using that PHY, and Gavin came back with a Tested-by on his own hardware (PicoCOM RK3576 ACP). While v2/v3 were in review &mdash; Alexey Charkov (Flipper Devices) flagged a needless helper function; Jakub Kicinski, the net maintainer, asked for a rebase &mdash; a different contributor's equivalent YT8531 fix, for an unrelated board, landed in net-next first as commit 42310a24389c. That's independent confirmation the diagnosis was right, even though someone else's patch text got there first. v4 drops the now-redundant YT8531 hunk and keeps just the YT8521 addition, carrying the Reviewed-by and Tested-by forward. Not yet merged.</p>
-    <div class="entry-meta">
-      <a href="https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — YT8531 v1 (Reviewed-by: Andrew Lunn)</a>
-      <a href="https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/" target="_blank" rel="noopener">lore.kernel.org — v2 (Tested-by: Gavin Gao)</a>
-      <a href="https://lore.kernel.org/all/20260731013807.1488843-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org — v4 (YT8521 only, rebased)</a>
-      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/commit/?id=42310a24389c" target="_blank" rel="noopener">net-next — Yanan He's independent YT8531 fix</a>
-      <span class="tag">Reviewed-by: Andrew Lunn · Tested-by: Gavin Gao</span>
-    </div>
-  </div>
 
   <div class="entry">
     <p class="entry-title">media: rockchip — RFC V4L2 driver for the RK3576 VEPU510 H.264 encoder</p>
