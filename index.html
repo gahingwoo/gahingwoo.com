@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ga Hing Woo (Jiaxing Hu)</title>
-<meta name="description" content="Upstream firmware and embedded Linux — Rockchip bring-up, secure boot, and NPU work from the gaps between hardware and mainline.">
+<meta name="description" content="Upstream firmware and embedded Linux. Rockchip bring-up, secure boot, and NPU work from the gaps between hardware and mainline.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -16,6 +16,25 @@
   })();
 </script>
 <style>
+  :root {
+    /* Typewriter timings live here rather than in the script, so there is one
+       place to change them and nothing can drift out of step. */
+    --tw-type-speed: 65ms;
+    --tw-delete-speed: 38ms;
+    --tw-hold-time: 2200ms;
+    --tw-gap-time: 500ms;
+
+    /* The typewriter row reserves its worst-case wrap so the nav underneath
+       never moves while a line is being typed. Both the line box and the
+       number of lines reserved are declared here, and min-height is derived
+       from the pair, so changing the line height cannot silently leave the
+       reservation too short. Measured 2026-08-22: the longest line wraps to
+       3 lines at 320px, 2 lines from 360px, and 1 line at 1000px and above
+       where #tw-text is nowrap. */
+    --tw-line-height: 1.6;
+    --tw-lines: 3;
+  }
+
   :root[data-theme="dark"] {
     --bg: #11151a;
     --ink: #d7dce1;
@@ -112,8 +131,8 @@
     font-family: 'IBM Plex Mono', ui-monospace, monospace;
     font-size: clamp(14px, 1.8vw, 21px);
     color: var(--ink-dim);
-    line-height: 1.6;
-    min-height: 4.8em;
+    line-height: var(--tw-line-height);
+    min-height: calc(var(--tw-lines) * var(--tw-line-height) * 1em);
     margin-bottom: 40px;
   }
 
@@ -244,7 +263,7 @@
     </a>
   </nav>
 
-  <footer>Auckland, NZ — embedded &amp; firmware</footer>
+  <footer>Auckland, NZ &middot; embedded &amp; firmware</footer>
 </main>
 
 <script>
@@ -262,8 +281,22 @@
   if (reduceMotion) {
     el.textContent = lines[0];
   } else {
+    var rootStyles = getComputedStyle(document.documentElement);
+
+    function cssTime(name, fallback) {
+      var v = rootStyles.getPropertyValue(name).trim();
+      var n = parseFloat(v);
+      if (!v || isNaN(n)) return fallback;
+      if (v.slice(-2) === 'ms') return n;
+      if (v.slice(-1) === 's') return n * 1000;
+      return n;
+    }
+
     var lineIdx = 0, charIdx = 0, deleting = false;
-    var typeSpeed = 65, deleteSpeed = 38, holdTime = 2200, gapTime = 500;
+    var typeSpeed = cssTime('--tw-type-speed', 65),
+        deleteSpeed = cssTime('--tw-delete-speed', 38),
+        holdTime = cssTime('--tw-hold-time', 2200),
+        gapTime = cssTime('--tw-gap-time', 500);
 
     function tick() {
       var current = lines[lineIdx];
