@@ -204,7 +204,7 @@
   <h1>Evidence Appendix</h1>
   <p class="lede">A plain list of the claims I make about my own work, each with a link to the original public record: a merged commit, a review thread, or a published DOI. Nothing here is summarised from memory; every line links to a source you can check yourself.</p>
   <p class="lede">Full profile, all repositories: <a href="https://github.com/gahingwoo" target="_blank" rel="noopener" style="color:var(--accent)">github.com/gahingwoo</a></p>
-  <p class="lede" style="font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px;color:var(--ink-faint)">Last updated 23 August 2026. Where an earlier claim of mine turned out to be wrong, the entry says so rather than being quietly deleted.</p>
+  <p class="lede" style="font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px;color:var(--ink-faint)">Last updated 23 August 2026. Where an earlier claim of mine turned out to be wrong, the entry says so rather than being quietly deleted. Kernel commits are linked twice, once to git.kernel.org and once to the GitHub mirror of the same tree, because git.kernel.org's bot check can take a while on an older machine.</p>
 
   <div class="name-note">
     <strong>A note on names.</strong> The Linux kernel mailing list requires patches to be signed off with a real legal name, so kernel and IOMMU work below is under <strong>Jiaxing Hu</strong>. Everywhere else (GitHub, this site), I go by my handle, <strong><a href="https://github.com/gahingwoo" target="_blank" rel="noopener" style="color:inherit">gahingwoo</a></strong> (Ga Hing Woo). "Jiaxing Hu" alone is a common name that returns many unrelated people in search results, so if you're trying to verify any of this independently, searching gahingwoo or following the direct links below is more reliable than searching my legal name on its own.
@@ -231,14 +231,16 @@
     </div>
   </div>
 
-  <div class="group-label">Applied by maintainer</div>
+  <div class="group-label">Merged into mainline Linux</div>
 
   <div class="entry">
     <p class="entry-title">iommu/rockchip: two fixes applied by the IOMMU co-maintainer</p>
     <p class="entry-desc">Found while bringing up the RK3576 NPU. The IOMMU driver only requested a fixed {aclk,iface} clock pair, but the RK3576 NPU's IOMMU instances sit behind additional CBUF/DSU gates, so register writes were silently dropped until those clocks also ran; fixed by taking every clock the devicetree provides instead of a fixed pair. Separately, boot firmware could leave an IOMMU bank in PAGE_FAULT_ACTIVE with no handler, which made that bank ignore CMD_ENABLE_STALL and hang the stall-enable poll; fixed by acknowledging the stale fault first. Split out of the RK3576 NPU RFC below and applied directly by Will Deacon (IOMMU subsystem co-maintainer) into the IOMMU tree, with his own Signed-off-by on both commits. Both are now in Linus's mainline tree. Checked rather than assumed: querying the v7.2 tag's own history for my name returns nothing, and Linus tagged v7.2 on 16 August 2026, so these landed in the 7.3 merge window that opened after it. Neither commit carries a Fixes: line or a stable Cc, so neither is queued for a 7.2.x point release.</p>
     <div class="entry-meta">
       <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=841363ebb5082a06c69ac34719e26659fe63dbd6" target="_blank" rel="noopener">mainline, iommu/rockchip: Take all DT clocks</a>
+      <a href="https://github.com/torvalds/linux/commit/841363ebb5082a06c69ac34719e26659fe63dbd6" target="_blank" rel="noopener">github: 841363ebb508</a>
       <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b10d5920cafa292ee3cab9c20f813da4fe4f00b8" target="_blank" rel="noopener">mainline, iommu/rockchip: Clear stale page faults before enabling stall</a>
+      <a href="https://github.com/torvalds/linux/commit/b10d5920cafa292ee3cab9c20f813da4fe4f00b8" target="_blank" rel="noopener">github: b10d5920cafa</a>
       <a href="https://lore.kernel.org/all/178507139795.2055528.4355657426833307310.b4-ty@kernel.org/" target="_blank" rel="noopener">lore.kernel.org, Will Deacon: "Applied driver changes to iommu (rockchip)"</a>
       <span class="tag">in mainline, 7.3</span>
     </div>
@@ -250,7 +252,9 @@
     <div class="entry-meta">
       <a href="https://lore.kernel.org/all/178526609483.300371.1972096741019410847.b4-ty@sntech.de/" target="_blank" rel="noopener">lore.kernel.org, Heiko Stübner: "Applied, thanks!"</a>
       <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f60f44c24b10fe7fd1fa76b360646def1bea193a" target="_blank" rel="noopener">mainline, dt-bindings: Add ArmSoM CM5 and CM5-IO</a>
+      <a href="https://github.com/torvalds/linux/commit/f60f44c24b10fe7fd1fa76b360646def1bea193a" target="_blank" rel="noopener">github: f60f44c24b10</a>
       <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=44a48a23974b86d2c551afbabee15ad70b249df5" target="_blank" rel="noopener">mainline, arm64: dts: Add ArmSoM CM5 and CM5-IO</a>
+      <a href="https://github.com/torvalds/linux/commit/44a48a23974b86d2c551afbabee15ad70b249df5" target="_blank" rel="noopener">github: 44a48a23974b</a>
       <span class="tag">in mainline, 7.3</span>
     </div>
   </div>
@@ -262,7 +266,9 @@
       <a href="https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/" target="_blank" rel="noopener">lore.kernel.org, YT8531 v1 (Reviewed-by: Andrew Lunn)</a>
       <a href="https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/" target="_blank" rel="noopener">lore.kernel.org, v2 (Tested-by: Gavin Gao)</a>
       <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dc3b7209b5d32194b9088fb40f1787130f34ea5e" target="_blank" rel="noopener">mainline, net: phy: motorcomm: enable the reference clock for YT8521</a>
-      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/commit/?id=42310a24389c" target="_blank" rel="noopener">net-next: Yanan He's independent YT8531 fix</a>
+      <a href="https://github.com/torvalds/linux/commit/dc3b7209b5d32194b9088fb40f1787130f34ea5e" target="_blank" rel="noopener">github: dc3b7209b5d3</a>
+      <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=42310a24389c1bdda82e4c30750a6b72e98238d1" target="_blank" rel="noopener">mainline, Yanan He's independent YT8531 fix</a>
+      <a href="https://github.com/torvalds/linux/commit/42310a24389c1bdda82e4c30750a6b72e98238d1" target="_blank" rel="noopener">github: 42310a24389c</a>
       <span class="tag">in mainline, 7.3</span>
     </div>
   </div>
