@@ -191,6 +191,128 @@
   }
   .to-top:hover, .to-top:focus-visible { color: var(--accent); }
 
+  /* ---- the side rail: ticks always, labels on hover ----
+     Only where the margin is genuinely wide enough: main is 760px, so at 1200px
+     each side has 220px and the rail is 190px at left:16px. Below that the rail is
+     not drawn at all and the Contents block at the top is the whole story. */
+  .rail { display: none; }
+  @media (min-width: 1200px) {
+    .rail {
+      display: block;
+      position: fixed;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      /* Take whatever the margin can spare, up to the width of the longest label,
+         always leaving 24px before the content column. Derived rather than stepped,
+         so there is no viewport between breakpoints where it collides or truncates
+         for no reason: main is 760px centred, so each margin is (100vw - 760px)/2,
+         the rail starts at 16px, and 40px covers that offset plus the gap. */
+      width: min(300px, calc((100vw - 760px) / 2 - 40px));
+      z-index: 20;
+    }
+  }
+  .rail ol { list-style: none; margin: 0; padding: 0; }
+  .rail li { height: 24px; display: flex; align-items: center; }
+  .rail a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+  .rail .tick {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 1px;
+    background: var(--ink-faint);
+    transition: width 0.15s ease, background 0.15s ease;
+  }
+  .rail .rail-label {
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+  }
+  .rail:hover .rail-label,
+  .rail:focus-within .rail-label { opacity: 1; visibility: visible; }
+  .rail a:hover .tick, .rail a:focus-visible .tick { width: 28px; background: var(--accent); }
+  .rail a:hover .rail-label, .rail a:focus-visible .rail-label { color: var(--accent); }
+  .rail li.active .tick { width: 28px; background: var(--accent); }
+  .rail li.active .rail-label { color: var(--ink); }
+  .rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* ---- entry trimming ----
+     Long entries are folded to a readable height with the rest one click away.
+     The text stays in the DOM, so find-in-page still matches it, and anything the
+     reader lands on by anchor or prints is unfolded first. */
+  .entry-desc { position: relative; }
+  .entry.folded .entry-desc {
+    max-height: 9.6em;
+    overflow: hidden;
+  }
+  .entry.folded .entry-desc::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3.4em;
+    background: linear-gradient(to bottom, transparent, var(--card-bg));
+    pointer-events: none;
+  }
+  .entry-more {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--accent);
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    cursor: pointer;
+  }
+  .entry-more:hover { text-decoration: underline; }
+  .entry-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  /* ---- back to top ---- */
+  .totop-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink-dim);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, color 0.15s ease;
+    z-index: 20;
+  }
+  .totop-btn.on { opacity: 1; pointer-events: auto; }
+  .totop-btn:hover, .totop-btn:focus-visible { color: var(--accent); border-color: var(--accent); }
+  .totop-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .totop-btn svg { width: 15px; height: 15px; }
+
+  @media print {
+    .rail, .totop-btn, .entry-more, .theme-toggle { display: none !important; }
+    .entry.folded .entry-desc { max-height: none; overflow: visible; }
+    .entry.folded .entry-desc::after { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rail .tick, .rail .rail-label, .totop-btn { transition: none; }
+  }
+
+
   .entry {
     border: 1px solid var(--line);
     background: var(--card-bg);
@@ -253,6 +375,22 @@
 </style>
 </head>
 <body>
+<nav class="rail" aria-label="Sections">
+  <ol>
+    <li><a href="#merged-upstream"><span class="tick"></span><span class="rail-label">Merged upstream</span></a></li>
+    <li><a href="#mainline-linux"><span class="tick"></span><span class="rail-label">Merged into mainline Linux</span></a></li>
+    <li><a href="#withdrawn"><span class="tick"></span><span class="rail-label">Withdrawn on maintainer guidance</span></a></li>
+    <li><a href="#under-review"><span class="tick"></span><span class="rail-label">Under review</span></a></li>
+    <li><a href="#reviews-given"><span class="tick"></span><span class="rail-label">Reviews given to other contributors</span></a></li>
+    <li><a href="#published-research"><span class="tick"></span><span class="rail-label">Published research</span></a></li>
+    <li><a href="#independent-projects"><span class="tick"></span><span class="rail-label">Independent projects</span></a></li>
+    <li><a href="#tools-in-use"><span class="tick"></span><span class="rail-label">Tools in use by others</span></a></li>
+    <li><a href="#third-party-validation"><span class="tick"></span><span class="rail-label">Third-party validation</span></a></li>
+    <li><a href="#community-deployment"><span class="tick"></span><span class="rail-label">Community deployment</span></a></li>
+    <li><a href="#peer-collaboration"><span class="tick"></span><span class="rail-label">Peer collaboration</span></a></li>
+  </ol>
+</nav>
+
 <main>
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">
     <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -617,6 +755,10 @@
   </footer>
 </main>
 
+<button class="totop-btn" id="totop" aria-label="Back to top" title="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
   // Read each section's entry count off the page rather than hard-coding it, so a
   // hand-added entry cannot leave a wrong number in the contents.
@@ -631,6 +773,95 @@
     var slot = a.parentElement.querySelector('.n');
     if (slot) slot.textContent = n;
   });
+
+
+  // ---- fold long entries ----
+  // Measured, not guessed: an entry is folded only if its description is actually
+  // taller than the fold. The text is never removed, so find-in-page still matches,
+  // and anything reached by anchor or sent to the printer is unfolded first.
+  var FOLD_PX = null;
+  Array.prototype.forEach.call(document.querySelectorAll('.entry'), function (entry, i) {
+    var desc = entry.querySelector('.entry-desc');
+    if (!desc) return;
+    if (FOLD_PX === null) {
+      var lh = parseFloat(getComputedStyle(desc).lineHeight) || 22.4;
+      FOLD_PX = lh * 6;
+    }
+    if (desc.scrollHeight <= FOLD_PX + 24) return;   // a line or two over is not worth a control
+    entry.classList.add('folded');
+    var btn = document.createElement('button');
+    btn.className = 'entry-more';
+    btn.type = 'button';
+    btn.setAttribute('aria-expanded', 'false');
+    desc.id = desc.id || ('entry-desc-' + i);
+    btn.setAttribute('aria-controls', desc.id);
+    btn.textContent = 'more';
+    btn.addEventListener('click', function () {
+      var open = entry.classList.toggle('folded') === false;
+      btn.textContent = open ? 'less' : 'more';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) entry.scrollIntoView({ block: 'nearest' });
+    });
+    desc.insertAdjacentElement('afterend', btn);
+  });
+
+  function unfold(el) {
+    if (!el) return;
+    var entry = el.closest ? el.closest('.entry') : null;
+    if (entry && entry.classList.contains('folded')) {
+      var b = entry.querySelector('.entry-more');
+      if (b) b.click();
+    }
+  }
+  window.addEventListener('hashchange', function () {
+    unfold(document.getElementById(location.hash.slice(1)));
+  });
+  if (location.hash) unfold(document.getElementById(location.hash.slice(1)));
+  window.addEventListener('beforeprint', function () {
+    Array.prototype.forEach.call(document.querySelectorAll('.entry.folded .entry-more'),
+      function (b) { b.click(); });
+  });
+
+  // ---- rail: which section is in view, and the back-to-top button ----
+  var heads = Array.prototype.slice.call(document.querySelectorAll('.group-label[id]'));
+  var railItems = {};
+  Array.prototype.forEach.call(document.querySelectorAll('.rail a[href^="#"]'), function (a) {
+    railItems[a.getAttribute('href').slice(1)] = a.parentElement;
+  });
+  var totop = document.getElementById('totop');
+  var ticking = false;
+
+  function sync() {
+    ticking = false;
+    var mark = 120, current = heads.length ? heads[0].id : null;
+    for (var i = 0; i < heads.length; i++) {
+      if (heads[i].getBoundingClientRect().top <= mark) current = heads[i].id;
+    }
+    // The last sections are short enough that the page bottoms out before their
+    // headings ever cross the mark, so scrolling to the end would leave an earlier
+    // section lit. If the document cannot scroll further, the last one is the one
+    // you are in.
+    var doc = document.documentElement;
+    if (heads.length && window.innerHeight + window.scrollY >= doc.scrollHeight - 4) {
+      current = heads[heads.length - 1].id;
+    }
+    for (var id in railItems) {
+      if (railItems[id]) railItems[id].classList.toggle('active', id === current);
+    }
+    if (totop) totop.classList.toggle('on', window.scrollY > 600);
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(sync); }
+  }, { passive: true });
+  window.addEventListener('resize', sync, { passive: true });
+  sync();
+
+  if (totop) {
+    totop.addEventListener('click', function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  }
 
   var toggleBtn = document.getElementById('theme-toggle');
   toggleBtn.addEventListener('click', function () {
