@@ -129,6 +129,67 @@
     margin: 40px 0 14px 0;
   }
   .group-label:first-of-type { margin-top: 0; }
+  .group-label { scroll-margin-top: 20px; }
+
+  /* Contents. The counts are not written here; they are read off the page at load
+     (see the script at the end), so a hand-edited entry cannot leave a stale number
+     behind on a page whose whole point is that its numbers were checked. */
+  .toc {
+    border: 1px solid var(--line);
+    background: var(--card-bg);
+    border-radius: 4px;
+    padding: 14px 18px 16px 18px;
+    margin: 0 0 36px 0;
+  }
+  .toc-title {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin: 0 0 12px 0;
+  }
+  .toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px 30px;
+  }
+  @media (min-width: 640px) {
+    .toc ol { grid-template-columns: 1fr 1fr; }
+  }
+  .toc li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .toc a { color: var(--ink-dim); text-decoration: none; }
+  .toc a:hover, .toc a:focus-visible { color: var(--accent); text-decoration: underline; }
+  .toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  .toc .leader {
+    flex: 1 1 auto;
+    min-width: 12px;
+    border-bottom: 1px dotted var(--line);
+    transform: translateY(-4px);
+  }
+  .toc .n {
+    color: var(--ink-faint);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .to-top {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-decoration: none;
+  }
+  .to-top:hover, .to-top:focus-visible { color: var(--accent); }
 
   .entry {
     border: 1px solid var(--line);
@@ -210,7 +271,24 @@
     <strong>A note on names.</strong> The Linux kernel mailing list requires patches to be signed off with a real legal name, so kernel and IOMMU work below is under <strong>Jiaxing Hu</strong>. Everywhere else (GitHub, this site), I go by my handle, <strong><a href="https://github.com/gahingwoo" target="_blank" rel="noopener" style="color:inherit">gahingwoo</a></strong> (Ga Hing Woo). "Jiaxing Hu" alone is a common name that returns many unrelated people in search results, so if you're trying to verify any of this independently, searching gahingwoo or following the direct links below is more reliable than searching my legal name on its own.
   </div>
 
-  <div class="group-label">Merged upstream</div>
+  <nav class="toc" aria-labelledby="toc-title">
+    <p class="toc-title" id="toc-title">Contents</p>
+    <ol>
+        <li><a href="#merged-upstream">Merged upstream</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#mainline-linux">Merged into mainline Linux</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#withdrawn">Withdrawn on maintainer guidance</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#under-review">Under review</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#reviews-given">Reviews given to other contributors</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#published-research">Published research</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#independent-projects">Independent projects</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#tools-in-use">Tools in use by others</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#third-party-validation">Third-party validation</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#community-deployment">Community deployment</a><span class="leader"></span><span class="n"></span></li>
+        <li><a href="#peer-collaboration">Peer collaboration</a><span class="leader"></span><span class="n"></span></li>
+    </ol>
+  </nav>
+
+  <div class="group-label" id="merged-upstream">Merged upstream</div>
 
   <div class="entry">
     <p class="entry-title">Trusted Firmware-A: removed a redundant secure-boot override</p>
@@ -231,7 +309,7 @@
     </div>
   </div>
 
-  <div class="group-label">Merged into mainline Linux</div>
+  <div class="group-label" id="mainline-linux">Merged into mainline Linux</div>
 
   <div class="entry">
     <p class="entry-title">iommu/rockchip: two fixes applied by the IOMMU co-maintainer</p>
@@ -273,7 +351,7 @@
     </div>
   </div>
 
-  <div class="group-label">Withdrawn on maintainer guidance</div>
+  <div class="group-label" id="withdrawn">Withdrawn on maintainer guidance</div>
 
   <div class="entry">
     <p class="entry-title">iommu/rockchip: implement .flush_iotlb_all</p>
@@ -293,7 +371,7 @@
     </div>
   </div>
 
-  <div class="group-label">Under review</div>
+  <div class="group-label" id="under-review">Under review</div>
 
   <div class="entry">
     <p class="entry-title">Linux kernel: RK3576 NPU (rocket driver) enablement, PATCH v11</p>
@@ -331,7 +409,7 @@
     </div>
   </div>
 
-  <div class="group-label">Reviews given to other contributors</div>
+  <div class="group-label" id="reviews-given">Reviews given to other contributors</div>
 
   <div class="entry">
     <p class="entry-title">accel/rocket: Reviewed-by given to another contributor, twice, on real bugs</p>
@@ -345,7 +423,7 @@
     </div>
   </div>
 
-  <div class="group-label">Published research</div>
+  <div class="group-label" id="published-research">Published research</div>
 
   <div class="entry">
     <p class="entry-title">RK3576 NPU bring-up: preprint, version 2 (version 1's central result withdrawn)</p>
@@ -361,7 +439,7 @@
     </div>
   </div>
 
-  <div class="group-label">Independent projects</div>
+  <div class="group-label" id="independent-projects">Independent projects</div>
 
   <div class="entry">
     <p class="entry-title">The findings ledger: a public record of how the work was actually done, retractions included</p>
@@ -402,7 +480,7 @@
     </div>
   </div>
 
-  <div class="group-label">Tools in use by others</div>
+  <div class="group-label" id="tools-in-use">Tools in use by others</div>
 
   <div class="entry">
     <p class="entry-title">SoC-Consistency: static analysis for hardware power-tree configuration</p>
@@ -436,7 +514,7 @@
     </div>
   </div>
 
-  <div class="group-label">Third-party validation</div>
+  <div class="group-label" id="third-party-validation">Third-party validation</div>
 
   <div class="entry">
     <p class="entry-title">Independent testing and cross-checking on hardware I don't own</p>
@@ -505,7 +583,7 @@
     </div>
   </div>
 
-  <div class="group-label">Community deployment</div>
+  <div class="group-label" id="community-deployment">Community deployment</div>
 
   <div class="entry">
     <p class="entry-title">EzySpeech: real-time transcription and translation, Mt Albert Baptist Church</p>
@@ -520,7 +598,7 @@
   </div>
 
 
-  <div class="group-label">Peer collaboration</div>
+  <div class="group-label" id="peer-collaboration">Peer collaboration</div>
 
   <div class="entry">
     <p class="entry-title">half-baked-studios: a GitHub organisation co-run with three other students</p>
@@ -534,11 +612,26 @@
 
   <footer>
     Full CV and supporting-evidence PDF available on request.<br>
-    Work / upstream: <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a> &middot; Personal / study: <a href="mailto:huhuvmb88@gmail.com">huhuvmb88@gmail.com</a>
+    Work / upstream: <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a> &middot; Personal / study: <a href="mailto:huhuvmb88@gmail.com">huhuvmb88@gmail.com</a><br>
+    <a class="to-top" href="#toc-title">&uarr; back to contents</a>
   </footer>
 </main>
 
 <script>
+  // Read each section's entry count off the page rather than hard-coding it, so a
+  // hand-added entry cannot leave a wrong number in the contents.
+  Array.prototype.forEach.call(document.querySelectorAll('.toc a[href^="#"]'), function (a) {
+    var head = document.getElementById(a.getAttribute('href').slice(1));
+    if (!head) return;
+    var n = 0, el = head.nextElementSibling;
+    while (el && !el.classList.contains('group-label')) {
+      if (el.classList.contains('entry')) n++;
+      el = el.nextElementSibling;
+    }
+    var slot = a.parentElement.querySelector('.n');
+    if (slot) slot.textContent = n;
+  });
+
   var toggleBtn = document.getElementById('theme-toggle');
   toggleBtn.addEventListener('click', function () {
     var root = document.documentElement;
