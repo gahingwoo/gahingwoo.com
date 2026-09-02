@@ -4,17 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ga Hing Woo (Jiaxing Hu)</title>
-<meta name="description" content="Upstream firmware and embedded Linux. Rockchip bring-up, secure boot, and NPU work from the gaps between hardware and mainline.">
+<meta name="description" content="Firmware and embedded Linux engineer in Auckland. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.">
+<link rel="canonical" href="https://gahingwoo.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ga Hing Woo (Jiaxing Hu)">
+<meta property="og:description" content="Firmware and embedded Linux. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.">
+<meta property="og:url" content="https://gahingwoo.com/">
+<meta property="og:image" content="https://gahingwoo.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ga Hing Woo (Jiaxing Hu)">
+<meta name="twitter:description" content="Firmware and embedded Linux. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, and an NPU brought up from nothing.">
+<meta name="twitter:image" content="https://gahingwoo.com/assets/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <script>
   (function () {
-    var saved = localStorage.getItem('theme');
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
     var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     document.documentElement.setAttribute('data-theme', theme);
   })();
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ga Hing Woo",
+  "alternateName": "Jiaxing Hu",
+  "url": "https://gahingwoo.com/",
+  "image": "https://gahingwoo.com/assets/avatar.png",
+  "email": "mailto:gahing@gahingwoo.com",
+  "jobTitle": "Firmware and embedded Linux engineer",
+  "address": { "@type": "PostalAddress", "addressLocality": "Auckland", "addressCountry": "NZ" },
+  "sameAs": [
+    "https://github.com/gahingwoo",
+    "https://www.linkedin.com/in/ga-hing-woo-906aa7423/",
+    "https://orcid.org/0009-0002-0840-8951",
+    "https://blog.gahingwoo.com"
+  ],
+  "knowsAbout": ["Linux kernel", "Rockchip RK3576", "OP-TEE", "Trusted Firmware-A", "UEFI", "TrustZone", "Neural processing units"]
+}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
 <style>
   :root {
     /* Typewriter timings live here rather than in the script, so there is one
@@ -23,202 +59,169 @@
     --tw-delete-speed: 38ms;
     --tw-hold-time: 2200ms;
     --tw-gap-time: 500ms;
-
-    /* The typewriter row reserves its worst-case wrap so the nav underneath
-       never moves while a line is being typed. Both the line box and the
-       number of lines reserved are declared here, and min-height is derived
-       from the pair, so changing the line height cannot silently leave the
-       reservation too short. Measured 2026-08-22: the longest line wraps to
-       3 lines at 320px, 2 lines from 360px, and 1 line at 1000px and above
-       where #tw-text is nowrap. */
+    /* The row reserves its worst-case wrap so nothing below it moves while a
+       line is being typed. Two lines covers every line from 360px up. */
     --tw-line-height: 1.6;
-    --tw-lines: 3;
+    --tw-lines: 2;
   }
-
-  :root[data-theme="dark"] {
-    --bg: #11151a;
-    --ink: #d7dce1;
-    --ink-dim: #7c8791;
-    --ink-faint: #4b545d;
-    --accent: #5fb3a0;
-    --line: #232a32;
-  }
-
-  :root[data-theme="light"] {
-    --bg: #f2f4f5;
-    --ink: #1b2126;
-    --ink-dim: #55626b;
-    --ink-faint: #8b959c;
-    --accent: #2f8a78;
-    --line: #d7dce0;
-  }
-
-  * { box-sizing: border-box; }
-
-  html, body {
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    line-height: 1.6;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
+  @media (max-width: 359px) { :root { --tw-lines: 3; } }
 
   main {
     width: 100%;
-    max-width: clamp(420px, 40vw, 880px);
-    position: relative;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 28px 0 40px 0;
   }
 
-  .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    color: var(--ink-dim);
-    cursor: pointer;
-    transition: color 0.15s ease;
+  /* ---- hero ---- */
+  .hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 24px;
+    align-items: start;
+    margin-bottom: 36px;
   }
-
-  .theme-toggle:hover,
-  .theme-toggle:focus-visible {
-    color: var(--accent);
+  .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--card-bg);
+    display: block;
+    margin-top: 4px;
   }
-
-  .theme-toggle:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-
-  .theme-toggle svg { width: 16px; height: 16px; }
-  .theme-toggle .sun { display: none; }
-  :root[data-theme="dark"] .theme-toggle .moon { display: none; }
-  :root[data-theme="dark"] .theme-toggle .sun { display: block; }
-
-  .prompt {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 13px;
-    color: var(--ink-faint);
-    margin-bottom: 10px;
-    letter-spacing: 0.01em;
-  }
-
+  .hero-body { min-width: 0; }
+  .hero .prompt { margin-bottom: 6px; }
   h1 {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: clamp(24px, 3.8vw, 56px);
+    font-family: var(--mono);
+    font-size: clamp(26px, 4vw, 44px);
     font-weight: 600;
-    margin: 0 0 22px 0;
+    margin: 0 0 14px 0;
     color: var(--ink);
     letter-spacing: -0.01em;
+    line-height: 1.15;
   }
+  h1 .alt { color: var(--ink-dim); font-weight: 500; }
+  .headline {
+    font-size: clamp(15px, 1.5vw, 17px);
+    color: var(--ink-dim);
+    max-width: 62ch;
+    margin: 0 0 18px 0;
+  }
+  .headline b { color: var(--ink); font-weight: 500; }
+  .headline a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .headline a:hover, .headline a:focus-visible { color: var(--accent); border-color: var(--accent); }
 
   .typewriter-row {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: clamp(14px, 1.8vw, 21px);
+    font-family: var(--mono);
+    font-size: clamp(13px, 1.3vw, 15px);
     color: var(--ink-dim);
     line-height: var(--tw-line-height);
     min-height: calc(var(--tw-lines) * var(--tw-line-height) * 1em);
-    margin-bottom: 40px;
+    margin-bottom: 22px;
   }
-
-  .typewriter-row .arrow {
-    color: var(--accent);
-    margin-right: 8px;
-  }
-
-  #tw-text {
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-
+  .typewriter-row .arrow { color: var(--accent); margin-right: 8px; }
+  #tw-text { white-space: pre-wrap; word-break: break-word; }
   .cursor {
     display: inline-block;
-    width: 8px;
+    width: 7px;
     height: 1em;
     background: var(--accent);
     margin-left: 2px;
     transform: translateY(2px);
     animation: blink 1s steps(1) infinite;
   }
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
-  @keyframes blink {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
-  }
-
-  nav {
+  .site-nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 22px;
-    padding-top: 22px;
+    gap: 10px 20px;
+    padding-top: 18px;
     border-top: 1px solid var(--line);
   }
-
-  nav a {
+  .site-nav a {
     color: var(--ink-dim);
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: clamp(13px, 1vw, 15px);
+    font-family: var(--mono);
+    font-size: 13.5px;
     text-decoration: none;
     transition: color 0.15s ease;
   }
+  .site-nav a svg { width: 17px; height: 17px; flex-shrink: 0; }
+  .site-nav a:hover, .site-nav a:focus-visible { color: var(--accent); }
+  .site-nav a.cv { color: var(--accent); }
 
-  nav a svg { width: clamp(17px, 1.4vw, 22px); height: clamp(17px, 1.4vw, 22px); flex-shrink: 0; }
-
-  nav a:hover,
-  nav a:focus-visible {
-    color: var(--accent);
+  @media (max-width: 560px) {
+    .hero { grid-template-columns: 1fr; gap: 14px 0; }
+    .avatar { width: 56px; height: 56px; }
   }
 
-  nav a:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 2px;
+  /* ---- sections ---- */
+  section { margin-bottom: 40px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .section-head a.more {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+  .section-head a.more:hover, .section-head a.more:focus-visible { color: var(--accent); }
+
+  .stats { margin-bottom: 40px; }
+  .stats .who {
+    display: block;
+    color: var(--ink-faint);
+    margin-top: 2px;
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border: 0;
+  /* ---- writing ---- */
+  .posts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .posts li {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
   }
-
-  footer {
-    margin-top: 28px;
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  .posts time {
+    font-family: var(--mono);
     font-size: 12px;
     color: var(--ink-faint);
+    flex: 0 0 76px;
+    font-variant-numeric: tabular-nums;
   }
+  .posts a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .posts a:hover, .posts a:focus-visible { color: var(--accent); }
+
+  /* ---- verify ---- */
+  .verify {
+    border-left: 2px solid var(--accent);
+    background: var(--card-bg);
+    padding: 14px 18px;
+    font-size: 14px;
+    color: var(--ink-dim);
+  }
+  .verify p { margin: 0 0 8px 0; }
+  .verify p:last-child { margin-bottom: 0; }
+  .verify strong { color: var(--ink); font-weight: 500; }
 
   @media (prefers-reduced-motion: reduce) {
     .cursor { animation: none; opacity: 1; }
-  }
-
-  @media (min-width: 1000px) {
-    #tw-text {
-      white-space: nowrap;
-    }
+    .site-nav a { transition: none; }
   }
 </style>
 </head>
@@ -229,43 +232,139 @@
     <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
   </button>
 
-  <div class="prompt">gahing@gahingwoo:~$</div>
-  <h1>Ga Hing Woo (Jiaxing Hu)</h1>
+  <header class="hero">
+    <img class="avatar" src="/assets/avatar.png" alt="" width="72" height="72">
+    <div class="hero-body">
+      <div class="prompt">gahing@gahingwoo:~$ whoami</div>
+      <h1>Ga Hing Woo <span class="alt">(Jiaxing Hu)</span></h1>
+      <p class="headline">Firmware and embedded Linux, mostly on Rockchip silicon that nobody had brought up yet. <b>Five of my commits are in mainline Linux 7.3</b>, applied by the IOMMU, Rockchip and networking maintainers. The <a href="/evidence#optee">first OP-TEE port for the RK3576</a> and a <a href="/evidence#tfa">Trusted Firmware-A secure-boot fix</a> are merged too. Every claim on this site links to the public record behind it.</p>
 
-  <div class="typewriter-row">
-    <span class="arrow">&gt;</span><span id="tw-text"></span><span class="cursor"></span>
+      <div class="typewriter-row" aria-hidden="true">
+        <span class="arrow">&gt;</span><span id="tw-text"></span><span class="cursor"></span>
+      </div>
+
+      <nav class="site-nav" aria-label="Links">
+        <a href="/cv/" class="cv" title="CV">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><circle cx="9.5" cy="12.5" r="1.8"/><path d="M6.5 18c.6-1.7 1.8-2.5 3-2.5s2.4.8 3 2.5"/><path d="M15 13h2.5M15 16h2.5"/></svg>
+          <span>CV</span>
+        </a>
+        <a href="/evidence" title="Evidence Appendix">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span>Evidence</span>
+        </a>
+        <a href="https://blog.gahingwoo.com" title="Blog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg>
+          <span>Blog</span>
+        </a>
+        <a href="https://github.com/gahingwoo" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.27 10.27 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="7.2" cy="7" r="0.9" fill="currentColor" stroke="none"/><line x1="7.2" y1="10.5" x2="7.2" y2="17"/><path d="M11.2 17v-4.2a2.3 2.3 0 0 1 4.6 0V17"/><line x1="11.2" y1="10.5" x2="11.2" y2="17"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://orcid.org/0009-0002-0840-8951" title="ORCID">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><circle cx="8.2" cy="8.1" r="0.9" fill="currentColor" stroke="none"/><line x1="8.2" y1="10.6" x2="8.2" y2="16.4"/><path d="M11 10.6h1.9a3 3 0 0 1 0 5.8H11z" fill="none"/></svg>
+          <span>ORCID</span>
+        </a>
+        <a href="mailto:gahing@gahingwoo.com" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <span>Email</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- These counts are copied from the evidence appendix by hand. When an
+       entry there changes, change the number here and in /cv/ too. -->
+  <div class="stats" role="list" aria-label="By the numbers">
+    <a class="stat" role="listitem" href="/evidence#mainline-linux"><div class="num">5</div><div class="what">commits in mainline Linux 7.3 <span class="who">iommu, arm64 dts, net phy</span></div></a>
+    <a class="stat" role="listitem" href="/evidence#mainline-linux"><div class="num">3</div><div class="what">subsystem maintainers applied them <span class="who">Will Deacon, Heiko Stübner, Jakub Kicinski</span></div></a>
+    <a class="stat" role="listitem" href="/evidence#merged-upstream"><div class="num">2</div><div class="what">firmware projects merged <span class="who">Trusted Firmware-A, OP-TEE</span></div></a>
+    <a class="stat" role="listitem" href="/evidence#preprint"><div class="num">1</div><div class="what">preprint with a DOI <span class="who">Zenodo, version 2</span></div></a>
+    <a class="stat" role="listitem" href="/evidence#tools-in-use"><div class="num">3</div><div class="what">tools packaged or documented by others <span class="who">Arch AUR, Radxa docs</span></div></a>
   </div>
 
-  <nav>
-    <a href="https://blog.gahingwoo.com" title="Blog" aria-label="Blog">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg>
-      <span>Blog</span>
-    </a>
-    <a href="https://github.com/gahingwoo" title="GitHub" aria-label="GitHub">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.27 10.27 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
-      <span>GitHub</span>
-    </a>
-    <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/" title="LinkedIn" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="7.2" cy="7" r="0.9" fill="currentColor" stroke="none"/><line x1="7.2" y1="10.5" x2="7.2" y2="17"/><path d="M11.2 17v-4.2a2.3 2.3 0 0 1 4.6 0V17"/><line x1="11.2" y1="10.5" x2="11.2" y2="17"/></svg>
-      <span>LinkedIn</span>
-    </a>
-    <a href="mailto:gahing@gahingwoo.com" title="Email" aria-label="Email">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-      <span>Email</span>
-    </a>
-    <a href="/evidence" title="Evidence Appendix" aria-label="Evidence Appendix">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      <span>Evidence</span>
-    </a>
-    <a href="https://orcid.org/0009-0002-0840-8951" title="ORCID" aria-label="ORCID">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><circle cx="8.2" cy="8.1" r="0.9" fill="currentColor" stroke="none"/><line x1="8.2" y1="10.6" x2="8.2" y2="16.4"/><path d="M11 10.6h1.9a3 3 0 0 1 0 5.8H11z" fill="none"/></svg>
-      <span>ORCID</span>
-    </a>
-  </nav>
+  <section aria-labelledby="work-label">
+    <div class="section-head">
+      <div class="section-label" id="work-label">Selected work</div>
+      <a class="more" href="/evidence">all 28 entries, with sources &rarr;</a>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>RK3576 NPU on mainline Linux</h3>
+        <p>Brought up the RK3576's neural accelerator on the open rocket driver, working from the vendor's model files rather than any documentation. The bug that blocked chained compute for 38 days was one register field: a 16-bit task count where the RK3588 header assumed 12. The 14-patch series is at v11 with the driver's author reviewing it, and two IOMMU fixes split out of it are in Linux 7.3. The preprint's second version retracts the first version's central claim and explains how the method held a false result.</p>
+        <div class="card-links">
+          <a href="/evidence#npu-series">series, v11</a>
+          <a href="https://doi.org/10.5281/zenodo.21990992" target="_blank" rel="noopener">preprint, DOI</a>
+          <a href="https://blog.gahingwoo.com/posts/rk3576-npu-mainline/" target="_blank" rel="noopener">write-up</a>
+        </div>
+      </article>
 
-  <footer>Auckland, NZ &middot; embedded &amp; firmware</footer>
+      <article class="card">
+        <h3>Board bring-up that reached Linux 7.3</h3>
+        <p>Devicetree support for the ArmSoM CM5 and CM5-IO, applied by Heiko Stübner after five review rounds, with an Acked-by on the binding from Krzysztof Kozlowski. A reference-clock fix for the Motorcomm YT8521 PHY, applied by Jakub Kicinski with a Reviewed-by from Andrew Lunn and a Tested-by from the owner of a different RK3576 board. My first attempt at that fix lived in the MAC driver. Two maintainers said the PHY should own the clock, so I withdrew it and rewrote it at the right layer.</p>
+        <div class="card-links">
+          <a href="/evidence#cm5-dts">CM5 devicetree</a>
+          <a href="/evidence#yt8521">PHY fix</a>
+          <a href="/evidence#dwmac-rk">the withdrawn attempt</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Trusted execution, Cortex-A down to Cortex-M</h3>
+        <p>The first OP-TEE port for the RK3576, merged with a Reviewed-by from a Cherry Embedded Solutions maintainer and later run by Flipper Devices on their own hardware: 114 xtest cases, 35,681 subtests, zero failures. A Trusted Firmware-A fix for a copy-paste defect that would have silently broken secure boot, reviewed by engineers at STMicroelectronics, Arm and Rockchip. On the RP2350, a TrustZone-M isolation example whose fault handling was checked over SWD rather than trusted from source.</p>
+        <div class="card-links">
+          <a href="/evidence#optee">OP-TEE port</a>
+          <a href="/evidence#flipper">Flipper validation</a>
+          <a href="/evidence#tfa">TF-A fix</a>
+          <a href="/evidence#rp2350">RP2350 example</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Tools other people ship</h3>
+        <p>SoC-Consistency checks a devicetree's power tree for misconfiguration before it reaches hardware. It is on PyPI and was packaged into Arch Linux by a maintainer I have never met. RKDevelopTool-GUI, a flashing front end for Rockchip boards, has its own page in Radxa's documentation. kiln, a stopgap for running local language models on the RK3576 NPU, has a full Radxa tutorial. edk2-rk3576, a UEFI port that boots Fedora 44, was pinned on the Radxa forum by one of their engineers.</p>
+        <div class="card-links">
+          <a href="/evidence#soc-consistency">SoC-Consistency</a>
+          <a href="/evidence#rkdeveloptool-gui">RKDevelopTool-GUI</a>
+          <a href="/evidence#kiln">kiln</a>
+          <a href="/evidence#edk2">edk2-rk3576</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="writing-label">
+    <div class="section-head">
+      <div class="section-label" id="writing-label">Writing</div>
+      <a class="more" href="https://blog.gahingwoo.com" target="_blank" rel="noopener">all posts &rarr;</a>
+    </div>
+    <ul class="posts">
+      <li><time datetime="2026-07-17">Jul 2026</time><a href="https://blog.gahingwoo.com/posts/rk3576-armsom-cm5-devicetree/" target="_blank" rel="noopener">ArmSoM Noticed the Work, and the CM5 Device Tree Hits v4</a></li>
+      <li><time datetime="2026-07-13">Jul 2026</time><a href="https://blog.gahingwoo.com/posts/rp2350-trustzone-vs-pmp/" target="_blank" rel="noopener">Same Chip, Two Walls: TrustZone-M vs RISC-V PMP on the RP2350</a></li>
+      <li><time datetime="2026-06-15">Jun 2026</time><a href="https://blog.gahingwoo.com/posts/rk3576-npu-mainline/" target="_blank" rel="noopener">Bringing Up the RK3576 NPU on Mainline Linux</a></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="verify-label">
+    <div class="section-label" id="verify-label">How to check any of this</div>
+    <div class="verify">
+      <p>The <a href="/evidence"><strong>evidence appendix</strong></a> lists every claim I make about my own work with a link to the merged commit, review thread or DOI behind it. Where an earlier claim of mine turned out to be wrong, the entry says so rather than being deleted.</p>
+      <p>Kernel patches must be signed off with a legal name, so kernel work appears as <strong>Jiaxing Hu</strong>. Everywhere else I go by <strong>gahingwoo</strong>, which is also the more reliable name to search.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>Auckland, NZ &middot; embedded &amp; firmware</span>
+    <a href="/cv/">CV</a>
+    <a href="/evidence">Evidence</a>
+    <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a>
+  </footer>
 </main>
 
+<script src="/assets/site.js"></script>
 <script>
   var lines = [
     "helping Linux run on a chip nobody had documented before.",
@@ -324,15 +423,6 @@
     }
     tick();
   }
-
-  var toggleBtn = document.getElementById('theme-toggle');
-  toggleBtn.addEventListener('click', function () {
-    var root = document.documentElement;
-    var current = root.getAttribute('data-theme');
-    var next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  });
 </script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+name: Regenerate CV PDF
+
+# The CV lives at /cv/ as an HTML page. Whenever it or the shared assets change,
+# print it to PDF with headless Chrome so the download link never lags the page.
+# The PDF itself is excluded from the trigger paths so the commit this workflow
+# pushes does not start another run.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cv/**'
+      - '!cv/*.pdf'
+      - 'assets/site.css'
+      - '.github/workflows/cv-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Serve the site locally
+        run: |
+          python3 -m http.server 8000 >/dev/null 2>&1 &
+          sleep 1
+
+      - name: Print /cv/ to PDF
+        run: |
+          google-chrome --headless=new --disable-gpu --no-sandbox \
+            --virtual-time-budget=10000 \
+            --no-pdf-header-footer \
+            --print-to-pdf=cv/ga-hing-woo-cv.pdf \
+            http://localhost:8000/cv/
+          ls -la cv/ga-hing-woo-cv.pdf
+
+      - name: Commit the PDF if it changed
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add cv/ga-hing-woo-cv.pdf
+          if git diff --cached --quiet; then
+            echo "PDF unchanged"
+          else
+            git commit -m "Regenerate CV PDF [skip ci]"
+            git push
+          fi
