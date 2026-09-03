@@ -1,6 +1,10 @@
 // Shared behaviour: theme toggle, folded evidence entries, back-to-top.
 (function () {
   var root = document.documentElement;
+  // The page is PatternFly's app shell, so the thing that scrolls is the main
+  // container, not the window. Everything below watches and drives that.
+  var scroller = document.querySelector('.pf-v6-c-page__main') || document.scrollingElement;
+  function onScroll(fn) { scroller.addEventListener('scroll', fn, { passive: true }); }
 
   // Theme. PatternFly 6 switches to dark with a class on <html>; the inline
   // script in each page's <head> applies the saved choice before first paint.
@@ -88,21 +92,20 @@
     var spyTicking = false;
     function spy() {
       spyTicking = false;
-      var mark = 96, current = -1;
+      var top = scroller.getBoundingClientRect().top, mark = top + 96, current = -1;
       for (var i = 0; i < targets.length; i++) {
         if (targets[i] && targets[i].getBoundingClientRect().top <= mark) current = i;
       }
-      var doc = document.documentElement;
-      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) current = targets.length - 1;
+      if (scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4) current = targets.length - 1;
       if (current < 0) current = 0;
       links.forEach(function (a, i) {
         a.classList.toggle('pf-m-current', i === current);
         if (i === current) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
       });
     }
-    window.addEventListener('scroll', function () {
+    onScroll(function () {
       if (!spyTicking) { spyTicking = true; window.requestAnimationFrame(spy); }
-    }, { passive: true });
+    });
     window.addEventListener('resize', spy, { passive: true });
     spy();
   }
@@ -124,17 +127,17 @@
     // trip back to be worth a button: two screens or more.
     function sync() {
       ticking = false;
-      var longEnough = document.documentElement.scrollHeight > window.innerHeight * 2;
-      totop.classList.toggle('pf-m-hidden', !longEnough || window.scrollY < 600);
+      var longEnough = scroller.scrollHeight > scroller.clientHeight * 2;
+      totop.classList.toggle('pf-m-hidden', !longEnough || scroller.scrollTop < 600);
     }
-    window.addEventListener('scroll', function () {
+    onScroll(function () {
       if (!ticking) { ticking = true; window.requestAnimationFrame(sync); }
-    }, { passive: true });
+    });
     sync();
     totop.querySelector('a').addEventListener('click', function (e) {
       e.preventDefault();
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      scroller.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
   }
 })();

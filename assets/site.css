@@ -30,13 +30,11 @@
 .pf-v6-l-flex { display: flex; flex-wrap: wrap; align-items: center; gap: var(--pf-t--global--spacer--md); }
 .pf-v6-l-flex.pf-m-space-items-sm { gap: var(--pf-t--global--spacer--sm); }
 
-/* Scroll as a document, not as an app shell. PatternFly's page is a 100dvh
-   grid whose main area is its own scroll container; a content site wants one
-   scroller, the viewport, so every height cap and overflow is removed here. */
-html, body { height: auto; min-height: 100%; overflow: visible; }
-.pf-v6-c-page { height: auto; min-height: 100dvh; max-height: none; overflow: visible; }  /* stays a grid: the masthead lays out with subgrid */
-.pf-v6-c-page__main-container { display: block; height: auto; max-height: none; overflow: visible; margin-bottom: var(--pf-t--global--spacer--inset--page-chrome); }
-.pf-v6-c-page__main { display: block; height: auto; max-height: none; overflow: visible; }
+/* PatternFly's own app shell, which is what Cockpit runs: the page is one
+   viewport tall, the masthead and the sidebar stay put, and only the content
+   area scrolls. Nothing to override; this file only keeps the document from
+   scrolling behind it. */
+html, body { height: 100%; overflow: hidden; }
 
 /* ---- masthead: stacked identity on the left, quiet links on the right ---- */
 .brand { display: block; text-decoration: none; line-height: 1.25; }
@@ -66,6 +64,13 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
    seven-column limit, inside PatternFly's 20 to 100 characters a line. */
 .pf-v6-c-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: none; }
 .pf-v6-c-page__main-section.pf-m-limit-width > .pf-v6-c-page__main-body { width: 100%; }
+
+/* A page of records or of a CV is read, not scanned like a dashboard, so its
+   column stops at 58rem. That leaves a card about 864px wide inside, which is
+   the 789px measure for the paragraph plus room for the status at its right.
+   The overview is a dashboard and fills the screen. */
+.doc-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: 58rem; }
+.doc-page .pf-v6-c-page__main-body { margin-inline: auto; }
 .card-text, .entry-desc, .cv-desc, .cv-list li, .cv-summary, .kv .pf-v6-c-description-list__description { max-width: 789px; }
 
 /* ---- page head: title, inline subtitle, one action ---- */
@@ -163,7 +168,9 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
 @media print {
-  html, body { background: #fff !important; }
+  /* The app shell is one viewport tall with its own scroller; printing needs
+     the whole document to flow, so undo the shell here. */
+  html, body { background: #fff !important; height: auto !important; overflow: visible !important; }
   .pf-v6-c-masthead, .theme-toggle, .no-print, .pf-v6-c-back-to-top, .pf-v6-c-skip-to-content { display: none !important; }
   .pf-v6-c-page, .pf-v6-c-page__main-container, .pf-v6-c-page__main { display: block; height: auto; min-height: 0; background: #fff; }
   .pf-v6-c-page__main-section { background: #fff; padding: 0; border-radius: 0; }
