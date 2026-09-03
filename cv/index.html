@@ -48,7 +48,7 @@
   @page { size: A4; margin: 9mm 12mm 9mm 12mm; }
   @media print {
     html { --pf-t--global--background--color--primary--default: #fff; }
-    body { font-size: 9.2pt; line-height: 1.38; }
+    body { font-size: 9pt; line-height: 1.36; }
     .pf-v6-c-page__main-section { max-width: none; }
     .pf-v6-c-page__main-body { padding: 0; }
     .cv-head { padding-bottom: 4pt; margin-bottom: 5pt; }
@@ -59,9 +59,10 @@
     .cv-item { margin-bottom: 3pt; grid-template-columns: 1fr auto; break-inside: auto; }
     .cv-item .cv-when { text-align: end; font-size: 8.5pt; }
     .cv-item .cv-title { font-size: 10.5pt; }
-    .cv-item .cv-desc { font-size: 8.8pt; }
+    .cv-item .cv-desc { font-size: 8.6pt; }
     .cv-item .cv-refs { font-size: 7.6pt; }
-    .cv-list, .skills { font-size: 8.8pt; }
+    .cv-list, .skills { font-size: 8.6pt; }
+    .skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12pt; --pf-v6-c-description-list--m-horizontal__term--width: 7em; }
     /* Skills print as four short paragraphs, term run in, two to a row. */
     .skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14pt; row-gap: 3pt; }
     .skills .pf-v6-c-description-list__group { display: block; break-inside: avoid; }
