@@ -6,13 +6,26 @@
   var scroller = document.querySelector('.pf-v6-c-page__main') || document.scrollingElement;
   function onScroll(fn) { scroller.addEventListener('scroll', fn, { passive: true }); }
 
+  // The same browser feature that carries one page into the next also covers
+  // state changes within a page: it snapshots before and after and morphs
+  // between them, which is how the sidebar and the theme change without a
+  // jump. Where it is missing, or the reader asks for less motion, the change
+  // just happens.
+  var lessMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function withTransition(fn) {
+    if (document.startViewTransition && !lessMotion.matches) document.startViewTransition(fn);
+    else fn();
+  }
+
   // Theme. PatternFly 6 switches to dark with a class on <html>; the inline
   // script in each page's <head> applies the saved choice before first paint.
   var toggle = document.getElementById('theme-toggle');
   if (toggle) {
     toggle.addEventListener('click', function () {
-      var dark = root.classList.toggle('pf-v6-theme-dark');
-      try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+      withTransition(function () {
+        var dark = root.classList.toggle('pf-v6-theme-dark');
+        try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+      });
     });
   }
 
@@ -79,7 +92,14 @@
   if (sidebar && navToggle) {
     setSidebar(wide.matches);
     wide.addEventListener('change', function (e) { setSidebar(e.matches); });
-    navToggle.addEventListener('click', function () { setSidebar(!sidebar.classList.contains('pf-m-expanded')); });
+    navToggle.addEventListener('click', function () {
+      // From xl the sidebar is a column of the page grid, so collapsing it
+      // resizes the content beside it; below xl PatternFly slides it in over
+      // the content itself and needs no help.
+      var open = !sidebar.classList.contains('pf-m-expanded');
+      if (wide.matches) withTransition(function () { setSidebar(open); });
+      else setSidebar(open);
+    });
     sidebar.addEventListener('click', function (e) { if (e.target.closest('a') && !wide.matches) setSidebar(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !wide.matches) setSidebar(false); });
   }
