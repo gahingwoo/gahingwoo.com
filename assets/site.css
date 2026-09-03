@@ -62,6 +62,14 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 .doc-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: 76rem; }
 .doc-page .pf-v6-c-page__main-body { margin-inline: auto; }
 
+/* The first section sits 16px below the top of the sheet by default, which
+   crowds the page title against the masthead. Give it room to breathe, and
+   the same at the foot so the last card is not flush with the edge. */
+.pf-v6-c-page__main > .pf-v6-c-page__main-section:first-child { --pf-v6-c-page__main-section--PaddingBlockStart: var(--pf-t--global--spacer--2xl); }
+.pf-v6-c-page__main > .pf-v6-c-page__main-section:last-child { --pf-v6-c-page__main-section--PaddingBlockEnd: var(--pf-t--global--spacer--2xl); }
+/* The rail is sticky inside that padding, so hold it clear of the top edge. */
+@media (min-width: 75rem) { .page-rail { top: var(--pf-t--global--spacer--md); } }
+
 /* ---- search ----
    patternfly.org keeps a search in its masthead: an icon that expands into an
    input. Cockpit's sidebar box filters a list of nav options, which is a
