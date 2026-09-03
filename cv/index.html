@@ -45,23 +45,30 @@
   .cv-summary { font-size: var(--pf-t--global--font--size--body--lg); max-width: 72ch; }
   .cv-foot { font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; border-top: 1px solid var(--pf-t--global--border--color--default); padding-top: var(--pf-t--global--spacer--sm); margin-top: var(--pf-t--global--spacer--xl); }
 
-  @page { size: A4; margin: 10mm 13mm 10mm 13mm; }
+  @page { size: A4; margin: 9mm 12mm 9mm 12mm; }
   @media print {
     html { --pf-t--global--background--color--primary--default: #fff; }
-    body { font-size: 9.5pt; line-height: 1.4; }
+    body { font-size: 9.2pt; line-height: 1.38; }
     .pf-v6-c-page__main-section { max-width: none; }
     .pf-v6-c-page__main-body { padding: 0; }
-    .cv-head { padding-bottom: 6pt; margin-bottom: 8pt; }
-    .cv-summary { font-size: 10pt; margin-bottom: 10pt; }
-    .cv-section { margin-bottom: 7pt; }
-    .cv-section > h2 { font-size: 1.25rem; margin-bottom: 6pt; break-after: avoid; }
-    .cv-item { margin-bottom: 5pt; grid-template-columns: 1fr auto; break-inside: auto; }
+    .cv-head { padding-bottom: 4pt; margin-bottom: 5pt; }
+    .cv-summary { font-size: 9.8pt; margin-bottom: 5pt; }
+    .cv-section { margin-bottom: 3pt; break-inside: auto; }
+    .cv-list, .cv-item { break-inside: auto; }
+    .cv-section > h2 { font-size: 1.1rem; margin-bottom: 3pt; padding-bottom: 2pt; break-after: avoid; }
+    .cv-item { margin-bottom: 3pt; grid-template-columns: 1fr auto; break-inside: auto; }
     .cv-item .cv-when { text-align: end; font-size: 8.5pt; }
     .cv-item .cv-title { font-size: 10.5pt; }
     .cv-item .cv-desc { font-size: 8.8pt; }
     .cv-item .cv-refs { font-size: 8pt; }
     .cv-list, .skills { font-size: 8.8pt; }
-    .cv-list li { margin-bottom: 3pt; }
+    /* Skills print as four short paragraphs, term run in, two to a row. */
+    .skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14pt; row-gap: 3pt; }
+    .skills .pf-v6-c-description-list__group { display: block; break-inside: avoid; }
+    .skills .pf-v6-c-description-list__term, .skills .pf-v6-c-description-list__description { display: inline; }
+    .skills .pf-v6-c-description-list__term .pf-v6-c-description-list__text::after { content: ": "; }
+    .skills .pf-v6-c-description-list__term .pf-v6-c-description-list__text { font-weight: 600; }
+    .cv-list li { margin-bottom: 1.5pt; }
     .cv-foot { display: none; }
     .print-date { display: block !important; }
     a { color: #0057b8; text-decoration: none; }
@@ -185,6 +192,17 @@
               <p class="cv-when">RFC &middot; 2026</p>
               <p class="cv-desc">From-scratch encoder driver. Reviewed by Heiko St&uuml;bner and Nicolas Dufresne; on their advice, abandoned the stateful V4L2 interface in favour of the DRM/Vulkan-Video split being built for the RK3588.</p>
             </div>
+          </section>
+
+          <section class="cv-section">
+            <h2 class="section-title">What is next</h2>
+            <ul class="cv-list">
+              <li><a href="/evidence#npu-series">RK3576 NPU series</a>: answer the driver author's review of v11 and get the 14 patches applied to the accel tree, so the NPU works on a stock kernel.</li>
+              <li><a href="/evidence#mesa-mr">Mesa</a>: after the single regular convolution in !43804, the depthwise, pointwise and image-input layer types MobileNet is built from, as separate series.</li>
+              <li><a href="/evidence#charsiu">charsiu</a>: close the two localised faults, the refused m = 8 tensor shape and the w4a16 job that can leave the NPU unable to start the next one.</li>
+              <li><a href="/evidence#vepu510">VEPU510 encoder</a>: rebase on the DRM/Vulkan-Video split being built for the RK3588 once it lands, as the maintainers advised.</li>
+              <li><a href="/evidence#edk2">edk2-rk3576</a>: verify the four boards it builds for but has not yet been run on.</li>
+            </ul>
           </section>
 
           <section class="cv-section">
