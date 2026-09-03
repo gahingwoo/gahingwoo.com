@@ -84,10 +84,23 @@
   var sidebar = document.getElementById('site-sidebar');
   var navToggle = document.getElementById('nav-toggle');
   var wide = window.matchMedia('(min-width: 75rem)');
+  var backdrop = document.getElementById('site-backdrop');
+
   function setSidebar(open) {
     sidebar.classList.toggle('pf-m-expanded', open);
-    sidebar.classList.toggle('pf-m-collapsed', !open);
+    // pf-m-collapsed takes the sidebar's width to zero, which is how the wide
+    // layout gives the space back to the content. Below xl the panel lies
+    // over the content and hides itself by sliding out, so applying it there
+    // would cut that slide short.
+    sidebar.classList.toggle('pf-m-collapsed', !open && wide.matches);
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (backdrop) {
+      if (open && !wide.matches) { backdrop.hidden = false; requestAnimationFrame(function () { backdrop.classList.add('is-on'); }); }
+      else {
+        backdrop.classList.remove('is-on');
+        if (backdrop.hidden === false) window.setTimeout(function () { if (!backdrop.classList.contains('is-on')) backdrop.hidden = true; }, 250);
+      }
+    }
   }
   if (sidebar && navToggle) {
     setSidebar(wide.matches);
@@ -102,10 +115,25 @@
     });
     sidebar.addEventListener('click', function (e) { if (e.target.closest('a') && !wide.matches) setSidebar(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !wide.matches) setSidebar(false); });
-    // Below xl the sidebar lies over the content with no scrim of its own, so
-    // a tap on the content beside it closes it, as a panel like this is
-    // expected to. That first tap only dismisses: it does not also follow
-    // whatever link it landed on.
+    // A tap beside the panel closes it. The backdrop catches most of these;
+    // this also covers anything it does not, and makes the tap dismiss only,
+    // rather than also following a link it landed on.
+    // Opening the panel pushes a history entry, so the system back gesture
+    // closes it instead of leaving the page. Closing it any other way pops
+    // that entry again.
+    var pushed = false;
+    var baseSetSidebar = setSidebar;
+    setSidebar = function (open, fromHistory) {
+      baseSetSidebar(open);
+      if (wide.matches) return;
+      if (open && !pushed) { pushed = true; try { history.pushState({ sidebar: true }, ''); } catch (e) { pushed = false; } }
+      else if (!open && pushed && !fromHistory) { pushed = false; try { history.back(); } catch (e) {} }
+      else if (!open) { pushed = false; }
+    };
+    window.addEventListener('popstate', function () {
+      if (!wide.matches && sidebar.classList.contains('pf-m-expanded')) { pushed = false; setSidebar(false, true); }
+    });
+
     document.addEventListener('click', function (e) {
       if (wide.matches || !sidebar.classList.contains('pf-m-expanded')) return;
       if (sidebar.contains(e.target) || e.target.closest('.pf-v6-c-masthead__toggle')) return;

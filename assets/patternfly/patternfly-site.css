@@ -12563,6 +12563,24 @@ span.pf-v6-c-button.pf-m-link.pf-m-inline {
 .pf-v6-c-card__footer {
   font-size: var(--pf-v6-c-card__footer--FontSize);
   color: var(--pf-v6-c-card__footer--Color);
+}.pf-v6-c-backdrop {
+  --pf-v6-c-backdrop--Position: fixed;
+  --pf-v6-c-backdrop--ZIndex: var(--pf-t--global--z-index--lg);
+  --pf-v6-c-backdrop--BackgroundColor: var(--pf-t--global--background--color--backdrop--default);
+}
+
+.pf-v6-c-backdrop {
+  position: var(--pf-v6-c-backdrop--Position);
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: var(--pf-v6-c-backdrop--ZIndex);
+  width: 100%;
+  height: 100%;
+  background-color: var(--pf-v6-c-backdrop--BackgroundColor);
+}
+
+.pf-v6-c-backdrop__open {
+  overflow: hidden;
 }.pf-v6-c-description-list {
   --pf-v6-c-description-list--RowGap: var(--pf-t--global--spacer--gap--group-to-group--vertical--default);
   --pf-v6-c-description-list--ColumnGap: var(--pf-t--global--spacer--gap--group-to-group--horizontal--default);

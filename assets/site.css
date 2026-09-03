@@ -112,6 +112,20 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
+/* The sidebar lies over the content below xl, so PatternFly's backdrop dims
+   what is behind it. The component sits at the lg layer, above the sidebar's
+   own sm layer, and the content container sits at xs, the same layer the
+   backdrop would fall back to; it goes just under the sidebar instead, which
+   puts it over the content and under the panel. It fades with the panel. */
+.site-backdrop {
+  --pf-v6-c-backdrop--ZIndex: calc(var(--pf-t--global--z-index--sm) - 1);
+  opacity: 0;
+  transition: opacity var(--pf-t--global--motion--duration--fade--default, 0.2s) var(--pf-t--global--motion--timing-function--decelerate, ease);
+}
+.site-backdrop.is-on { opacity: 1; }
+@media (min-width: 75rem) { .site-backdrop { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .site-backdrop { transition: none; } }
+
 /* ---- search ----
    patternfly.org keeps a search in its masthead: an icon that expands into an
    input. Cockpit's sidebar box filters a list of nav options, which is a
