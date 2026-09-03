@@ -115,9 +115,12 @@
   var totop = document.getElementById('back-to-top');
   if (totop) {
     var ticking = false;
+    // Shown once the reader is well down a page that is long enough for the
+    // trip back to be worth a button: two screens or more.
     function sync() {
       ticking = false;
-      totop.classList.toggle('pf-m-hidden', window.scrollY < 600);
+      var longEnough = document.documentElement.scrollHeight > window.innerHeight * 2;
+      totop.classList.toggle('pf-m-hidden', !longEnough || window.scrollY < 600);
     }
     window.addEventListener('scroll', function () {
       if (!ticking) { ticking = true; window.requestAnimationFrame(sync); }
