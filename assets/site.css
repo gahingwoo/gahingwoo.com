@@ -179,19 +179,27 @@ a[href^="mailto:"]::after,
 .pf-v6-c-nav__link[href^="mailto:"] .pf-v6-c-nav__link-text::after {
   content: "";
   display: inline-block;
-  width: 0.78em;
-  height: 0.78em;
-  margin-inline-start: 0.32em;
-  vertical-align: -0.04em;
+  width: 0.72em;
+  height: 0.72em;
+  margin-inline-start: 0.3em;
+  vertical-align: -0.02em;
   background-color: currentColor;
-  opacity: 0.7;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z'/%3E%3C/svg%3E") no-repeat center / contain;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z'/%3E%3C/svg%3E") no-repeat center / contain;
+  opacity: 0.75;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M29.5 5h-27C1.673 5 1 5.673 1 6.5v19c0 .827.673 1.5 1.5 1.5h27c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5ZM3 8.238 10.762 16 3 23.762V8.238Zm16.382 7.143h-.001v.001l-3.38 3.38-3.38-3.38v-.001h-.001L4.238 7h23.524l-8.38 8.381ZM12 17.238l3.027 3.027c.26.26.605.403.973.403s.713-.143.973-.403L20 17.238 27.762 25H4.238L12 17.238ZM21.238 16 29 8.238v15.524L21.238 16Z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M29.5 5h-27C1.673 5 1 5.673 1 6.5v19c0 .827.673 1.5 1.5 1.5h27c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5ZM3 8.238 10.762 16 3 23.762V8.238Zm16.382 7.143h-.001v.001l-3.38 3.38-3.38-3.38v-.001h-.001L4.238 7h23.524l-8.38 8.381ZM12 17.238l3.027 3.027c.26.26.605.403.973.403s.713-.143.973-.403L20 17.238 27.762 25H4.238L12 17.238ZM21.238 16 29 8.238v15.524L21.238 16Z'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 a.pf-v6-c-nav__link[href^="mailto:"]::after { content: none; }
 
-/* The sidebar's links are flex containers, where the marker would become a
-   row of its own above the label, so there it rides on the label instead.
+/* In the sidebar the markers line up down the right edge rather than trailing
+   labels of different lengths. The label takes the row and the marker is
+   pushed to its end, which also keeps it on the same line: on the link itself
+   it would become a row of its own above the label.
+   Not on the masthead's own controls, nor in print, where the address is
+   already spelled out and the glyph would be noise. */
+.pf-v6-c-nav__link-text { display: flex; align-items: center; width: 100%; }
+.pf-v6-c-nav__link-text::after { margin-inline-start: auto !important; }
+
+/* The rest of the suppressions.
    Not on the masthead's own controls, nor in print, where the address is
    already spelled out and the glyph would be noise. */
 a.pf-v6-c-nav__link[href^="http"]::after { content: none; }
