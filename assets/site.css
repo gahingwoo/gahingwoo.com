@@ -206,6 +206,10 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 /* The entry a link lands on: a soft tint across the whole row, pulled out to
    the card edge so the text column does not move. */
 .entry:target { background: color-mix(in srgb, var(--pf-t--global--color--brand--default) 7%, transparent); margin-inline: calc(-1 * var(--pf-t--global--spacer--xl)); padding-inline: var(--pf-t--global--spacer--xl); border-radius: var(--pf-t--global--border--radius--small); }
+/* On the overview the rail has no current marker, because the cards are a
+   grid rather than a sequence; a card jumped to marks itself instead. */
+.home-cards > .pf-v6-c-card { scroll-margin-top: var(--pf-t--global--spacer--md); }
+.home-cards > .pf-v6-c-card:target { border-color: var(--pf-t--global--border--color--brand--default); box-shadow: inset 3px 0 0 var(--pf-t--global--border--color--brand--default); }
 .entry-desc { position: relative; font-size: 1rem; line-height: 1.5; }
 .entry.is-folded .entry-desc { max-height: 9em; overflow: hidden; }
 .entry.is-folded .entry-desc::after {

@@ -242,8 +242,27 @@
     var items = Array.prototype.slice.call(jumpList.querySelectorAll('.pf-v6-c-jump-links__item'));
     var targets = items.map(function (li) { return document.getElementById(li.querySelector('a').getAttribute('href').slice(1)); });
     var spyTicking = false;
+
+    // "The section you are in" only means something when the sections run in
+    // one column. The overview lays its cards out in a grid, where two sit
+    // side by side at the same height, so there the highlight would jump
+    // between them; it stands down until the layout is a single column,
+    // which it is on a narrow screen.
+    function sequential() {
+      for (var i = 1; i < targets.length; i++) {
+        if (!targets[i] || !targets[i - 1]) continue;
+        if (Math.abs(targets[i].getBoundingClientRect().top - targets[i - 1].getBoundingClientRect().top) < 8) return false;
+      }
+      return true;
+    }
+
+    function clearCurrent() {
+      items.forEach(function (li) { li.classList.remove('pf-m-current'); li.removeAttribute('aria-current'); });
+    }
+
     function spy() {
       spyTicking = false;
+      if (!sequential()) { clearCurrent(); return; }
       var top = scroller.getBoundingClientRect().top, mark = top + 96, current = -1;
       for (var i = 0; i < targets.length; i++) {
         if (targets[i] && targets[i].getBoundingClientRect().top <= mark) current = i;
