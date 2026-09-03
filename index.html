@@ -10,24 +10,17 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Ga Hing Woo (Jiaxing Hu)">
-<meta property="og:description" content="Firmware and embedded Linux. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.">
+<meta property="og:description" content="Firmware and embedded Linux engineer in Auckland. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.">
 <meta property="og:url" content="https://gahingwoo.com/">
 <meta property="og:image" content="https://gahingwoo.com/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ga Hing Woo (Jiaxing Hu)">
-<meta name="twitter:description" content="Firmware and embedded Linux. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, and an NPU brought up from nothing.">
-<meta name="twitter:image" content="https://gahingwoo.com/assets/og.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <script>
   (function () {
     var saved = null;
     try { saved = localStorage.getItem('theme'); } catch (e) {}
-    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
+    if (saved === 'dark') document.documentElement.classList.add('pf-v6-theme-dark');
   })();
 </script>
 <script type="application/ld+json">
@@ -37,392 +30,145 @@
   "name": "Ga Hing Woo",
   "alternateName": "Jiaxing Hu",
   "url": "https://gahingwoo.com/",
-  "image": "https://gahingwoo.com/assets/avatar.png",
   "email": "mailto:gahing@gahingwoo.com",
   "jobTitle": "Firmware and embedded Linux engineer",
   "address": { "@type": "PostalAddress", "addressLocality": "Auckland", "addressCountry": "NZ" },
-  "sameAs": [
-    "https://github.com/gahingwoo",
-    "https://www.linkedin.com/in/ga-hing-woo-906aa7423/",
-    "https://orcid.org/0009-0002-0840-8951",
-    "https://blog.gahingwoo.com"
-  ],
+  "sameAs": ["https://github.com/gahingwoo", "https://www.linkedin.com/in/ga-hing-woo-906aa7423/", "https://orcid.org/0009-0002-0840-8951", "https://blog.gahingwoo.com"],
   "knowsAbout": ["Linux kernel", "Rockchip RK3576", "OP-TEE", "Trusted Firmware-A", "UEFI", "TrustZone", "Neural processing units"]
 }
 </script>
+<link rel="stylesheet" href="/assets/patternfly/patternfly.min.css">
+<link rel="stylesheet" href="/assets/patternfly/patternfly-addons.css">
 <link rel="stylesheet" href="/assets/site.css">
-<style>
-  :root {
-    /* Typewriter timings live here rather than in the script, so there is one
-       place to change them and nothing can drift out of step. */
-    --tw-type-speed: 65ms;
-    --tw-delete-speed: 38ms;
-    --tw-hold-time: 2200ms;
-    --tw-gap-time: 500ms;
-    /* The row reserves its worst-case wrap so nothing below it moves while a
-       line is being typed. Two lines covers every line from 360px up. */
-    --tw-line-height: 1.6;
-    --tw-lines: 2;
-  }
-  @media (max-width: 359px) { :root { --tw-lines: 3; } }
-
-  main {
-    width: 100%;
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 28px 0 40px 0;
-  }
-
-  /* ---- hero ---- */
-  .hero {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0 24px;
-    align-items: start;
-    margin-bottom: 36px;
-  }
-  .avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    background: var(--card-bg);
-    display: block;
-    margin-top: 4px;
-  }
-  .hero-body { min-width: 0; }
-  .hero .prompt { margin-bottom: 6px; }
-  h1 {
-    font-family: var(--mono);
-    font-size: clamp(26px, 4vw, 44px);
-    font-weight: 600;
-    margin: 0 0 14px 0;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-    line-height: 1.15;
-  }
-  h1 .alt { color: var(--ink-dim); font-weight: 500; }
-  .headline {
-    font-size: clamp(15px, 1.5vw, 17px);
-    color: var(--ink-dim);
-    max-width: 62ch;
-    margin: 0 0 18px 0;
-  }
-  .headline b { color: var(--ink); font-weight: 500; }
-  .headline a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
-  .headline a:hover, .headline a:focus-visible { color: var(--accent); border-color: var(--accent); }
-
-  .typewriter-row {
-    font-family: var(--mono);
-    font-size: clamp(13px, 1.3vw, 15px);
-    color: var(--ink-dim);
-    line-height: var(--tw-line-height);
-    min-height: calc(var(--tw-lines) * var(--tw-line-height) * 1em);
-    margin-bottom: 22px;
-  }
-  .typewriter-row .arrow { color: var(--accent); margin-right: 8px; }
-  #tw-text { white-space: pre-wrap; word-break: break-word; }
-  .cursor {
-    display: inline-block;
-    width: 7px;
-    height: 1em;
-    background: var(--accent);
-    margin-left: 2px;
-    transform: translateY(2px);
-    animation: blink 1s steps(1) infinite;
-  }
-  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-
-  .site-nav {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px 20px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-  }
-  .site-nav a {
-    color: var(--ink-dim);
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-family: var(--mono);
-    font-size: 13.5px;
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-  .site-nav a svg { width: 17px; height: 17px; flex-shrink: 0; }
-  .site-nav a:hover, .site-nav a:focus-visible { color: var(--accent); }
-  .site-nav a.cv { color: var(--accent); }
-
-  @media (max-width: 560px) {
-    .hero { grid-template-columns: 1fr; gap: 14px 0; }
-    .avatar { width: 56px; height: 56px; }
-  }
-
-  /* ---- sections ---- */
-  section { margin-bottom: 40px; }
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .section-head a.more {
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--ink-dim);
-    text-decoration: none;
-  }
-  .section-head a.more:hover, .section-head a.more:focus-visible { color: var(--accent); }
-
-  .stats { margin-bottom: 40px; }
-  .stats .who {
-    display: block;
-    color: var(--ink-faint);
-    margin-top: 2px;
-  }
-
-  /* ---- writing ---- */
-  .posts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-  .posts li {
-    display: flex;
-    gap: 16px;
-    align-items: baseline;
-    padding: 11px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .posts time {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--ink-faint);
-    flex: 0 0 76px;
-    font-variant-numeric: tabular-nums;
-  }
-  .posts a {
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 15px;
-  }
-  .posts a:hover, .posts a:focus-visible { color: var(--accent); }
-
-  /* ---- verify ---- */
-  .verify {
-    border-left: 2px solid var(--accent);
-    background: var(--card-bg);
-    padding: 14px 18px;
-    font-size: 14px;
-    color: var(--ink-dim);
-  }
-  .verify p { margin: 0 0 8px 0; }
-  .verify p:last-child { margin-bottom: 0; }
-  .verify strong { color: var(--ink); font-weight: 500; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cursor { animation: none; opacity: 1; }
-    .site-nav a { transition: none; }
-  }
-</style>
 </head>
 <body>
-<main>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">
-    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-  </button>
-
-  <header class="hero">
-    <img class="avatar" src="/assets/avatar.png" alt="" width="72" height="72">
-    <div class="hero-body">
-      <div class="prompt">gahing@gahingwoo:~$ whoami</div>
-      <h1>Ga Hing Woo <span class="alt">(Jiaxing Hu)</span></h1>
-      <p class="headline">Firmware and embedded Linux, mostly on Rockchip silicon that nobody had brought up yet. <b>Five of my commits are in mainline Linux 7.3</b>, applied by the IOMMU, Rockchip and networking maintainers. The <a href="/evidence#optee">first OP-TEE port for the RK3576</a> and a <a href="/evidence#tfa">Trusted Firmware-A secure-boot fix</a> are merged too. Every claim on this site links to the public record behind it.</p>
-
-      <div class="typewriter-row" aria-hidden="true">
-        <span class="arrow">&gt;</span><span id="tw-text"></span><span class="cursor"></span>
+<div class="pf-v6-c-page">
+  <div class="pf-v6-c-skip-to-content">
+    <a class="pf-v6-c-button pf-m-primary" href="#main-content"><span class="pf-v6-c-button__text">Skip to content</span></a>
+  </div>
+  <header class="pf-v6-c-masthead">
+    <div class="pf-v6-c-masthead__main">
+      <div class="pf-v6-c-masthead__brand">
+        <a class="brand" href="/"><span class="brand-name">Ga Hing Woo</span><span class="brand-sub">Jiaxing Hu &middot; gahingwoo.com</span></a>
       </div>
-
-      <nav class="site-nav" aria-label="Links">
-        <a href="/cv/" class="cv" title="CV">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><circle cx="9.5" cy="12.5" r="1.8"/><path d="M6.5 18c.6-1.7 1.8-2.5 3-2.5s2.4.8 3 2.5"/><path d="M15 13h2.5M15 16h2.5"/></svg>
-          <span>CV</span>
-        </a>
-        <a href="/evidence" title="Evidence Appendix">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          <span>Evidence</span>
-        </a>
-        <a href="https://blog.gahingwoo.com" title="Blog">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg>
-          <span>Blog</span>
-        </a>
-        <a href="https://github.com/gahingwoo" title="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.27 10.27 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
-          <span>GitHub</span>
-        </a>
-        <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/" title="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="7.2" cy="7" r="0.9" fill="currentColor" stroke="none"/><line x1="7.2" y1="10.5" x2="7.2" y2="17"/><path d="M11.2 17v-4.2a2.3 2.3 0 0 1 4.6 0V17"/><line x1="11.2" y1="10.5" x2="11.2" y2="17"/></svg>
-          <span>LinkedIn</span>
-        </a>
-        <a href="https://orcid.org/0009-0002-0840-8951" title="ORCID">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><circle cx="8.2" cy="8.1" r="0.9" fill="currentColor" stroke="none"/><line x1="8.2" y1="10.6" x2="8.2" y2="16.4"/><path d="M11 10.6h1.9a3 3 0 0 1 0 5.8H11z" fill="none"/></svg>
-          <span>ORCID</span>
-        </a>
-        <a href="mailto:gahing@gahingwoo.com" title="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          <span>Email</span>
-        </a>
+    </div>
+    <div class="pf-v6-c-masthead__content">
+      <nav aria-label="Site">
+        <ul class="top-links">
+          <li><a href="/" aria-current="page">Overview</a></li>
+          <li><a href="/evidence">Evidence</a></li>
+          <li><a href="/cv/">CV</a></li>
+          <li><a href="https://blog.gahingwoo.com">Blog</a></li>
+          <li><a href="https://github.com/gahingwoo">GitHub</a></li>
+        </ul>
       </nav>
+      <button class="pf-v6-c-button pf-m-plain theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <span class="pf-v6-c-button__icon"><i class="fas fa-moon icon-moon" aria-hidden="true"></i><i class="fas fa-sun icon-sun" aria-hidden="true"></i></span>
+      </button>
     </div>
   </header>
+  <div class="pf-v6-c-page__main-container" tabindex="-1">
+    <main class="pf-v6-c-page__main" tabindex="-1" id="main-content">
 
-  <!-- These counts are copied from the evidence appendix by hand. When an
-       entry there changes, change the number here and in /cv/ too. -->
-  <div class="stats" role="list" aria-label="By the numbers">
-    <a class="stat" role="listitem" href="/evidence#mainline-linux"><div class="num">5</div><div class="what">commits in mainline Linux 7.3 <span class="who">iommu, arm64 dts, net phy</span></div></a>
-    <a class="stat" role="listitem" href="/evidence#mainline-linux"><div class="num">3</div><div class="what">subsystem maintainers applied them <span class="who">Will Deacon, Heiko Stübner, Jakub Kicinski</span></div></a>
-    <a class="stat" role="listitem" href="/evidence#merged-upstream"><div class="num">2</div><div class="what">firmware projects merged <span class="who">Trusted Firmware-A, OP-TEE</span></div></a>
-    <a class="stat" role="listitem" href="/evidence#preprint"><div class="num">1</div><div class="what">preprint with a DOI <span class="who">Zenodo, version 2</span></div></a>
-    <a class="stat" role="listitem" href="/evidence#tools-in-use"><div class="num">3</div><div class="what">tools packaged or documented by others <span class="who">Arch AUR, Radxa docs</span></div></a>
+      <section class="pf-v6-c-page__main-section pf-m-limit-width" aria-labelledby="page-title">
+        <div class="pf-v6-c-page__main-body">
+          <div class="page-head">
+            <h1 class="page-title" id="page-title">Ga Hing Woo <span class="subtitle">firmware and embedded Linux, Auckland</span></h1>
+            <a class="pf-v6-c-button pf-m-secondary" href="/cv/"><span class="pf-v6-c-button__text">View CV</span></a>
+          </div>
+          <div class="pf-v6-l-gallery pf-m-gutter" style="--pf-v6-l-gallery--GridTemplateColumns--min: 400px">
+<div class="pf-v6-c-card ">
+  <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">About</h2></div>
+  <div class="pf-v6-c-card__body"><div class="card-text">
+<p>Firmware and embedded Linux, mostly on Rockchip silicon that nobody had brought up yet. Five of my commits are in mainline Linux 7.3, applied by the IOMMU, Rockchip and networking maintainers. The first OP-TEE port for the RK3576 and a Trusted Firmware-A secure-boot fix are merged too.</p>
+<p>Every claim on this site links to the public record behind it. Where an earlier claim of mine turned out to be wrong, the record says so.</p>
+</div><div class="pf-v6-u-mt-lg"><dl class="pf-v6-c-description-list pf-m-horizontal kv">
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Email</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">GitHub</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://github.com/gahingwoo">github.com/gahingwoo</a></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">LinkedIn</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/">ga-hing-woo-906aa7423</a></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">ORCID</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://orcid.org/0009-0002-0840-8951">0009-0002-0840-8951</a></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Blog</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com">blog.gahingwoo.com</a></div></dd></div>
+</dl></div></div>
+</div>
+<div class="pf-v6-c-card ">
+  <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">In mainline Linux</h2></div>
+  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal kv">
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">iommu/rockchip</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#iommu-fixes">Two fixes for the RK3576 NPU's IOMMU instances</a><span class="meta">Applied by Will Deacon, IOMMU co-maintainer. Linux 7.3.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">arm64 dts</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#cm5-dts">ArmSoM CM5 and CM5-IO board support</a><span class="meta">Applied by Heiko St&uuml;bner, Rockchip SoC maintainer; Acked-by Krzysztof Kozlowski. Linux 7.3.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">net/phy motorcomm</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#yt8521">Reference clock for the YT8521 PHY</a><span class="meta">Applied by Jakub Kicinski, net maintainer; Reviewed-by Andrew Lunn. Linux 7.3.</span></div></dd></div>
+</dl></div>
+  <div class="pf-v6-c-card__footer"><a href="/evidence#mainline-linux">View commits and review threads</a></div>
+</div>
+<div class="pf-v6-c-card ">
+  <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Firmware and trusted execution</h2></div>
+  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal kv">
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">OP-TEE</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#optee">First RK3576 platform port</a><span class="meta">Merged. Reviewed-by Cherry Embedded Solutions; run by Flipper Devices on Flipper One, 35,681 subtests, zero failures.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Trusted Firmware-A</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#tfa">Redundant secure-boot override removed</a><span class="meta">Merged. Reviewed by engineers at STMicroelectronics, Arm and Rockchip.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">RP2350</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#rp2350">TrustZone-M isolation example</a><span class="meta">SecureFault verified over SWD rather than trusted from source.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">UEFI</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#edk2">edk2-rk3576</a><span class="meta">Boots a mainline Fedora 44 desktop; pinned on the Radxa forum by a Radxa engineer.</span></div></dd></div>
+</dl></div>
+  <div class="pf-v6-c-card__footer"><a href="/evidence#merged-upstream">View the merged firmware work</a></div>
+</div>
+<div class="pf-v6-c-card ">
+  <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Under review</h2></div>
+  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal kv">
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Linux, accel/rocket</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#npu-series">RK3576 NPU enablement, 14 patches, v11</a><span class="meta">Reviewed-by &times;4, Acked-by &times;2, Tested-by &times;2 on RK3588. The driver's author is reviewing.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Mesa</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#mesa-mr">RK3576 in the Teflon delegate, !43804</a><span class="meta">The bare minimum the maintainer asked for first.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Linux, media</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#vepu510">RFC V4L2 driver for the VEPU510 encoder</a><span class="meta">Reviewed by Heiko St&uuml;bner and Nicolas Dufresne; redirected to the DRM/Vulkan-Video split on their advice.</span></div></dd></div>
+</dl></div>
+  <div class="pf-v6-c-card__footer"><a href="/evidence#under-review">Follow the threads</a></div>
+</div>
+<div class="pf-v6-c-card ">
+  <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Published and cited</h2></div>
+  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal kv">
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Preprint</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#preprint">RK3576 NPU bring-up, version 2</a><span class="meta">Zenodo DOI. Version 1's central result is withdrawn on the first page of version 2, with the cause.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Cross-checked</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#cross-confirmed">Five register-model findings confirmed on RK3588</a><span class="meta">By an independent reverse-engineering effort with no contact with this project.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Coverage</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#collabora">Collabora</a>, <a href="/evidence#tracker">Collabora's RK3576 tracker</a>, CNX Software<span class="meta">The Rockchip kernel maintainer commented on Collabora's summary.</span></div></dd></div>
+</dl></div>
+  <div class="pf-v6-c-card__footer"><a href="/evidence#published-research">View the research record</a></div>
+</div>
+<div class="pf-v6-c-card ">
+  <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Tools used by others</h2></div>
+  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal kv">
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">SoC-Consistency</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#soc-consistency">Static analysis of devicetree power trees</a><span class="meta">PyPI; packaged into Arch Linux by an unaffiliated maintainer.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">RKDevelopTool-GUI</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#rkdeveloptool-gui">Rockchip flashing front end</a><span class="meta">Arch AUR; its own page in Radxa's documentation.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">kiln</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#kiln">Local LLM inference on the RK3576 NPU</a><span class="meta">Subject of a Radxa tutorial.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">charsiu</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#charsiu">LLM runtime on the mainline NPU driver</a><span class="meta">Nine models run end to end at four bits, output identical to the CPU reference.</span></div></dd></div>
+</dl></div>
+  <div class="pf-v6-c-card__footer"><a href="/evidence#tools-in-use">View the packaging and documentation</a></div>
+</div>
+<div class="pf-v6-c-card ">
+  <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Writing</h2></div>
+  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal kv">
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">17 Jul 2026</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com/posts/rk3576-armsom-cm5-devicetree/">ArmSoM Noticed the Work, and the CM5 Device Tree Hits v4</a></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">13 Jul 2026</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com/posts/rp2350-trustzone-vs-pmp/">Same Chip, Two Walls: TrustZone-M vs RISC-V PMP on the RP2350</a></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">15 Jun 2026</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com/posts/rk3576-npu-mainline/">Bringing Up the RK3576 NPU on Mainline Linux</a></div></dd></div>
+</dl></div>
+  <div class="pf-v6-c-card__footer"><a href="https://blog.gahingwoo.com">All posts</a></div>
+</div>
+<div class="pf-v6-c-card ">
+  <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Verification</h2></div>
+  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal kv">
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Evidence appendix</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Every claim, each with a link to the merged commit, review thread or DOI. <a href="/evidence">Open the appendix</a></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Kernel commits</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Linked to git.kernel.org and to the GitHub mirror of Linus's tree.</div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Names</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Kernel patches carry a legal name, so kernel work appears as Jiaxing Hu. Everywhere else I go by gahingwoo, which is also the name to search.</div></dd></div>
+</dl></div>
+</div>
+          </div>
+
+          <footer class="site-footer">
+            <span>Ga Hing Woo (Jiaxing Hu) &middot; Auckland, New Zealand</span>
+            <a href="/">Overview</a>
+            <a href="/evidence">Evidence</a>
+            <a href="/cv/">CV</a>
+            <a href="https://github.com/gahingwoo/gahingwoo.com">Source of this site</a>
+          </footer>
+
+        </div>
+      </section>
+    </main>
   </div>
-
-  <section aria-labelledby="work-label">
-    <div class="section-head">
-      <div class="section-label" id="work-label">Selected work</div>
-      <a class="more" href="/evidence">all 28 entries, with sources &rarr;</a>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <h3>RK3576 NPU on mainline Linux</h3>
-        <p>Brought up the RK3576's neural accelerator on the open rocket driver, working from the vendor's model files rather than any documentation. The bug that blocked chained compute for 38 days was one register field: a 16-bit task count where the RK3588 header assumed 12. The 14-patch series is at v11 with the driver's author reviewing it, and two IOMMU fixes split out of it are in Linux 7.3. The preprint's second version retracts the first version's central claim and explains how the method held a false result.</p>
-        <div class="card-links">
-          <a href="/evidence#npu-series">series, v11</a>
-          <a href="https://doi.org/10.5281/zenodo.21990992" target="_blank" rel="noopener">preprint, DOI</a>
-          <a href="https://blog.gahingwoo.com/posts/rk3576-npu-mainline/" target="_blank" rel="noopener">write-up</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>Board bring-up that reached Linux 7.3</h3>
-        <p>Devicetree support for the ArmSoM CM5 and CM5-IO, applied by Heiko Stübner after five review rounds, with an Acked-by on the binding from Krzysztof Kozlowski. A reference-clock fix for the Motorcomm YT8521 PHY, applied by Jakub Kicinski with a Reviewed-by from Andrew Lunn and a Tested-by from the owner of a different RK3576 board. My first attempt at that fix lived in the MAC driver. Two maintainers said the PHY should own the clock, so I withdrew it and rewrote it at the right layer.</p>
-        <div class="card-links">
-          <a href="/evidence#cm5-dts">CM5 devicetree</a>
-          <a href="/evidence#yt8521">PHY fix</a>
-          <a href="/evidence#dwmac-rk">the withdrawn attempt</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>Trusted execution, Cortex-A down to Cortex-M</h3>
-        <p>The first OP-TEE port for the RK3576, merged with a Reviewed-by from a Cherry Embedded Solutions maintainer and later run by Flipper Devices on their own hardware: 114 xtest cases, 35,681 subtests, zero failures. A Trusted Firmware-A fix for a copy-paste defect that would have silently broken secure boot, reviewed by engineers at STMicroelectronics, Arm and Rockchip. On the RP2350, a TrustZone-M isolation example whose fault handling was checked over SWD rather than trusted from source.</p>
-        <div class="card-links">
-          <a href="/evidence#optee">OP-TEE port</a>
-          <a href="/evidence#flipper">Flipper validation</a>
-          <a href="/evidence#tfa">TF-A fix</a>
-          <a href="/evidence#rp2350">RP2350 example</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>Tools other people ship</h3>
-        <p>SoC-Consistency checks a devicetree's power tree for misconfiguration before it reaches hardware. It is on PyPI and was packaged into Arch Linux by a maintainer I have never met. RKDevelopTool-GUI, a flashing front end for Rockchip boards, has its own page in Radxa's documentation. kiln, a stopgap for running local language models on the RK3576 NPU, has a full Radxa tutorial. edk2-rk3576, a UEFI port that boots Fedora 44, was pinned on the Radxa forum by one of their engineers.</p>
-        <div class="card-links">
-          <a href="/evidence#soc-consistency">SoC-Consistency</a>
-          <a href="/evidence#rkdeveloptool-gui">RKDevelopTool-GUI</a>
-          <a href="/evidence#kiln">kiln</a>
-          <a href="/evidence#edk2">edk2-rk3576</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section aria-labelledby="writing-label">
-    <div class="section-head">
-      <div class="section-label" id="writing-label">Writing</div>
-      <a class="more" href="https://blog.gahingwoo.com" target="_blank" rel="noopener">all posts &rarr;</a>
-    </div>
-    <ul class="posts">
-      <li><time datetime="2026-07-17">Jul 2026</time><a href="https://blog.gahingwoo.com/posts/rk3576-armsom-cm5-devicetree/" target="_blank" rel="noopener">ArmSoM Noticed the Work, and the CM5 Device Tree Hits v4</a></li>
-      <li><time datetime="2026-07-13">Jul 2026</time><a href="https://blog.gahingwoo.com/posts/rp2350-trustzone-vs-pmp/" target="_blank" rel="noopener">Same Chip, Two Walls: TrustZone-M vs RISC-V PMP on the RP2350</a></li>
-      <li><time datetime="2026-06-15">Jun 2026</time><a href="https://blog.gahingwoo.com/posts/rk3576-npu-mainline/" target="_blank" rel="noopener">Bringing Up the RK3576 NPU on Mainline Linux</a></li>
-    </ul>
-  </section>
-
-  <section aria-labelledby="verify-label">
-    <div class="section-label" id="verify-label">How to check any of this</div>
-    <div class="verify">
-      <p>The <a href="/evidence"><strong>evidence appendix</strong></a> lists every claim I make about my own work with a link to the merged commit, review thread or DOI behind it. Where an earlier claim of mine turned out to be wrong, the entry says so rather than being deleted.</p>
-      <p>Kernel patches must be signed off with a legal name, so kernel work appears as <strong>Jiaxing Hu</strong>. Everywhere else I go by <strong>gahingwoo</strong>, which is also the more reliable name to search.</p>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <span>Auckland, NZ &middot; embedded &amp; firmware</span>
-    <a href="/cv/">CV</a>
-    <a href="/evidence">Evidence</a>
-    <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a>
-  </footer>
-</main>
-
+</div>
 <script src="/assets/site.js"></script>
-<script>
-  var lines = [
-    "helping Linux run on a chip nobody had documented before.",
-    "finding why a chip's AI hardware returned nothing but zeros.",
-    "keeping a tiny computer's secrets locked away in hardware.",
-    "getting a new chip to boot properly for the first time.",
-    "fixing the one line of code a chip's security depended on.",
-    "opening a chip's AI hardware until a language model ran on it."
-  ];
-
-  var el = document.getElementById('tw-text');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (reduceMotion) {
-    el.textContent = lines[0];
-  } else {
-    var rootStyles = getComputedStyle(document.documentElement);
-
-    function cssTime(name, fallback) {
-      var v = rootStyles.getPropertyValue(name).trim();
-      var n = parseFloat(v);
-      if (!v || isNaN(n)) return fallback;
-      if (v.slice(-2) === 'ms') return n;
-      if (v.slice(-1) === 's') return n * 1000;
-      return n;
-    }
-
-    var lineIdx = 0, charIdx = 0, deleting = false;
-    var typeSpeed = cssTime('--tw-type-speed', 65),
-        deleteSpeed = cssTime('--tw-delete-speed', 38),
-        holdTime = cssTime('--tw-hold-time', 2200),
-        gapTime = cssTime('--tw-gap-time', 500);
-
-    function tick() {
-      var current = lines[lineIdx];
-      if (!deleting) {
-        charIdx++;
-        el.textContent = current.slice(0, charIdx);
-        if (charIdx === current.length) {
-          deleting = true;
-          setTimeout(tick, holdTime);
-          return;
-        }
-        setTimeout(tick, typeSpeed);
-      } else {
-        charIdx--;
-        el.textContent = current.slice(0, charIdx);
-        if (charIdx === 0) {
-          deleting = false;
-          lineIdx = (lineIdx + 1) % lines.length;
-          setTimeout(tick, gapTime);
-          return;
-        }
-        setTimeout(tick, deleteSpeed);
-      }
-    }
-    tick();
-  }
-</script>
 </body>
 </html>

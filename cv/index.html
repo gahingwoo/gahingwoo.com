@@ -10,386 +10,244 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="CV: Ga Hing Woo (Jiaxing Hu)">
-<meta property="og:description" content="Firmware and embedded Linux engineer. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, a TF-A secure-boot fix, and an NPU brought up from nothing.">
+<meta property="og:description" content="CV of Ga Hing Woo (Jiaxing Hu), firmware and embedded Linux engineer in Auckland. Mainline Linux, OP-TEE and Trusted Firmware-A contributions, each with a link to the record.">
 <meta property="og:url" content="https://gahingwoo.com/cv/">
 <meta property="og:image" content="https://gahingwoo.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <script>
   (function () {
     var saved = null;
     try { saved = localStorage.getItem('theme'); } catch (e) {}
-    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
+    if (saved === 'dark') document.documentElement.classList.add('pf-v6-theme-dark');
   })();
 </script>
+<link rel="stylesheet" href="/assets/patternfly/patternfly.min.css">
+<link rel="stylesheet" href="/assets/patternfly/patternfly-addons.css">
 <link rel="stylesheet" href="/assets/site.css">
 <style>
   /* This page is the CV. The PDF at /cv/ga-hing-woo-cv.pdf is printed from it
      by .github/workflows/cv-pdf.yml on every change, so edit here and only here.
      Counts and claims mirror the evidence appendix; each line links to it. */
+  .cv-item { display: grid; grid-template-columns: 1fr; gap: 2px 20px; margin-bottom: var(--pf-t--global--spacer--md); break-inside: avoid; }
+  @media (min-width: 640px) { .cv-item { grid-template-columns: 1fr auto; } }
+  .cv-item .cv-title { margin: 0; font-family: var(--pf-t--global--font--family--heading); font-size: var(--pf-t--global--font--size--heading--sm); font-weight: var(--pf-t--global--font--weight--heading--default); }
+  .cv-item .cv-title a { color: inherit; text-decoration: none; }
+  .cv-item .cv-title a:hover { color: var(--pf-t--global--text--color--link--hover); }
+  .cv-item .cv-when { margin: 0; font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); white-space: nowrap; }
+  @media (min-width: 640px) { .cv-item .cv-when { text-align: end; } }
+  .cv-item .cv-desc { grid-column: 1 / -1; margin: 0; color: var(--pf-t--global--text--color--regular); }
+  .cv-item .cv-refs { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 2px 14px; font-family: var(--pf-t--global--font--family--mono); font-size: var(--pf-t--global--font--size--body--sm); }
+  .cv-section { margin-bottom: var(--pf-t--global--spacer--xl); }
+  .cv-section > h2 { font-size: 1.25rem; margin-bottom: var(--pf-t--global--spacer--md); padding-bottom: var(--pf-t--global--spacer--xs); border-bottom: 1px solid var(--pf-t--global--border--color--default); }
+  .cv-list { margin: 0; padding-inline-start: 1.2em; }
+  .cv-list li { margin-bottom: var(--pf-t--global--spacer--xs); }
+  .cv-summary { font-size: var(--pf-t--global--font--size--body--lg); max-width: 72ch; }
+  .cv-foot { font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; border-top: 1px solid var(--pf-t--global--border--color--default); padding-top: var(--pf-t--global--spacer--sm); margin-top: var(--pf-t--global--spacer--xl); }
 
-  main {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding-bottom: 60px;
-  }
-
-  .toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 28px 0;
-  }
-  .toolbar .spacer { flex: 1 1 auto; }
-  .toolbar-note {
-    flex-basis: 100%;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--ink-faint);
-  }
-
-  .cv-head {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0 20px;
-    align-items: start;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 26px;
-  }
-  .avatar {
-    width: 64px; height: 64px;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-    background: var(--card-bg);
-    display: block;
-    margin-top: 2px;
-  }
-  h1 {
-    font-family: var(--mono);
-    font-size: clamp(24px, 3.4vw, 34px);
-    font-weight: 600;
-    margin: 0 0 4px 0;
-    letter-spacing: -0.01em;
-    line-height: 1.15;
-  }
-  h1 .alt { color: var(--ink-dim); font-weight: 500; }
-  .role {
-    font-size: 15px;
-    color: var(--ink-dim);
-    margin: 0 0 10px 0;
-  }
-  .contact {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
-    font-family: var(--mono);
-    font-size: 12.5px;
-  }
-  .contact a { color: var(--ink-dim); text-decoration: none; }
-  .contact a:hover, .contact a:focus-visible { color: var(--accent); }
-
-  .summary {
-    font-size: 15px;
-    color: var(--ink);
-    margin: 0 0 30px 0;
-    max-width: 72ch;
-  }
-
-  section { margin-bottom: 30px; }
-  h2 {
-    font-family: var(--mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    margin: 0 0 12px 0;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--line);
-    break-after: avoid;
-  }
-
-  .item {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2px 20px;
-    margin-bottom: 14px;
-    break-inside: avoid;
-  }
-  @media (min-width: 640px) {
-    .item { grid-template-columns: 1fr 190px; }
-    .item .when { text-align: right; }
-  }
-  .item .title {
-    font-family: var(--mono);
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--ink);
-    margin: 0;
-  }
-  .item .title a { color: inherit; text-decoration: none; }
-  .item .title a:hover, .item .title a:focus-visible { color: var(--accent); }
-  .item .when {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--ink-faint);
-    margin: 0;
-    grid-row: 1;
-    grid-column: 1;
-  }
-  @media (min-width: 640px) { .item .when { grid-column: 2; } }
-  .item .desc {
-    grid-column: 1 / -1;
-    font-size: 13.5px;
-    color: var(--ink-dim);
-    margin: 0;
-  }
-  .item .desc a { color: var(--accent); text-decoration: none; }
-  .item .desc a:hover, .item .desc a:focus-visible { text-decoration: underline; }
-  .item .refs {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 14px;
-    margin-top: 2px;
-    font-family: var(--mono);
-    font-size: 12px;
-  }
-  .item .refs a { color: var(--accent); text-decoration: none; }
-  .item .refs a:hover, .item .refs a:focus-visible { text-decoration: underline; }
-
-  ul.plain { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--ink-dim); }
-  ul.plain li { margin-bottom: 5px; }
-  ul.plain a { color: var(--accent); text-decoration: none; }
-  ul.plain a:hover, ul.plain a:focus-visible { text-decoration: underline; }
-
-  .skills {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 6px 24px;
-    font-size: 13.5px;
-    color: var(--ink-dim);
-    margin: 0;
-  }
-  @media (min-width: 640px) { .skills { grid-template-columns: 1fr 1fr; } }
-  .skills dt { font-family: var(--mono); font-size: 12px; color: var(--ink); font-weight: 500; }
-  .skills dd { margin: 0 0 6px 0; }
-
-  .cv-foot {
-    margin-top: 36px;
-    padding-top: 14px;
-    border-top: 1px solid var(--line);
-    font-family: var(--mono);
-    font-size: 11.5px;
-    color: var(--ink-faint);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 6px 16px;
-  }
-
-  /* ---- print: A4, light, tight ---- */
-  @page { size: A4; margin: 12mm 14mm 13mm 14mm; }
+  @page { size: A4; margin: 11mm 13mm 11mm 13mm; }
   @media print {
-    :root[data-theme="dark"], :root[data-theme="light"] {
-      --bg: #ffffff;
-      --ink: #14181c;
-      --ink-dim: #3f4a52;
-      --ink-faint: #7a848b;
-      --accent: #24705f;
-      --line: #d3d8dc;
-      --card-bg: #ffffff;
-    }
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body { padding: 0; font-size: 10pt; line-height: 1.42; }
-    main { max-width: none; padding-bottom: 0; }
-    .toolbar, .theme-toggle { display: none !important; }
-    .cv-head { padding-bottom: 10pt; margin-bottom: 14pt; }
-    .avatar { width: 46pt; height: 46pt; }
-    h1 { font-size: 20pt; }
-    .role { font-size: 10.5pt; margin-bottom: 5pt; }
-    .contact { font-size: 8.5pt; }
-    .summary { font-size: 10.5pt; margin-bottom: 14pt; }
-    section { margin-bottom: 11pt; }
-    ul.plain li { margin-bottom: 3pt; }
-    h2 { font-size: 8.5pt; margin-bottom: 7pt; }
-    .item { margin-bottom: 7pt; grid-template-columns: 1fr 120pt; }
-    .item .when { grid-column: 2; text-align: right; font-size: 8.5pt; }
-    .item .title { font-size: 10pt; }
-    .item .desc { font-size: 9.2pt; }
-    .item .refs { font-size: 8pt; }
-    ul.plain, .skills { font-size: 9.2pt; }
-    .skills { grid-template-columns: 1fr 1fr; }
-    .skills dt { font-size: 8.5pt; }
-    .cv-foot { font-size: 8pt; margin-top: 16pt; }
-    a { color: var(--accent); }
+    html { --pf-t--global--background--color--primary--default: #fff; }
+    body { font-size: 9.5pt; line-height: 1.4; }
+    .pf-v6-c-page__main-section { max-width: none; }
+    .pf-v6-c-page__main-body { padding: 0; }
+    .cv-head { padding-bottom: 6pt; margin-bottom: 8pt; }
+    .cv-summary { font-size: 10pt; margin-bottom: 10pt; }
+    .cv-section { margin-bottom: 9pt; }
+    .cv-section > h2 { font-size: 1.25rem; margin-bottom: 6pt; break-after: avoid; }
+    .cv-item { margin-bottom: 6pt; grid-template-columns: 1fr auto; break-inside: auto; }
+    .cv-item .cv-when { text-align: end; font-size: 8.5pt; }
+    .cv-item .cv-title { font-size: 10.5pt; }
+    .cv-item .cv-desc { font-size: 9pt; }
+    .cv-item .cv-refs { font-size: 8pt; }
+    .cv-list, .skills { font-size: 9pt; }
+    .cv-list li { margin-bottom: 3pt; }
+    .cv-foot { font-size: 8pt; margin-top: 8pt; padding-top: 4pt; }
+    a { color: #0057b8; text-decoration: none; }
   }
 </style>
 </head>
 <body>
-<main>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">
-    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-  </button>
-
-  <div class="toolbar">
-    <a class="back" href="/">&larr; gahingwoo.com</a>
-    <span class="spacer"></span>
-    <a class="btn primary" href="/cv/ga-hing-woo-cv.pdf" download="ga-hing-woo-cv.pdf">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
-      Download PDF
-    </a>
-    <button class="btn" type="button" onclick="window.print()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="9" rx="2"/><path d="M8 14h8v7H8z"/></svg>
-      Print
-    </button>
-    <span class="toolbar-note">The PDF is printed from this page automatically whenever it changes, so the two never disagree. Every line links to its public record in the <a href="/evidence">evidence appendix</a>.</span>
+<div class="pf-v6-c-page">
+  <div class="pf-v6-c-skip-to-content">
+    <a class="pf-v6-c-button pf-m-primary" href="#main-content"><span class="pf-v6-c-button__text">Skip to content</span></a>
   </div>
-
-  <header class="cv-head">
-    <img class="avatar" src="/assets/avatar.png" alt="" width="64" height="64">
-    <div>
-      <h1>Ga Hing Woo <span class="alt">(Jiaxing Hu)</span></h1>
-      <p class="role">Firmware and embedded Linux &middot; Auckland, New Zealand</p>
-      <div class="contact">
-        <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a>
-        <a href="https://gahingwoo.com">gahingwoo.com</a>
-        <a href="https://github.com/gahingwoo">github.com/gahingwoo</a>
-        <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/">linkedin.com/in/ga-hing-woo-906aa7423</a>
-        <a href="https://orcid.org/0009-0002-0840-8951">orcid.org/0009-0002-0840-8951</a>
+  <header class="pf-v6-c-masthead">
+    <div class="pf-v6-c-masthead__main">
+      <div class="pf-v6-c-masthead__brand">
+        <a class="brand" href="/"><span class="brand-name">Ga Hing Woo</span><span class="brand-sub">Jiaxing Hu &middot; gahingwoo.com</span></a>
       </div>
     </div>
+    <div class="pf-v6-c-masthead__content">
+      <nav aria-label="Site">
+        <ul class="top-links">
+          <li><a href="/">Overview</a></li>
+          <li><a href="/evidence">Evidence</a></li>
+          <li><a href="/cv/" aria-current="page">CV</a></li>
+          <li><a href="https://blog.gahingwoo.com">Blog</a></li>
+          <li><a href="https://github.com/gahingwoo">GitHub</a></li>
+        </ul>
+      </nav>
+      <button class="pf-v6-c-button pf-m-plain theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <span class="pf-v6-c-button__icon"><i class="fas fa-moon icon-moon" aria-hidden="true"></i><i class="fas fa-sun icon-sun" aria-hidden="true"></i></span>
+      </button>
+    </div>
   </header>
+  <div class="pf-v6-c-page__main-container" tabindex="-1">
+    <main class="pf-v6-c-page__main" tabindex="-1" id="main-content">
 
-  <p class="summary">I bring up new Rockchip silicon on mainline software and send the work upstream. Five of my commits are in Linux 7.3, applied by the IOMMU, Rockchip and networking maintainers. The first OP-TEE port for the RK3576 and a Trusted Firmware-A secure-boot fix are merged. I reverse-engineered the RK3576's NPU from vendor model files to a working driver stack, and when a published result of mine turned out to be wrong I retracted it by name. Kernel work is signed off as Jiaxing Hu; everywhere else I am gahingwoo.</p>
+      <section class="pf-v6-c-page__main-section pf-m-limit-width" aria-label="Curriculum vitae">
+        <div class="pf-v6-c-page__main-body">
+          <div class="page-head no-print">
+            <span class="pf-v6-u-text-color-subtle">The PDF is generated from this page. Every line links to its record in the <a href="/evidence">evidence appendix</a>.</span>
+            <div class="pf-v6-l-flex pf-m-space-items-sm">
+              <a class="pf-v6-c-button pf-m-secondary" href="/cv/ga-hing-woo-cv.pdf" download="ga-hing-woo-cv.pdf"><span class="pf-v6-c-button__text">Download PDF</span></a>
+              <button class="pf-v6-c-button pf-m-secondary" type="button" onclick="window.print()"><span class="pf-v6-c-button__text">Print</span></button>
+            </div>
+          </div>
+<header class="cv-head pf-v6-l-flex pf-m-align-items-center pf-m-space-items-md pf-v6-u-mb-lg">
+            <img src="/assets/avatar.png" alt="" width="48" height="48" style="border-radius:8px;border:1px solid var(--pf-t--global--border--color--default)">
+            <div>
+              <h1 class="page-title">Ga Hing Woo <span class="subtitle">Jiaxing Hu</span></h1>
+              <div class="pf-v6-u-text-color-subtle">Firmware and embedded Linux &middot; Auckland, New Zealand</div>
+              <div class="cv-refs pf-v6-u-mt-xs" style="display:flex;flex-wrap:wrap;gap:2px 14px;font-size:var(--pf-t--global--font--size--body--sm)">
+                <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a>
+                <a href="https://gahingwoo.com">gahingwoo.com</a>
+                <a href="https://github.com/gahingwoo">github.com/gahingwoo</a>
+                <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/">linkedin.com/in/ga-hing-woo-906aa7423</a>
+                <a href="https://orcid.org/0009-0002-0840-8951">orcid.org/0009-0002-0840-8951</a>
+              </div>
+            </div>
+          </header>
 
-  <section>
-    <h2>Upstream contributions, accepted</h2>
+          <p class="cv-summary pf-v6-u-mb-xl">I bring up new Rockchip silicon on mainline software and send the work upstream. Five of my commits are in Linux 7.3, applied by the IOMMU, Rockchip and networking maintainers. The first OP-TEE port for the RK3576 and a Trusted Firmware-A secure-boot fix are merged. I reverse-engineered the RK3576's NPU from vendor model files to a working driver stack, and when a published result of mine turned out to be wrong I retracted it by name. Kernel work is signed off as Jiaxing Hu; everywhere else I am gahingwoo.</p>
 
-    <div class="item">
-      <p class="title"><a href="/evidence#iommu-fixes">Linux, iommu/rockchip: two fixes for the RK3576 NPU's IOMMU instances</a></p>
-      <p class="when">Linux 7.3 &middot; 2026</p>
-      <p class="desc">Take every clock the devicetree provides instead of a fixed pair, so register writes behind extra clock gates are no longer silently dropped; and acknowledge a stale page fault left by boot firmware before enabling stall, which otherwise hangs the poll. Applied by Will Deacon, IOMMU co-maintainer, with his own Signed-off-by.</p>
-      <div class="refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=841363ebb5082a06c69ac34719e26659fe63dbd6">841363ebb508</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b10d5920cafa292ee3cab9c20f813da4fe4f00b8">b10d5920cafa</a></div>
-    </div>
+          <section class="cv-section">
+            <h2 class="section-title">Upstream contributions, accepted</h2>
 
-    <div class="item">
-      <p class="title"><a href="/evidence#cm5-dts">Linux, arm64 dts: ArmSoM CM5 and CM5-IO board support</a></p>
-      <p class="when">Linux 7.3 &middot; 2026</p>
-      <p class="desc">Devicetree and binding for a new RK3576 compute module and carrier, through five review rounds. Acked-by Krzysztof Kozlowski on the binding; applied by Heiko Stübner, Rockchip SoC maintainer.</p>
-      <div class="refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f60f44c24b10fe7fd1fa76b360646def1bea193a">f60f44c24b10</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=44a48a23974b86d2c551afbabee15ad70b249df5">44a48a23974b</a></div>
-    </div>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#iommu-fixes">Linux, iommu/rockchip: two fixes for the RK3576 NPU's IOMMU instances</a></p>
+              <p class="cv-when">Linux 7.3 &middot; 2026</p>
+              <p class="cv-desc">Take every clock the devicetree provides instead of a fixed pair, so register writes behind extra clock gates are no longer silently dropped; and acknowledge a stale page fault left by boot firmware before enabling stall, which otherwise hangs the poll. Applied by Will Deacon, IOMMU co-maintainer, with his own Signed-off-by.</p>
+              <div class="cv-refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=841363ebb5082a06c69ac34719e26659fe63dbd6">841363ebb508</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b10d5920cafa292ee3cab9c20f813da4fe4f00b8">b10d5920cafa</a></div>
+            </div>
 
-    <div class="item">
-      <p class="title"><a href="/evidence#yt8521">Linux, net/phy motorcomm: enable the reference clock for the YT8521</a></p>
-      <p class="when">Linux 7.3 &middot; 2026</p>
-      <p class="desc">Fix for crystal-less RGMII PHYs that need a SoC-sourced 25 MHz reference. Reviewed-by Andrew Lunn; Tested-by Gavin Gao on a different board; applied by Jakub Kicinski, net maintainer. An earlier attempt in the MAC driver was withdrawn on maintainer advice and redone at the PHY layer.</p>
-      <div class="refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dc3b7209b5d32194b9088fb40f1787130f34ea5e">dc3b7209b5d3</a></div>
-    </div>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#cm5-dts">Linux, arm64 dts: ArmSoM CM5 and CM5-IO board support</a></p>
+              <p class="cv-when">Linux 7.3 &middot; 2026</p>
+              <p class="cv-desc">Devicetree and binding for a new RK3576 compute module and carrier, through five review rounds. Acked-by Krzysztof Kozlowski on the binding; applied by Heiko St&uuml;bner, Rockchip SoC maintainer.</p>
+              <div class="cv-refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f60f44c24b10fe7fd1fa76b360646def1bea193a">f60f44c24b10</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=44a48a23974b86d2c551afbabee15ad70b249df5">44a48a23974b</a></div>
+            </div>
 
-    <div class="item">
-      <p class="title"><a href="/evidence#optee">OP-TEE: first RK3576 platform port</a></p>
-      <p class="when">merged &middot; 2026</p>
-      <p class="desc">Ported the open-source Trusted Execution Environment to a new Rockchip SoC. Passed all 57 automated checks, reproduced on separate hardware, Reviewed-by from a Cherry Embedded Solutions maintainer. Flipper Devices later ran it on Flipper One: 114 xtest cases, 35,681 subtests, zero failures, credited by name in their developer documentation.</p>
-      <div class="refs"><a href="https://github.com/OP-TEE/optee_os/pull/7821">optee_os#7821</a><a href="https://docs.flipper.net/one/dev-log/3">docs.flipper.net/one/dev-log/3</a></div>
-    </div>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#yt8521">Linux, net/phy motorcomm: enable the reference clock for the YT8521</a></p>
+              <p class="cv-when">Linux 7.3 &middot; 2026</p>
+              <p class="cv-desc">Fix for crystal-less RGMII PHYs that need a SoC-sourced 25 MHz reference. Reviewed-by Andrew Lunn; Tested-by Gavin Gao on a different board; applied by Jakub Kicinski, net maintainer. An earlier attempt in the MAC driver was withdrawn on maintainer advice and redone at the PHY layer.</p>
+              <div class="cv-refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dc3b7209b5d32194b9088fb40f1787130f34ea5e">dc3b7209b5d3</a></div>
+            </div>
 
-    <div class="item">
-      <p class="title"><a href="/evidence#tfa">Trusted Firmware-A: removed a redundant secure-boot override</a></p>
-      <p class="when">merged &middot; 2026</p>
-      <p class="desc">A copy-paste build-configuration defect that would have silently broken secure boot on any build without a secure OS. Reviewed by engineers at STMicroelectronics, Arm and Rockchip.</p>
-      <div class="refs"><a href="https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/51089">TF-A change 51089</a></div>
-    </div>
-  </section>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#optee">OP-TEE: first RK3576 platform port</a></p>
+              <p class="cv-when">merged &middot; 2026</p>
+              <p class="cv-desc">Ported the open-source Trusted Execution Environment to a new Rockchip SoC. Passed all 57 automated checks, reproduced on separate hardware, Reviewed-by from a Cherry Embedded Solutions maintainer. Flipper Devices later ran it on Flipper One: 114 xtest cases, 35,681 subtests, zero failures, credited by name in their developer documentation.</p>
+              <div class="cv-refs"><a href="https://github.com/OP-TEE/optee_os/pull/7821">optee_os#7821</a><a href="https://docs.flipper.net/one/dev-log/3">docs.flipper.net/one/dev-log/3</a></div>
+            </div>
 
-  <section>
-    <h2>Under review</h2>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#tfa">Trusted Firmware-A: removed a redundant secure-boot override</a></p>
+              <p class="cv-when">merged &middot; 2026</p>
+              <p class="cv-desc">A copy-paste build-configuration defect that would have silently broken secure boot on any build without a secure OS. Reviewed by engineers at STMicroelectronics, Arm and Rockchip.</p>
+              <div class="cv-refs"><a href="https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/51089">TF-A change 51089</a></div>
+            </div>
+          </section>
 
-    <div class="item">
-      <p class="title"><a href="/evidence#npu-series">Linux: RK3576 NPU enablement, 14 patches, PATCH v11</a></p>
-      <p class="when">posted 31 Aug 2026</p>
-      <p class="desc">Bindings, power domains, IOMMU and accel/rocket changes to run the RK3576's NPU on the mainline driver. Reviewed-by ×4 (Krzysztof Kozlowski, Igor Paunovic, Abel Vesa ×2), Acked-by ×2 (Conor Dooley), Tested-by ×2 on RK3588 hardware I do not own. Tomeu Vizoso, the driver's author, has said he will review it. The root cause of the long-standing failure was a register field one word wide: a 16-bit task count where the RK3588 header assumed 12, confirmed on the list by Rockchip.</p>
-      <div class="refs"><a href="https://lore.kernel.org/all/20260831081956.84871-1-gahing@gahingwoo.com/">lore: PATCH v11 00/14</a></div>
-    </div>
+          <section class="cv-section">
+            <h2 class="section-title">Under review</h2>
 
-    <div class="item">
-      <p class="title"><a href="/evidence#mesa-mr">Mesa: RK3576 support in the Teflon delegate, !43804</a></p>
-      <p class="when">posted &middot; 2026</p>
-      <p class="desc">Five patches for one regular convolution on the rocket/Teflon path, deliberately the bare minimum the maintainer asked for first. Not yet reviewed.</p>
-    </div>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#npu-series">Linux: RK3576 NPU enablement, 14 patches, PATCH v11</a></p>
+              <p class="cv-when">posted 31 Aug 2026</p>
+              <p class="cv-desc">Bindings, power domains, IOMMU and accel/rocket changes to run the RK3576's NPU on the mainline driver. Reviewed-by &times;4 (Krzysztof Kozlowski, Igor Paunovic, Abel Vesa &times;2), Acked-by &times;2 (Conor Dooley), Tested-by &times;2 on RK3588 hardware I do not own. Tomeu Vizoso, the driver's author, has said he will review it. The root cause of the long-standing failure was a register field one word wide: a 16-bit task count where the RK3588 header assumed 12, confirmed on the list by Rockchip.</p>
+              <div class="cv-refs"><a href="https://lore.kernel.org/all/20260831081956.84871-1-gahing@gahingwoo.com/">lore: PATCH v11 00/14</a></div>
+            </div>
 
-    <div class="item">
-      <p class="title"><a href="/evidence#vepu510">Linux, media: RFC V4L2 driver for the RK3576 VEPU510 H.264 encoder</a></p>
-      <p class="when">RFC &middot; 2026</p>
-      <p class="desc">From-scratch encoder driver. Reviewed by Heiko Stübner and Nicolas Dufresne; on their advice, abandoned the stateful V4L2 interface in favour of the DRM/Vulkan-Video split being built for the RK3588.</p>
-    </div>
-  </section>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#mesa-mr">Mesa: RK3576 support in the Teflon delegate, !43804</a></p>
+              <p class="cv-when">posted &middot; 2026</p>
+              <p class="cv-desc">Five patches for one regular convolution on the rocket/Teflon path, deliberately the bare minimum the maintainer asked for first. Not yet reviewed.</p>
+            </div>
 
-  <section>
-    <h2>Publication</h2>
-    <div class="item">
-      <p class="title"><a href="/evidence#preprint">RK3576 NPU bring-up on the open driver stack: preprint, version 2</a></p>
-      <p class="when">Zenodo &middot; 2026</p>
-      <p class="desc">Version 1 reported that chained compute failed below what software could reach. Version 2 retracts that on its first page: the cause was a register field-layout error in software, and MobileNet V1 now runs end to end on the NPU and returns the CPU's class. Most of version 2 is about why a disprove-first method held a false conclusion for 38 days. Covered by CNX Software; five register-model findings independently cross-confirmed on RK3588 by a separate reverse-engineering effort.</p>
-      <div class="refs"><a href="https://doi.org/10.5281/zenodo.21990992">doi:10.5281/zenodo.21990992</a><a href="https://doi.org/10.5281/zenodo.21348016">concept DOI</a></div>
-    </div>
-  </section>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#vepu510">Linux, media: RFC V4L2 driver for the RK3576 VEPU510 H.264 encoder</a></p>
+              <p class="cv-when">RFC &middot; 2026</p>
+              <p class="cv-desc">From-scratch encoder driver. Reviewed by Heiko St&uuml;bner and Nicolas Dufresne; on their advice, abandoned the stateful V4L2 interface in favour of the DRM/Vulkan-Video split being built for the RK3588.</p>
+            </div>
+          </section>
 
-  <section>
-    <h2>Selected projects</h2>
-    <ul class="plain">
-      <li><a href="/evidence#charsiu">charsiu</a>: an LLM runtime that talks to the mainline NPU driver directly, no Mesa and no vendor runtime. Nine models, Llama-3.2-1B among them, run end to end at four bits with output identical to the exact CPU arithmetic. C.</li>
-      <li><a href="/evidence#edk2">edk2-rk3576</a>: a TianoCore UEFI port for the RK3576 that boots a mainline Fedora 44 desktop. Builds for six boards, verified on two; pinned on the Radxa forum by a Radxa engineer. C.</li>
-      <li><a href="/evidence#kiln">kiln</a>: local LLM and vision inference on the RK3576 NPU against a mainline kernel, using the vendor driver out of tree as a stopgap. Subject of a step-by-step tutorial in Radxa's official documentation.</li>
-      <li><a href="/evidence#rp2350">rp2350-tz-tee</a>: a minimal TrustZone-M Secure/Non-Secure example on the RP2350, with the SecureFault verified over SWD rather than trusted from source. C.</li>
-      <li><a href="/evidence#soc-consistency">SoC-Consistency</a>: static analysis of devicetree power trees, rule packs for five chip families, runs in CI. On PyPI; packaged into Arch Linux by an unaffiliated maintainer. Python.</li>
-      <li><a href="/evidence#rkdeveloptool-gui">RKDevelopTool-GUI</a>: a Qt front end for Rockchip flashing on macOS and Linux. In the Arch AUR and on its own page in Radxa's documentation. Python, PySide6.</li>
-      <li><a href="/evidence#lore-enhancer">lore-enhancer</a>: a browser extension that turns lore.kernel.org's raw patch pages into a mail-client view. JavaScript.</li>
-    </ul>
-  </section>
+          <section class="cv-section">
+            <h2 class="section-title">Publication</h2>
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence#preprint">RK3576 NPU bring-up on the open driver stack: preprint, version 2</a></p>
+              <p class="cv-when">Zenodo &middot; 2026</p>
+              <p class="cv-desc">Version 1 reported that chained compute failed below what software could reach. Version 2 retracts that on its first page: the cause was a register field-layout error in software, and MobileNet V1 now runs end to end on the NPU and returns the CPU's class. Most of version 2 is about why a disprove-first method held a false conclusion for 38 days. Covered by CNX Software; five register-model findings independently cross-confirmed on RK3588 by a separate reverse-engineering effort.</p>
+              <div class="cv-refs"><a href="https://doi.org/10.5281/zenodo.21990992">doi:10.5281/zenodo.21990992</a><a href="https://doi.org/10.5281/zenodo.21348016">concept DOI</a></div>
+            </div>
+          </section>
 
-  <section>
-    <h2>Review and community</h2>
-    <ul class="plain">
-      <li><a href="/evidence#reviews-given-rocket">Reviewed-by given twice</a> on another contributor's accel/rocket patches, the second only after finding a real out-of-bounds write on v1 and seeing it fixed in v2.</li>
-      <li><a href="/evidence#collabora">Collabora</a> published its own summary of the NPU work; the Rockchip kernel maintainer commented on it. Collabora's RK3576 enablement tracker cites the NPU series and the encoder RFC as its reference points.</li>
-      <li><a href="/evidence#ezyspeech">EzySpeech</a>: real-time transcription and translation into 21 languages, built for and still in use at Mt Albert Baptist Church's Sunday services, with a signed reference letter from the translation team leader.</li>
-      <li><a href="/evidence#half-baked">half-baked-studios</a>: a GitHub organisation co-run with three other students, where I guide the group through embedded and firmware work.</li>
-    </ul>
-  </section>
+          <section class="cv-section">
+            <h2 class="section-title">Selected projects</h2>
+            <ul class="cv-list">
+              <li><a href="/evidence#charsiu">charsiu</a>: an LLM runtime that talks to the mainline NPU driver directly, no Mesa and no vendor runtime. Nine models, Llama-3.2-1B among them, run end to end at four bits with output identical to the exact CPU arithmetic. C.</li>
+              <li><a href="/evidence#edk2">edk2-rk3576</a>: a TianoCore UEFI port for the RK3576 that boots a mainline Fedora 44 desktop. Builds for six boards, verified on two; pinned on the Radxa forum by a Radxa engineer. C.</li>
+              <li><a href="/evidence#kiln">kiln</a>: local LLM and vision inference on the RK3576 NPU against a mainline kernel, using the vendor driver out of tree as a stopgap. Subject of a step-by-step tutorial in Radxa's official documentation.</li>
+              <li><a href="/evidence#rp2350">rp2350-tz-tee</a>: a minimal TrustZone-M Secure/Non-Secure example on the RP2350, with the SecureFault verified over SWD rather than trusted from source. C.</li>
+              <li><a href="/evidence#soc-consistency">SoC-Consistency</a>: static analysis of devicetree power trees, rule packs for five chip families, runs in CI. On PyPI; packaged into Arch Linux by an unaffiliated maintainer. Python.</li>
+              <li><a href="/evidence#rkdeveloptool-gui">RKDevelopTool-GUI</a>: a Qt front end for Rockchip flashing on macOS and Linux. In the Arch AUR and on its own page in Radxa's documentation. Python, PySide6.</li>
+              <li><a href="/evidence#lore-enhancer">lore-enhancer</a>: a browser extension that turns lore.kernel.org's raw patch pages into a mail-client view. JavaScript.</li>
+            </ul>
+          </section>
 
-  <!-- Education is not on the evidence page, so nothing is filled in here.
-       Replace the placeholder text and remove the `hidden` attribute to show it. -->
-  <section hidden>
-    <h2>Education</h2>
-    <div class="item">
-      <p class="title">Institution</p>
-      <p class="when">years</p>
-      <p class="desc">Programme, and anything worth a line: thesis, award, relevant coursework.</p>
-    </div>
-  </section>
+          <section class="cv-section">
+            <h2 class="section-title">Review and community</h2>
+            <ul class="cv-list">
+              <li><a href="/evidence#reviews-given-rocket">Reviewed-by given twice</a> on another contributor's accel/rocket patches, the second only after finding a real out-of-bounds write on v1 and seeing it fixed in v2.</li>
+              <li><a href="/evidence#collabora">Collabora</a> published its own summary of the NPU work; the Rockchip kernel maintainer commented on it. Collabora's RK3576 enablement tracker cites the NPU series and the encoder RFC as its reference points.</li>
+              <li><a href="/evidence#ezyspeech">EzySpeech</a>: real-time transcription and translation into 21 languages, built for and still in use at Mt Albert Baptist Church's Sunday services, with a signed reference letter from the translation team leader.</li>
+              <li><a href="/evidence#half-baked">half-baked-studios</a>: a GitHub organisation co-run with three other students, where I guide the group through embedded and firmware work.</li>
+            </ul>
+          </section>
 
-  <section>
-    <h2>Skills, as used in the work above</h2>
-    <dl class="skills">
-      <div><dt>Linux kernel</dt><dd>IOMMU, devicetree and bindings, pmdomain, PHY drivers, accel subsystem, V4L2; the mailing-list workflow with b4 and checkpatch, from RFC to applied.</dd></div>
-      <div><dt>Trusted execution and boot</dt><dd>Trusted Firmware-A, OP-TEE, TrustZone-M on Cortex-M33, TianoCore EDK2 and UEFI.</dd></div>
-      <div><dt>Hardware bring-up</dt><dd>Register-level reverse engineering, ordered register tracing and differential testing against a vendor stack, SWD debugging, power and clock trees.</dd></div>
-      <div><dt>Languages and tools</dt><dd>C, Python, Shell, JavaScript; Qt/PySide6; Mesa and Teflon; GitHub Actions and CI.</dd></div>
-    </dl>
-  </section>
+          <!-- Education is not on the evidence page, so nothing is filled in here.
+               Replace the placeholder text and remove the `hidden` attribute to show it. -->
+          <section class="cv-section" hidden>
+            <h2 class="section-title">Education</h2>
+            <div class="cv-item">
+              <p class="cv-title">Institution</p>
+              <p class="cv-when">years</p>
+              <p class="cv-desc">Programme, and anything worth a line: thesis, award, relevant coursework.</p>
+            </div>
+          </section>
 
-  <footer class="cv-foot">
-    <span>Content as of 3 September 2026. Sources: gahingwoo.com/evidence</span>
-    <span>gahingwoo.com/cv</span>
-  </footer>
-</main>
+          <section class="cv-section">
+            <h2 class="section-title">Skills, as used in the work above</h2>
+            <dl class="pf-v6-c-description-list pf-m-horizontal pf-m-compact pf-m-2-col-on-md skills" style="--pf-v6-c-description-list--m-horizontal__term--width: 11em">
+              <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Linux kernel</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">IOMMU, devicetree and bindings, pmdomain, PHY drivers, accel subsystem, V4L2; the mailing-list workflow with b4 and checkpatch, from RFC to applied.</div></dd></div>
+              <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Trusted execution and boot</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Trusted Firmware-A, OP-TEE, TrustZone-M on Cortex-M33, TianoCore EDK2 and UEFI.</div></dd></div>
+              <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Hardware bring-up</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Register-level reverse engineering, ordered register tracing and differential testing against a vendor stack, SWD debugging, power and clock trees.</div></dd></div>
+              <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Languages and tools</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">C, Python, Shell, JavaScript; Qt/PySide6; Mesa and Teflon; GitHub Actions and CI.</div></dd></div>
+            </dl>
+          </section>
+
+          <footer class="cv-foot">
+            <span>Content as of 3 September 2026. Sources: gahingwoo.com/evidence</span>
+            <span>gahingwoo.com/cv</span>
+          </footer>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
 <script src="/assets/site.js"></script>
 </body>
 </html>

@@ -1,27 +1,28 @@
 # gahingwoo.com
 
-Static site, served by GitHub Pages from the `main` branch. No build step.
+Static site, served by GitHub Pages from the `main` branch. No build step. Built on [PatternFly 6](https://www.patternfly.org/) (plain CSS, vendored under `assets/patternfly/`), in the idiom of the Cockpit web console: light grey page, white cards, key/value rows, status as words rather than colour.
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | Home: headline, the numbers, four selected-work cards, recent posts. |
-| `evidence/index.html` | Evidence appendix. Every claim with a link to its public record. This is the source of truth; the home page and CV summarise it. |
+| `index.html` | Overview: eight cards summarising the work, each row linking into the evidence appendix. |
+| `evidence/index.html` | Evidence appendix. Every claim with a link to its public record. This is the source of truth; the other two pages summarise it. |
 | `cv/index.html` | The CV, as a page with a print stylesheet. |
-| `cv/ga-hing-woo-cv.pdf` | Printed from `/cv/` by `.github/workflows/cv-pdf.yml` on every push that touches `cv/` or `assets/site.css`. Do not edit by hand. |
-| `assets/site.css`, `assets/site.js` | Tokens, theme toggle and components shared by all three pages. |
+| `cv/ga-hing-woo-cv.pdf` | Printed from `/cv/` by `.github/workflows/cv-pdf.yml` on every push that touches `cv/`, `assets/site.css` or `assets/patternfly/`. Do not edit by hand. |
+| `assets/patternfly/` | `@patternfly/patternfly` 6.6.1: `patternfly.min.css`, `patternfly-addons.css` (the `pf-v6-u-*` utilities live only here), and the Red Hat variable fonts and icon fonts the CSS references. Upgrade with `npm pack @patternfly/patternfly@6` and copy the same files. |
+| `assets/site.css`, `assets/site.js` | The few site rules on top of PatternFly: document scrolling, lighter headings, key/value rows, folding of long evidence entries, theme toggle, print. |
 | `assets/og-card.html` | Template for the link-preview image `assets/og.png`. |
 
 ## Updating
 
-- New result: add the entry to `evidence/index.html` first. Then, if it changes a number, update the stats on `/`, `/evidence` and `/cv/` (they are hand-copied and say so in a comment).
-- CV: edit `cv/index.html` and push. The workflow prints the PDF and commits it. To print locally instead:
+- New result: add the entry to `evidence/index.html` first, then the matching row on `/` and `/cv/`. The entry count in the evidence page title and the summary table are hand-maintained.
+- CV: edit `cv/index.html` and push. The workflow prints the PDF and commits it. Locally:
 
 ```bash
 python3 -m http.server 8000 & sleep 1
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --virtual-time-budget=10000 --no-pdf-header-footer --print-to-pdf=cv/ga-hing-woo-cv.pdf http://localhost:8000/cv/
 ```
 
-- Link-preview image, after editing `assets/og-card.html`:
+- Link-preview image, after editing `assets/og-card.html` (needs the local server as above):
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=5000 --window-size=1200,630 --screenshot=assets/og.png http://localhost:8000/assets/og-card.html

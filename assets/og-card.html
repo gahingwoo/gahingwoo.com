@@ -3,35 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>og card</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/patternfly/patternfly.min.css">
+<link rel="stylesheet" href="/assets/patternfly/patternfly-addons.css">
 <style>
   /* Rendered to assets/og.png at 1200x630 with headless Chrome. See README. */
   html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
   body {
-    background: #11151a;
-    color: #d7dce1;
-    font-family: 'IBM Plex Sans', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 110px 96px 0 96px;
-    box-sizing: border-box;
+    background: var(--pf-t--global--background--color--secondary--default);
+    color: var(--pf-t--global--text--color--regular);
+    font-family: var(--pf-t--global--font--family--body);
     position: relative;
   }
-  .prompt { font-family: 'IBM Plex Mono', monospace; font-size: 24px; color: #4b545d; margin-bottom: 22px; }
-  h1 { font-family: 'IBM Plex Mono', monospace; font-size: 62px; white-space: nowrap; font-weight: 600; margin: 0 0 26px 0; letter-spacing: -0.01em; line-height: 1.1; }
-  h1 span { color: #7c8791; font-weight: 500; }
-  p { font-size: 28px; color: #7c8791; margin: 0; max-width: 960px; line-height: 1.45; }
-  p b { color: #d7dce1; font-weight: 500; }
-  .arrow { color: #5fb3a0; }
-  .bar { position: absolute; left: 96px; right: 96px; bottom: 72px; border-top: 2px solid #232a32; padding-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 22px; color: #4b545d; display: flex; justify-content: space-between; }
-  .bar b { color: #5fb3a0; font-weight: 500; }
+  .card { position: absolute; inset: 56px; background: #fff; border-radius: 24px; padding: 72px 88px; box-sizing: border-box; border: 1px solid var(--pf-t--global--border--color--default); }
+  .name { font-family: var(--pf-t--global--font--family--heading); font-size: 64px; font-weight: 400; line-height: 1.1; margin: 0 0 8px 0; }
+  .name span { color: var(--pf-t--global--text--color--subtle); font-weight: 400; }
+  .role { font-size: 26px; color: var(--pf-t--global--text--color--subtle); margin: 0 0 40px 0; }
+  .lede { font-size: 30px; line-height: 1.4; margin: 0; max-width: 940px; }
+  .lede b { font-weight: 500; }
+  .bar { position: absolute; left: 88px; right: 88px; bottom: 60px; display: flex; justify-content: space-between; font-size: 22px; color: var(--pf-t--global--text--color--subtle); border-top: 1px solid var(--pf-t--global--border--color--default); padding-top: 22px; }
+  .bar b { color: var(--pf-t--global--text--color--link--default); font-weight: 600; }
+  .avatar { position: absolute; top: 72px; right: 88px; width: 96px; height: 96px; border-radius: 16px; border: 1px solid var(--pf-t--global--border--color--default); }
 </style>
 </head>
 <body>
-  <div class="prompt">gahing@gahingwoo:~$ whoami</div>
-  <h1>Ga Hing Woo <span>(Jiaxing Hu)</span></h1>
-  <p><span class="arrow">&gt;</span> Firmware and embedded Linux. <b>Five commits in mainline Linux 7.3</b>, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.</p>
-  <div class="bar"><span><b>gahingwoo.com</b></span><span>Auckland, NZ · embedded &amp; firmware</span></div>
+  <div class="card">
+    <img class="avatar" src="/assets/avatar.png" alt="">
+    <h1 class="name">Ga Hing Woo <span>(Jiaxing Hu)</span></h1>
+    <p class="role">Firmware and embedded Linux &middot; Auckland, New Zealand</p>
+    <p class="lede"><b>Five commits in mainline Linux 7.3</b>, the first OP-TEE port for the RK3576, and an NPU brought up from nothing. Every claim linked to its public record.</p>
+    <div class="bar"><span><b>gahingwoo.com</b></span><span>Evidence appendix &middot; CV</span></div>
+  </div>
 </body>
 </html>

@@ -11,6 +11,7 @@ on:
       - 'cv/**'
       - '!cv/*.pdf'
       - 'assets/site.css'
+      - 'assets/patternfly/**'
       - '.github/workflows/cv-pdf.yml'
   workflow_dispatch:
 
