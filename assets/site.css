@@ -75,6 +75,30 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 /* The rail is sticky inside that padding, so hold it clear of the top edge. */
 @media (min-width: 75rem) { .page-rail { top: var(--pf-t--global--spacer--md); } }
 
+/* The current-section marker is a border on each item, so it jumps from one
+   to the next. Where the rail spies on a scroll container, one marker slides
+   instead: the per-item border is switched off through the component's own
+   variable and this bar takes its colour and width from the same tokens. */
+.pf-v6-c-jump-links__list { position: relative; }
+.rail-marker {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  width: var(--pf-t--global--border--width--extra-strong);
+  height: 0;
+  border-radius: var(--pf-t--global--border--radius--small);
+  background: var(--pf-t--global--border--color--brand--default);
+  opacity: 0;
+  transition: transform var(--pf-t--global--motion--duration--sm, 0.2s) var(--pf-t--global--motion--timing-function--default, ease),
+              height var(--pf-t--global--motion--duration--sm, 0.2s) var(--pf-t--global--motion--timing-function--default, ease),
+              opacity var(--pf-t--global--motion--duration--sm, 0.2s) linear;
+}
+.rail-marker.is-on { opacity: 1; }
+.has-rail-marker .pf-v6-c-jump-links__item.pf-m-current > .pf-v6-c-jump-links__link {
+  --pf-v6-c-jump-links__item--m-current__link--before--BorderInlineStartWidth: 0;
+}
+@media (prefers-reduced-motion: reduce) { .rail-marker { transition: none; } }
+
 /* ---- search ----
    patternfly.org keeps a search in its masthead: an icon that expands into an
    input. Cockpit's sidebar box filters a list of nav options, which is a
@@ -211,10 +235,7 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 /* The entry a link lands on: a soft tint across the whole row, pulled out to
    the card edge so the text column does not move. */
 .entry:target { background: color-mix(in srgb, var(--pf-t--global--color--brand--default) 7%, transparent); margin-inline: calc(-1 * var(--pf-t--global--spacer--xl)); padding-inline: var(--pf-t--global--spacer--xl); border-radius: var(--pf-t--global--border--radius--small); }
-/* On the overview the rail has no current marker, because the cards are a
-   grid rather than a sequence; a card jumped to marks itself instead. */
 .home-cards > .pf-v6-c-card { scroll-margin-top: var(--pf-t--global--spacer--md); }
-.home-cards > .pf-v6-c-card:target { border-color: var(--pf-t--global--border--color--brand--default); box-shadow: inset 3px 0 0 var(--pf-t--global--border--color--brand--default); }
 .entry-desc { position: relative; font-size: 1rem; line-height: 1.5; }
 .entry.is-folded .entry-desc { max-height: 9em; overflow: hidden; }
 .entry.is-folded .entry-desc::after {

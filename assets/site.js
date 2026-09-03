@@ -247,6 +247,21 @@
   if (jumpList && spyTarget) {
     var items = Array.prototype.slice.call(jumpList.querySelectorAll('.pf-v6-c-jump-links__item'));
     var targets = items.map(function (li) { return document.getElementById(li.querySelector('a').getAttribute('href').slice(1)); });
+
+    // One marker that slides, in place of the border the component draws on
+    // each item; see .rail-marker in site.css.
+    var marker = document.createElement('span');
+    marker.className = 'rail-marker';
+    marker.setAttribute('aria-hidden', 'true');
+    jumpList.appendChild(marker);
+    jumpNav.classList.add('has-rail-marker');
+    function placeMarker(li) {
+      if (!li) { marker.classList.remove('is-on'); return; }
+      var link = li.querySelector('.pf-v6-c-jump-links__link');
+      marker.style.height = link.offsetHeight + 'px';
+      marker.style.transform = 'translateY(' + link.offsetTop + 'px)';
+      marker.classList.add('is-on');
+    }
     var spyTicking = false;
     function spy() {
       spyTicking = false;
@@ -260,6 +275,7 @@
         li.classList.toggle('pf-m-current', i === current);
         if (i === current) li.setAttribute('aria-current', 'location'); else li.removeAttribute('aria-current');
       });
+      placeMarker(items[current]);
     }
     onScroll(function () {
       if (!spyTicking) { spyTicking = true; window.requestAnimationFrame(spy); }
