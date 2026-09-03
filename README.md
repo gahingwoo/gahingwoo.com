@@ -8,7 +8,7 @@ Static site, served by GitHub Pages from the `main` branch. No build step. Built
 | `evidence/index.html` | Evidence appendix. Every claim with a link to its public record. This is the source of truth; the other two pages summarise it. |
 | `cv/index.html` | The CV, as a page with a print stylesheet. |
 | `cv/ga-hing-woo-cv.pdf` | Printed from `/cv/` by `.github/workflows/cv-pdf.yml` on every push that touches `cv/`, `assets/site.css` or `assets/patternfly/`. Do not edit by hand. |
-| `assets/patternfly/` | `@patternfly/patternfly` 6.6.1: `patternfly.min.css`, `patternfly-addons.css` (the `pf-v6-u-*` utilities live only here), and the Red Hat variable fonts and icon fonts the CSS references. Upgrade with `npm pack @patternfly/patternfly@6` and copy the same files. |
+| `assets/patternfly/` | `patternfly-site.css`, assembled by `build.sh` from the parts of `@patternfly/patternfly` 6.6.1 the site uses (base tokens, fonts and icons; page, masthead, button, card, description list, table, back-to-top, skip link, jump links; gallery and stack layouts), plus the Red Hat variable fonts and icon fonts the CSS references. Upgrade with `npm pack @patternfly/patternfly@6`, unpack, and run `sh assets/patternfly/build.sh package`. |
 | `assets/site.css`, `assets/site.js` | The few site rules on top of PatternFly: document scrolling, lighter headings, key/value rows, folding of long evidence entries, theme toggle, print. |
 | `assets/og-card.html` | Template for the link-preview image `assets/og.png`. |
 

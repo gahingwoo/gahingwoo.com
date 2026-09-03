@@ -20,11 +20,21 @@
   src: url("patternfly/assets/fonts/RedHatText/RedHatTextVF.woff2") format("woff2-variations");
 }
 
+/* The handful of utility and flex classes the markup uses, so the 184 KB
+   addons file and the 80 KB flex layout stay out of the bundle. */
+.pf-v6-u-text-color-subtle { color: var(--pf-t--global--text--color--subtle); }
+.pf-v6-u-mt-xs { margin-block-start: var(--pf-t--global--spacer--xs); }
+.pf-v6-u-mt-lg { margin-block-start: var(--pf-t--global--spacer--lg); }
+.pf-v6-u-mb-lg { margin-block-end: var(--pf-t--global--spacer--lg); }
+.pf-v6-u-mb-xl { margin-block-end: var(--pf-t--global--spacer--xl); }
+.pf-v6-l-flex { display: flex; flex-wrap: wrap; align-items: center; gap: var(--pf-t--global--spacer--md); }
+.pf-v6-l-flex.pf-m-space-items-sm { gap: var(--pf-t--global--spacer--sm); }
+
 /* Scroll as a document, not as an app shell. PatternFly's page is a 100dvh
    grid whose main area is its own scroll container; a content site wants one
    scroller, the viewport, so every height cap and overflow is removed here. */
 html, body { height: auto; min-height: 100%; overflow: visible; }
-.pf-v6-c-page { display: block; height: auto; min-height: 100dvh; max-height: none; overflow: visible; }
+.pf-v6-c-page { height: auto; min-height: 100dvh; max-height: none; overflow: visible; }  /* stays a grid: the masthead lays out with subgrid */
 .pf-v6-c-page__main-container { display: block; height: auto; max-height: none; overflow: visible; margin-bottom: var(--pf-t--global--spacer--inset--page-chrome); }
 .pf-v6-c-page__main { display: block; height: auto; max-height: none; overflow: visible; }
 
@@ -71,7 +81,30 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 .section-title .count { color: var(--pf-t--global--text--color--subtle); font-size: 1rem; margin-inline-start: var(--pf-t--global--spacer--sm); }
 .section { margin-top: var(--pf-t--global--spacer--2xl); scroll-margin-top: var(--pf-t--global--spacer--lg); }
 
+/* ---- sticky section bar on the evidence page ----
+   Shown from lg up, where its eleven items fit on one line; below that the
+   Contents card and the back-to-top button do the job. */
+.jump-bar { display: none; }
+@media (min-width: 62rem) {
+  .jump-bar {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin: 0 var(--pf-t--global--spacer--inset--page-chrome) var(--pf-t--global--spacer--inset--page-chrome);
+    background: var(--pf-t--global--background--color--primary--default);
+    border: 1px solid var(--pf-t--global--border--color--main--default, var(--pf-t--global--border--color--default));
+    border-radius: var(--pf-t--global--border--radius--medium);
+    padding: 0 var(--pf-t--global--spacer--sm);
+  }
+  .jump-bar .pf-v6-c-jump-links__list { flex-wrap: wrap; justify-content: center; }
+  .jump-bar .pf-v6-c-button { font-size: var(--pf-t--global--font--size--body--sm); }
+}
+
 /* ---- evidence entries ---- */
+.entry-anchor { color: inherit; text-decoration: none; }
+.entry-anchor:hover { text-decoration: underline; }
+.entry:target { border-color: var(--pf-t--global--border--color--brand--default); box-shadow: 0 0 0 1px var(--pf-t--global--border--color--brand--default); }
 .entry { scroll-margin-top: var(--pf-t--global--spacer--lg); }
 .entry .pf-v6-c-card__title { display: flex; align-items: baseline; justify-content: space-between; gap: var(--pf-t--global--spacer--md); flex-wrap: wrap; }
 .entry .pf-v6-c-card__title-text { font-size: 1.125rem; }

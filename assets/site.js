@@ -62,6 +62,37 @@
     if (wasDark) root.classList.add('pf-v6-theme-dark');
   });
 
+  // Section bar: mark the section in view. The threshold is the bar's own
+  // height plus a little, so a heading counts as current once it has passed
+  // under the bar rather than when it merely enters the viewport.
+  var bar = document.getElementById('jump-bar');
+  if (bar) {
+    var links = Array.prototype.slice.call(bar.querySelectorAll('.pf-v6-c-jump-links__item'));
+    var targets = links.map(function (li) {
+      var a = li.querySelector('a');
+      return document.getElementById(a.getAttribute('href').slice(1));
+    });
+    var spyTicking = false;
+    function spy() {
+      spyTicking = false;
+      var mark = bar.offsetHeight + 40, current = -1;
+      for (var i = 0; i < targets.length; i++) {
+        if (targets[i] && targets[i].getBoundingClientRect().top <= mark) current = i;
+      }
+      var doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) current = targets.length - 1;
+      links.forEach(function (li, i) {
+        li.classList.toggle('pf-m-current', i === current);
+        if (i === current) li.setAttribute('aria-current', 'location'); else li.removeAttribute('aria-current');
+      });
+    }
+    window.addEventListener('scroll', function () {
+      if (!spyTicking) { spyTicking = true; window.requestAnimationFrame(spy); }
+    }, { passive: true });
+    window.addEventListener('resize', spy, { passive: true });
+    spy();
+  }
+
   // Back to top.
   var totop = document.getElementById('back-to-top');
   if (totop) {
