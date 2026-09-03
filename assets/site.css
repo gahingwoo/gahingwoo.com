@@ -142,7 +142,21 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 .site-footer { margin-top: var(--pf-t--global--spacer--2xl); padding-top: var(--pf-t--global--spacer--md); border-top: 1px solid var(--pf-t--global--border--color--default); font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); display: flex; flex-wrap: wrap; gap: var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--lg); }
 .site-footer a { color: inherit; }
 
-.pf-v6-c-back-to-top { position: fixed; right: var(--pf-t--global--spacer--lg); bottom: var(--pf-t--global--spacer--lg); z-index: 10; }
+/* Back to top: PatternFly positions this inside a scrolling container; the
+   page scrolls as a document, so it is fixed to the viewport instead, at the
+   normal button size rather than the component's compact one. */
+.pf-v6-c-back-to-top {
+  position: fixed;
+  inset-inline-end: var(--pf-t--global--spacer--lg);
+  inset-block-end: var(--pf-t--global--spacer--xl);
+  z-index: 10;
+  --pf-v6-c-back-to-top--c-button--FontSize: var(--pf-t--global--font--size--body--default);
+  --pf-v6-c-back-to-top--c-button--PaddingBlockStart: var(--pf-t--global--spacer--sm);
+  --pf-v6-c-back-to-top--c-button--PaddingBlockEnd: var(--pf-t--global--spacer--sm);
+  --pf-v6-c-back-to-top--c-button--PaddingInlineStart: var(--pf-t--global--spacer--md);
+  --pf-v6-c-back-to-top--c-button--PaddingInlineEnd: var(--pf-t--global--spacer--md);
+  --pf-v6-c-back-to-top--c-button--BoxShadow: var(--pf-t--global--box-shadow--md);
+}
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
