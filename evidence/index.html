@@ -12,7 +12,7 @@
 <meta property="og:title" content="Evidence appendix: Ga Hing Woo (Jiaxing Hu)">
 <meta property="og:description" content="Verifiable record of upstream firmware and kernel work: merged patches, reviewer names, and public discussion threads.">
 <meta property="og:url" content="https://gahingwoo.com/evidence">
-<meta property="og:image" content="https://gahingwoo.com/assets/og.png">
+<meta property="og:image" content="https://gahingwoo.com/assets/og-evidence.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -22,6 +22,487 @@
     try { saved = localStorage.getItem('theme'); } catch (e) {}
     if (saved === 'dark') document.documentElement.classList.add('pf-v6-theme-dark');
   })();
+</script>
+<script type="application/ld+json" id="evidence-data">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "url": "https://gahingwoo.com/evidence",
+  "name": "Evidence appendix: Ga Hing Woo (Jiaxing Hu)",
+  "description": "Every claim about my own work, each with a link to the original public record.",
+  "author": {
+    "@type": "Person",
+    "name": "Ga Hing Woo",
+    "alternateName": "Jiaxing Hu",
+    "url": "https://gahingwoo.com/",
+    "sameAs": [
+      "https://orcid.org/0009-0002-0840-8951"
+    ]
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": 28,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Trusted Firmware-A: removed a redundant secure-boot override",
+          "url": "https://gahingwoo.com/evidence#tfa",
+          "creditText": "Merged",
+          "about": "Merged upstream",
+          "sameAs": [
+            "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/51089"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "OP-TEE: first RK3576 platform port",
+          "url": "https://gahingwoo.com/evidence#optee",
+          "creditText": "Merged",
+          "about": "Merged upstream",
+          "sameAs": [
+            "https://github.com/OP-TEE/optee_os/pull/7821",
+            "https://github.com/OP-TEE/optee_os/blob/master/core/arch/arm/plat-rockchip/platform_rk3576.c"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "iommu/rockchip: two fixes applied by the IOMMU co-maintainer",
+          "url": "https://gahingwoo.com/evidence#iommu-fixes",
+          "creditText": "Applied, Linux 7.3",
+          "about": "Merged into mainline Linux",
+          "sameAs": [
+            "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=841363ebb5082a06c69ac34719e26659fe63dbd6",
+            "https://github.com/torvalds/linux/commit/841363ebb5082a06c69ac34719e26659fe63dbd6",
+            "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b10d5920cafa292ee3cab9c20f813da4fe4f00b8",
+            "https://github.com/torvalds/linux/commit/b10d5920cafa292ee3cab9c20f813da4fe4f00b8",
+            "https://lore.kernel.org/all/178507139795.2055528.4355657426833307310.b4-ty@kernel.org/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "arm64: dts: rockchip: ArmSoM CM5 and CM5-IO board support, applied by the Rockchip SoC maintainer",
+          "url": "https://gahingwoo.com/evidence#cm5-dts",
+          "creditText": "Applied, Linux 7.3",
+          "about": "Merged into mainline Linux",
+          "sameAs": [
+            "https://lore.kernel.org/all/178526609483.300371.1972096741019410847.b4-ty@sntech.de/",
+            "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f60f44c24b10fe7fd1fa76b360646def1bea193a",
+            "https://github.com/torvalds/linux/commit/f60f44c24b10fe7fd1fa76b360646def1bea193a",
+            "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=44a48a23974b86d2c551afbabee15ad70b249df5",
+            "https://github.com/torvalds/linux/commit/44a48a23974b86d2c551afbabee15ad70b249df5",
+            "https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=for-next&amp;id=3bcd04b3e009fdd5b051c95f31c742bc9257fcb9",
+            "https://lore.kernel.org/all/20260819064707.1667292-1-gahing@gahingwoo.com/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "net: phy: motorcomm: reference-clock fix, applied by the net maintainer",
+          "url": "https://gahingwoo.com/evidence#yt8521",
+          "creditText": "Applied, Linux 7.3",
+          "about": "Merged into mainline Linux",
+          "sameAs": [
+            "https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/",
+            "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dc3b7209b5d32194b9088fb40f1787130f34ea5e",
+            "https://github.com/torvalds/linux/commit/dc3b7209b5d32194b9088fb40f1787130f34ea5e",
+            "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=42310a24389c1bdda82e4c30750a6b72e98238d1",
+            "https://github.com/torvalds/linux/commit/42310a24389c1bdda82e4c30750a6b72e98238d1"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "iommu/rockchip: implement .flush_iotlb_all",
+          "url": "https://gahingwoo.com/evidence#iommu-flush",
+          "creditText": "Withdrawn, led to RFC below",
+          "about": "Withdrawn on maintainer guidance",
+          "sameAs": [
+            "https://lore.kernel.org/all/20260710060513.863714-1-huhuvmb88@gmail.com/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "net: stmmac: dwmac-rk: reference-clock fix, wrong layer",
+          "url": "https://gahingwoo.com/evidence#dwmac-rk",
+          "creditText": "Withdrawn, redesigned above",
+          "about": "Withdrawn on maintainer guidance",
+          "sameAs": [
+            "https://lore.kernel.org/all/20260717065933.2629501-1-gahing@gahingwoo.com/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Linux kernel: RK3576 NPU (rocket driver) enablement, PATCH v11",
+          "url": "https://gahingwoo.com/evidence#npu-series",
+          "creditText": "PATCH v11, awaiting a reply · Reviewed-by ×4 · Acked-by ×2 · Tested-by RK3588 ×2 · earned on v7 to v10",
+          "about": "Under review",
+          "sameAs": [
+            "https://lore.kernel.org/all/20260831081956.84871-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260831040804.24111-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/cover.1787568658.git.gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260817113603.1436067-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260812094106.1391698-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260807211629.1573228-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/",
+            "https://lore.kernel.org/all/20260717085220.3212274-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260806063413.350184-1-gahing@gahingwoo.com/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Mesa: RK3576 NPU support in the Teflon delegate, merge request !43804",
+          "url": "https://gahingwoo.com/evidence#mesa-mr",
+          "creditText": "Posted, not reviewed, not merged",
+          "about": "Under review",
+          "sameAs": [
+            "https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/43804"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "media: rockchip: RFC V4L2 driver for the RK3576 VEPU510 H.264 encoder",
+          "url": "https://gahingwoo.com/evidence#vepu510",
+          "creditText": "Rfc, design pivot after review",
+          "about": "Under review",
+          "sameAs": [
+            "https://lore.kernel.org/all/20260722073417.2064667-1-gahing@gahingwoo.com/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "accel/rocket: Reviewed-by given to another contributor, twice, on real bugs",
+          "url": "https://gahingwoo.com/evidence#reviews-given-rocket",
+          "creditText": "Reviewed-by given ×2",
+          "about": "Reviews given to other contributors",
+          "sameAs": [
+            "https://lore.kernel.org/all/20260729105013.1255526-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260730113256.1418091-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260801033614.2008530-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260801193237.2539957-1-gahing@gahingwoo.com/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "RK3576 NPU bring-up: preprint, version 2 (version 1's central result withdrawn)",
+          "url": "https://gahingwoo.com/evidence#preprint",
+          "creditText": "Zenodo, DOI · v1 result withdrawn in v2",
+          "about": "Published research",
+          "sameAs": [
+            "https://doi.org/10.5281/zenodo.21990992",
+            "https://doi.org/10.5281/zenodo.21348016",
+            "https://doi.org/10.5281/zenodo.21348017",
+            "https://www.cnx-software.com/2026/07/15/reverse-engineering-brings-rk3576-npu-support-to-open-source-rocket-driver-for-mainline-linux/",
+            "https://www.facebook.com/100064934040119/posts/back-in-2024-we-noted-that-the-open-source-driver-for-rk3588s-npu-by-tomeu-vizos/1480394374135017/",
+            "https://github.com/gregordinary/rockchip-npu-notes/blob/main/SOURCES.md"
+          ],
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "DOI",
+              "value": "10.5281/zenodo.21990992",
+              "url": "https://doi.org/10.5281/zenodo.21990992"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "DOI",
+              "value": "10.5281/zenodo.21348016",
+              "url": "https://doi.org/10.5281/zenodo.21348016"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "DOI",
+              "value": "10.5281/zenodo.21348017",
+              "url": "https://doi.org/10.5281/zenodo.21348017"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "The findings ledger: a public record of how the work was actually done, retractions included",
+          "url": "https://gahingwoo.com/evidence#findings",
+          "creditText": "386 rounds, 17+ self-retractions",
+          "about": "Independent projects",
+          "sameAs": [
+            "https://github.com/gahingwoo/linux-rk3576-npu/blob/main/FINDINGS.md",
+            "https://github.com/gahingwoo/linux-rk3576-npu/blob/main/notes/provenance.md"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "mesa-rk3576: the rocket/Teflon userspace every result was measured on",
+          "url": "https://gahingwoo.com/evidence#mesa-rk3576",
+          "creditText": "Development branch, not upstream",
+          "about": "Independent projects",
+          "sameAs": [
+            "https://github.com/gahingwoo/mesa-rk3576"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "charsiu: an open LLM runtime on the mainline NPU driver",
+          "url": "https://gahingwoo.com/evidence#charsiu",
+          "creditText": "Byte-exact int8 matmul, work in progress",
+          "about": "Independent projects",
+          "sameAs": [
+            "https://github.com/gahingwoo/charsiu"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "rp2350-tz-tee: minimal TrustZone-M isolation example on the RP2350",
+          "url": "https://gahingwoo.com/evidence#rp2350",
+          "creditText": "Self-verified, SWD",
+          "about": "Independent projects",
+          "sameAs": [
+            "https://github.com/gahingwoo/rp2350-tz-tee",
+            "https://old.reddit.com/r/embedded/comments/1uubies/minimal_trustzonem_example_on_the_rp2350_pico_2/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "SoC-Consistency: static analysis for hardware power-tree configuration",
+          "url": "https://gahingwoo.com/evidence#soc-consistency",
+          "creditText": "PyPI, AUR",
+          "about": "Tools in use by others",
+          "sameAs": [
+            "https://github.com/gahingwoo/SoC-Consistency",
+            "https://old.reddit.com/r/embedded/comments/1tfkpih/had_a_fun_debugging_session_last_week_ran_a_dts/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "RKDevelopTool-GUI: cross-platform Rockchip flashing GUI",
+          "url": "https://gahingwoo.com/evidence#rkdeveloptool-gui",
+          "creditText": "AUR, in Radxa docs",
+          "about": "Tools in use by others",
+          "sameAs": [
+            "https://github.com/gahingwoo/RKDevelopTool-GUI",
+            "https://aur.archlinux.org/packages/rkdeveloptool-git",
+            "https://docs.radxa.com/en/template/module/radxa-os/low-level-dev/rkdeveloptool-gui"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "lore-enhancer: browser extension for reading kernel patches on lore.kernel.org",
+          "url": "https://gahingwoo.com/evidence#lore-enhancer",
+          "creditText": "Browser extension, GPL-2.0",
+          "about": "Tools in use by others",
+          "sameAs": [
+            "https://github.com/gahingwoo/lore-enhancer",
+            "https://www.reddit.com/r/kernel/comments/1v6ygwx/built_a_chrome_extension_that_turns/",
+            "https://www.reddit.com/r/embedded/comments/1v6yiu2/built_a_chrome_extension_that_turns/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Independent testing and cross-checking on hardware I don't own",
+          "url": "https://gahingwoo.com/evidence#tested-rk3588",
+          "creditText": "Tested-by on RK3588, plus review that found real bugs",
+          "about": "Third-party validation",
+          "sameAs": [
+            "https://lore.kernel.org/all/20260812094106.1391698-1-gahing@gahingwoo.com/",
+            "https://lore.kernel.org/all/20260817113603.1436067-1-gahing@gahingwoo.com/"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Five findings independently cross-confirmed on the sibling SoC",
+          "url": "https://gahingwoo.com/evidence#cross-confirmed",
+          "creditText": "Independent, different method, different silicon",
+          "about": "Third-party validation",
+          "sameAs": [
+            "https://github.com/gregordinary/rockchip-npu-notes/blob/main/SOURCES.md"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "edk2-rk3576: UEFI port pinned by a Radxa engineer",
+          "url": "https://gahingwoo.com/evidence#edk2",
+          "creditText": "Third-party",
+          "about": "Third-party validation",
+          "sameAs": [
+            "https://forum.radxa.com/t/uefi-firmware-support-for-rock-4d-rk3576/30790/",
+            "https://github.com/gahingwoo/edk2-rk3576"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "kiln: official Radxa tutorial for local LLM/vision on the RK3576 NPU",
+          "url": "https://gahingwoo.com/evidence#kiln",
+          "creditText": "Third-party, official tutorial",
+          "about": "Third-party validation",
+          "sameAs": [
+            "https://github.com/gahingwoo/kiln",
+            "https://docs.radxa.com/en/rock4/rock4d/application-dev/npu/kiln"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Flipper Devices: production validation of the OP-TEE port",
+          "url": "https://gahingwoo.com/evidence#flipper",
+          "creditText": "Third-party",
+          "about": "Third-party validation",
+          "sameAs": [
+            "https://docs.flipper.net/one/dev-log/3"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 25,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Collabora: official post summarising the NPU bring-up",
+          "url": "https://gahingwoo.com/evidence#collabora",
+          "creditText": "Third-party",
+          "about": "Third-party validation",
+          "sameAs": [
+            "https://www.linkedin.com/posts/collabora_reverse-engineering-brings-rk3576-npu-support-activity-7483181749645103105-Mqi2"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 26,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Rockchip upstream enablement tracker: NPU and VEPU510 reference points",
+          "url": "https://gahingwoo.com/evidence#tracker",
+          "creditText": "Third-party",
+          "about": "Third-party validation",
+          "sameAs": [
+            "https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3576/-/blob/main/mainline-status.md?ref_type=heads"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 27,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "EzySpeech: real-time transcription and translation, Mt Albert Baptist Church",
+          "url": "https://gahingwoo.com/evidence#ezyspeech",
+          "creditText": "In active use, signed reference",
+          "about": "Community deployment",
+          "sameAs": [
+            "https://www.mabc.org.nz/sundays",
+            "https://www.youtube.com/watch?v=QzPaIA_DIz0&t=1625s",
+            "https://github.com/gahingwoo/ezy_speech_translate"
+          ]
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 28,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "half-baked-studios: a GitHub organisation co-run with three other students",
+          "url": "https://gahingwoo.com/evidence#half-baked",
+          "creditText": "Peer-run",
+          "about": "Peer collaboration",
+          "sameAs": [
+            "https://github.com/half-baked-studios",
+            "https://github.com/half-baked-studios/hbes"
+          ]
+        }
+      }
+    ]
+  }
+}
 </script>
 <link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=19f057f3">
 <link rel="stylesheet" href="/assets/site.css?v=91736d46">
@@ -422,6 +903,6 @@
 <div class="pf-v6-c-back-to-top pf-m-hidden" id="back-to-top">
   <a class="pf-v6-c-button pf-m-primary" href="#main-content"><span class="pf-v6-c-button__text">Back to top</span><span class="pf-v6-c-button__icon pf-m-end"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M1.29 14.71a.996.996 0 0 0 1.41 0L10 7.42l7.3 7.29a.987.987 0 0 0 1.41.02.987.987 0 0 0 .02-1.41l-.02-.02-7.65-7.65A1.49 1.49 0 0 0 10 5.21c-.38 0-.77.15-1.06.44L1.29 13.3a.996.996 0 0 0 0 1.41Z"/></svg></span></a>
 </div>
-<script src="/assets/site.js?v=411f35ef"></script>
+<script src="/assets/site.js?v=0666c8d9"></script>
 </body>
 </html>

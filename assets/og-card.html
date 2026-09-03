@@ -2,35 +2,82 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>og card</title>
+<title>Link preview card</title>
 <link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=19f057f3">
 <style>
-  /* Rendered to assets/og.png at 1200x630 with headless Chrome. See README. */
+  /* Rendered to assets/og-<page>.png at 1200x630 by tools/build_og.sh. The
+     page to draw comes from ?page= in the URL. Styled with PatternFly tokens
+     so the card carries the same type, colour and spacing as the site: Red
+     Hat Display for the name, the shell's secondary background behind a
+     primary-background card, and PatternFly blue, which is the brand colour
+     of this design language, for the rule. */
   html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
   body {
     background: var(--pf-t--global--background--color--secondary--default);
     color: var(--pf-t--global--text--color--regular);
     font-family: var(--pf-t--global--font--family--body);
+    display: grid;
+    place-items: stretch;
+    padding: 40px;
+    box-sizing: border-box;
+  }
+  .card {
+    background: var(--pf-t--global--background--color--primary--default);
+    border: 1px solid var(--pf-t--global--border--color--default);
+    border-radius: var(--pf-t--global--border--radius--large);
+    padding: 64px 72px;
+    display: flex;
+    flex-direction: column;
     position: relative;
   }
-  .card { position: absolute; inset: 56px; background: #fff; border-radius: 24px; padding: 72px 88px; box-sizing: border-box; border: 1px solid var(--pf-t--global--border--color--default); }
-  .name { font-family: var(--pf-t--global--font--family--heading); font-size: 64px; font-weight: 400; line-height: 1.1; margin: 0 0 8px 0; }
-  .name span { color: var(--pf-t--global--text--color--subtle); font-weight: 400; }
-  .role { font-size: 26px; color: var(--pf-t--global--text--color--subtle); margin: 0 0 40px 0; }
-  .lede { font-size: 30px; line-height: 1.4; margin: 0; max-width: 940px; }
-  .lede b { font-weight: 500; }
-  .bar { position: absolute; left: 88px; right: 88px; bottom: 60px; display: flex; justify-content: space-between; font-size: 22px; color: var(--pf-t--global--text--color--subtle); border-top: 1px solid var(--pf-t--global--border--color--default); padding-top: 22px; }
-  .bar b { color: var(--pf-t--global--text--color--link--default); font-weight: 600; }
-  .avatar { position: absolute; top: 72px; right: 88px; width: 96px; height: 96px; border-radius: 16px; border: 1px solid var(--pf-t--global--border--color--default); }
+  .rule { position: absolute; inset-block: 40px; inset-inline-start: 0; width: 8px; border-radius: 0 4px 4px 0; background: var(--pf-t--global--color--brand--default); }
+  .eyebrow { font-size: 26px; color: var(--pf-t--global--text--color--subtle); letter-spacing: 0.02em; }
+  h1 { font-family: var(--pf-t--global--font--family--heading); font-size: 68px; font-weight: 500; line-height: 1.1; margin: 14px 0 0 0; letter-spacing: -0.01em; }
+  h1 .alt { color: var(--pf-t--global--text--color--subtle); font-weight: 400; }
+  .lede { font-size: 30px; line-height: 1.42; margin: 26px 0 0 0; max-width: 30ch; }
+  .lede b { font-weight: 700; }
+  .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; font-size: 24px; color: var(--pf-t--global--text--color--subtle); border-top: 1px solid var(--pf-t--global--border--color--default); padding-top: 24px; }
+  .foot b { color: var(--pf-t--global--text--color--brand--default); font-weight: 500; }
+  .avatar { position: absolute; top: 64px; right: 72px; width: 96px; height: 96px; border-radius: var(--pf-t--global--border--radius--medium); border: 1px solid var(--pf-t--global--border--color--default); }
 </style>
 </head>
 <body>
   <div class="card">
+    <span class="rule"></span>
     <img class="avatar" src="/assets/avatar.png" alt="">
-    <h1 class="name">Ga Hing Woo <span>(Jiaxing Hu)</span></h1>
-    <p class="role">Firmware and embedded Linux &middot; Auckland, New Zealand</p>
-    <p class="lede"><b>Five commits in mainline Linux 7.3</b>, the first OP-TEE port for the RK3576, and an NPU brought up from nothing. Every claim linked to its public record.</p>
-    <div class="bar"><span><b>gahingwoo.com</b></span><span>Evidence appendix &middot; CV</span></div>
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="title"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="foot"><span><b>gahingwoo.com</b></span><span id="foot"></span></div>
   </div>
+<script>
+  var pages = {
+    home: {
+      eyebrow: 'Firmware and embedded Linux · Auckland, New Zealand',
+      title: 'Ga Hing Woo <span class="alt">(Jiaxing Hu)</span>',
+      lede: '<b>Five commits in mainline Linux 7.3</b>, the first OP-TEE port for the RK3576, and an NPU brought up from nothing.',
+      foot: 'Every claim linked to its public record'
+    },
+    evidence: {
+      eyebrow: 'Ga Hing Woo (Jiaxing Hu)',
+      title: 'Evidence appendix',
+      lede: 'Every claim about my own work, each with a link to the merged commit, review thread or DOI behind it.',
+      foot: '28 entries · retractions included'
+    },
+    cv: {
+      eyebrow: 'Ga Hing Woo (Jiaxing Hu)',
+      title: 'Curriculum vitae',
+      lede: 'Upstream work in Linux, OP-TEE and Trusted Firmware-A, with every line linked to the record it rests on.',
+      foot: 'Also a two-page PDF'
+    }
+  };
+  var key = new URLSearchParams(location.search).get('page') || 'home';
+  var p = pages[key];
+  document.getElementById('eyebrow').textContent = p.eyebrow;
+  document.getElementById('title').innerHTML = p.title;
+  document.getElementById('lede').innerHTML = p.lede;
+  document.getElementById('foot').textContent = p.foot;
+  document.title = p.title.replace(/<[^>]+>/g, '');
+</script>
 </body>
 </html>

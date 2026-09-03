@@ -1,4 +1,21 @@
 // Shared behaviour: theme toggle, folded evidence entries, back-to-top.
+// Visitor counts, if a token is set. Cloudflare Web Analytics is used because
+// it sets no cookies, stores nothing on the reader's machine and needs no
+// consent banner; GitHub Pages gives no logs of its own, so without something
+// like it there is no way to tell whether the evidence page is ever opened.
+// Paste the token from the Cloudflare dashboard between the quotes to switch
+// it on; left empty, nothing is loaded and no request is made.
+var ANALYTICS_TOKEN = 'dfe72f19b00e48d6b340a87d6041beef';
+
+(function () {
+  if (!ANALYTICS_TOKEN) return;
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  s.setAttribute('data-cf-beacon', JSON.stringify({ token: ANALYTICS_TOKEN }));
+  document.head.appendChild(s);
+})();
+
 (function () {
   var root = document.documentElement;
   // The page is PatternFly's app shell, so the thing that scrolls is the main

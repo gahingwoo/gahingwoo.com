@@ -27,6 +27,9 @@ jobs:
       - name: Rebuild the search index from the pages
         run: python3 tools/build_search.py
 
+      - name: Rebuild the evidence page's structured data from its entries
+        run: python3 tools/build_jsonld.py
+
       - name: Stamp asset links with their content hash
         run: python3 tools/stamp.py
 
