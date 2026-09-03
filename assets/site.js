@@ -90,6 +90,8 @@
       if (!spyTicking) { spyTicking = true; window.requestAnimationFrame(spy); }
     }, { passive: true });
     window.addEventListener('resize', spy, { passive: true });
+    window.addEventListener('hashchange', function () { setTimeout(spy, 50); });
+    window.addEventListener('load', function () { setTimeout(spy, 50); });
     spy();
   }
 

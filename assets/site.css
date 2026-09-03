@@ -40,7 +40,7 @@ html, body { height: auto; min-height: 100%; overflow: visible; }
 
 /* ---- masthead: stacked identity on the left, quiet links on the right ---- */
 .brand { display: block; text-decoration: none; line-height: 1.25; }
-.brand .brand-name { display: block; font-weight: 600; color: var(--pf-t--global--text--color--regular); }
+.brand .brand-name { display: block; font-weight: 600; color: var(--pf-t--global--text--color--regular); overflow-wrap: anywhere; }
 .brand .brand-sub { display: block; font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); }
 .brand:hover { text-decoration: none; }
 .brand:hover .brand-name { color: var(--pf-t--global--text--color--link--hover); }
@@ -49,6 +49,13 @@ html, body { height: auto; min-height: 100%; overflow: visible; }
 .top-links a { color: var(--pf-t--global--text--color--subtle); text-decoration: none; }
 .top-links a:hover { color: var(--pf-t--global--text--color--link--hover); text-decoration: underline; }
 .top-links a[aria-current="page"] { color: var(--pf-t--global--text--color--regular); font-weight: 600; }
+.pf-v6-c-masthead { position: relative; }
+@media (max-width: 47.99rem) {
+  /* Below md the masthead stacks; keep the toggle beside the name instead of
+     on a row of its own. */
+  .theme-toggle { position: absolute; top: var(--pf-t--global--spacer--sm); inset-inline-end: var(--pf-t--global--spacer--sm); }
+  .pf-v6-c-masthead__content { justify-content: flex-start; }
+}
 .theme-toggle .icon-sun { display: none; }
 html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline; }
 html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
@@ -60,6 +67,7 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 @media (max-width: 640px) { .page-title .subtitle { display: block; margin-inline-start: 0; margin-top: 2px; } }
 
 /* ---- cards ---- */
+.pf-v6-l-gallery { --pf-v6-l-gallery--GridTemplateColumns--min: min(100%, 25rem); }
 .pf-v6-c-card { --pf-v6-c-card--first-child--PaddingBlockStart: var(--pf-t--global--spacer--xl); --pf-v6-c-card--child--PaddingInlineStart: var(--pf-t--global--spacer--xl); --pf-v6-c-card--child--PaddingInlineEnd: var(--pf-t--global--spacer--xl); --pf-v6-c-card--last-child--PaddingBlockEnd: var(--pf-t--global--spacer--xl); }
 .pf-v6-c-card__title-text { font-weight: 400; font-size: 1.375rem; line-height: 1.3; }
 .pf-v6-c-card__body { font-size: 1rem; line-height: 1.5; }
@@ -73,56 +81,54 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 .kv .pf-v6-c-description-list__group:first-child { padding-top: 0; }
 .kv .pf-v6-c-description-list__group:last-child { border-bottom: 0; padding-bottom: 0; }
 .kv .pf-v6-c-description-list__term .pf-v6-c-description-list__text { font-weight: 400; }
-.kv .pf-v6-c-description-list__text { font-size: 1rem; line-height: 1.5; }
+.kv .pf-v6-c-description-list__text { font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
 .kv .meta { display: block; color: var(--pf-t--global--text--color--subtle); font-size: var(--pf-t--global--font--size--body--default); margin-top: 2px; }
 
 /* ---- section heading on long pages ---- */
 .section-title { font-family: var(--pf-t--global--font--family--heading); font-weight: 400; font-size: 1.375rem; margin: 0 0 var(--pf-t--global--spacer--md) 0; }
 .section-title .count { color: var(--pf-t--global--text--color--subtle); font-size: 1rem; margin-inline-start: var(--pf-t--global--spacer--sm); }
-.section { margin-top: var(--pf-t--global--spacer--2xl); scroll-margin-top: var(--pf-t--global--spacer--lg); }
 
 /* ---- sticky section bar on the evidence page ----
-   Shown from lg up, where its eleven items fit on one line; below that the
-   Contents card and the back-to-top button do the job. */
+   PatternFly's page subnav, sticky under the viewport top. Shown from lg up,
+   where its eleven items fit on one or two lines; below that the Contents
+   card and the back-to-top button do the job. */
 .jump-bar { display: none; }
 @media (min-width: 62rem) {
-  .jump-bar {
-    display: block;
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    margin: 0 var(--pf-t--global--spacer--inset--page-chrome) var(--pf-t--global--spacer--inset--page-chrome);
-    background: var(--pf-t--global--background--color--primary--default);
-    border: 1px solid var(--pf-t--global--border--color--main--default, var(--pf-t--global--border--color--default));
-    border-radius: var(--pf-t--global--border--radius--medium);
-    padding: 0 var(--pf-t--global--spacer--sm);
-  }
+  .jump-bar { display: block; --pf-v6-c-page__main-subnav--PaddingBlockStart: var(--pf-t--global--spacer--xs); --pf-v6-c-page__main-subnav--m-sticky-top--PaddingBlockEnd: var(--pf-t--global--spacer--xs); }
   .jump-bar .pf-v6-c-jump-links__list { flex-wrap: wrap; justify-content: center; }
-  .jump-bar .pf-v6-c-button { font-size: var(--pf-t--global--font--size--body--sm); }
+  .jump-bar .pf-v6-c-button { font-size: var(--pf-t--global--font--size--body--sm); --pf-v6-c-button--PaddingBlockStart: var(--pf-t--global--spacer--xs); --pf-v6-c-button--PaddingBlockEnd: var(--pf-t--global--spacer--xs); }
 }
 
-/* ---- evidence entries ---- */
+/* ---- evidence entries: rows of a data list inside one card per group ---- */
+.section { margin-top: var(--pf-t--global--spacer--lg); scroll-margin-top: var(--pf-t--global--spacer--lg); }
+@media (min-width: 62rem) { .section, .entry { scroll-margin-top: 9.5rem; } }
+.pf-v6-c-card__title-text .count { color: var(--pf-t--global--text--color--subtle); font-size: 1rem; margin-inline-start: var(--pf-t--global--spacer--xs); white-space: nowrap; }
+.pf-v6-c-data-list { --pf-v6-c-data-list--BorderBlockStartWidth: 0; --pf-v6-c-data-list--sm--BorderBlockStartWidth: 0; }
+.pf-v6-c-data-list__item:last-child { --pf-v6-c-data-list__item--BorderBlockEndWidth: 0; --pf-v6-c-data-list__item--sm--BorderBlockEndWidth: 0; }
+.entry { scroll-margin-top: var(--pf-t--global--spacer--lg); }
+.entry .pf-v6-c-data-list__item-row { padding-inline: 0; }  /* the card body already pads */
+.entry .pf-v6-c-data-list__cell { min-width: 0; }
+.entry-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--pf-t--global--spacer--md); flex-wrap: wrap; margin-bottom: var(--pf-t--global--spacer--xs); }
+.entry-title { font-family: var(--pf-t--global--font--family--heading); font-weight: 400; font-size: 1.125rem; line-height: 1.3; margin: 0; }
 .entry-anchor { color: inherit; text-decoration: none; }
 .entry-anchor:hover { text-decoration: underline; }
-.entry:target { border-color: var(--pf-t--global--border--color--brand--default); box-shadow: 0 0 0 1px var(--pf-t--global--border--color--brand--default); }
-.entry { scroll-margin-top: var(--pf-t--global--spacer--lg); }
-.entry .pf-v6-c-card__title { display: flex; align-items: baseline; justify-content: space-between; gap: var(--pf-t--global--spacer--md); flex-wrap: wrap; }
-.entry .pf-v6-c-card__title-text { font-size: 1.125rem; }
-.entry .status { color: var(--pf-t--global--text--color--subtle); font-size: var(--pf-t--global--font--size--body--default); white-space: nowrap; }
-.entry-desc { position: relative; }
+.entry .status { color: var(--pf-t--global--text--color--subtle); font-size: var(--pf-t--global--font--size--body--default); }
+.entry:target { box-shadow: inset 3px 0 0 var(--pf-t--global--border--color--brand--default); }
+.entry-desc { position: relative; font-size: 1rem; line-height: 1.5; }
 .entry.is-folded .entry-desc { max-height: 9em; overflow: hidden; }
 .entry.is-folded .entry-desc::after {
   content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 3em;
   background: linear-gradient(to bottom, transparent, var(--pf-t--global--background--color--primary--default));
   pointer-events: none;
 }
-.entry-more { margin-top: var(--pf-t--global--spacer--sm); }
-.entry-links { display: flex; flex-wrap: wrap; gap: var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--lg); font-size: var(--pf-t--global--font--size--body--default); }
-.entry-links a { word-break: break-word; }
+.entry-more { margin-top: var(--pf-t--global--spacer--xs); }
+.entry-links { display: flex; flex-wrap: wrap; gap: var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--lg); font-size: var(--pf-t--global--font--size--body--default); margin-top: var(--pf-t--global--spacer--sm); }
+.entry-links a, .cv-refs a, .kv a { overflow-wrap: anywhere; }
 .contents { columns: 1; column-gap: var(--pf-t--global--spacer--2xl); list-style: none; margin: 0; padding: 0; }
 @media (min-width: 640px) { .contents { columns: 2; } }
 .contents li { display: flex; justify-content: space-between; gap: var(--pf-t--global--spacer--sm); padding: 0.375rem 0; border-bottom: 1px solid var(--pf-t--global--border--color--default); break-inside: avoid; font-size: 1rem; }
 .contents .count { color: var(--pf-t--global--text--color--subtle); }
+.table-wrap { overflow-x: auto; }
 .status-cell { color: var(--pf-t--global--text--color--subtle); white-space: nowrap; }
 
 /* ---- footer ---- */
