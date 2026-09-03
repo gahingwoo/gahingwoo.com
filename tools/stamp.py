@@ -15,7 +15,8 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-ASSETS = ["assets/patternfly/patternfly-site.css", "assets/site.css", "assets/site.js"]
+ASSETS = ["assets/patternfly/patternfly-site.css", "assets/site.css", "assets/site.js",
+          "assets/search-index.json"]
 PAGES = ["index.html", "evidence/index.html", "cv/index.html", "404.html", "assets/og-card.html"]
 
 

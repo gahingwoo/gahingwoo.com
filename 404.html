@@ -23,8 +23,8 @@
     if (saved === 'dark') document.documentElement.classList.add('pf-v6-theme-dark');
   })();
 </script>
-<link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=8f55d9b7">
-<link rel="stylesheet" href="/assets/site.css?v=56bfd7ce">
+<link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=05869450">
+<link rel="stylesheet" href="/assets/site.css?v=dcd58c3b">
 <meta name="robots" content="noindex">
 </head>
 <body>
@@ -56,6 +56,24 @@
   </header>
   <aside class="pf-v6-c-page__sidebar" id="site-sidebar">
     <div class="pf-v6-c-page__sidebar-main">
+      <div class="pf-v6-c-page__sidebar-body pf-m-page-insets site-search">
+        <div class="pf-v6-c-text-input-group">
+          <div class="pf-v6-c-text-input-group__main pf-m-icon">
+            <span class="pf-v6-c-text-input-group__text">
+              <span class="pf-v6-c-text-input-group__icon"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M19.71 18.29l-4.82-4.82a8 8 0 1 0-1.42 1.42l4.82 4.82a1 1 0 0 0 1.42-1.42ZM8 14a6 6 0 1 1 6-6 6 6 0 0 1-6 6Z"/></svg></span>
+              <input class="pf-v6-c-text-input-group__text-input" type="text" id="site-search" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=8c254dc2">
+            </span>
+          </div>
+          <div class="pf-v6-c-text-input-group__utilities">
+            <button class="pf-v6-c-button pf-m-plain" type="button" id="search-clear" aria-label="Clear search" hidden><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M17.8 16.2 11.59 10l6.21-6.21c.42-.46.39-1.17-.07-1.59-.43-.4-1.09-.4-1.52 0l-6.2 6.2-6.22-6.19c-.44-.44-1.15-.44-1.59 0-.44.44-.44 1.15 0 1.59l6.2 6.21-6.2 6.2c-.42.46-.39 1.17.07 1.59.43.4 1.09.4 1.52 0L10 11.59l6.2 6.2c.44.44 1.15.44 1.59 0 .44-.45.44-1.16 0-1.6Z"/></svg></button>
+          </div>
+        </div>
+        <div class="pf-v6-c-menu search-results" id="search-results" hidden>
+          <div class="pf-v6-c-menu__content">
+            <ul class="pf-v6-c-menu__list" role="listbox" aria-label="Search results" id="search-list"></ul>
+          </div>
+        </div>
+      </div>
       <div class="pf-v6-c-page__sidebar-body pf-m-page-insets">
         <nav class="pf-v6-c-nav" aria-label="Site">
       <section class="pf-v6-c-nav__section" aria-labelledby="pages-title">
@@ -110,6 +128,6 @@
     </main>
   </div>
 </div>
-<script src="/assets/site.js?v=41993fa8"></script>
+<script src="/assets/site.js?v=e7afcef7"></script>
 </body>
 </html>

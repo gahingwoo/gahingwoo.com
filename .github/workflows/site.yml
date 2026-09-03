@@ -24,6 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Rebuild the search index from the pages
+        run: python3 tools/build_search.py
+
       - name: Stamp asset links with their content hash
         run: python3 tools/stamp.py
 

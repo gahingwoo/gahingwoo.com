@@ -23,8 +23,8 @@
     if (saved === 'dark') document.documentElement.classList.add('pf-v6-theme-dark');
   })();
 </script>
-<link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=8f55d9b7">
-<link rel="stylesheet" href="/assets/site.css?v=56bfd7ce">
+<link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=05869450">
+<link rel="stylesheet" href="/assets/site.css?v=dcd58c3b">
 </head>
 <body>
 <div class="pf-v6-c-page">
@@ -55,6 +55,24 @@
   </header>
   <aside class="pf-v6-c-page__sidebar" id="site-sidebar">
     <div class="pf-v6-c-page__sidebar-main">
+      <div class="pf-v6-c-page__sidebar-body pf-m-page-insets site-search">
+        <div class="pf-v6-c-text-input-group">
+          <div class="pf-v6-c-text-input-group__main pf-m-icon">
+            <span class="pf-v6-c-text-input-group__text">
+              <span class="pf-v6-c-text-input-group__icon"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M19.71 18.29l-4.82-4.82a8 8 0 1 0-1.42 1.42l4.82 4.82a1 1 0 0 0 1.42-1.42ZM8 14a6 6 0 1 1 6-6 6 6 0 0 1-6 6Z"/></svg></span>
+              <input class="pf-v6-c-text-input-group__text-input" type="text" id="site-search" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=8c254dc2">
+            </span>
+          </div>
+          <div class="pf-v6-c-text-input-group__utilities">
+            <button class="pf-v6-c-button pf-m-plain" type="button" id="search-clear" aria-label="Clear search" hidden><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M17.8 16.2 11.59 10l6.21-6.21c.42-.46.39-1.17-.07-1.59-.43-.4-1.09-.4-1.52 0l-6.2 6.2-6.22-6.19c-.44-.44-1.15-.44-1.59 0-.44.44-.44 1.15 0 1.59l6.2 6.21-6.2 6.2c-.42.46-.39 1.17.07 1.59.43.4 1.09.4 1.52 0L10 11.59l6.2 6.2c.44.44 1.15.44 1.59 0 .44-.45.44-1.16 0-1.6Z"/></svg></button>
+          </div>
+        </div>
+        <div class="pf-v6-c-menu search-results" id="search-results" hidden>
+          <div class="pf-v6-c-menu__content">
+            <ul class="pf-v6-c-menu__list" role="listbox" aria-label="Search results" id="search-list"></ul>
+          </div>
+        </div>
+      </div>
       <div class="pf-v6-c-page__sidebar-body pf-m-page-insets">
         <nav class="pf-v6-c-nav" aria-label="Site">
       <section class="pf-v6-c-nav__section" aria-labelledby="pages-title">
@@ -216,9 +234,9 @@
   <div class="entry-links"><a href="https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/43804">gitlab.freedesktop.org: mesa!43804</a></div>
 </div></div></div></li>
 <li class="pf-v6-c-data-list__item entry" id="vepu510"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
-  <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#vepu510">Rockchip upstream enablement tracker: NPU and VEPU510 reference points</a></h3><span class="status">Third-party</span></div>
-  <div class="entry-desc">A community-maintained GitLab tracker, hosted by Collabora, for Rockchip RK3576 mainline enablement status across every subsystem (GPU, ISP, media, NPU, and more). The NPU row cites the RFC series as its reference entry, and the VEPU510 H.264/AVC row was later updated by Sebastian Reichel (Collabora) to cite the video-encoder RFC thread as well, not something I added myself, but how the tracker's maintainers chose to record the state of both.</div>
-  <div class="entry-links"><a href="https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3576/-/blob/main/mainline-status.md?ref_type=heads">gitlab.collabora.com: mainline-status.md</a></div>
+  <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#vepu510">media: rockchip: RFC V4L2 driver for the RK3576 VEPU510 H.264 encoder</a></h3><span class="status">Rfc, design pivot after review</span></div>
+  <div class="entry-desc">RFC for a from-scratch mainline video-encoder driver. Reviewed by Heiko Stübner (Rockchip kernel maintainer) and Nicolas Dufresne (Collabora, GStreamer/V4L2 maintainer), with Paul Kocialkowski (upstream stateless-codec author) also weighing in. Based on that discussion, decided to abandon the stateful V4L2 interface and converge instead on a DRM/Vulkan-Video-style kernel/userspace split being developed for the sibling RK3588 chip, judged the better long-term direction rather than defend the original design.</div>
+  <div class="entry-links"><a href="https://lore.kernel.org/all/20260722073417.2064667-1-gahing@gahingwoo.com/">lore.kernel.org: RFC PATCH 0/3</a></div>
 </div></div></div></li>
                 </ul>
               </div>
@@ -340,8 +358,8 @@
   <div class="entry-desc">Collabora (an established Linux kernel and open-source engineering consultancy) posted their own technical summary of the RK3576 NPU work, unprompted. Heiko Stübner, the Rockchip kernel maintainer, commented on the post directly.</div>
   <div class="entry-links"><a href="https://www.linkedin.com/posts/collabora_reverse-engineering-brings-rk3576-npu-support-activity-7483181749645103105-Mqi2">linkedin.com/posts/collabora</a></div>
 </div></div></div></li>
-<li class="pf-v6-c-data-list__item entry" id="vepu510"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
-  <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#vepu510">Rockchip upstream enablement tracker: NPU and VEPU510 reference points</a></h3><span class="status">Third-party</span></div>
+<li class="pf-v6-c-data-list__item entry" id="tracker"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
+  <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#tracker">Rockchip upstream enablement tracker: NPU and VEPU510 reference points</a></h3><span class="status">Third-party</span></div>
   <div class="entry-desc">A community-maintained GitLab tracker, hosted by Collabora, for Rockchip RK3576 mainline enablement status across every subsystem (GPU, ISP, media, NPU, and more). The NPU row cites the RFC series as its reference entry, and the VEPU510 H.264/AVC row was later updated by Sebastian Reichel (Collabora) to cite the video-encoder RFC thread as well, not something I added myself, but how the tracker's maintainers chose to record the state of both.</div>
   <div class="entry-links"><a href="https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3576/-/blob/main/mainline-status.md?ref_type=heads">gitlab.collabora.com: mainline-status.md</a></div>
 </div></div></div></li>
@@ -396,6 +414,6 @@
 <div class="pf-v6-c-back-to-top pf-m-hidden" id="back-to-top">
   <a class="pf-v6-c-button pf-m-primary" href="#main-content"><span class="pf-v6-c-button__text">Back to top</span><span class="pf-v6-c-button__icon pf-m-end"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M1.29 14.71a.996.996 0 0 0 1.41 0L10 7.42l7.3 7.29a.987.987 0 0 0 1.41.02.987.987 0 0 0 .02-1.41l-.02-.02-7.65-7.65A1.49 1.49 0 0 0 10 5.21c-.38 0-.77.15-1.06.44L1.29 13.3a.996.996 0 0 0 0 1.41Z"/></svg></span></a>
 </div>
-<script src="/assets/site.js?v=41993fa8"></script>
+<script src="/assets/site.js?v=e7afcef7"></script>
 </body>
 </html>
