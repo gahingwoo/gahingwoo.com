@@ -102,6 +102,17 @@
     });
     sidebar.addEventListener('click', function (e) { if (e.target.closest('a') && !wide.matches) setSidebar(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !wide.matches) setSidebar(false); });
+    // Below xl the sidebar lies over the content with no scrim of its own, so
+    // a tap on the content beside it closes it, as a panel like this is
+    // expected to. That first tap only dismisses: it does not also follow
+    // whatever link it landed on.
+    document.addEventListener('click', function (e) {
+      if (wide.matches || !sidebar.classList.contains('pf-m-expanded')) return;
+      if (sidebar.contains(e.target) || e.target.closest('.pf-v6-c-masthead__toggle')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      setSidebar(false);
+    }, true);
   }
 
   // Search. The index is generated from the pages and fetched the first time
