@@ -60,12 +60,13 @@ html, body { height: auto; min-height: 100%; overflow: visible; }
 html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline-block; }
 html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 
-/* Page frame. On a wide monitor the whole frame, masthead and content sheet
-   together, stops at 90rem and centres, so the brand, the links and the
-   cards share the same left and right edges, as on redhat.com. Inside the
-   frame the content fills the sheet; PatternFly's own limit-width (125rem)
-   never binds. */
-.pf-v6-c-page { max-width: 90rem; margin-inline: auto; }
+/* Width, the Cockpit way: the masthead spans the viewport and the content
+   sheet fills it. The overview's cards flow into more columns as the screen
+   widens (see .home-cards). Pages of long prose, the evidence appendix and
+   the CV, cap their body at 90rem and keep it to the left, as patternfly.org
+   does, because a 2000px line of text is unreadable. */
+.pf-v6-c-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: none; }
+.prose-page .pf-v6-c-page__main-section.pf-m-limit-width { --pf-v6-c-page--section--m-limit-width--MaxWidth: 90rem; }
 
 /* ---- page head: title, inline subtitle, one action ---- */
 .page-head { display: flex; align-items: center; justify-content: space-between; gap: var(--pf-t--global--spacer--md); flex-wrap: wrap; margin-bottom: var(--pf-t--global--spacer--xl); }
@@ -75,10 +76,12 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 
 /* ---- cards ---- */
 .pf-v6-l-gallery { --pf-v6-l-gallery--GridTemplateColumns--min: min(100%, 25rem); }
-/* Overview cards: one column on phones, two from lg up whatever the width;
-   an odd last card spans the row. */
-@media (min-width: 62rem) { .home-cards { --pf-v6-l-gallery--GridTemplateColumns--min: calc(50% - var(--pf-t--global--spacer--gutter--default) / 2); } }
-.home-cards > .pf-v6-c-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+/* Overview cards: one column on phones, two from lg, three from 2xl, four
+   on a wide monitor. Each column stays at least 26rem wide, so key/value
+   rows never have to break a word. */
+.home-cards { --pf-v6-l-gallery--GridTemplateColumns--min: min(100%, 26rem); }
+@media (min-width: 90.625rem) { .home-cards { --pf-v6-l-gallery--GridTemplateColumns--min: 30rem; } }
+@media (min-width: 140rem) { .home-cards { --pf-v6-l-gallery--GridTemplateColumns--min: 34rem; } }
 .pf-v6-c-card { --pf-v6-c-card--first-child--PaddingBlockStart: var(--pf-t--global--spacer--xl); --pf-v6-c-card--child--PaddingInlineStart: var(--pf-t--global--spacer--xl); --pf-v6-c-card--child--PaddingInlineEnd: var(--pf-t--global--spacer--xl); --pf-v6-c-card--last-child--PaddingBlockEnd: var(--pf-t--global--spacer--xl); }
 .pf-v6-c-card__title-text { font-weight: 400; font-size: 1.375rem; line-height: 1.3; }
 .pf-v6-c-card__body { font-size: 1rem; line-height: 1.5; }
