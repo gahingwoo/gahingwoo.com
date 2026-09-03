@@ -10,6 +10,7 @@ Static site, served by GitHub Pages from the `main` branch. No build step. Built
 | `cv/ga-hing-woo-cv.pdf` | Printed from `/cv/` by `.github/workflows/cv-pdf.yml` on every push that touches `cv/`, `assets/site.css` or `assets/patternfly/`. Do not edit by hand. |
 | `assets/patternfly/` | `patternfly-site.css`, assembled by `build.sh` from the parts of `@patternfly/patternfly` 6.6.1 the site uses (base tokens, fonts and icons; page, masthead, button, card, description list, table, data list, back-to-top, skip link, jump links; gallery and stack layouts), plus the Red Hat variable fonts and icon fonts the CSS references. Upgrade with `npm pack @patternfly/patternfly@6`, unpack, and run `sh assets/patternfly/build.sh package`. |
 | `assets/site.css`, `assets/site.js` | The few site rules on top of PatternFly: document scrolling, lighter headings, key/value rows, folding of long evidence entries, theme toggle, print. |
+| `404.html` | Not-found page, served by GitHub Pages for any missing address. |
 | `assets/og-card.html` | Template for the link-preview image `assets/og.png`. |
 
 ## Updating

@@ -111,6 +111,15 @@
     spy();
   }
 
+  // Entry counts are read off the page, so a hand-added entry cannot leave a
+  // stale number in a title on a page whose point is that its numbers hold.
+  var total = document.getElementById('entry-count');
+  if (total) total.textContent = document.querySelectorAll('.entry').length;
+  Array.prototype.forEach.call(document.querySelectorAll('.section'), function (sec) {
+    var c = sec.querySelector('.pf-v6-c-card__title-text .count');
+    if (c) c.textContent = sec.querySelectorAll('.entry').length;
+  });
+
   // Back to top.
   var totop = document.getElementById('back-to-top');
   if (totop) {

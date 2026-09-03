@@ -57,7 +57,7 @@ html, body { height: auto; min-height: 100%; overflow: visible; }
   .pf-v6-c-masthead__content { justify-content: flex-start; }
 }
 .theme-toggle .icon-sun { display: none; }
-html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline; }
+html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline-block; }
 html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 
 /* ---- page head: title, inline subtitle, one action ---- */
