@@ -10,7 +10,7 @@ PKG="$1"; OUT=assets/patternfly
   echo "/* Built by assets/patternfly/build.sh from @patternfly/patternfly $(grep -o '"version": *"[^"]*"' "$PKG/package.json" | cut -d'"' -f4). Do not edit. */"
   cat "$PKG/patternfly-base.css"
   for c in Page/page Masthead/masthead Button/button Card/card DescriptionList/description-list \
-           Table/table Table/table-grid DataList/data-list BackToTop/back-to-top SkipToContent/skip-to-content JumpLinks/jump-links; do
+           Table/table Table/table-grid DataList/data-list Nav/nav BackToTop/back-to-top SkipToContent/skip-to-content JumpLinks/jump-links; do
     cat "$PKG/components/$c.css"
   done
   for l in Gallery/gallery Stack/stack Grid/grid; do cat "$PKG/layouts/$l.css"; done

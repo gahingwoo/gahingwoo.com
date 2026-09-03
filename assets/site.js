@@ -62,52 +62,48 @@
     if (wasDark) root.classList.add('pf-v6-theme-dark');
   });
 
-  // Section bar: mark the section in view. The threshold is the bar's own
-  // height plus a little, so a heading counts as current once it has passed
-  // under the bar rather than when it merely enters the viewport.
-  var bar = document.getElementById('jump-bar');
-  if (bar) {
-    var links = Array.prototype.slice.call(bar.querySelectorAll('.pf-v6-c-jump-links__item'));
-    var targets = links.map(function (li) {
-      var a = li.querySelector('a');
-      return document.getElementById(a.getAttribute('href').slice(1));
-    });
-    var currentLabel = document.getElementById('jump-current');
-    var nav = document.getElementById('jump-nav');
-    var toggle = document.getElementById('jump-toggle');
-    function setOpen(open) {
-      nav.classList.toggle('pf-m-expanded', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-    if (nav && toggle) {
-      toggle.addEventListener('click', function () { setOpen(!nav.classList.contains('pf-m-expanded')); });
-      links.forEach(function (li) { li.querySelector('a').addEventListener('click', function () { setOpen(false); }); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
-      document.addEventListener('click', function (e) { if (!bar.contains(e.target)) setOpen(false); });
-    }
+  // Sidebar. PatternFly shows it from xl and hides it below; the hamburger
+  // slides it in and out. A choice inside it closes it on small screens.
+  var sidebar = document.getElementById('site-sidebar');
+  var navToggle = document.getElementById('nav-toggle');
+  var wide = window.matchMedia('(min-width: 75rem)');
+  function setSidebar(open) {
+    sidebar.classList.toggle('pf-m-expanded', open);
+    sidebar.classList.toggle('pf-m-collapsed', !open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if (sidebar && navToggle) {
+    setSidebar(wide.matches);
+    wide.addEventListener('change', function (e) { setSidebar(e.matches); });
+    navToggle.addEventListener('click', function () { setSidebar(!sidebar.classList.contains('pf-m-expanded')); });
+    sidebar.addEventListener('click', function (e) { if (e.target.closest('a') && !wide.matches) setSidebar(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !wide.matches) setSidebar(false); });
+  }
+
+  // Scroll-spy: light the sidebar entry for the section in view.
+  var spyList = document.getElementById('page-sections');
+  if (spyList) {
+    var links = Array.prototype.slice.call(spyList.querySelectorAll('a[href^="#"]'));
+    var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
     var spyTicking = false;
     function spy() {
       spyTicking = false;
-      // Anchors land 1.5rem below the top (see .section in site.css); the mark
-      // sits just below that so the section a link lands on is the one lit.
-      var mark = 40, current = -1;
+      var mark = 96, current = -1;
       for (var i = 0; i < targets.length; i++) {
         if (targets[i] && targets[i].getBoundingClientRect().top <= mark) current = i;
       }
       var doc = document.documentElement;
       if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) current = targets.length - 1;
-      links.forEach(function (li, i) {
-        li.classList.toggle('pf-m-current', i === current);
-        if (i === current) li.setAttribute('aria-current', 'location'); else li.removeAttribute('aria-current');
+      if (current < 0) current = 0;
+      links.forEach(function (a, i) {
+        a.classList.toggle('pf-m-current', i === current);
+        if (i === current) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
       });
-      if (currentLabel) currentLabel.textContent = current >= 0 ? links[current].textContent.trim() : '';
     }
     window.addEventListener('scroll', function () {
       if (!spyTicking) { spyTicking = true; window.requestAnimationFrame(spy); }
     }, { passive: true });
     window.addEventListener('resize', spy, { passive: true });
-    window.addEventListener('hashchange', function () { setTimeout(spy, 50); });
-    window.addEventListener('load', function () { setTimeout(spy, 50); });
     spy();
   }
 

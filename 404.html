@@ -34,25 +34,51 @@
   </div>
   <header class="pf-v6-c-masthead">
     <div class="pf-v6-c-masthead__main">
+      <span class="pf-v6-c-masthead__toggle">
+        <button class="pf-v6-c-button pf-m-hamburger pf-m-plain" type="button" aria-label="Site navigation" aria-expanded="false" aria-controls="site-sidebar" id="nav-toggle">
+          <span class="pf-v6-c-button__icon"><svg viewBox="0 0 10 10" class="pf-v6-c-button--hamburger-icon pf-v6-svg" width="1em" height="1em"><path class="pf-v6-c-button--hamburger-icon--top" d="M1,1 L9,1"/><path class="pf-v6-c-button--hamburger-icon--middle" d="M1,5 L9,5"/><path class="pf-v6-c-button--hamburger-icon--arrow" d="M1,5 L1,5 L1,5"/><path class="pf-v6-c-button--hamburger-icon--bottom" d="M9,9 L1,9"/></svg></span>
+        </button>
+      </span>
       <div class="pf-v6-c-masthead__brand">
         <a class="brand" href="/"><span class="brand-name">Ga Hing Woo (Jiaxing Hu)</span><span class="brand-sub">gahingwoo.com</span></a>
       </div>
     </div>
     <div class="pf-v6-c-masthead__content">
-      <nav aria-label="Site">
-        <ul class="top-links">
-          <li><a href="/">Overview</a></li>
-          <li><a href="/evidence">Evidence</a></li>
-          <li><a href="/cv/">CV</a></li>
-          <li><a href="https://blog.gahingwoo.com">Blog</a></li>
-          <li><a href="https://github.com/gahingwoo">GitHub</a></li>
-        </ul>
-      </nav>
+      <ul class="top-links" aria-label="Contact and links">
+        <li><a href="mailto:gahing@gahingwoo.com">Contact</a></li>
+        <li><a href="https://blog.gahingwoo.com">Blog</a></li>
+        <li><a href="https://github.com/gahingwoo">GitHub</a></li>
+      </ul>
       <button class="pf-v6-c-button pf-m-plain theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
         <span class="pf-v6-c-button__icon"><svg class="pf-v6-svg icon-moon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M10.6 2a8 8 0 1 0 7.4 11 6.6 6.6 0 0 1-7.4-11Z"/></svg><svg class="pf-v6-svg icon-sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" role="img" width="1em" height="1em"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.5v2.2M10 16.3v2.2M1.5 10h2.2M16.3 10h2.2M4 4l1.6 1.6M14.4 14.4 16 16M4 16l1.6-1.6M14.4 5.6 16 4"/></svg></span>
       </button>
     </div>
   </header>
+  <aside class="pf-v6-c-page__sidebar" id="site-sidebar">
+    <div class="pf-v6-c-page__sidebar-main">
+      <div class="pf-v6-c-page__sidebar-body pf-m-page-insets">
+        <nav class="pf-v6-c-nav" aria-label="Site">
+      <section class="pf-v6-c-nav__section" aria-labelledby="pages-title">
+        <h2 class="pf-v6-c-nav__section-title" id="pages-title">Pages</h2>
+        <ul class="pf-v6-c-nav__list" role="list">
+          <li class="pf-v6-c-nav__item"><a href="/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Overview</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/evidence" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Evidence appendix</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/cv/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">CV</span></a></li>
+        </ul>
+      </section>
+      <section class="pf-v6-c-nav__section" aria-labelledby="elsewhere-title">
+        <h2 class="pf-v6-c-nav__section-title" id="elsewhere-title">Elsewhere</h2>
+        <ul class="pf-v6-c-nav__list" role="list">
+          <li class="pf-v6-c-nav__item"><a href="https://blog.gahingwoo.com" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Blog</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://github.com/gahingwoo" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">GitHub</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">LinkedIn</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://orcid.org/0009-0002-0840-8951" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">ORCID</span></a></li>
+        </ul>
+      </section>
+        </nav>
+      </div>
+    </div>
+  </aside>
   <div class="pf-v6-c-page__main-container" tabindex="-1">
     <main class="pf-v6-c-page__main" tabindex="-1" id="main-content">
 

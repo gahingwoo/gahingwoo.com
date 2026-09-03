@@ -60,16 +60,11 @@ html, body { height: auto; min-height: 100%; overflow: visible; }
 html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline-block; }
 html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 
-/* Width, by the Red Hat Design System grid: the page and masthead backgrounds
-   run edge to edge, and everything inside them, the masthead's brand and
-   links included, sits in one centred container of at most 1376px (86rem).
-   Body text is capped at 789px, the system's seven-column limit, which is
-   also inside PatternFly's 20 to 100 characters a line. */
-.pf-v6-c-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: 86rem; }
-.pf-v6-c-page__main-section.pf-m-limit-width > .pf-v6-c-page__main-body { margin-inline: auto; }
-/* The masthead is a subgrid of the page and ignores max-width, so its
-   contents are aligned to the container with padding instead. */
-.pf-v6-c-masthead { --pf-v6-c-masthead--PaddingInline: max(calc(2 * var(--pf-t--global--spacer--inset--page-chrome)), calc((100% - 86rem) / 2)); }
+/* Width, the Cockpit way: a sidebar of navigation on the left, and the
+   content sheet takes the rest of the screen. Cards, tables and rows stretch
+   with it; runs of prose stop at 789px, the Red Hat Design System's
+   seven-column limit, inside PatternFly's 20 to 100 characters a line. */
+.pf-v6-c-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: none; }
 .pf-v6-c-page__main-section.pf-m-limit-width > .pf-v6-c-page__main-body { width: 100%; }
 .card-text, .entry-desc, .cv-desc, .cv-list li, .cv-summary, .kv .pf-v6-c-description-list__description { max-width: 789px; }
 
@@ -81,10 +76,8 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 
 /* ---- cards ---- */
 .pf-v6-l-gallery { --pf-v6-l-gallery--GridTemplateColumns--min: min(100%, 25rem); }
-/* Overview cards: one column on phones, two from lg up. Inside the 1376px
-   container two columns is the most that keeps a key/value row readable. */
+/* Overview cards: Cockpit's gallery, as many columns as fit at 26rem each. */
 .home-cards { --pf-v6-l-gallery--GridTemplateColumns--min: min(100%, 26rem); }
-@media (min-width: 75rem) { .home-cards { --pf-v6-l-gallery--GridTemplateColumns--min: 30rem; } }
 .pf-v6-c-card { --pf-v6-c-card--first-child--PaddingBlockStart: var(--pf-t--global--spacer--xl); --pf-v6-c-card--child--PaddingInlineStart: var(--pf-t--global--spacer--xl); --pf-v6-c-card--child--PaddingInlineEnd: var(--pf-t--global--spacer--xl); --pf-v6-c-card--last-child--PaddingBlockEnd: var(--pf-t--global--spacer--xl); }
 .pf-v6-c-card__title-text { font-weight: 400; font-size: 1.375rem; line-height: 1.3; }
 .pf-v6-c-card__body { font-size: 1rem; line-height: 1.5; }
@@ -105,26 +98,13 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 .section-title { font-family: var(--pf-t--global--font--family--heading); font-weight: 400; font-size: 1.375rem; margin: 0 0 var(--pf-t--global--spacer--md) 0; }
 .section-title .count { color: var(--pf-t--global--text--color--subtle); font-size: 1rem; margin-inline-start: var(--pf-t--global--spacer--sm); }
 
-/* ---- section rail on the evidence page ----
-   From lg up, a vertical jump-links list in a column to the right of the
-   content, sticky while the page scrolls, as patternfly.org lays out its
-   table of contents. Below lg the same list is an expandable toggle above
-   the content. PatternFly's expandable / non-expandable modifiers do the
-   switching; this only places it. */
-.jump-rail { --pf-v6-l-grid--item--Order: -1; }  /* the grid layout owns `order`; set it through its variable */
-@media (min-width: 62rem) {
-  .jump-rail { --pf-v6-l-grid--item--Order: 0; position: sticky; top: var(--pf-t--global--spacer--lg); align-self: start; }
-  /* Content takes the width; the rail is a fixed 16rem column, not a quarter
-     of a 2560px screen. */
-  .evidence-grid { grid-template-columns: minmax(0, 1fr) 16rem; }
-  .evidence-grid > .evidence-main, .evidence-grid > .jump-rail { grid-column: auto; }
-}
-.jump-rail .pf-v6-c-jump-links__label { font-family: var(--pf-t--global--font--family--heading); font-size: 1rem; color: var(--pf-t--global--text--color--subtle); }
-.jump-rail .pf-v6-c-jump-links__toggle .pf-v6-c-button { padding-inline-start: 0; }
-.jump-toggle-current { color: var(--pf-t--global--text--color--subtle); }
-.jump-toggle-current:not(:empty)::before { content: ": "; }
-.jump-rail .pf-v6-c-jump-links__list { --pf-v6-c-jump-links__link--PaddingBlockStart: var(--pf-t--global--spacer--xs); --pf-v6-c-jump-links__link--PaddingBlockEnd: var(--pf-t--global--spacer--xs); }
-.evidence-main > .section:first-child { margin-top: 0; }
+/* ---- sidebar ----
+   PatternFly's page sidebar: always open from xl, slid in by the hamburger
+   below that. The section list of the current page lives here, as Cockpit
+   keeps its System and Tools groups. */
+.pf-v6-c-page__sidebar-body { padding-block-start: var(--pf-t--global--spacer--md); }
+.pf-v6-c-nav__section-title { font-family: var(--pf-t--global--font--family--heading); }
+@media print { .pf-v6-c-page__sidebar { display: none !important; } }
 
 /* ---- evidence entries: rows of a data list inside one card per group ---- */
 .section { margin-top: var(--pf-t--global--spacer--lg); scroll-margin-top: var(--pf-t--global--spacer--lg); }

@@ -48,25 +48,65 @@
   </div>
   <header class="pf-v6-c-masthead">
     <div class="pf-v6-c-masthead__main">
+      <span class="pf-v6-c-masthead__toggle">
+        <button class="pf-v6-c-button pf-m-hamburger pf-m-plain" type="button" aria-label="Site navigation" aria-expanded="false" aria-controls="site-sidebar" id="nav-toggle">
+          <span class="pf-v6-c-button__icon"><svg viewBox="0 0 10 10" class="pf-v6-c-button--hamburger-icon pf-v6-svg" width="1em" height="1em"><path class="pf-v6-c-button--hamburger-icon--top" d="M1,1 L9,1"/><path class="pf-v6-c-button--hamburger-icon--middle" d="M1,5 L9,5"/><path class="pf-v6-c-button--hamburger-icon--arrow" d="M1,5 L1,5 L1,5"/><path class="pf-v6-c-button--hamburger-icon--bottom" d="M9,9 L1,9"/></svg></span>
+        </button>
+      </span>
       <div class="pf-v6-c-masthead__brand">
         <a class="brand" href="/"><span class="brand-name">Ga Hing Woo (Jiaxing Hu)</span><span class="brand-sub">gahingwoo.com</span></a>
       </div>
     </div>
     <div class="pf-v6-c-masthead__content">
-      <nav aria-label="Site">
-        <ul class="top-links">
-          <li><a href="/" aria-current="page">Overview</a></li>
-          <li><a href="/evidence">Evidence</a></li>
-          <li><a href="/cv/">CV</a></li>
-          <li><a href="https://blog.gahingwoo.com">Blog</a></li>
-          <li><a href="https://github.com/gahingwoo">GitHub</a></li>
-        </ul>
-      </nav>
+      <ul class="top-links" aria-label="Contact and links">
+        <li><a href="mailto:gahing@gahingwoo.com">Contact</a></li>
+        <li><a href="https://blog.gahingwoo.com">Blog</a></li>
+        <li><a href="https://github.com/gahingwoo">GitHub</a></li>
+      </ul>
       <button class="pf-v6-c-button pf-m-plain theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
         <span class="pf-v6-c-button__icon"><svg class="pf-v6-svg icon-moon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M10.6 2a8 8 0 1 0 7.4 11 6.6 6.6 0 0 1-7.4-11Z"/></svg><svg class="pf-v6-svg icon-sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" role="img" width="1em" height="1em"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.5v2.2M10 16.3v2.2M1.5 10h2.2M16.3 10h2.2M4 4l1.6 1.6M14.4 14.4 16 16M4 16l1.6-1.6M14.4 5.6 16 4"/></svg></span>
       </button>
     </div>
   </header>
+  <aside class="pf-v6-c-page__sidebar" id="site-sidebar">
+    <div class="pf-v6-c-page__sidebar-main">
+      <div class="pf-v6-c-page__sidebar-body pf-m-page-insets">
+        <nav class="pf-v6-c-nav" aria-label="Site">
+      <section class="pf-v6-c-nav__section" aria-labelledby="pages-title">
+        <h2 class="pf-v6-c-nav__section-title" id="pages-title">Pages</h2>
+        <ul class="pf-v6-c-nav__list" role="list">
+          <li class="pf-v6-c-nav__item"><a href="/" class="pf-v6-c-nav__link pf-m-current" aria-current="page"><span class="pf-v6-c-nav__link-text">Overview</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/evidence" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Evidence appendix</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/cv/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">CV</span></a></li>
+        </ul>
+      </section>
+      <section class="pf-v6-c-nav__section" aria-labelledby="page-sections-title">
+        <h2 class="pf-v6-c-nav__section-title" id="page-sections-title">On this page</h2>
+        <ul class="pf-v6-c-nav__list" role="list" id="page-sections">
+          <li class="pf-v6-c-nav__item"><a href="#about" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">About</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#in-mainline-linux" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">In mainline Linux</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#firmware-and-trusted-execution" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Firmware and trusted execution</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#under-review" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Under review</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#what-is-next" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">What is next</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#published-and-cited" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Published and cited</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#tools-used-by-others" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Tools used by others</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#writing" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Writing</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#verification" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Verification</span></a></li>
+        </ul>
+      </section>
+      <section class="pf-v6-c-nav__section" aria-labelledby="elsewhere-title">
+        <h2 class="pf-v6-c-nav__section-title" id="elsewhere-title">Elsewhere</h2>
+        <ul class="pf-v6-c-nav__list" role="list">
+          <li class="pf-v6-c-nav__item"><a href="https://blog.gahingwoo.com" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Blog</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://github.com/gahingwoo" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">GitHub</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">LinkedIn</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://orcid.org/0009-0002-0840-8951" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">ORCID</span></a></li>
+        </ul>
+      </section>
+        </nav>
+      </div>
+    </div>
+  </aside>
   <div class="pf-v6-c-page__main-container" tabindex="-1">
     <main class="pf-v6-c-page__main" tabindex="-1" id="main-content">
 
@@ -77,7 +117,7 @@
             <a class="pf-v6-c-button pf-m-secondary" href="/cv/"><span class="pf-v6-c-button__text">View CV</span></a>
           </div>
           <div class="pf-v6-l-gallery pf-m-gutter home-cards">
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="about">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">About</h2></div>
   <div class="pf-v6-c-card__body"><div class="card-text">
 <p>Linux runs most of the world's servers and every Android phone. Every change to it is reviewed in public by a maintainer who can refuse it. Five of mine were accepted into Linux 7.3, and the review threads are linked below.</p>
@@ -91,7 +131,7 @@
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Blog</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com">blog.gahingwoo.com</a></div></dd></div>
 </dl></div></div>
 </div>
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="in-mainline-linux">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">In mainline Linux</h2></div>
   <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">iommu/rockchip</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#iommu-fixes">Two fixes for the RK3576 NPU's IOMMU instances</a><span class="meta">Applied by Will Deacon, IOMMU co-maintainer. Linux 7.3.</span></div></dd></div>
@@ -100,7 +140,7 @@
 </dl></div>
   <div class="pf-v6-c-card__footer"><a href="/evidence#mainline-linux">View commits and review threads</a></div>
 </div>
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="firmware-and-trusted-execution">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Firmware and trusted execution</h2></div>
   <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">OP-TEE</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#optee">First RK3576 platform port</a><span class="meta">Merged. Reviewed-by Cherry Embedded Solutions; run by Flipper Devices on Flipper One, 35,681 subtests, zero failures.</span></div></dd></div>
@@ -110,7 +150,7 @@
 </dl></div>
   <div class="pf-v6-c-card__footer"><a href="/evidence#merged-upstream">View the merged firmware work</a></div>
 </div>
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="under-review">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Under review</h2></div>
   <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Linux, accel/rocket</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#npu-series">RK3576 NPU enablement, 14 patches, v11</a><span class="meta">Reviewed-by &times;4, Acked-by &times;2, Tested-by &times;2 on RK3588. The driver's author is reviewing.</span></div></dd></div>
@@ -119,7 +159,7 @@
 </dl></div>
   <div class="pf-v6-c-card__footer"><a href="/evidence#under-review">Follow the threads</a></div>
 </div>
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="what-is-next">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">What is next</h2></div>
   <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">RK3576 NPU</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#npu-series">Into the accel tree</a><span class="meta">The 14-patch series is at v11 with the driver's author reviewing. The goal is for it to be applied, so the RK3576 NPU works on a stock kernel.</span></div></dd></div>
@@ -130,7 +170,7 @@
 </dl></div>
   <div class="pf-v6-c-card__footer"><a href="/evidence#under-review">Follow the threads</a></div>
 </div>
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="published-and-cited">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Published and cited</h2></div>
   <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Preprint</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#preprint">RK3576 NPU bring-up, version 2</a><span class="meta">Zenodo DOI. Version 1's central result is withdrawn on the first page of version 2, with the cause.</span></div></dd></div>
@@ -139,7 +179,7 @@
 </dl></div>
   <div class="pf-v6-c-card__footer"><a href="/evidence#published-research">View the research record</a></div>
 </div>
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="tools-used-by-others">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Tools used by others</h2></div>
   <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">SoC-Consistency</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence#soc-consistency">Static analysis of devicetree power trees</a><span class="meta">PyPI; packaged into Arch Linux by an unaffiliated maintainer.</span></div></dd></div>
@@ -149,7 +189,7 @@
 </dl></div>
   <div class="pf-v6-c-card__footer"><a href="/evidence#tools-in-use">View the packaging and documentation</a></div>
 </div>
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="writing">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Writing</h2></div>
   <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">17 Jul 2026</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com/posts/rk3576-armsom-cm5-devicetree/">ArmSoM Noticed the Work, and the CM5 Device Tree Hits v4</a></div></dd></div>
@@ -158,7 +198,7 @@
 </dl></div>
   <div class="pf-v6-c-card__footer"><a href="https://blog.gahingwoo.com">All posts</a></div>
 </div>
-<div class="pf-v6-c-card ">
+<div class="pf-v6-c-card " id="verification">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Verification</h2></div>
   <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Evidence appendix</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Every claim, each with a link to the merged commit, review thread or DOI. <a href="/evidence">Open the appendix</a></div></dd></div>

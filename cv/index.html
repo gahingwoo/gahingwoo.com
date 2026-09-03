@@ -83,25 +83,64 @@
   </div>
   <header class="pf-v6-c-masthead">
     <div class="pf-v6-c-masthead__main">
+      <span class="pf-v6-c-masthead__toggle">
+        <button class="pf-v6-c-button pf-m-hamburger pf-m-plain" type="button" aria-label="Site navigation" aria-expanded="false" aria-controls="site-sidebar" id="nav-toggle">
+          <span class="pf-v6-c-button__icon"><svg viewBox="0 0 10 10" class="pf-v6-c-button--hamburger-icon pf-v6-svg" width="1em" height="1em"><path class="pf-v6-c-button--hamburger-icon--top" d="M1,1 L9,1"/><path class="pf-v6-c-button--hamburger-icon--middle" d="M1,5 L9,5"/><path class="pf-v6-c-button--hamburger-icon--arrow" d="M1,5 L1,5 L1,5"/><path class="pf-v6-c-button--hamburger-icon--bottom" d="M9,9 L1,9"/></svg></span>
+        </button>
+      </span>
       <div class="pf-v6-c-masthead__brand">
         <a class="brand" href="/"><span class="brand-name">Ga Hing Woo (Jiaxing Hu)</span><span class="brand-sub">gahingwoo.com</span></a>
       </div>
     </div>
     <div class="pf-v6-c-masthead__content">
-      <nav aria-label="Site">
-        <ul class="top-links">
-          <li><a href="/">Overview</a></li>
-          <li><a href="/evidence">Evidence</a></li>
-          <li><a href="/cv/" aria-current="page">CV</a></li>
-          <li><a href="https://blog.gahingwoo.com">Blog</a></li>
-          <li><a href="https://github.com/gahingwoo">GitHub</a></li>
-        </ul>
-      </nav>
+      <ul class="top-links" aria-label="Contact and links">
+        <li><a href="mailto:gahing@gahingwoo.com">Contact</a></li>
+        <li><a href="https://blog.gahingwoo.com">Blog</a></li>
+        <li><a href="https://github.com/gahingwoo">GitHub</a></li>
+      </ul>
       <button class="pf-v6-c-button pf-m-plain theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
         <span class="pf-v6-c-button__icon"><svg class="pf-v6-svg icon-moon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M10.6 2a8 8 0 1 0 7.4 11 6.6 6.6 0 0 1-7.4-11Z"/></svg><svg class="pf-v6-svg icon-sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" role="img" width="1em" height="1em"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.5v2.2M10 16.3v2.2M1.5 10h2.2M16.3 10h2.2M4 4l1.6 1.6M14.4 14.4 16 16M4 16l1.6-1.6M14.4 5.6 16 4"/></svg></span>
       </button>
     </div>
   </header>
+  <aside class="pf-v6-c-page__sidebar" id="site-sidebar">
+    <div class="pf-v6-c-page__sidebar-main">
+      <div class="pf-v6-c-page__sidebar-body pf-m-page-insets">
+        <nav class="pf-v6-c-nav" aria-label="Site">
+      <section class="pf-v6-c-nav__section" aria-labelledby="pages-title">
+        <h2 class="pf-v6-c-nav__section-title" id="pages-title">Pages</h2>
+        <ul class="pf-v6-c-nav__list" role="list">
+          <li class="pf-v6-c-nav__item"><a href="/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Overview</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/evidence" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Evidence appendix</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/cv/" class="pf-v6-c-nav__link pf-m-current" aria-current="page"><span class="pf-v6-c-nav__link-text">CV</span></a></li>
+        </ul>
+      </section>
+      <section class="pf-v6-c-nav__section" aria-labelledby="page-sections-title">
+        <h2 class="pf-v6-c-nav__section-title" id="page-sections-title">Sections</h2>
+        <ul class="pf-v6-c-nav__list" role="list" id="page-sections">
+          <li class="pf-v6-c-nav__item"><a href="#cv-upstream-contributions-accepted" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Upstream contributions, accepted</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#cv-under-review" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Under review</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#cv-what-is-next" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">What is next</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#cv-publication" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Publication</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#cv-selected-projects" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Selected projects</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#cv-review-and-community" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Review and community</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#cv-education" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Education</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#cv-skills-as-used-in-the-work-above" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Skills, as used in the work above</span></a></li>
+        </ul>
+      </section>
+      <section class="pf-v6-c-nav__section" aria-labelledby="elsewhere-title">
+        <h2 class="pf-v6-c-nav__section-title" id="elsewhere-title">Elsewhere</h2>
+        <ul class="pf-v6-c-nav__list" role="list">
+          <li class="pf-v6-c-nav__item"><a href="https://blog.gahingwoo.com" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Blog</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://github.com/gahingwoo" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">GitHub</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">LinkedIn</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://orcid.org/0009-0002-0840-8951" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">ORCID</span></a></li>
+        </ul>
+      </section>
+        </nav>
+      </div>
+    </div>
+  </aside>
   <div class="pf-v6-c-page__main-container" tabindex="-1">
     <main class="pf-v6-c-page__main" tabindex="-1" id="main-content">
 
@@ -133,7 +172,7 @@
 
           <p class="cv-summary pf-v6-u-mb-xl">I bring up new Rockchip silicon on mainline software and send the work upstream. Five of my commits are in Linux 7.3, applied by the IOMMU, Rockchip and networking maintainers. The first OP-TEE port for the RK3576 and a Trusted Firmware-A secure-boot fix are merged. I reverse-engineered the RK3576's NPU from vendor model files to a working driver stack, and when a published result of mine turned out to be wrong I retracted it by name. Kernel work is signed off as Jiaxing Hu; everywhere else I am gahingwoo.</p>
 
-          <section class="cv-section">
+          <section class="cv-section" id="cv-upstream-contributions-accepted">
             <h2 class="section-title">Upstream contributions, accepted</h2>
 
             <div class="cv-item">
@@ -172,7 +211,7 @@
             </div>
           </section>
 
-          <section class="cv-section">
+          <section class="cv-section" id="cv-under-review">
             <h2 class="section-title">Under review</h2>
 
             <div class="cv-item">
@@ -197,7 +236,7 @@
             </div>
           </section>
 
-          <section class="cv-section">
+          <section class="cv-section" id="cv-what-is-next">
             <h2 class="section-title">What is next</h2>
             <ul class="cv-list">
               <li><a href="/evidence#npu-series">RK3576 NPU series</a>: into the accel tree. v11 is under review by the driver's author; the goal is for the 14 patches to be applied, so the NPU works on a stock kernel.</li>
@@ -208,7 +247,7 @@
             </ul>
           </section>
 
-          <section class="cv-section">
+          <section class="cv-section" id="cv-publication">
             <h2 class="section-title">Publication</h2>
             <div class="cv-item">
               <p class="cv-title"><a href="/evidence#preprint">RK3576 NPU bring-up on the open driver stack: preprint, version 2</a></p>
@@ -218,7 +257,7 @@
             </div>
           </section>
 
-          <section class="cv-section">
+          <section class="cv-section" id="cv-selected-projects">
             <h2 class="section-title">Selected projects</h2>
             <ul class="cv-list">
               <li><a href="/evidence#charsiu">charsiu</a>: an LLM runtime that talks to the mainline NPU driver directly, no Mesa and no vendor runtime. Nine models, Llama-3.2-1B among them, run end to end at four bits with output identical to the exact CPU arithmetic. C. <a href="https://github.com/gahingwoo/charsiu">github.com/gahingwoo/charsiu</a></li>
@@ -231,7 +270,7 @@
             </ul>
           </section>
 
-          <section class="cv-section">
+          <section class="cv-section" id="cv-review-and-community">
             <h2 class="section-title">Review and community</h2>
             <ul class="cv-list">
               <li><a href="/evidence#reviews-given-rocket">Reviewed-by given twice</a> on another contributor's accel/rocket patches, the second only after finding a real out-of-bounds write on v1 and seeing it fixed in v2. <a href="https://lore.kernel.org/all/20260729105013.1255526-1-gahing@gahingwoo.com/">lore: clocks by name</a>, <a href="https://lore.kernel.org/all/20260801033614.2008530-1-gahing@gahingwoo.com/">lore: lifecycle fix v2</a></li>
@@ -241,7 +280,7 @@
             </ul>
           </section>
 
-          <section class="cv-section">
+          <section class="cv-section" id="cv-education">
             <h2 class="section-title">Education</h2>
             <div class="cv-item">
               <p class="cv-title">Mount Albert Grammar School, Auckland</p>
@@ -250,7 +289,7 @@
             </div>
           </section>
 
-          <section class="cv-section">
+          <section class="cv-section" id="cv-skills-as-used-in-the-work-above">
             <h2 class="section-title">Skills, as used in the work above</h2>
             <dl class="pf-v6-c-description-list pf-m-horizontal-on-sm pf-m-compact pf-m-2-col-on-md skills" style="--pf-v6-c-description-list--m-horizontal__term--width: 11em">
               <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Linux kernel</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">IOMMU, devicetree and bindings, pmdomain, PHY drivers, accel subsystem, V4L2; the mailing-list workflow with b4 and checkpatch, from RFC to applied.</div></dd></div>

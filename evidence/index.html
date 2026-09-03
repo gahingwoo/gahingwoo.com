@@ -33,25 +33,67 @@
   </div>
   <header class="pf-v6-c-masthead">
     <div class="pf-v6-c-masthead__main">
+      <span class="pf-v6-c-masthead__toggle">
+        <button class="pf-v6-c-button pf-m-hamburger pf-m-plain" type="button" aria-label="Site navigation" aria-expanded="false" aria-controls="site-sidebar" id="nav-toggle">
+          <span class="pf-v6-c-button__icon"><svg viewBox="0 0 10 10" class="pf-v6-c-button--hamburger-icon pf-v6-svg" width="1em" height="1em"><path class="pf-v6-c-button--hamburger-icon--top" d="M1,1 L9,1"/><path class="pf-v6-c-button--hamburger-icon--middle" d="M1,5 L9,5"/><path class="pf-v6-c-button--hamburger-icon--arrow" d="M1,5 L1,5 L1,5"/><path class="pf-v6-c-button--hamburger-icon--bottom" d="M9,9 L1,9"/></svg></span>
+        </button>
+      </span>
       <div class="pf-v6-c-masthead__brand">
         <a class="brand" href="/"><span class="brand-name">Ga Hing Woo (Jiaxing Hu)</span><span class="brand-sub">gahingwoo.com</span></a>
       </div>
     </div>
     <div class="pf-v6-c-masthead__content">
-      <nav aria-label="Site">
-        <ul class="top-links">
-          <li><a href="/">Overview</a></li>
-          <li><a href="/evidence" aria-current="page">Evidence</a></li>
-          <li><a href="/cv/">CV</a></li>
-          <li><a href="https://blog.gahingwoo.com">Blog</a></li>
-          <li><a href="https://github.com/gahingwoo">GitHub</a></li>
-        </ul>
-      </nav>
+      <ul class="top-links" aria-label="Contact and links">
+        <li><a href="mailto:gahing@gahingwoo.com">Contact</a></li>
+        <li><a href="https://blog.gahingwoo.com">Blog</a></li>
+        <li><a href="https://github.com/gahingwoo">GitHub</a></li>
+      </ul>
       <button class="pf-v6-c-button pf-m-plain theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
         <span class="pf-v6-c-button__icon"><svg class="pf-v6-svg icon-moon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M10.6 2a8 8 0 1 0 7.4 11 6.6 6.6 0 0 1-7.4-11Z"/></svg><svg class="pf-v6-svg icon-sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" role="img" width="1em" height="1em"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.5v2.2M10 16.3v2.2M1.5 10h2.2M16.3 10h2.2M4 4l1.6 1.6M14.4 14.4 16 16M4 16l1.6-1.6M14.4 5.6 16 4"/></svg></span>
       </button>
     </div>
   </header>
+  <aside class="pf-v6-c-page__sidebar" id="site-sidebar">
+    <div class="pf-v6-c-page__sidebar-main">
+      <div class="pf-v6-c-page__sidebar-body pf-m-page-insets">
+        <nav class="pf-v6-c-nav" aria-label="Site">
+      <section class="pf-v6-c-nav__section" aria-labelledby="pages-title">
+        <h2 class="pf-v6-c-nav__section-title" id="pages-title">Pages</h2>
+        <ul class="pf-v6-c-nav__list" role="list">
+          <li class="pf-v6-c-nav__item"><a href="/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Overview</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/evidence" class="pf-v6-c-nav__link pf-m-current" aria-current="page"><span class="pf-v6-c-nav__link-text">Evidence appendix</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/cv/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">CV</span></a></li>
+        </ul>
+      </section>
+      <section class="pf-v6-c-nav__section" aria-labelledby="page-sections-title">
+        <h2 class="pf-v6-c-nav__section-title" id="page-sections-title">Sections</h2>
+        <ul class="pf-v6-c-nav__list" role="list" id="page-sections">
+          <li class="pf-v6-c-nav__item"><a href="#merged-upstream" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Merged upstream</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#mainline-linux" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Merged into mainline Linux</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#withdrawn" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Withdrawn on maintainer guidance</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#under-review" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Under review</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#reviews-given" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Reviews given to other contributors</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#published-research" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Published research</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#independent-projects" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Independent projects</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#tools-in-use" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Tools in use by others</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#third-party-validation" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Third-party validation</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#community-deployment" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Community deployment</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="#peer-collaboration" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Peer collaboration</span></a></li>
+        </ul>
+      </section>
+      <section class="pf-v6-c-nav__section" aria-labelledby="elsewhere-title">
+        <h2 class="pf-v6-c-nav__section-title" id="elsewhere-title">Elsewhere</h2>
+        <ul class="pf-v6-c-nav__list" role="list">
+          <li class="pf-v6-c-nav__item"><a href="https://blog.gahingwoo.com" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Blog</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://github.com/gahingwoo" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">GitHub</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">LinkedIn</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="https://orcid.org/0009-0002-0840-8951" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">ORCID</span></a></li>
+        </ul>
+      </section>
+        </nav>
+      </div>
+    </div>
+  </aside>
   <div class="pf-v6-c-page__main-container" tabindex="-1">
     <main class="pf-v6-c-page__main" tabindex="-1" id="main-content">
 
@@ -62,8 +104,7 @@
             <h1 class="page-title" id="page-title">Evidence appendix <span class="subtitle"><span id="entry-count">28</span> entries, updated 3 September 2026</span></h1>
           </div>
 
-          <div class="pf-v6-l-grid pf-m-gutter evidence-grid">
-            <div class="pf-v6-l-grid__item pf-m-9-col-on-lg evidence-main">
+          <div class="evidence-main">
             <div class="pf-v6-c-card">
               <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">About this page</h2></div>
               <div class="pf-v6-c-card__body"><div class="card-text">
@@ -327,33 +368,7 @@
           </section>
 
             </div>
-            <aside class="pf-v6-l-grid__item pf-m-3-col-on-lg jump-rail" id="jump-bar">
-        <nav class="pf-v6-c-jump-links pf-m-vertical pf-m-expandable pf-m-non-expandable-on-lg" aria-label="Sections" id="jump-nav">
-          <div class="pf-v6-c-jump-links__header" id="jump-header">
-            <div class="pf-v6-c-jump-links__toggle">
-              <button class="pf-v6-c-button pf-m-plain" type="button" aria-expanded="false" aria-controls="jump-list" id="jump-toggle">
-                <span class="pf-v6-c-button__icon pf-m-start"><span class="pf-v6-c-jump-links__toggle-icon"><svg class="pf-v6-svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true" role="img" width="1em" height="1em"><path d="M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z"/></svg></span></span>
-                <span class="pf-v6-c-button__text"><span class="jump-toggle-label">Jump to section</span><span class="jump-toggle-current" id="jump-current"></span></span>
-              </button>
-            </div>
-            <div class="pf-v6-c-jump-links__label">Sections</div>
-          </div>
-          <ul class="pf-v6-c-jump-links__list" role="list" aria-labelledby="jump-header" id="jump-list">
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#merged-upstream"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Merged upstream</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#mainline-linux"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Merged into mainline Linux</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#withdrawn"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Withdrawn on maintainer guidance</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#under-review"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Under review</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#reviews-given"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Reviews given to other contributors</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#published-research"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Published research</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#independent-projects"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Independent projects</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#tools-in-use"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Tools in use by others</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#third-party-validation"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Third-party validation</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#community-deployment"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Community deployment</span></span></a></span></li>
-      <li class="pf-v6-c-jump-links__item"><span class="pf-v6-c-jump-links__link"><a class="pf-v6-c-button pf-m-link" href="#peer-collaboration"><span class="pf-v6-c-button__text"><span class="pf-v6-c-jump-links__link-text">Peer collaboration</span></span></a></span></li>
-          </ul>
-        </nav>
-            </aside>
-          </div>
+
           <footer class="site-footer">
             <span>Ga Hing Woo (Jiaxing Hu) &middot; Auckland, New Zealand</span>
             <a href="/">Overview</a>
