@@ -46,7 +46,7 @@
   .cv-summary { font-size: var(--pf-t--global--font--size--body--lg); max-width: 72ch; }
   .cv-foot { font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; border-top: 1px solid var(--pf-t--global--border--color--default); padding-top: var(--pf-t--global--spacer--sm); margin-top: var(--pf-t--global--spacer--xl); }
 
-  @page { size: A4; margin: 11mm 13mm 11mm 13mm; }
+  @page { size: A4; margin: 10mm 13mm 10mm 13mm; }
   @media print {
     html { --pf-t--global--background--color--primary--default: #fff; }
     body { font-size: 9.5pt; line-height: 1.4; }
@@ -54,16 +54,17 @@
     .pf-v6-c-page__main-body { padding: 0; }
     .cv-head { padding-bottom: 6pt; margin-bottom: 8pt; }
     .cv-summary { font-size: 10pt; margin-bottom: 10pt; }
-    .cv-section { margin-bottom: 9pt; }
+    .cv-section { margin-bottom: 7pt; }
     .cv-section > h2 { font-size: 1.25rem; margin-bottom: 6pt; break-after: avoid; }
-    .cv-item { margin-bottom: 6pt; grid-template-columns: 1fr auto; break-inside: auto; }
+    .cv-item { margin-bottom: 5pt; grid-template-columns: 1fr auto; break-inside: auto; }
     .cv-item .cv-when { text-align: end; font-size: 8.5pt; }
     .cv-item .cv-title { font-size: 10.5pt; }
-    .cv-item .cv-desc { font-size: 9pt; }
+    .cv-item .cv-desc { font-size: 8.8pt; }
     .cv-item .cv-refs { font-size: 8pt; }
-    .cv-list, .skills { font-size: 9pt; }
+    .cv-list, .skills { font-size: 8.8pt; }
     .cv-list li { margin-bottom: 3pt; }
-    .cv-foot { font-size: 8pt; margin-top: 8pt; padding-top: 4pt; }
+    .cv-foot { display: none; }
+    .print-date { display: block !important; }
     a { color: #0057b8; text-decoration: none; }
   }
 </style>
@@ -110,7 +111,7 @@
             <img src="/assets/avatar.png" alt="" width="48" height="48" style="border-radius:8px;border:1px solid var(--pf-t--global--border--color--default)">
             <div>
               <h1 class="page-title">Ga Hing Woo <span class="subtitle">Jiaxing Hu</span></h1>
-              <div class="pf-v6-u-text-color-subtle">Firmware and embedded Linux &middot; Auckland, New Zealand</div>
+              <div class="pf-v6-u-text-color-subtle">Year 13 student, Mount Albert Grammar School &middot; Firmware and embedded Linux &middot; Auckland, New Zealand</div>
               <div class="cv-refs pf-v6-u-mt-xs" style="display:flex;flex-wrap:wrap;gap:2px 14px;font-size:var(--pf-t--global--font--size--body--sm)">
                 <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a>
                 <a href="https://gahingwoo.com">gahingwoo.com</a>
@@ -118,6 +119,7 @@
                 <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/">linkedin.com/in/ga-hing-woo-906aa7423</a>
                 <a href="https://orcid.org/0009-0002-0840-8951">orcid.org/0009-0002-0840-8951</a>
               </div>
+              <div class="print-date pf-v6-u-text-color-subtle" style="display:none;font-size:8pt;margin-top:2pt">Content as of 3 September 2026. Sources: gahingwoo.com/evidence &middot; this page: gahingwoo.com/cv</div>
             </div>
           </header>
 
@@ -218,14 +220,12 @@
             </ul>
           </section>
 
-          <!-- Education is not on the evidence page, so nothing is filled in here.
-               Replace the placeholder text and remove the `hidden` attribute to show it. -->
-          <section class="cv-section" hidden>
+          <section class="cv-section">
             <h2 class="section-title">Education</h2>
             <div class="cv-item">
-              <p class="cv-title">Institution</p>
-              <p class="cv-when">years</p>
-              <p class="cv-desc">Programme, and anything worth a line: thesis, award, relevant coursework.</p>
+              <p class="cv-title">Mount Albert Grammar School, Auckland</p>
+              <p class="cv-when">Year 13 &middot; 2026</p>
+              <p class="cv-desc">Secondary school student. The upstream, research and tooling work above was done alongside school.</p>
             </div>
           </section>
 
