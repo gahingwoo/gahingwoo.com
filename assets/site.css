@@ -43,10 +43,6 @@ html, body { height: 100%; overflow: hidden; }
 .brand:hover { text-decoration: none; }
 .brand:hover .brand-name { color: var(--pf-t--global--text--color--link--hover); }
 .pf-v6-c-masthead__content { display: flex; align-items: center; justify-content: flex-end; gap: var(--pf-t--global--spacer--md); flex-wrap: wrap; }
-.top-links { display: flex; flex-wrap: wrap; gap: var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--lg); margin: 0; padding: 0; list-style: none; }
-.top-links a { color: var(--pf-t--global--text--color--subtle); text-decoration: none; }
-.top-links a:hover { color: var(--pf-t--global--text--color--link--hover); text-decoration: underline; }
-.top-links a[aria-current="page"] { color: var(--pf-t--global--text--color--regular); font-weight: 600; }
 .pf-v6-c-masthead { position: relative; }
 .theme-toggle .icon-sun { display: none; }
 html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline-block; }
@@ -73,10 +69,14 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
    tools/build_search.py and fetched the first time the box is used. */
 .pf-v6-c-masthead__content { position: relative; min-width: 0; }
 .site-search .pf-v6-c-text-input-group__text-input { min-width: 0; }
+/* PatternFly's input group is width:100% by design; collapsed, this one is a
+   single icon, so it takes only its own width and sits beside the theme
+   toggle instead of stretching across the row. */
+.site-search { width: auto; flex: 0 0 auto; min-width: 0; }
+.site-search.pf-m-expanded { width: min(26rem, calc(100% - 3rem)); }
 @media (min-width: 48rem) {
   .pf-v6-c-masthead__content { flex-wrap: nowrap; }
-  .top-links { flex-wrap: nowrap; }
-}
+  }
 
 /* Collapsed, the search is one icon in the row. Expanded, it lifts out of the
    flex row and lies over the utility links instead of competing with them for
@@ -86,17 +86,12 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
   top: 50%;
   transform: translateY(-50%);
   inset-inline-end: 2.75rem;
-  width: min(26rem, calc(100% - 3rem));
   z-index: 2;
 }
 .site-search.pf-m-expanded .pf-v6-c-input-group__item.pf-m-search-input { --pf-v6-c-input-group__item--m-search-text-input--MaxWidth: 100%; }
 /* The links it lies over stand down while it is open; visibility rather than
    display so nothing reflows. They are in the sidebar too. */
-.pf-v6-c-masthead__content:has(.site-search.pf-m-expanded) .top-links { visibility: hidden; }
-/* Below md the masthead is icons only, as patternfly.org's is; the links live
-   in the sidebar. */
-@media (max-width: 47.99rem) { .top-links { display: none; } }
-
+.pf-v6-c-masthead__content:has(.site-search.pf-m-expanded) 
 .search-results {
   position: absolute;
   inset-inline-end: 0;
