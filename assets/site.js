@@ -88,9 +88,9 @@
     var spyTicking = false;
     function spy() {
       spyTicking = false;
-      // Anchors land 4.5rem below the top (see .section in site.css), so the
-      // mark sits just below that or the previous section stays lit after a jump.
-      var mark = Math.max(bar.offsetHeight, 72) + 16, current = -1;
+      // Anchors land 1.5rem below the top (see .section in site.css); the mark
+      // sits just below that so the section a link lands on is the one lit.
+      var mark = 40, current = -1;
       for (var i = 0; i < targets.length; i++) {
         if (targets[i] && targets[i].getBoundingClientRect().top <= mark) current = i;
       }

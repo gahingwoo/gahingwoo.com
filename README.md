@@ -5,7 +5,7 @@ Static site, served by GitHub Pages from the `main` branch. No build step. Built
 | Path | What it is |
 | --- | --- |
 | `index.html` | Overview: eight cards summarising the work, each row linking into the evidence appendix. |
-| `evidence/index.html` | Evidence appendix. Every claim with a link to its public record. This is the source of truth; the other two pages summarise it. |
+| `evidence/index.html` | Evidence appendix. Every claim with a link to its public record, one card per group with a sticky section rail (an expandable toggle on phones). This is the source of truth; the other two pages summarise it. |
 | `cv/index.html` | The CV, as a page with a print stylesheet. |
 | `cv/ga-hing-woo-cv.pdf` | Printed from `/cv/` by `.github/workflows/cv-pdf.yml` on every push that touches `cv/`, `assets/site.css` or `assets/patternfly/`. Do not edit by hand. |
 | `assets/patternfly/` | `patternfly-site.css`, assembled by `build.sh` from the parts of `@patternfly/patternfly` 6.6.1 the site uses (base tokens, fonts and icons; page, masthead, button, card, description list, table, data list, back-to-top, skip link, jump links; gallery and stack layouts), plus the Red Hat variable fonts and icon fonts the CSS references. Upgrade with `npm pack @patternfly/patternfly@6`, unpack, and run `sh assets/patternfly/build.sh package`. |

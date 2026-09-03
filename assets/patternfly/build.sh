@@ -13,7 +13,7 @@ PKG="$1"; OUT=assets/patternfly
            Table/table Table/table-grid DataList/data-list BackToTop/back-to-top SkipToContent/skip-to-content JumpLinks/jump-links; do
     cat "$PKG/components/$c.css"
   done
-  for l in Gallery/gallery Stack/stack; do cat "$PKG/layouts/$l.css"; done
+  for l in Gallery/gallery Stack/stack Grid/grid; do cat "$PKG/layouts/$l.css"; done
 } > "$OUT/patternfly-site.css"
 cp "$PKG/package.json" "$OUT/package.json"
 wc -c "$OUT/patternfly-site.css"
