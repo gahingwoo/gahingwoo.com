@@ -99,6 +99,19 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .rail-marker { transition: none; } }
 
+/* Moving between the three pages is a cross-document view transition, a
+   browser feature: where it is supported the content fades between pages and
+   the masthead and sidebar, named here so the browser matches them across
+   documents, stay where they are. Where it is not, the link is an ordinary
+   navigation. */
+@view-transition { navigation: auto; }
+.pf-v6-c-masthead { view-transition-name: masthead; }
+.pf-v6-c-page__sidebar { view-transition-name: sidebar; }
+.pf-v6-c-page__main { view-transition-name: main; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+
 /* ---- search ----
    patternfly.org keeps a search in its masthead: an icon that expands into an
    input. Cockpit's sidebar box filters a list of nav options, which is a
