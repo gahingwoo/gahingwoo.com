@@ -45,14 +45,14 @@
   .cv-summary { font-size: var(--pf-t--global--font--size--body--lg); max-width: 72ch; }
   .cv-foot { font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; border-top: 1px solid var(--pf-t--global--border--color--default); padding-top: var(--pf-t--global--spacer--sm); margin-top: var(--pf-t--global--spacer--xl); }
 
-  @page { size: A4; margin: 9mm 12mm 9mm 12mm; }
+  @page { size: A4; margin: 8mm 11mm 8mm 11mm; }
   @media print {
     html { --pf-t--global--background--color--primary--default: #fff; }
     body { font-size: 9pt; line-height: 1.36; }
     .pf-v6-c-page__main-section { max-width: none; }
     .pf-v6-c-page__main-body { padding: 0; }
-    .cv-head { padding-bottom: 4pt; margin-bottom: 5pt; }
-    .cv-summary { font-size: 9.8pt; margin-bottom: 5pt; }
+    .cv-head { padding-bottom: 4pt; margin-bottom: 6pt; }
+    .cv-summary { font-size: 9.4pt; margin-bottom: 7pt; }
     .cv-section { margin-bottom: 3pt; break-inside: auto; }
     .cv-list, .cv-item { break-inside: auto; }
     .cv-section > h2 { font-size: 1.1rem; margin-bottom: 3pt; padding-bottom: 2pt; break-after: avoid; }
@@ -62,7 +62,7 @@
     .cv-item .cv-desc { font-size: 8.6pt; }
     .cv-item .cv-refs { font-size: 7.6pt; }
     .cv-list, .skills { font-size: 8.6pt; }
-    .skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12pt; --pf-v6-c-description-list--m-horizontal__term--width: 7em; }
+    .skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12pt; line-height: 1.3; --pf-v6-c-description-list--m-horizontal__term--width: 7em; }
     /* Skills print as four short paragraphs, term run in, two to a row. */
     .skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14pt; row-gap: 3pt; }
     .skills .pf-v6-c-description-list__group { display: block; break-inside: avoid; }
