@@ -61,12 +61,11 @@ html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline-block; }
 html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 
 /* Width, the Cockpit way: the masthead spans the viewport and the content
-   sheet fills it. The overview's cards flow into more columns as the screen
-   widens (see .home-cards). Pages of long prose, the evidence appendix and
-   the CV, cap their body at 90rem and keep it to the left, as patternfly.org
-   does, because a 2000px line of text is unreadable. */
+   sheet fills it on every page. Cards, tables and rows stretch with the
+   screen; only runs of prose are capped, at about a hundred characters, so
+   a line stays readable on a wide monitor. */
 .pf-v6-c-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: none; }
-.prose-page .pf-v6-c-page__main-section.pf-m-limit-width { --pf-v6-c-page--section--m-limit-width--MaxWidth: 90rem; }
+.card-text, .entry-desc, .cv-desc, .cv-list li, .kv .pf-v6-c-description-list__description { max-width: 110ch; }
 
 /* ---- page head: title, inline subtitle, one action ---- */
 .page-head { display: flex; align-items: center; justify-content: space-between; gap: var(--pf-t--global--spacer--md); flex-wrap: wrap; margin-bottom: var(--pf-t--global--spacer--xl); }
@@ -111,6 +110,10 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 .jump-rail { --pf-v6-l-grid--item--Order: -1; }  /* the grid layout owns `order`; set it through its variable */
 @media (min-width: 62rem) {
   .jump-rail { --pf-v6-l-grid--item--Order: 0; position: sticky; top: var(--pf-t--global--spacer--lg); align-self: start; }
+  /* Content takes the width; the rail is a fixed 16rem column, not a quarter
+     of a 2560px screen. */
+  .evidence-grid { grid-template-columns: minmax(0, 1fr) 16rem; }
+  .evidence-grid > .evidence-main, .evidence-grid > .jump-rail { grid-column: auto; }
 }
 .jump-rail .pf-v6-c-jump-links__label { font-family: var(--pf-t--global--font--family--heading); font-size: 1rem; color: var(--pf-t--global--text--color--subtle); }
 .jump-rail .pf-v6-c-jump-links__toggle .pf-v6-c-button { padding-inline-start: 0; }
