@@ -123,8 +123,37 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
   transition: opacity var(--pf-t--global--motion--duration--fade--default, 0.2s) var(--pf-t--global--motion--timing-function--decelerate, ease);
 }
 .site-backdrop.is-on { opacity: 1; }
+/* A drag on the dimmed area does nothing rather than scrolling the page
+   behind the panel. Taking the document out of the scroll entirely would
+   strand the sticky masthead, which needs a scrollable document to stick to. */
+.site-backdrop { touch-action: none; overscroll-behavior: contain; }
 @media (min-width: 75rem) { .site-backdrop { display: none !important; } }
 @media (prefers-reduced-motion: reduce) { .site-backdrop { transition: none; } }
+
+/* The hamburger morph runs at the icon default, which reads as a flick on a
+   phone where the panel beside it takes a slide-in to arrive. Give it the
+   slide's duration so the two finish together. */
+@media (max-width: 74.99rem) {
+  .pf-v6-c-button.pf-m-hamburger { --pf-v6-c-button--hamburger-icon--TransitionDuration: var(--pf-t--global--motion--duration--slide-in--default); }
+}
+
+/* Below xl the page scrolls as a document rather than inside the shell. The
+   shell keeps the masthead and sidebar in place on a large screen, but on a
+   phone it costs the browser's own gestures, pull to refresh among them,
+   because those need the document itself to be the thing that scrolls. The
+   masthead stays put by being sticky, which leaves those gestures alone. */
+@media (max-width: 74.99rem) {
+  html, body { height: auto; min-height: 100%; overflow: visible; }
+  html { scroll-behavior: smooth; }
+  .pf-v6-c-page { height: auto; min-height: 100dvh; }
+  .pf-v6-c-page__main-container, .pf-v6-c-page__main { height: auto; max-height: none; overflow: visible; }
+  .pf-v6-c-masthead { position: sticky; top: 0; z-index: var(--pf-t--global--z-index--md); }
+  /* With the document scrolling, the panel would otherwise sit at the top of
+     it and be gone once the reader has scrolled; it is pinned to the viewport
+     under the masthead instead, which is where a drawer belongs. */
+  .pf-v6-c-page__sidebar { position: fixed; inset-block-start: var(--masthead-h, 4.5rem); inset-block-end: 0; height: auto; }
+}
+@media (max-width: 74.99rem) and (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 /* ---- search ----
    patternfly.org keeps a search in its masthead: an icon that expands into an

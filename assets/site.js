@@ -3,8 +3,17 @@
   var root = document.documentElement;
   // The page is PatternFly's app shell, so the thing that scrolls is the main
   // container, not the window. Everything below watches and drives that.
-  var scroller = document.querySelector('.pf-v6-c-page__main') || document.scrollingElement;
-  function onScroll(fn) { scroller.addEventListener('scroll', fn, { passive: true }); }
+  // What scrolls depends on the width: the shell's main area on a large
+  // screen, the document itself below xl, where the browser's own gestures
+  // need it. Everything below asks rather than assumes.
+  var pageMain = document.querySelector('.pf-v6-c-page__main');
+  var appShell = window.matchMedia('(min-width: 75rem)');
+  function scroller() { return (appShell.matches && pageMain) ? pageMain : document.scrollingElement; }
+  function scrollTop() { return scroller().scrollTop; }
+  function viewportTop() { return (appShell.matches && pageMain) ? pageMain.getBoundingClientRect().top : 0; }
+  // Scroll does not bubble, so this listens in the capture phase and catches
+  // it from whichever element is doing the scrolling.
+  function onScroll(fn) { document.addEventListener('scroll', fn, { passive: true, capture: true }); }
 
   // The same browser feature that carries one page into the next also covers
   // state changes within a page: it snapshots before and after and morphs
@@ -85,6 +94,14 @@
   var navToggle = document.getElementById('nav-toggle');
   var wide = window.matchMedia('(min-width: 75rem)');
   var backdrop = document.getElementById('site-backdrop');
+  var masthead = document.querySelector('.pf-v6-c-masthead');
+  // Below xl the panel is pinned under the masthead, whose height the CSS
+  // cannot know on its own.
+  function syncMastheadHeight() {
+    if (masthead) document.documentElement.style.setProperty('--masthead-h', masthead.offsetHeight + 'px');
+  }
+  syncMastheadHeight();
+  window.addEventListener('resize', syncMastheadHeight, { passive: true });
 
   function setSidebar(open) {
     sidebar.classList.toggle('pf-m-expanded', open);
@@ -324,11 +341,12 @@
     var spyTicking = false;
     function spy() {
       spyTicking = false;
-      var top = scroller.getBoundingClientRect().top, mark = top + 96, current = -1;
+      var mark = viewportTop() + 96, current = -1;
       for (var i = 0; i < targets.length; i++) {
         if (targets[i] && targets[i].getBoundingClientRect().top <= mark) current = i;
       }
-      if (scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4) current = targets.length - 1;
+      var sc = scroller();
+      if (sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 4) current = targets.length - 1;
       if (current < 0) current = 0;
       items.forEach(function (li, i) {
         li.classList.toggle('pf-m-current', i === current);
@@ -360,8 +378,9 @@
     // trip back to be worth a button: two screens or more.
     function sync() {
       ticking = false;
-      var longEnough = scroller.scrollHeight > scroller.clientHeight * 2;
-      totop.classList.toggle('pf-m-hidden', !longEnough || scroller.scrollTop < 600);
+      var sc = scroller();
+      var longEnough = sc.scrollHeight > sc.clientHeight * 2;
+      totop.classList.toggle('pf-m-hidden', !longEnough || sc.scrollTop < 600);
     }
     onScroll(function () {
       if (!ticking) { ticking = true; window.requestAnimationFrame(sync); }
@@ -370,7 +389,7 @@
     totop.querySelector('a').addEventListener('click', function (e) {
       e.preventDefault();
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      scroller.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      scroller().scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
   }
 })();
