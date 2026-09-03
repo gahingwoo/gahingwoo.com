@@ -60,10 +60,12 @@ html, body { height: auto; min-height: 100%; overflow: visible; }
 html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline-block; }
 html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 
-/* Reading width. PatternFly's limit-width modifier allows 125rem, which on a
-   wide monitor spreads the cards into four columns; 80rem keeps two. */
-.pf-v6-c-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: 80rem; }
-.pf-v6-c-page__main-section.pf-m-limit-width > .pf-v6-c-page__main-body { margin-inline: auto; }
+/* Page frame. On a wide monitor the whole frame, masthead and content sheet
+   together, stops at 90rem and centres, so the brand, the links and the
+   cards share the same left and right edges, as on redhat.com. Inside the
+   frame the content fills the sheet; PatternFly's own limit-width (125rem)
+   never binds. */
+.pf-v6-c-page { max-width: 90rem; margin-inline: auto; }
 
 /* ---- page head: title, inline subtitle, one action ---- */
 .page-head { display: flex; align-items: center; justify-content: space-between; gap: var(--pf-t--global--spacer--md); flex-wrap: wrap; margin-bottom: var(--pf-t--global--spacer--xl); }
