@@ -89,23 +89,22 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 .section-title .count { color: var(--pf-t--global--text--color--subtle); font-size: 1rem; margin-inline-start: var(--pf-t--global--spacer--sm); }
 
 /* ---- sticky section bar on the evidence page ----
-   PatternFly's page subnav, sticky under the viewport top. Shown from lg up,
-   where its eleven items fit on one or two lines; below that the Contents
-   card and the back-to-top button do the job. */
-.jump-bar { display: none; }
-@media (min-width: 62rem) {
-  .jump-bar { display: block; --pf-v6-c-page__main-subnav--PaddingBlockStart: var(--pf-t--global--spacer--xs); --pf-v6-c-page__main-subnav--m-sticky-top--PaddingBlockEnd: var(--pf-t--global--spacer--xs); }
-  .jump-bar .pf-v6-c-jump-links__list { flex-wrap: wrap; justify-content: center; }
-  .jump-bar .pf-v6-c-button { font-size: var(--pf-t--global--font--size--body--sm); --pf-v6-c-button--PaddingBlockStart: var(--pf-t--global--spacer--xs); --pf-v6-c-button--PaddingBlockEnd: var(--pf-t--global--spacer--xs); }
-}
+   PatternFly's page subnav, sticky under the viewport top, holding an
+   expandable jump-links list: one line when collapsed, a vertical list of
+   sections when open. Works the same on a phone and a desktop. */
+.jump-bar { --pf-v6-c-page__main-subnav--PaddingBlockStart: var(--pf-t--global--spacer--xs); --pf-v6-c-page__main-subnav--m-sticky-top--PaddingBlockEnd: var(--pf-t--global--spacer--xs); }
+.jump-bar .pf-v6-c-jump-links__toggle .pf-v6-c-button { padding-inline-start: 0; }
+.jump-toggle-current { color: var(--pf-t--global--text--color--subtle); }
+.jump-toggle-current:not(:empty)::before { content: ": "; }
+.jump-bar .pf-v6-c-jump-links__list { max-height: min(60vh, 32rem); overflow: auto; }
+.jump-bar .pf-v6-c-jump-links:not(.pf-m-expanded) .pf-v6-c-jump-links__list { display: none; }
 
 /* ---- evidence entries: rows of a data list inside one card per group ---- */
-.section { margin-top: var(--pf-t--global--spacer--lg); scroll-margin-top: var(--pf-t--global--spacer--lg); }
-@media (min-width: 62rem) { .section, .entry { scroll-margin-top: 9.5rem; } }
+.section { margin-top: var(--pf-t--global--spacer--lg); scroll-margin-top: 4.5rem; }  /* clears the sticky section bar */
 .pf-v6-c-card__title-text .count { color: var(--pf-t--global--text--color--subtle); font-size: 1rem; margin-inline-start: var(--pf-t--global--spacer--xs); white-space: nowrap; }
 .pf-v6-c-data-list { --pf-v6-c-data-list--BorderBlockStartWidth: 0; --pf-v6-c-data-list--sm--BorderBlockStartWidth: 0; }
 .pf-v6-c-data-list__item:last-child { --pf-v6-c-data-list__item--BorderBlockEndWidth: 0; --pf-v6-c-data-list__item--sm--BorderBlockEndWidth: 0; }
-.entry { scroll-margin-top: var(--pf-t--global--spacer--lg); }
+.entry { scroll-margin-top: 4.5rem; }
 .entry .pf-v6-c-data-list__item-row { padding-inline: 0; }  /* the card body already pads */
 .entry .pf-v6-c-data-list__cell { min-width: 0; }
 .entry-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--pf-t--global--spacer--md); flex-wrap: wrap; margin-bottom: var(--pf-t--global--spacer--xs); }

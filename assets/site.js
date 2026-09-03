@@ -72,12 +72,25 @@
       var a = li.querySelector('a');
       return document.getElementById(a.getAttribute('href').slice(1));
     });
+    var currentLabel = document.getElementById('jump-current');
+    var nav = document.getElementById('jump-nav');
+    var toggle = document.getElementById('jump-toggle');
+    function setOpen(open) {
+      nav.classList.toggle('pf-m-expanded', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    if (nav && toggle) {
+      toggle.addEventListener('click', function () { setOpen(!nav.classList.contains('pf-m-expanded')); });
+      links.forEach(function (li) { li.querySelector('a').addEventListener('click', function () { setOpen(false); }); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+      document.addEventListener('click', function (e) { if (!bar.contains(e.target)) setOpen(false); });
+    }
     var spyTicking = false;
     function spy() {
       spyTicking = false;
-      // Anchors land 9.5rem below the top (see .section in site.css), so the
-      // mark must sit below that or the previous section stays lit after a jump.
-      var mark = Math.max(bar.offsetHeight, 152) + 24, current = -1;
+      // Anchors land 4.5rem below the top (see .section in site.css), so the
+      // mark sits just below that or the previous section stays lit after a jump.
+      var mark = Math.max(bar.offsetHeight, 72) + 16, current = -1;
       for (var i = 0; i < targets.length; i++) {
         if (targets[i] && targets[i].getBoundingClientRect().top <= mark) current = i;
       }
@@ -87,6 +100,7 @@
         li.classList.toggle('pf-m-current', i === current);
         if (i === current) li.setAttribute('aria-current', 'location'); else li.removeAttribute('aria-current');
       });
+      if (currentLabel) currentLabel.textContent = current >= 0 ? links[current].textContent.trim() : '';
     }
     window.addEventListener('scroll', function () {
       if (!spyTicking) { spyTicking = true; window.requestAnimationFrame(spy); }
