@@ -23,8 +23,8 @@
     if (saved === 'dark') document.documentElement.classList.add('pf-v6-theme-dark');
   })();
 </script>
-<link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=05869450">
-<link rel="stylesheet" href="/assets/site.css?v=dcd58c3b">
+<link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=f3626065">
+<link rel="stylesheet" href="/assets/site.css?v=555d857b">
 <style>
   /* This page is the CV. The PDF at /cv/ga-hing-woo-cv.pdf is printed from it
      by .github/workflows/cv-pdf.yml on every change, so edit here and only here.
@@ -98,6 +98,29 @@
         <li><a href="https://blog.gahingwoo.com">Blog</a></li>
         <li><a href="https://github.com/gahingwoo">GitHub</a></li>
       </ul>
+      <div class="pf-v6-c-input-group pf-m-search-expandable pf-m-plain site-search" id="site-search">
+        <div class="pf-v6-c-input-group__item pf-m-search-input">
+          <div class="pf-v6-c-text-input-group">
+            <div class="pf-v6-c-text-input-group__main pf-m-icon">
+              <span class="pf-v6-c-text-input-group__text">
+                <span class="pf-v6-c-text-input-group__icon"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M19.71 18.29l-4.82-4.82a8 8 0 1 0-1.42 1.42l4.82 4.82a1 1 0 0 0 1.42-1.42ZM8 14a6 6 0 1 1 6-6 6 6 0 0 1-6 6Z"/></svg></span>
+                <input class="pf-v6-c-text-input-group__text-input" type="text" id="search-input" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=8c254dc2">
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="pf-v6-c-input-group__item pf-m-search-expand pf-m-plain">
+          <button class="pf-v6-c-button pf-m-plain" type="button" id="search-open" aria-label="Search this site" aria-expanded="false"><span class="pf-v6-c-button__icon"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M19.71 18.29l-4.82-4.82a8 8 0 1 0-1.42 1.42l4.82 4.82a1 1 0 0 0 1.42-1.42ZM8 14a6 6 0 1 1 6-6 6 6 0 0 1-6 6Z"/></svg></span></button>
+        </div>
+        <div class="pf-v6-c-input-group__item pf-m-search-action pf-m-plain">
+          <button class="pf-v6-c-button pf-m-plain" type="button" id="search-close" aria-label="Close search"><span class="pf-v6-c-button__icon"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M17.8 16.2 11.59 10l6.21-6.21c.42-.46.39-1.17-.07-1.59-.43-.4-1.09-.4-1.52 0l-6.2 6.2-6.22-6.19c-.44-.44-1.15-.44-1.59 0-.44.44-.44 1.15 0 1.59l6.2 6.21-6.2 6.2c-.42.46-.39 1.17.07 1.59.43.4 1.09.4 1.52 0L10 11.59l6.2 6.2c.44.44 1.15.44 1.59 0 .44-.45.44-1.16 0-1.6Z"/></svg></span></button>
+        </div>
+      </div>
+      <div class="pf-v6-c-menu search-results" id="search-results" hidden>
+        <div class="pf-v6-c-menu__content">
+          <ul class="pf-v6-c-menu__list" role="listbox" aria-label="Search results" id="search-list"></ul>
+        </div>
+      </div>
       <button class="pf-v6-c-button pf-m-plain theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
         <span class="pf-v6-c-button__icon"><svg class="pf-v6-svg icon-moon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M10.6 2a8 8 0 1 0 7.4 11 6.6 6.6 0 0 1-7.4-11Z"/></svg><svg class="pf-v6-svg icon-sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" role="img" width="1em" height="1em"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.5v2.2M10 16.3v2.2M1.5 10h2.2M16.3 10h2.2M4 4l1.6 1.6M14.4 14.4 16 16M4 16l1.6-1.6M14.4 5.6 16 4"/></svg></span>
       </button>
@@ -105,24 +128,6 @@
   </header>
   <aside class="pf-v6-c-page__sidebar" id="site-sidebar">
     <div class="pf-v6-c-page__sidebar-main">
-      <div class="pf-v6-c-page__sidebar-body pf-m-page-insets site-search">
-        <div class="pf-v6-c-text-input-group">
-          <div class="pf-v6-c-text-input-group__main pf-m-icon">
-            <span class="pf-v6-c-text-input-group__text">
-              <span class="pf-v6-c-text-input-group__icon"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M19.71 18.29l-4.82-4.82a8 8 0 1 0-1.42 1.42l4.82 4.82a1 1 0 0 0 1.42-1.42ZM8 14a6 6 0 1 1 6-6 6 6 0 0 1-6 6Z"/></svg></span>
-              <input class="pf-v6-c-text-input-group__text-input" type="text" id="site-search" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=8c254dc2">
-            </span>
-          </div>
-          <div class="pf-v6-c-text-input-group__utilities">
-            <button class="pf-v6-c-button pf-m-plain" type="button" id="search-clear" aria-label="Clear search" hidden><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M17.8 16.2 11.59 10l6.21-6.21c.42-.46.39-1.17-.07-1.59-.43-.4-1.09-.4-1.52 0l-6.2 6.2-6.22-6.19c-.44-.44-1.15-.44-1.59 0-.44.44-.44 1.15 0 1.59l6.2 6.21-6.2 6.2c-.42.46-.39 1.17.07 1.59.43.4 1.09.4 1.52 0L10 11.59l6.2 6.2c.44.44 1.15.44 1.59 0 .44-.45.44-1.16 0-1.6Z"/></svg></button>
-          </div>
-        </div>
-        <div class="pf-v6-c-menu search-results" id="search-results" hidden>
-          <div class="pf-v6-c-menu__content">
-            <ul class="pf-v6-c-menu__list" role="listbox" aria-label="Search results" id="search-list"></ul>
-          </div>
-        </div>
-      </div>
       <div class="pf-v6-c-page__sidebar-body pf-m-page-insets">
         <nav class="pf-v6-c-nav" aria-label="Site">
       <section class="pf-v6-c-nav__section" aria-labelledby="pages-title">
@@ -341,6 +346,6 @@
 <div class="pf-v6-c-back-to-top pf-m-hidden" id="back-to-top">
   <a class="pf-v6-c-button pf-m-primary" href="#main-content"><span class="pf-v6-c-button__text">Back to top</span><span class="pf-v6-c-button__icon pf-m-end"><svg class="pf-v6-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M1.29 14.71a.996.996 0 0 0 1.41 0L10 7.42l7.3 7.29a.987.987 0 0 0 1.41.02.987.987 0 0 0 .02-1.41l-.02-.02-7.65-7.65A1.49 1.49 0 0 0 10 5.21c-.38 0-.77.15-1.06.44L1.29 13.3a.996.996 0 0 0 0 1.41Z"/></svg></span></a>
 </div>
-<script src="/assets/site.js?v=e7afcef7"></script>
+<script src="/assets/site.js?v=be87359b"></script>
 </body>
 </html>

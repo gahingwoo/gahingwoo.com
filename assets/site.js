@@ -86,11 +86,13 @@
 
   // Search. The index is generated from the pages and fetched the first time
   // the box is used, so it costs nothing to a reader who never searches.
-  var searchInput = document.getElementById('site-search');
+  var searchInput = document.getElementById('search-input');
   if (searchInput) {
     var panel = document.getElementById('search-results');
     var list = document.getElementById('search-list');
-    var clearBtn = document.getElementById('search-clear');
+    var group = document.getElementById('site-search');
+    var openBtn = document.getElementById('search-open');
+    var closeBtn = document.getElementById('search-close');
     var index = null, loading = null, active = -1, results = [];
 
     function load() {
@@ -185,9 +187,15 @@
       });
     }
 
+    function expand(show) {
+      group.classList.toggle('pf-m-expanded', show);
+      openBtn.setAttribute('aria-expanded', show ? 'true' : 'false');
+      if (show) searchInput.focus();
+      else { searchInput.value = ''; open(false); }
+    }
+
     function run() {
       var q = searchInput.value.trim();
-      clearBtn.hidden = !q;
       if (q.length < 2) { open(false); return; }
       load().then(function () { if (searchInput.value.trim() === q) render(q); });
     }
@@ -200,16 +208,17 @@
       else if (e.key === 'Enter') {
         var opts = list.querySelectorAll('.pf-v6-c-menu__item');
         if (opts.length) { e.preventDefault(); (opts[active >= 0 ? active : 0]).click(); }
-      } else if (e.key === 'Escape') { open(false); searchInput.blur(); }
+      } else if (e.key === 'Escape') { if (!panel.hidden) open(false); else { expand(false); openBtn.focus(); } }
     });
-    clearBtn.addEventListener('click', function () {
-      searchInput.value = ''; clearBtn.hidden = true; open(false); searchInput.focus();
-    });
+    openBtn.addEventListener('click', function () { expand(true); });
+    closeBtn.addEventListener('click', function () { expand(false); openBtn.focus(); });
     document.addEventListener('click', function (e) {
-      if (!e.target.closest('.site-search')) open(false);
+      if (!e.target.closest('.site-search') && !e.target.closest('.search-results')) {
+        open(false);
+        if (!searchInput.value.trim()) expand(false);
+      }
     });
-    // Choosing a result closes the sidebar on small screens, as any nav link does.
-    list.addEventListener('click', function () { open(false); });
+    list.addEventListener('click', function () { open(false); expand(false); });
   }
 
   // On this page: the toggle below xl, and the section in view lit on the rail.

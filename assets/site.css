@@ -48,12 +48,6 @@ html, body { height: 100%; overflow: hidden; }
 .top-links a:hover { color: var(--pf-t--global--text--color--link--hover); text-decoration: underline; }
 .top-links a[aria-current="page"] { color: var(--pf-t--global--text--color--regular); font-weight: 600; }
 .pf-v6-c-masthead { position: relative; }
-@media (max-width: 47.99rem) {
-  /* Below md the masthead stacks; keep the toggle beside the name instead of
-     on a row of its own. */
-  .theme-toggle { position: absolute; top: var(--pf-t--global--spacer--sm); inset-inline-end: var(--pf-t--global--spacer--sm); }
-  .pf-v6-c-masthead__content { justify-content: flex-start; }
-}
 .theme-toggle .icon-sun { display: none; }
 html.pf-v6-theme-dark .theme-toggle .icon-sun { display: inline-block; }
 html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
@@ -73,20 +67,55 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 .doc-page .pf-v6-c-page__main-body { margin-inline: auto; }
 
 /* ---- search ----
-   Cockpit puts a search box at the top of its sidebar; this one searches the
-   whole site, from an index generated from the pages by tools/build_search.py
-   and fetched the first time the box is used. */
-.site-search { padding-block: var(--pf-t--global--spacer--md); position: relative; }
-.search-results { position: absolute; inset-inline: var(--pf-t--global--spacer--md); top: calc(100% - var(--pf-t--global--spacer--sm)); z-index: var(--pf-t--global--z-index--md); max-height: min(60dvh, 30rem); overflow-y: auto; box-shadow: var(--pf-t--global--box-shadow--md); }
-/* Results are narrow, so they wrap rather than truncate, and the snippet is
-   held to two lines so one long entry cannot crowd out the rest. */
+   patternfly.org keeps a search in its masthead: an icon that expands into an
+   input. Cockpit's sidebar box filters a list of nav options, which is a
+   different job. The index is generated from the pages by
+   tools/build_search.py and fetched the first time the box is used. */
+.pf-v6-c-masthead__content { position: relative; min-width: 0; }
+.site-search .pf-v6-c-text-input-group__text-input { min-width: 0; }
+@media (min-width: 48rem) {
+  .pf-v6-c-masthead__content { flex-wrap: nowrap; }
+  .top-links { flex-wrap: nowrap; }
+}
+
+/* Collapsed, the search is one icon in the row. Expanded, it lifts out of the
+   flex row and lies over the utility links instead of competing with them for
+   space, so opening it can never reflow the masthead or crowd the brand. */
+.site-search.pf-m-expanded {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  inset-inline-end: 2.75rem;
+  width: min(26rem, calc(100% - 3rem));
+  z-index: 2;
+}
+.site-search.pf-m-expanded .pf-v6-c-input-group__item.pf-m-search-input { --pf-v6-c-input-group__item--m-search-text-input--MaxWidth: 100%; }
+/* The links it lies over stand down while it is open; visibility rather than
+   display so nothing reflows. They are in the sidebar too. */
+.pf-v6-c-masthead__content:has(.site-search.pf-m-expanded) .top-links { visibility: hidden; }
+/* Below md the masthead is icons only, as patternfly.org's is; the links live
+   in the sidebar. */
+@media (max-width: 47.99rem) { .top-links { display: none; } }
+
+.search-results {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + var(--pf-t--global--spacer--sm));
+  z-index: var(--pf-t--global--z-index--md);
+  width: min(30rem, calc(100vw - 2 * var(--pf-t--global--spacer--md)));
+  max-height: min(70dvh, 34rem);
+  overflow-y: auto;
+  box-shadow: var(--pf-t--global--box-shadow--md);
+}
+/* Results are read, not scanned as labels, so they wrap; the snippet is held
+   to two lines so one long entry cannot crowd out the rest. */
 .search-results .pf-v6-c-menu__item-text { display: block; white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }
 .search-results .pf-v6-c-menu__item { align-items: start; }
 .search-result-page { display: block; font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); }
 .search-result-snippet { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); margin-block-start: 2px; }
 .search-results mark { background: var(--pf-t--global--color--nonstatus--yellow--default, #f0ab00); color: inherit; border-radius: 2px; padding: 0 1px; }
 .search-empty { padding: var(--pf-t--global--spacer--md); font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); }
-@media print { .site-search { display: none !important; } }
+@media print { .site-search, .search-results { display: none !important; } }
 
 /* ---- on this page ----
    The pattern patternfly.org uses for its own documentation: the site's
