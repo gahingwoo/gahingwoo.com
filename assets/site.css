@@ -149,7 +149,8 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
   position: fixed;
   inset-inline-end: var(--pf-t--global--spacer--lg);
   inset-block-end: var(--pf-t--global--spacer--xl);
-  z-index: 10;
+  /* The page's main container sits at z-index xs; the button must be above it. */
+  z-index: var(--pf-t--global--z-index--lg);
   --pf-v6-c-back-to-top--c-button--FontSize: var(--pf-t--global--font--size--body--default);
   --pf-v6-c-back-to-top--c-button--PaddingBlockStart: var(--pf-t--global--spacer--sm);
   --pf-v6-c-back-to-top--c-button--PaddingBlockEnd: var(--pf-t--global--spacer--sm);
