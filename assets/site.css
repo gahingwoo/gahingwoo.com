@@ -20,9 +20,13 @@
   src: url("patternfly/assets/fonts/RedHatText/RedHatTextVF.woff2") format("woff2-variations");
 }
 
-/* Scroll as a document, not as an app shell. */
-.pf-v6-c-page { height: auto; min-height: 100dvh; }
-.pf-v6-c-page__main-container { overflow: visible; }
+/* Scroll as a document, not as an app shell. PatternFly's page is a 100dvh
+   grid whose main area is its own scroll container; a content site wants one
+   scroller, the viewport, so every height cap and overflow is removed here. */
+html, body { height: auto; min-height: 100%; overflow: visible; }
+.pf-v6-c-page { display: block; height: auto; min-height: 100dvh; max-height: none; overflow: visible; }
+.pf-v6-c-page__main-container { display: block; height: auto; max-height: none; overflow: visible; margin-bottom: var(--pf-t--global--spacer--inset--page-chrome); }
+.pf-v6-c-page__main { display: block; height: auto; max-height: none; overflow: visible; }
 
 /* ---- masthead: stacked identity on the left, quiet links on the right ---- */
 .brand { display: block; text-decoration: none; line-height: 1.25; }
