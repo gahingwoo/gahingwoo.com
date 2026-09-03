@@ -54,6 +54,11 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
    seven-column limit, inside PatternFly's 20 to 100 characters a line. */
 .pf-v6-c-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: none; }
 .pf-v6-c-page__main-section.pf-m-limit-width > .pf-v6-c-page__main-body { width: 100%; }
+/* Jumping to a section animates rather than teleports. Anchors are ordinary
+   links, so this is the platform's own scrolling, switched off for readers
+   who ask for less motion. */
+.pf-v6-c-page__main { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { .pf-v6-c-page__main { scroll-behavior: auto; } }
 
 /* A page of records or of a CV is read, not scanned like a dashboard, so its
    column stops at 58rem. That leaves a card about 864px wide inside, which is
