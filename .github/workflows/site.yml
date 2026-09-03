@@ -1,28 +1,31 @@
-name: Regenerate CV PDF
+name: Stamp assets and regenerate CV PDF
 
-# The CV lives at /cv/ as an HTML page. Whenever it or the shared assets change,
-# print it to PDF with headless Chrome so the download link never lags the page.
-# The PDF itself is excluded from the trigger paths so the commit this workflow
-# pushes does not start another run.
+# Two things that must not lag the source, both derived from it:
+#   - asset links carry a hash of the file's contents, so a changed stylesheet
+#     is a changed URL and no visitor gets yesterday's CSS from cache;
+#   - the CV PDF is printed from /cv/.
+# The commit this workflow pushes carries [skip ci] so it cannot start another
+# run of itself.
 on:
   push:
     branches: [main]
     paths:
-      - 'cv/**'
-      - '!cv/*.pdf'
-      - 'assets/site.css'
-      - 'assets/patternfly/**'
-      - '.github/workflows/cv-pdf.yml'
+      - '**.html'
+      - 'assets/**'
+      - '.github/workflows/site.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  pdf:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Stamp asset links with their content hash
+        run: python3 tools/stamp.py
 
       - name: Serve the site locally
         run: |
@@ -38,14 +41,14 @@ jobs:
             http://localhost:8000/cv/
           ls -la cv/ga-hing-woo-cv.pdf
 
-      - name: Commit the PDF if it changed
+      - name: Commit what changed
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git add cv/ga-hing-woo-cv.pdf
+          git add -A
           if git diff --cached --quiet; then
-            echo "PDF unchanged"
+            echo "nothing to commit"
           else
-            git commit -m "Regenerate CV PDF [skip ci]"
+            git commit -m "Stamp assets, regenerate CV PDF [skip ci]"
             git push
           fi
