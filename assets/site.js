@@ -84,11 +84,26 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !wide.matches) setSidebar(false); });
   }
 
-  // Scroll-spy: light the sidebar entry for the section in view.
-  var spyList = document.getElementById('page-sections');
-  if (spyList) {
-    var links = Array.prototype.slice.call(spyList.querySelectorAll('a[href^="#"]'));
-    var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  // On this page: the toggle below xl, and the section in view lit on the rail.
+  var jumpNav = document.getElementById('jump-nav');
+  var jumpToggle = document.getElementById('jump-toggle');
+  if (jumpNav && jumpToggle) {
+    jumpToggle.addEventListener('click', function () {
+      var open = jumpNav.classList.toggle('pf-m-expanded');
+      jumpToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    jumpNav.addEventListener('click', function (e) {
+      if (e.target.closest('a') && !wide.matches) {
+        jumpNav.classList.remove('pf-m-expanded');
+        jumpToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  var jumpList = document.getElementById('jump-list');
+  if (jumpList) {
+    var items = Array.prototype.slice.call(jumpList.querySelectorAll('.pf-v6-c-jump-links__item'));
+    var targets = items.map(function (li) { return document.getElementById(li.querySelector('a').getAttribute('href').slice(1)); });
     var spyTicking = false;
     function spy() {
       spyTicking = false;
@@ -98,9 +113,9 @@
       }
       if (scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4) current = targets.length - 1;
       if (current < 0) current = 0;
-      links.forEach(function (a, i) {
-        a.classList.toggle('pf-m-current', i === current);
-        if (i === current) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      items.forEach(function (li, i) {
+        li.classList.toggle('pf-m-current', i === current);
+        if (i === current) li.setAttribute('aria-current', 'location'); else li.removeAttribute('aria-current');
       });
     }
     onScroll(function () {

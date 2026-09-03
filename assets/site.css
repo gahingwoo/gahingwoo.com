@@ -69,8 +69,39 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
    column stops at 58rem. That leaves a card about 864px wide inside, which is
    the 789px measure for the paragraph plus room for the status at its right.
    The overview is a dashboard and fills the screen. */
-.doc-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: 58rem; }
+.doc-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: 76rem; }
 .doc-page .pf-v6-c-page__main-body { margin-inline: auto; }
+
+/* ---- on this page ----
+   The pattern patternfly.org uses for its own documentation: the site's
+   navigation on the left, the sections of this page on the right. From xl the
+   rail is a plain sticky list beside the content; below that the grid is one
+   column and PatternFly's expandable variant turns the same list into a
+   toggle above the content. */
+.page-rail { margin-bottom: var(--pf-t--global--spacer--md); }
+.page-rail .pf-v6-c-jump-links__label { font-family: var(--pf-t--global--font--family--heading); color: var(--pf-t--global--text--color--subtle); }
+.page-rail .pf-v6-c-jump-links__toggle .pf-v6-c-button { padding-inline-start: 0; }
+@media (max-width: 74.99rem) {
+  .page-rail .pf-v6-c-jump-links:not(.pf-m-expanded) .pf-v6-c-jump-links__list { display: none; }
+}
+@media (min-width: 75rem) {
+  .doc-page .pf-v6-c-page__main-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    column-gap: var(--pf-t--global--spacer--xl);
+    align-items: start;
+  }
+  .page-content { grid-column: 1; grid-row: 1; min-width: 0; }
+  .page-rail {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 0;
+    margin-bottom: 0;
+    max-height: calc(100dvh - var(--pf-t--global--spacer--3xl));
+    overflow-y: auto;
+  }
+}
 .card-text, .entry-desc, .cv-desc, .cv-list li, .cv-summary, .kv .pf-v6-c-description-list__description { max-width: 789px; }
 
 /* ---- page head: title, inline subtitle, one action ---- */
@@ -109,7 +140,7 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
    keeps its System and Tools groups. */
 .pf-v6-c-page__sidebar-body { padding-block-start: var(--pf-t--global--spacer--md); }
 .pf-v6-c-nav__section-title { font-family: var(--pf-t--global--font--family--heading); }
-@media print { .pf-v6-c-page__sidebar { display: none !important; } }
+@media print { .pf-v6-c-page__sidebar, .page-rail { display: none !important; } }
 
 /* ---- evidence entries: rows of a data list inside one card per group ---- */
 .section { margin-top: var(--pf-t--global--spacer--lg); scroll-margin-top: var(--pf-t--global--spacer--lg); }
