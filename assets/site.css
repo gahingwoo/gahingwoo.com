@@ -155,6 +155,27 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 }
 @media (max-width: 74.99rem) and (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
+/* A link that leaves the site says so before it is clicked. The glyph is
+   PatternFly's external-link icon, drawn through a mask so it takes the
+   link's own colour in either theme. It also serves as the warning that the
+   accessibility guidance asks for wherever a link opens a new tab. */
+a[href^="http"]:not([href^="https://gahingwoo.com"])::after {
+  content: "";
+  display: inline-block;
+  width: 0.72em;
+  height: 0.72em;
+  margin-inline-start: 0.3em;
+  vertical-align: -0.02em;
+  background-color: currentColor;
+  opacity: 0.75;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M30 21v7.5c0 .827-.673 1.5-1.5 1.5h-25c-.827 0-1.5-.673-1.5-1.5v-25C2 2.673 2.673 2 3.5 2H11a1 1 0 1 1 0 2H4v24h24v-7a1 1 0 1 1 2 0ZM28.5 2H18a1 1 0 1 0 0 2h8.586L13.293 17.293a.999.999 0 1 0 1.414 1.414L28 5.414V14a1 1 0 1 0 2 0V3.5c0-.827-.673-1.5-1.5-1.5Z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M30 21v7.5c0 .827-.673 1.5-1.5 1.5h-25c-.827 0-1.5-.673-1.5-1.5v-25C2 2.673 2.673 2 3.5 2H11a1 1 0 1 1 0 2H4v24h24v-7a1 1 0 1 1 2 0ZM28.5 2H18a1 1 0 1 0 0 2h8.586L13.293 17.293a.999.999 0 1 0 1.414 1.414L28 5.414V14a1 1 0 1 0 2 0V3.5c0-.827-.673-1.5-1.5-1.5Z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+/* Not on the masthead's own controls, nor in print, where the address is
+   already spelled out and the glyph would be noise. */
+.pf-v6-c-masthead a::after, .search-results a::after { content: none; }
+@media print { a::after { content: none !important; } }
+
 /* ---- search ----
    patternfly.org keeps a search in its masthead: an icon that expands into an
    input. Cockpit's sidebar box filters a list of nav options, which is a

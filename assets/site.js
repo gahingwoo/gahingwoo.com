@@ -43,6 +43,20 @@ var ANALYTICS_TOKEN = 'dfe72f19b00e48d6b340a87d6041beef';
     else fn();
   }
 
+  // Where an external link opens. In the content these are citations: the
+  // reader's task stays on this page and they come back for the next one, so
+  // those open in a new tab. In the sidebar they are navigation, where
+  // leaving is the intent, so those are left alone. Either way the glyph
+  // added in site.css says the link goes elsewhere.
+  Array.prototype.forEach.call(
+    document.querySelectorAll('.pf-v6-c-page__main a[href^="http"]'),
+    function (a) {
+      if (a.href.indexOf('https://gahingwoo.com') === 0) return;
+      a.target = '_blank';
+      a.rel = a.rel ? a.rel + ' noopener' : 'noopener';
+    }
+  );
+
   // Theme. PatternFly 6 switches to dark with a class on <html>; the inline
   // script in each page's <head> applies the saved choice before first paint.
   var toggle = document.getElementById('theme-toggle');
