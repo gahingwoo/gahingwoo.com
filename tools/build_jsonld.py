@@ -50,7 +50,7 @@ def main():
         work = {
             "@type": "CreativeWork",
             "name": text_of(title),
-            "url": f"{BASE}/evidence#{eid}",
+            "url": f"{BASE}/evidence/#{eid}",
             "creditText": text_of(status),
             "about": group_at(m.start()),
         }
@@ -65,7 +65,7 @@ def main():
     data = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "url": f"{BASE}/evidence",
+        "url": f"{BASE}/evidence/",
         "name": "Evidence appendix: Ga Hing Woo (Jiaxing Hu)",
         "description": "Every claim about my own work, each with a link to the original public record.",
         "author": {"@type": "Person", "name": "Ga Hing Woo", "alternateName": "Jiaxing Hu",

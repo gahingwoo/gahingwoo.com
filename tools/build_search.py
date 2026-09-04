@@ -57,7 +57,7 @@ def records():
         eid, title, desc, links = m.groups()
         out.append({
             "t": text_of(title),
-            "u": "/evidence#" + eid,
+            "u": "/evidence/#" + eid,
             "p": "Evidence, " + group_at(m.start()),
             "x": text_of(desc) + " " + text_of(links),
         })

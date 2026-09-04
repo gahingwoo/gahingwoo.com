@@ -161,7 +161,7 @@
             <div class="pf-v6-c-text-input-group__main pf-m-icon">
               <span class="pf-v6-c-text-input-group__text">
                 <span class="pf-v6-c-text-input-group__icon"><svg class="pf-v6-svg" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true" role="img" width="1em" height="1em"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
-                <input class="pf-v6-c-text-input-group__text-input" type="text" id="search-input" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=5bff60e6">
+                <input class="pf-v6-c-text-input-group__text-input" type="text" id="search-input" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=096cdde9">
               </span>
             </div>
           </div>
@@ -193,7 +193,7 @@
         <h2 class="pf-v6-c-nav__section-title" id="pages-title">Pages</h2>
         <ul class="pf-v6-c-nav__list" role="list">
           <li class="pf-v6-c-nav__item"><a href="/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Overview</span></a></li>
-          <li class="pf-v6-c-nav__item"><a href="/evidence" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Evidence appendix</span></a></li>
+          <li class="pf-v6-c-nav__item"><a href="/evidence/" class="pf-v6-c-nav__link"><span class="pf-v6-c-nav__link-text">Evidence appendix</span></a></li>
           <li class="pf-v6-c-nav__item"><a href="/cv/" class="pf-v6-c-nav__link pf-m-current" aria-current="page"><span class="pf-v6-c-nav__link-text">CV</span></a></li>
         </ul>
       </section>
@@ -241,7 +241,7 @@
           </aside>
           <div class="page-content">
           <div class="page-head no-print">
-            <span class="pf-v6-u-text-color-subtle">The PDF is generated from this page. Every line links to its record in the <a href="/evidence">evidence appendix</a>.</span>
+            <span class="pf-v6-u-text-color-subtle">The PDF is generated from this page. Every line links to its record in the <a href="/evidence/">evidence appendix</a>.</span>
             <div class="pf-v6-l-flex pf-m-space-items-sm">
               <a class="pf-v6-c-button pf-m-secondary" href="/cv/ga-hing-woo-cv.pdf" download="ga-hing-woo-cv.pdf"><span class="pf-v6-c-button__text">Download PDF</span></a>
               <button class="pf-v6-c-button pf-m-secondary" type="button" onclick="window.print()"><span class="pf-v6-c-button__text">Print</span></button>
@@ -270,35 +270,35 @@
             <h2 class="section-title">Upstream contributions, accepted</h2>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#iommu-fixes">Linux, iommu/rockchip: two fixes for the RK3576 NPU's IOMMU instances</a></p>
+              <p class="cv-title"><a href="/evidence/#iommu-fixes">Linux, iommu/rockchip: two fixes for the RK3576 NPU's IOMMU instances</a></p>
               <p class="cv-when">Linux 7.3 &middot; 2026</p>
               <p class="cv-desc">Take every clock the devicetree provides instead of a fixed pair, so register writes behind extra clock gates are no longer silently dropped; and acknowledge a stale page fault left by boot firmware before enabling stall, which otherwise hangs the poll. Applied by Will Deacon, IOMMU co-maintainer, with his own Signed-off-by.</p>
               <div class="cv-refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=841363ebb5082a06c69ac34719e26659fe63dbd6">git.kernel.org: 841363ebb508</a><a href="https://github.com/torvalds/linux/commit/841363ebb5082a06c69ac34719e26659fe63dbd6">github: 841363ebb508</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b10d5920cafa292ee3cab9c20f813da4fe4f00b8">git.kernel.org: b10d5920cafa</a><a href="https://github.com/torvalds/linux/commit/b10d5920cafa292ee3cab9c20f813da4fe4f00b8">github: b10d5920cafa</a><a href="https://lore.kernel.org/all/178507139795.2055528.4355657426833307310.b4-ty@kernel.org/">lore: Will Deacon, applied</a></div>
             </div>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#cm5-dts">Linux, arm64 dts: ArmSoM CM5 and CM5-IO board support</a></p>
+              <p class="cv-title"><a href="/evidence/#cm5-dts">Linux, arm64 dts: ArmSoM CM5 and CM5-IO board support</a></p>
               <p class="cv-when">Linux 7.3 &middot; 2026</p>
               <p class="cv-desc">Devicetree and binding for a new RK3576 compute module and carrier, through five review rounds. Acked-by Krzysztof Kozlowski on the binding; applied by Heiko St&uuml;bner, Rockchip SoC maintainer.</p>
               <div class="cv-refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f60f44c24b10fe7fd1fa76b360646def1bea193a">git.kernel.org: f60f44c24b10</a><a href="https://github.com/torvalds/linux/commit/f60f44c24b10fe7fd1fa76b360646def1bea193a">github: f60f44c24b10</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=44a48a23974b86d2c551afbabee15ad70b249df5">git.kernel.org: 44a48a23974b</a><a href="https://github.com/torvalds/linux/commit/44a48a23974b86d2c551afbabee15ad70b249df5">github: 44a48a23974b</a><a href="https://lore.kernel.org/all/178526609483.300371.1972096741019410847.b4-ty@sntech.de/">lore: Heiko St&uuml;bner, applied</a></div>
             </div>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#yt8521">Linux, net/phy motorcomm: enable the reference clock for the YT8521</a></p>
+              <p class="cv-title"><a href="/evidence/#yt8521">Linux, net/phy motorcomm: enable the reference clock for the YT8521</a></p>
               <p class="cv-when">Linux 7.3 &middot; 2026</p>
               <p class="cv-desc">Fix for crystal-less RGMII PHYs that need a SoC-sourced 25 MHz reference. Reviewed-by Andrew Lunn; Tested-by Gavin Gao on a different board; applied by Jakub Kicinski, net maintainer. An earlier attempt in the MAC driver was withdrawn on maintainer advice and redone at the PHY layer.</p>
               <div class="cv-refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dc3b7209b5d32194b9088fb40f1787130f34ea5e">git.kernel.org: dc3b7209b5d3</a><a href="https://github.com/torvalds/linux/commit/dc3b7209b5d32194b9088fb40f1787130f34ea5e">github: dc3b7209b5d3</a><a href="https://lore.kernel.org/all/20260719034555.3623003-1-gahing@gahingwoo.com/">lore: v1, Reviewed-by Andrew Lunn</a><a href="https://lore.kernel.org/all/CAK2JjQU28+Q5ZU1atm09tuMp=P0gd63L7xY-8dX3G5weS9Heeg@mail.gmail.com/">lore: v2, Tested-by Gavin Gao</a></div>
             </div>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#optee">OP-TEE: first RK3576 platform port</a></p>
+              <p class="cv-title"><a href="/evidence/#optee">OP-TEE: first RK3576 platform port</a></p>
               <p class="cv-when">merged &middot; 2026</p>
               <p class="cv-desc">Ported the open-source Trusted Execution Environment to a new Rockchip SoC. Passed all 57 automated checks, reproduced on separate hardware, Reviewed-by from a Cherry Embedded Solutions maintainer. Flipper Devices later ran it on Flipper One: 114 xtest cases, 35,681 subtests, zero failures, credited by name in their developer documentation.</p>
               <div class="cv-refs"><a href="https://github.com/OP-TEE/optee_os/pull/7821">github: optee_os#7821</a><a href="https://github.com/OP-TEE/optee_os/blob/master/core/arch/arm/plat-rockchip/platform_rk3576.c">github: platform_rk3576.c on master</a><a href="https://docs.flipper.net/one/dev-log/3">docs.flipper.net/one/dev-log/3</a></div>
             </div>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#tfa">Trusted Firmware-A: removed a redundant secure-boot override</a></p>
+              <p class="cv-title"><a href="/evidence/#tfa">Trusted Firmware-A: removed a redundant secure-boot override</a></p>
               <p class="cv-when">merged &middot; 2026</p>
               <p class="cv-desc">A copy-paste build-configuration defect that would have silently broken secure boot on any build without a secure OS. Reviewed by engineers at STMicroelectronics, Arm and Rockchip.</p>
               <div class="cv-refs"><a href="https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/51089">TF-A change 51089</a></div>
@@ -309,21 +309,21 @@
             <h2 class="section-title">Under review</h2>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#npu-series">Linux: RK3576 NPU enablement, 14 patches, PATCH v11</a></p>
+              <p class="cv-title"><a href="/evidence/#npu-series">Linux: RK3576 NPU enablement, 14 patches, PATCH v11</a></p>
               <p class="cv-when">posted 31 Aug 2026</p>
               <p class="cv-desc">Bindings, power domains, IOMMU and accel/rocket changes to run the RK3576's NPU on the mainline driver. Reviewed-by &times;4 (Krzysztof Kozlowski, Igor Paunovic, Abel Vesa &times;2), Acked-by &times;2 (Conor Dooley), Tested-by &times;2 on RK3588 hardware I do not own. Tomeu Vizoso, the driver's author, has said he will review it. The root cause of the long-standing failure was a register field one word wide: a 16-bit task count where the RK3588 header assumed 12, confirmed on the list by Rockchip.</p>
               <div class="cv-refs"><a href="https://lore.kernel.org/all/20260831081956.84871-1-gahing@gahingwoo.com/">lore: PATCH v11 00/14</a><a href="https://lore.kernel.org/all/20260831040804.24111-1-gahing@gahingwoo.com/">lore: Tomeu Vizoso on v10</a><a href="https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/">lore: Rockchip confirms the field layout</a></div>
             </div>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#mesa-mr">Mesa: RK3576 support in the Teflon delegate, !43804</a></p>
+              <p class="cv-title"><a href="/evidence/#mesa-mr">Mesa: RK3576 support in the Teflon delegate, !43804</a></p>
               <p class="cv-when">posted &middot; 2026</p>
               <p class="cv-desc">Five patches for one regular convolution on the rocket/Teflon path, deliberately the bare minimum the maintainer asked for first. Not yet reviewed.</p>
               <div class="cv-refs"><a href="https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/43804">gitlab.freedesktop.org: mesa!43804</a></div>
             </div>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#vepu510">Linux, media: RFC V4L2 driver for the RK3576 VEPU510 H.264 encoder</a></p>
+              <p class="cv-title"><a href="/evidence/#vepu510">Linux, media: RFC V4L2 driver for the RK3576 VEPU510 H.264 encoder</a></p>
               <p class="cv-when">RFC &middot; 2026</p>
               <p class="cv-desc">From-scratch encoder driver. Reviewed by Heiko St&uuml;bner and Nicolas Dufresne; on their advice, abandoned the stateful V4L2 interface in favour of the DRM/Vulkan-Video split being built for the RK3588.</p>
               <div class="cv-refs"><a href="https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3576/-/blob/main/mainline-status.md?ref_type=heads">gitlab.collabora.com: RK3576 mainline-status, VEPU510 reference point</a></div>
@@ -333,18 +333,18 @@
           <section class="cv-section" id="cv-what-is-next">
             <h2 class="section-title">What is next</h2>
             <ul class="cv-list">
-              <li><a href="/evidence#npu-series">RK3576 NPU series</a>: into the accel tree. v11 is under review by the driver's author; the goal is for the 14 patches to be applied, so the NPU works on a stock kernel.</li>
-              <li><a href="/evidence#mesa-mr">Mesa</a>: after the single regular convolution in !43804, the depthwise, pointwise and image-input layer types MobileNet is built from, as separate series.</li>
-              <li><a href="/evidence#charsiu">charsiu</a>: an open runtime that matches or beats the vendor's performance on the mainline driver, with no vendor code in the path. Nine models already run end to end with output identical to the CPU reference.</li>
-              <li><a href="/evidence#vepu510">VEPU510 encoder</a>: rebase on the DRM/Vulkan-Video split being built for the RK3588 once it lands, as the maintainers advised.</li>
-              <li><a href="/evidence#edk2">edk2-rk3576</a>: a complete, polished UEFI for the RK3576. It boots a mainline Fedora 44 desktop today; the goal is every board it builds for verified and the platform support upstreamable.</li>
+              <li><a href="/evidence/#npu-series">RK3576 NPU series</a>: into the accel tree. v11 is under review by the driver's author; the goal is for the 14 patches to be applied, so the NPU works on a stock kernel.</li>
+              <li><a href="/evidence/#mesa-mr">Mesa</a>: after the single regular convolution in !43804, the depthwise, pointwise and image-input layer types MobileNet is built from, as separate series.</li>
+              <li><a href="/evidence/#charsiu">charsiu</a>: an open runtime that matches or beats the vendor's performance on the mainline driver, with no vendor code in the path. Nine models already run end to end with output identical to the CPU reference.</li>
+              <li><a href="/evidence/#vepu510">VEPU510 encoder</a>: rebase on the DRM/Vulkan-Video split being built for the RK3588 once it lands, as the maintainers advised.</li>
+              <li><a href="/evidence/#edk2">edk2-rk3576</a>: a complete, polished UEFI for the RK3576. It boots a mainline Fedora 44 desktop today; the goal is every board it builds for verified and the platform support upstreamable.</li>
             </ul>
           </section>
 
           <section class="cv-section" id="cv-publication">
             <h2 class="section-title">Publication</h2>
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence#preprint">RK3576 NPU bring-up on the open driver stack: preprint, version 2</a></p>
+              <p class="cv-title"><a href="/evidence/#preprint">RK3576 NPU bring-up on the open driver stack: preprint, version 2</a></p>
               <p class="cv-when">Zenodo &middot; 2026</p>
               <p class="cv-desc">Version 1 reported that chained compute failed below what software could reach. Version 2 retracts that on its first page: the cause was a register field-layout error in software, and MobileNet V1 now runs end to end on the NPU and returns the CPU's class. Most of version 2 is about why a disprove-first method held a false conclusion for 38 days. Covered by <a href="https://www.cnx-software.com/2026/07/15/reverse-engineering-brings-rk3576-npu-support-to-open-source-rocket-driver-for-mainline-linux/">CNX Software</a>; five register-model findings independently cross-confirmed on RK3588 by a separate reverse-engineering effort.</p>
               <div class="cv-refs"><a href="https://doi.org/10.5281/zenodo.21990992">doi:10.5281/zenodo.21990992 (v2)</a><a href="https://doi.org/10.5281/zenodo.21348017">doi:10.5281/zenodo.21348017 (v1, withdrawn result)</a><a href="https://github.com/gregordinary/rockchip-npu-notes/blob/main/SOURCES.md">github: gregordinary/rockchip-npu-notes, SOURCES.md</a></div>
@@ -354,23 +354,23 @@
           <section class="cv-section" id="cv-selected-projects">
             <h2 class="section-title">Selected projects</h2>
             <ul class="cv-list">
-              <li><a href="/evidence#charsiu">charsiu</a>: an LLM runtime that talks to the mainline NPU driver directly, no Mesa and no vendor runtime. Nine models, Llama-3.2-1B among them, run end to end at four bits with output identical to the exact CPU arithmetic. C. <a href="https://github.com/gahingwoo/charsiu">github.com/gahingwoo/charsiu</a></li>
-              <li><a href="/evidence#edk2">edk2-rk3576</a>: a TianoCore UEFI port for the RK3576 that boots a mainline Fedora 44 desktop. Builds for six boards, verified on two; pinned on the Radxa forum by a Radxa engineer. C. <a href="https://github.com/gahingwoo/edk2-rk3576">github.com/gahingwoo/edk2-rk3576</a>, <a href="https://forum.radxa.com/t/uefi-firmware-support-for-rock-4d-rk3576/30790/">forum.radxa.com</a></li>
-              <li><a href="/evidence#kiln">kiln</a>: local LLM and vision inference on the RK3576 NPU against a mainline kernel, using the vendor driver out of tree as a stopgap. Subject of a step-by-step tutorial in Radxa's official documentation. <a href="https://github.com/gahingwoo/kiln">github.com/gahingwoo/kiln</a>, <a href="https://docs.radxa.com/en/rock4/rock4d/application-dev/npu/kiln">docs.radxa.com</a></li>
-              <li><a href="/evidence#rp2350">rp2350-tz-tee</a>: a minimal TrustZone-M Secure/Non-Secure example on the RP2350, with the SecureFault verified over SWD rather than trusted from source. C. <a href="https://github.com/gahingwoo/rp2350-tz-tee">github.com/gahingwoo/rp2350-tz-tee</a></li>
-              <li><a href="/evidence#soc-consistency">SoC-Consistency</a>: static analysis of devicetree power trees, rule packs for five chip families, runs in CI. On PyPI; packaged into Arch Linux by an unaffiliated maintainer. Python. <a href="https://github.com/gahingwoo/SoC-Consistency">github.com/gahingwoo/SoC-Consistency</a></li>
-              <li><a href="/evidence#rkdeveloptool-gui">RKDevelopTool-GUI</a>: a Qt front end for Rockchip flashing on macOS and Linux. In the Arch AUR and on its own page in Radxa's documentation. Python, PySide6. <a href="https://github.com/gahingwoo/RKDevelopTool-GUI">github.com/gahingwoo/RKDevelopTool-GUI</a>, <a href="https://docs.radxa.com/en/template/module/radxa-os/low-level-dev/rkdeveloptool-gui">docs.radxa.com</a></li>
-              <li><a href="/evidence#lore-enhancer">lore-enhancer</a>: a browser extension that turns lore.kernel.org's raw patch pages into a mail-client view. JavaScript. <a href="https://github.com/gahingwoo/lore-enhancer">github.com/gahingwoo/lore-enhancer</a></li>
+              <li><a href="/evidence/#charsiu">charsiu</a>: an LLM runtime that talks to the mainline NPU driver directly, no Mesa and no vendor runtime. Nine models, Llama-3.2-1B among them, run end to end at four bits with output identical to the exact CPU arithmetic. C. <a href="https://github.com/gahingwoo/charsiu">github.com/gahingwoo/charsiu</a></li>
+              <li><a href="/evidence/#edk2">edk2-rk3576</a>: a TianoCore UEFI port for the RK3576 that boots a mainline Fedora 44 desktop. Builds for six boards, verified on two; pinned on the Radxa forum by a Radxa engineer. C. <a href="https://github.com/gahingwoo/edk2-rk3576">github.com/gahingwoo/edk2-rk3576</a>, <a href="https://forum.radxa.com/t/uefi-firmware-support-for-rock-4d-rk3576/30790/">forum.radxa.com</a></li>
+              <li><a href="/evidence/#kiln">kiln</a>: local LLM and vision inference on the RK3576 NPU against a mainline kernel, using the vendor driver out of tree as a stopgap. Subject of a step-by-step tutorial in Radxa's official documentation. <a href="https://github.com/gahingwoo/kiln">github.com/gahingwoo/kiln</a>, <a href="https://docs.radxa.com/en/rock4/rock4d/application-dev/npu/kiln">docs.radxa.com</a></li>
+              <li><a href="/evidence/#rp2350">rp2350-tz-tee</a>: a minimal TrustZone-M Secure/Non-Secure example on the RP2350, with the SecureFault verified over SWD rather than trusted from source. C. <a href="https://github.com/gahingwoo/rp2350-tz-tee">github.com/gahingwoo/rp2350-tz-tee</a></li>
+              <li><a href="/evidence/#soc-consistency">SoC-Consistency</a>: static analysis of devicetree power trees, rule packs for five chip families, runs in CI. On PyPI; packaged into Arch Linux by an unaffiliated maintainer. Python. <a href="https://github.com/gahingwoo/SoC-Consistency">github.com/gahingwoo/SoC-Consistency</a></li>
+              <li><a href="/evidence/#rkdeveloptool-gui">RKDevelopTool-GUI</a>: a Qt front end for Rockchip flashing on macOS and Linux. In the Arch AUR and on its own page in Radxa's documentation. Python, PySide6. <a href="https://github.com/gahingwoo/RKDevelopTool-GUI">github.com/gahingwoo/RKDevelopTool-GUI</a>, <a href="https://docs.radxa.com/en/template/module/radxa-os/low-level-dev/rkdeveloptool-gui">docs.radxa.com</a></li>
+              <li><a href="/evidence/#lore-enhancer">lore-enhancer</a>: a browser extension that turns lore.kernel.org's raw patch pages into a mail-client view. JavaScript. <a href="https://github.com/gahingwoo/lore-enhancer">github.com/gahingwoo/lore-enhancer</a></li>
             </ul>
           </section>
 
           <section class="cv-section" id="cv-review-and-community">
             <h2 class="section-title">Review and community</h2>
             <ul class="cv-list">
-              <li><a href="/evidence#reviews-given-rocket">Reviewed-by given twice</a> on another contributor's accel/rocket patches, the second only after finding a real out-of-bounds write on v1 and seeing it fixed in v2. <a href="https://lore.kernel.org/all/20260729105013.1255526-1-gahing@gahingwoo.com/">lore: clocks by name</a>, <a href="https://lore.kernel.org/all/20260801033614.2008530-1-gahing@gahingwoo.com/">lore: lifecycle fix v2</a></li>
-              <li><a href="/evidence#collabora">Collabora</a> published its own summary of the NPU work; the Rockchip kernel maintainer commented on it. Collabora's RK3576 enablement tracker cites the NPU series and the encoder RFC as its reference points. <a href="https://www.linkedin.com/posts/collabora_reverse-engineering-brings-rk3576-npu-support-activity-7483181749645103105-Mqi2">linkedin.com/posts/collabora</a></li>
-              <li><a href="/evidence#ezyspeech">EzySpeech</a>: real-time transcription and translation into 21 languages, built for and still in use at Mt Albert Baptist Church's Sunday services, with a signed reference letter from the translation team leader. <a href="https://github.com/gahingwoo/ezy_speech_translate">github.com/gahingwoo/ezy_speech_translate</a>, <a href="https://www.mabc.org.nz/sundays">mabc.org.nz/sundays</a>, <a href="/evidence/mabc-reference-letter.pdf">reference letter (PDF)</a></li>
-              <li><a href="/evidence#half-baked">half-baked-studios</a>: a GitHub organisation co-run with three other students, where I guide the group through embedded and firmware work. <a href="https://github.com/half-baked-studios">github.com/half-baked-studios</a></li>
+              <li><a href="/evidence/#reviews-given-rocket">Reviewed-by given twice</a> on another contributor's accel/rocket patches, the second only after finding a real out-of-bounds write on v1 and seeing it fixed in v2. <a href="https://lore.kernel.org/all/20260729105013.1255526-1-gahing@gahingwoo.com/">lore: clocks by name</a>, <a href="https://lore.kernel.org/all/20260801033614.2008530-1-gahing@gahingwoo.com/">lore: lifecycle fix v2</a></li>
+              <li><a href="/evidence/#collabora">Collabora</a> published its own summary of the NPU work; the Rockchip kernel maintainer commented on it. Collabora's RK3576 enablement tracker cites the NPU series and the encoder RFC as its reference points. <a href="https://www.linkedin.com/posts/collabora_reverse-engineering-brings-rk3576-npu-support-activity-7483181749645103105-Mqi2">linkedin.com/posts/collabora</a></li>
+              <li><a href="/evidence/#ezyspeech">EzySpeech</a>: real-time transcription and translation into 21 languages, built for and still in use at Mt Albert Baptist Church's Sunday services, with a signed reference letter from the translation team leader. <a href="https://github.com/gahingwoo/ezy_speech_translate">github.com/gahingwoo/ezy_speech_translate</a>, <a href="https://www.mabc.org.nz/sundays">mabc.org.nz/sundays</a>, <a href="/evidence/mabc-reference-letter.pdf">reference letter (PDF)</a></li>
+              <li><a href="/evidence/#half-baked">half-baked-studios</a>: a GitHub organisation co-run with three other students, where I guide the group through embedded and firmware work. <a href="https://github.com/half-baked-studios">github.com/half-baked-studios</a></li>
             </ul>
           </section>
 
