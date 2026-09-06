@@ -23,8 +23,8 @@
     if (saved === 'dark') document.documentElement.classList.add('pf-v6-theme-dark');
   })();
 </script>
-<link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=19f057f3">
-<link rel="stylesheet" href="/assets/site.css?v=151d944b">
+<link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=1706aea2">
+<link rel="stylesheet" href="/assets/site.css?v=b038e661">
 <meta name="robots" content="noindex">
 </head>
 <body>
@@ -51,7 +51,7 @@
             <div class="pf-v6-c-text-input-group__main pf-m-icon">
               <span class="pf-v6-c-text-input-group__text">
                 <span class="pf-v6-c-text-input-group__icon"><svg class="pf-v6-svg" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true" role="img" width="1em" height="1em"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
-                <input class="pf-v6-c-text-input-group__text-input" type="text" id="search-input" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=fad1e7e4">
+                <input class="pf-v6-c-text-input-group__text-input" type="text" id="search-input" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=a6eafcf9">
               </span>
             </div>
           </div>
@@ -120,18 +120,109 @@
 </dl></div></div>
           </div>
 
-          <footer class="site-footer">
-            <span>Ga Hing Woo (Jiaxing Hu) &middot; Auckland, New Zealand</span>
-            <a href="/">Overview</a>
-            <a href="/evidence/">Evidence</a>
-            <a href="/cv/">CV</a>
-            <a href="https://github.com/gahingwoo/gahingwoo.com">Source of this site</a>
-          </footer>
+        </div>
+      </section>
+
+      <footer class="pf-v6-c-page__main-section site-footer">
+        <div class="pf-v6-c-page__main-body">
+            <div class="pf-v6-l-grid pf-m-gutter">
+              <div class="pf-v6-l-grid__item pf-m-6-col-on-sm pf-m-3-col-on-lg">
+                <p class="foot-title">Pages</p>
+                <nav aria-label="Pages">
+                  <a href="/">Overview</a>
+                  <a href="/evidence/">Evidence appendix</a>
+                  <a href="/cv/">CV</a>
+                  <a href="/cv/ga-hing-woo-cv.pdf">CV as a PDF</a>
+                </nav>
+              </div>
+              <div class="pf-v6-l-grid__item pf-m-6-col-on-sm pf-m-3-col-on-lg">
+                <p class="foot-title">The record</p>
+                <nav aria-label="The record">
+                  <a href="/evidence/#mainline-linux">In mainline Linux</a>
+                  <a href="/evidence/#merged-upstream">Firmware and trusted execution</a>
+                  <a href="/evidence/#under-review">Under review</a>
+                  <a href="/evidence/#published-research">Published and cited</a>
+                </nav>
+              </div>
+              <div class="pf-v6-l-grid__item pf-m-6-col-on-sm pf-m-3-col-on-lg">
+                <p class="foot-title">Elsewhere</p>
+                <nav aria-label="Elsewhere">
+                  <a href="https://blog.gahingwoo.com">Blog</a>
+                  <a href="https://github.com/gahingwoo">GitHub</a>
+                  <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/">LinkedIn</a>
+                  <a href="https://orcid.org/0009-0002-0840-8951">ORCID</a>
+                </nav>
+              </div>
+              <div class="pf-v6-l-grid__item pf-m-12-col-on-sm pf-m-3-col-on-lg">
+                <span class="foot-brand">
+                  <img class="foot-mark" src="/assets/avatar.png" width="420" height="420" alt="" loading="lazy">
+                  <span class="foot-name">Ga Hing Woo (Jiaxing Hu)</span>
+                </span>
+                <p class="foot-about">Year 13 student in Auckland, working on firmware and embedded
+                  Linux. Five changes accepted into mainline Linux 7.3, and every claim on this site
+                  links to the public record behind it.</p>
+                <address>
+                  Auckland, New Zealand<br>
+                  <a href="mailto:gahing@gahingwoo.com">gahing@gahingwoo.com</a><br>
+                  Kernel patches appear under the legal name, Jiaxing Hu
+                </address>
+              </div>
+            </div>
+        </div>
+      </footer>
+      <section class="pf-v6-c-page__main-section pf-m-no-fill foot-legal" aria-label="Site information">
+        <div class="pf-v6-c-page__main-body">
+            
+              <span>Copyright &copy; <span id="year">2026</span> Ga Hing Woo (Jiaxing Hu)</span>
+              <span><a href="https://github.com/gahingwoo/gahingwoo.com">View page source</a></span>
+              <span><button class="link-button" type="button" id="about-page-open">About this site</button></span>
+              <span><a href="mailto:gahing@gahingwoo.com">Contact</a></span>
         </div>
       </section>
     </main>
   </div>
 </div>
-<script src="/assets/site.js?v=6bd7bd9b"></script>
+<div class="pf-v6-c-backdrop about-backdrop" id="about-page" hidden>
+  <div class="pf-v6-l-bullseye">
+  <div class="pf-v6-c-about-modal-box" role="dialog" aria-modal="true" aria-labelledby="about-page-title">
+    <div class="pf-v6-c-about-modal-box__brand">
+      <svg class="credit-badge" viewBox="0 0 360 110" role="img" aria-label="Engineered by gahingwoo">
+        <g class="credit-badge__mark" transform="translate(14,19) scale(0.257143)">
+          <rect x="0" y="0" width="350" height="70"/>
+          <rect x="70" y="70" width="70" height="70"/>
+          <rect x="210" y="70" width="70" height="70"/>
+          <rect x="0" y="210" width="350" height="70"/>
+        </g>
+        <text class="credit-badge__label" x="124" y="48">Engineered by</text>
+        <text class="credit-badge__name" x="123" y="88">gahingwoo</text>
+      </svg>
+    </div>
+    <div class="pf-v6-c-about-modal-box__close">
+      <button class="pf-v6-c-button pf-m-plain" type="button" data-dialog-close aria-label="Close About this site">
+        <span class="pf-v6-c-button__icon"><svg class="pf-v6-svg" viewBox="0 0 352 512" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+      </button>
+    </div>
+    <div class="pf-v6-c-about-modal-box__header">
+      <h1 class="pf-v6-c-title pf-m-4xl" id="about-page-title">About this site</h1>
+    </div>
+    <div class="pf-v6-c-about-modal-box__content">
+      <dl class="pf-v6-c-description-list pf-m-horizontal">
+        <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Built with</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">PatternFly 6.6.1. No JavaScript framework.</div></dd></div>
+        <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Analytics</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Cloudflare Web Analytics. No cookies, nothing that identifies you.</div></dd></div>
+        <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Loaded from elsewhere</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">That analytics script only. Fonts, styles and scripts are served from this domain.</div></dd></div>
+        <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Kept on your device</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Your light or dark choice. Nothing else.</div></dd></div>
+        <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Search</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Runs in your browser. What you type is not sent anywhere.</div></dd></div>
+        <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Made by</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://github.com/gahingwoo">Ga Hing Woo (Jiaxing Hu)</a></div></dd></div>
+        <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Source</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://github.com/gahingwoo/gahingwoo.com">github.com/gahingwoo/gahingwoo.com</a></div></dd></div>
+      </dl>
+      <p class="pf-v6-c-about-modal-box__strapline">
+        The PDF of the CV is printed from the CV page by the build that publishes this site,
+        so the page and the file cannot drift apart.
+      </p>
+    </div>
+  </div>
+  </div>
+</div>
+<script src="/assets/site.js?v=26b63ff0"></script>
 </body>
 </html>

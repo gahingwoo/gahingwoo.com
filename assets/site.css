@@ -65,7 +65,7 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
    the 789px measure for the paragraph plus room for the status at its right.
    The overview is a dashboard and fills the screen. */
 .doc-page { --pf-v6-c-page--section--m-limit-width--MaxWidth: 76rem; }
-.doc-page .pf-v6-c-page__main-body { margin-inline: auto; }
+.doc-page .pf-v6-c-page__main-body:has(> .page-rail) { margin-inline: auto; }
 
 /* The first section sits 16px below the top of the sheet by default, which
    crowds the page title against the masthead. Give it room to breathe, and
@@ -282,7 +282,7 @@ a.pf-v6-c-nav__link[href^="http"]::after { content: none; }
   .page-rail .pf-v6-c-jump-links:not(.pf-m-expanded) .pf-v6-c-jump-links__list { display: none; }
 }
 @media (min-width: 75rem) {
-  .with-rail .pf-v6-c-page__main-body {
+  .with-rail .pf-v6-c-page__main-body:has(> .page-rail) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 15rem;
     column-gap: var(--pf-t--global--spacer--xl);
@@ -384,8 +384,119 @@ a.pf-v6-c-nav__link[href^="http"]::after { content: none; }
 .status-cell { color: var(--pf-t--global--text--color--subtle); white-space: nowrap; }
 
 /* ---- footer ---- */
-.site-footer { margin-top: var(--pf-t--global--spacer--2xl); padding-top: var(--pf-t--global--spacer--md); border-top: 1px solid var(--pf-t--global--border--color--default); font-size: var(--pf-t--global--font--size--body--sm); color: var(--pf-t--global--text--color--subtle); display: flex; flex-wrap: wrap; gap: var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--lg); }
-.site-footer a { color: inherit; }
+/* ---- footer ----
+   Four columns: three of links and one that says who this is, which is the
+   arrangement the church site uses and the one a reader arriving at the bottom
+   of a long page expects. The legal line sits under a rule beneath it. */
+/* The footer is its own region on the secondary surface rather than more
+   content on the sheet, which is how redhat.com and the PatternFly demos end a
+   page: the change of ground does the separating, so no rule is needed above
+   it. It sits outside the content section, so it also runs the full width
+   instead of stopping where the right-hand rail begins. */
+.site-footer, .foot-legal {
+  background: var(--pf-t--global--background--color--secondary--default);
+  font-size: var(--pf-t--global--font--size--body--sm);
+  color: var(--pf-t--global--text--color--subtle);
+}
+.site-footer { padding-block-start: var(--pf-t--global--spacer--2xl); }
+.foot-legal { padding-block-start: 0; }
+.foot-title {
+  font-family: var(--pf-t--global--font--family--heading);
+  font-weight: 500;
+  color: var(--pf-t--global--text--color--regular);
+  margin: 0 0 var(--pf-t--global--spacer--sm) 0;
+}
+.site-footer nav { display: flex; flex-direction: column; gap: var(--pf-t--global--spacer--xs); }
+/* The footer does not colour its links, and a footer link is navigation rather
+   than a citation, so it carries neither the link colour nor the
+   leaves-the-site glyph that a reference in the content does. */
+.site-footer a, .foot-legal a { color: inherit; }
+.site-footer a::after, .foot-legal a::after { content: none !important; }
+.foot-brand { display: flex; align-items: center; gap: var(--pf-t--global--spacer--sm); }
+.foot-mark { width: 2rem; height: 2rem; border-radius: 50%; }
+.foot-name { font-family: var(--pf-t--global--font--family--heading); font-weight: 500; color: var(--pf-t--global--text--color--regular); }
+.foot-about { margin: var(--pf-t--global--spacer--sm) 0 var(--pf-t--global--spacer--md) 0; }
+.site-footer address { font-style: normal; line-height: 1.9; }
+.foot-legal .pf-v6-c-page__main-body {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--lg);
+  padding-block-start: var(--pf-t--global--spacer--md);
+}
+/* The rule belongs to the columns of links, not to the whole footer: run it
+   the full width and it draws a box around the identity block on the right,
+   which is a separate thing that happens to sit alongside. So it stops where
+   the fourth column begins. That column starts at 75% plus three quarters of
+   one gutter, so the rule ends a quarter of a gutter before it. Below lg the
+   columns stack and there is nothing to the right, so it spans the width. */
+.foot-legal .pf-v6-c-page__main-body::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  border-block-start: 1px solid var(--pf-t--global--border--color--default);
+}
+@media (min-width: 75rem) {
+  .foot-legal .pf-v6-c-page__main-body::before {
+    inline-size: calc(75% - 0.25 * var(--pf-t--global--spacer--md));
+  }
+}
+/* A button that has to sit in a run of links and read as one of them. */
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.2em;
+}
+.link-button:hover { text-decoration-style: solid; }
+
+/* ---- about this site ----
+   PatternFly's about modal box, which is the component this exact content is
+   for: a product's name, a list of facts about it, and a closing line. */
+.about-backdrop .pf-v6-c-about-modal-box {
+  /* The artwork PatternFly leaves the right-hand column for, shipped in the
+     package. It is grey at low opacity rather than a fixed colour, so one file
+     serves both themes. */
+  --pf-v6-c-about-modal-box--BackgroundImage: url("/assets/patternfly/assets/images/pf-background.svg");
+  --pf-v6-c-about-modal-box--BackgroundPosition: bottom right;
+  /* The component fixes the box at 47.625rem tall from lg, sized for a
+     product's about box. This one takes the height its rows ask for, and the
+     viewport caps it. */
+  --pf-v6-c-about-modal-box--Height: auto;
+  --pf-v6-c-about-modal-box--lg--Height: auto;
+  border-radius: var(--pf-t--global--border--radius--large);
+  width: min(64rem, calc(100vw - 2 * var(--pf-t--global--spacer--lg)));
+  max-height: calc(100dvh - 2 * var(--pf-t--global--spacer--lg));
+  overflow: auto;
+}
+/* The brand slot carries the wordmark rather than a logo. One element, and the
+   stylesheet picks which of the two files it draws: a hidden <img> is fetched
+   anyway, so a pair of them would cost every visitor both downloads to show
+   one. */
+.credit-badge { display: block; width: 11.25rem; height: auto; }
+.credit-badge__mark { fill: #9472db; }
+.credit-badge__label,
+.credit-badge__name { font-family: var(--pf-t--global--font--family--mono); }
+.credit-badge__label { font-size: 20px; font-weight: 500; letter-spacing: 0.5px; fill: var(--pf-t--global--text--color--subtle); }
+.credit-badge__name { font-size: 38px; font-weight: 800; letter-spacing: -0.5px; fill: var(--pf-t--global--text--color--regular); }
+/* On a near-black surface the badge's own purple and its near-white wordmark
+   both glow. The mark takes a dimmer purple and the wordmark drops to the
+   subtle text colour, so a credit line reads as a credit line rather than as
+   the brightest thing in the dialog. */
+html.pf-v6-theme-dark .credit-badge__mark { fill: #8b73c9; }
+html.pf-v6-theme-dark .credit-badge__name { fill: var(--pf-t--global--text--color--subtle); }
+html.pf-v6-theme-dark .credit-badge__label { fill: var(--pf-t--global--text--color--subtle); opacity: 0.7; }
+.about-backdrop .pf-v6-c-description-list {
+  --pf-v6-c-description-list--m-horizontal__term--width: minmax(0, 10rem);
+  --pf-v6-c-description-list--RowGap: var(--pf-t--global--spacer--md);
+}
 
 /* Back to top: PatternFly positions this inside a scrolling container; the
    page scrolls as a document, so it is fixed to the viewport instead, at the

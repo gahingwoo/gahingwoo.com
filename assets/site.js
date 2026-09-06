@@ -401,6 +401,66 @@ var ANALYTICS_TOKEN = 'dfe72f19b00e48d6b340a87d6041beef';
     if (c) c.textContent = sec.querySelectorAll('.entry').length;
   });
 
+  // The year in the footer's copyright line, so it does not go stale.
+  var year = document.getElementById('year');
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  // About this site, opened from the footer. The accessibility guidance for a
+  // modal dialog asks for four things beyond showing the box: focus moves
+  // inside, Tab stays inside, Escape closes, and whatever opened it gets focus
+  // back. Everything that is not the dialog is switched off with inert while it
+  // is open, so a screen reader cannot wander into the page behind it; where
+  // inert is missing, aria-hidden still hides the background and the Tab
+  // handler keeps the keyboard in.
+  var about = document.getElementById('about-page');
+  var aboutOpen = document.getElementById('about-page-open');
+  if (about && aboutOpen) {
+    var opener = null;
+    var siblings = Array.prototype.filter.call(document.body.children, function (el) {
+      return el !== about && el.tagName !== 'SCRIPT';
+    });
+    var background = function (off) {
+      siblings.forEach(function (el) {
+        if ('inert' in HTMLElement.prototype) el.inert = off;
+        if (off) el.setAttribute('aria-hidden', 'true');
+        else el.removeAttribute('aria-hidden');
+      });
+    };
+    var focusable = function () {
+      return Array.prototype.filter.call(
+        about.querySelectorAll('a[href], button:not([disabled])'),
+        function (el) { return el.offsetParent !== null; });
+    };
+    var closeAbout = function () {
+      about.hidden = true;
+      background(false);
+      if (opener && opener.focus) opener.focus();
+      opener = null;
+    };
+    aboutOpen.addEventListener('click', function () {
+      opener = aboutOpen;
+      about.hidden = false;
+      background(true);
+      var first = focusable()[0];
+      if (first) first.focus();
+    });
+    // A click on the backdrop itself, not on the box sitting on top of it.
+    about.addEventListener('click', function (e) { if (e.target === about) closeAbout(); });
+    Array.prototype.forEach.call(about.querySelectorAll('[data-dialog-close]'), function (b) {
+      b.addEventListener('click', closeAbout);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (about.hidden) return;
+      if (e.key === 'Escape') { closeAbout(); return; }
+      if (e.key !== 'Tab') return;
+      var items = focusable();
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+
   // Back to top.
   var totop = document.getElementById('back-to-top');
   if (totop) {

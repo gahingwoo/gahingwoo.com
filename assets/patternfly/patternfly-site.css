@@ -18182,6 +18182,313 @@ label.pf-v6-c-input-group__text {
   transition-timing-function: var(--pf-v6-c-jump-links__toggle-icon--TransitionTimingFunction);
   transition-duration: var(--pf-v6-c-jump-links__toggle-icon--TransitionDuration);
   transition-property: transform;
+}.pf-v6-c-about-modal-box {
+  --pf-v6-c-about-modal-box--BackgroundImage: none;
+  --pf-v6-c-about-modal-box--BackgroundColor: var(--pf-t--global--background--color--floating--default);
+  --pf-v6-c-about-modal-box--BackgroundSize--min-width: 200px;
+  --pf-v6-c-about-modal-box--BackgroundSize--width: 60%;
+  --pf-v6-c-about-modal-box--BackgroundSize--max-width: 600px;
+  --pf-v6-c-about-modal-box--BackgroundSize: clamp(var(--pf-v6-c-about-modal-box--BackgroundSize--min-width), var(--pf-v6-c-about-modal-box--BackgroundSize--width), var(--pf-v6-c-about-modal-box--BackgroundSize--max-width));
+  --pf-v6-c-about-modal-box--Height: 100%;
+  --pf-v6-c-about-modal-box--lg--Height: 47.625rem;
+  --pf-v6-c-about-modal-box--Width: 100%;
+  --pf-v6-c-about-modal-box--sm--GridTemplateColumns: 5fr 1fr;
+  --pf-v6-c-about-modal-box--lg--GridTemplateColumns: 1fr .6fr;
+  --pf-v6-c-about-modal-box__brand--PaddingBlockStart: var(--pf-t--global--spacer--2xl);
+  --pf-v6-c-about-modal-box__brand--PaddingInlineEnd: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__brand--PaddingInlineStart: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__brand--PaddingBlockEnd: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__brand--sm--PaddingInlineEnd: var(--pf-t--global--spacer--3xl);
+  --pf-v6-c-about-modal-box__brand--sm--PaddingInlineStart: var(--pf-t--global--spacer--3xl);
+  --pf-v6-c-about-modal-box__brand--sm--PaddingBlockEnd: var(--pf-t--global--spacer--3xl);
+}
+@media screen and (min-width: 36rem) {
+  .pf-v6-c-about-modal-box {
+    --pf-v6-c-about-modal-box__brand--PaddingInlineEnd: var(--pf-v6-c-about-modal-box__brand--sm--PaddingInlineEnd);
+    --pf-v6-c-about-modal-box__brand--PaddingInlineStart: var(--pf-v6-c-about-modal-box__brand--sm--PaddingInlineStart);
+    --pf-v6-c-about-modal-box__brand--PaddingBlockEnd: var(--pf-v6-c-about-modal-box__brand--sm--PaddingBlockEnd);
+  }
+}
+.pf-v6-c-about-modal-box {
+  --pf-v6-c-about-modal-box__close--ZIndex: var(--pf-t--global--z-index--2xl);
+  --pf-v6-c-about-modal-box__close--PaddingBlockStart: var(--pf-t--global--spacer--2xl);
+  --pf-v6-c-about-modal-box__close--PaddingInlineEnd: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__close--PaddingBlockEnd: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__close--sm--PaddingBlockEnd: var(--pf-t--global--spacer--3xl);
+  --pf-v6-c-about-modal-box__close--lg--PaddingInlineEnd: var(--pf-t--global--spacer--3xl);
+}
+@media only screen and (min-width: 36rem) {
+  .pf-v6-c-about-modal-box {
+    --pf-v6-c-about-modal-box__close--PaddingBlockEnd: var(--pf-v6-c-about-modal-box__close--sm--PaddingBlockEnd);
+  }
+}
+@media only screen and (min-width: 62rem) {
+  .pf-v6-c-about-modal-box {
+    --pf-v6-c-about-modal-box__close--PaddingInlineEnd: var(--pf-v6-c-about-modal-box__close--lg--PaddingInlineEnd);
+  }
+}
+.pf-v6-c-about-modal-box {
+  --pf-v6-c-about-modal-box__close--c-button--FontSize: var(--pf-t--global--icon--size--lg);
+  --pf-v6-c-about-modal-box__brand-image--Height: 2.3125rem;
+  --pf-v6-c-about-modal-box__header--PaddingInlineEnd: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__header--PaddingBlockEnd: var(--pf-t--global--spacer--sm);
+  --pf-v6-c-about-modal-box__header--PaddingInlineStart: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__header--sm--PaddingInlineEnd: var(--pf-t--global--spacer--3xl);
+  --pf-v6-c-about-modal-box__header--sm--PaddingInlineStart: var(--pf-t--global--spacer--3xl);
+}
+@media only screen and (min-width: 36rem) {
+  .pf-v6-c-about-modal-box {
+    --pf-v6-c-about-modal-box__header--PaddingInlineEnd: var(--pf-v6-c-about-modal-box__header--sm--PaddingInlineEnd);
+    --pf-v6-c-about-modal-box__header--PaddingInlineStart: var(--pf-v6-c-about-modal-box__header--sm--PaddingInlineStart);
+  }
+}
+.pf-v6-c-about-modal-box {
+  --pf-v6-c-about-modal-box__strapline--PaddingBlockStart: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__strapline--FontSize: var(--pf-t--global--font--size--body--sm);
+  --pf-v6-c-about-modal-box__strapline--Color: var(--pf-t--global--text--color--subtle);
+  --pf-v6-c-about-modal-box__strapline--sm--PaddingBlockStart: var(--pf-t--global--spacer--2xl);
+}
+@media only screen and (min-width: 36rem) {
+  .pf-v6-c-about-modal-box {
+    --pf-v6-c-about-modal-box__strapline--PaddingBlockStart: var(--pf-v6-c-about-modal-box__strapline--sm--PaddingBlockStart);
+  }
+}
+.pf-v6-c-about-modal-box {
+  --pf-v6-c-about-modal-box__content--MarginBlockStart: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__content--MarginInlineEnd: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__content--MarginBlockEnd: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__content--MarginInlineStart: var(--pf-t--global--spacer--xl);
+  --pf-v6-c-about-modal-box__content--sm--MarginBlockStart: var(--pf-t--global--spacer--2xl);
+  --pf-v6-c-about-modal-box__content--sm--MarginInlineEnd: var(--pf-t--global--spacer--3xl);
+  --pf-v6-c-about-modal-box__content--sm--MarginBlockEnd: var(--pf-t--global--spacer--2xl);
+  --pf-v6-c-about-modal-box__content--sm--MarginInlineStart: var(--pf-t--global--spacer--3xl);
+}
+@media only screen and (min-width: 36rem) {
+  .pf-v6-c-about-modal-box {
+    --pf-v6-c-about-modal-box__content--MarginBlockStart: var(--pf-v6-c-about-modal-box__content--sm--MarginBlockStart);
+    --pf-v6-c-about-modal-box__content--MarginInlineEnd: var(--pf-v6-c-about-modal-box__content--sm--MarginInlineEnd);
+    --pf-v6-c-about-modal-box__content--MarginBlockEnd: var(--pf-v6-c-about-modal-box__content--sm--MarginBlockEnd);
+    --pf-v6-c-about-modal-box__content--MarginInlineStart: var(--pf-v6-c-about-modal-box__content--sm--MarginInlineStart);
+  }
+}
+
+.pf-v6-c-about-modal-box {
+  position: relative;
+  display: grid;
+  grid-template-areas: "brand close" "header header" "content content";
+  grid-template-rows: max-content max-content auto;
+  width: var(--pf-v6-c-about-modal-box--Width);
+  height: var(--pf-v6-c-about-modal-box--Height);
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--pf-v6-c-about-modal-box--BackgroundColor);
+  background-image: var(--pf-v6-c-about-modal-box--BackgroundImage);
+  background-repeat: no-repeat;
+  background-position: var(--pf-v6-c-about-modal-box--BackgroundPosition);
+  background-size: var(--pf-v6-c-about-modal-box--BackgroundSize);
+}
+@media only screen and (min-width: 36rem) {
+  .pf-v6-c-about-modal-box {
+    grid-template-areas: "brand          close" "header         close" "content        close";
+    grid-template-columns: var(--pf-v6-c-about-modal-box--sm--GridTemplateColumns);
+  }
+}
+@media only screen and (min-width: 62rem) {
+  .pf-v6-c-about-modal-box {
+    --pf-v6-c-about-modal-box--Height: var(--pf-v6-c-about-modal-box--lg--Height);
+    --pf-v6-c-about-modal-box--Width: var(--pf-v6-c-about-modal-box--lg--Width);
+    grid-template-rows: max-content max-content auto;
+    grid-template-columns: var(--pf-v6-c-about-modal-box--lg--GridTemplateColumns);
+  }
+}
+.pf-v6-c-about-modal-box {
+  --pf-v6-c-about-modal-box--BackgroundPosition: bottom right;
+}
+:where(.pf-v6-m-dir-rtl, [dir=rtl]) .pf-v6-c-about-modal-box {
+  --pf-v6-c-about-modal-box--BackgroundPosition: bottom left;
+}
+
+.pf-v6-c-about-modal-box__brand {
+  display: flex;
+  grid-area: brand;
+  padding-block-start: var(--pf-v6-c-about-modal-box__brand--PaddingBlockStart);
+  padding-block-end: var(--pf-v6-c-about-modal-box__brand--PaddingBlockEnd);
+  padding-inline-start: var(--pf-v6-c-about-modal-box__brand--PaddingInlineStart);
+  padding-inline-end: var(--pf-v6-c-about-modal-box__brand--PaddingInlineEnd);
+}
+
+.pf-v6-c-about-modal-box__brand-image {
+  height: var(--pf-v6-c-about-modal-box__brand-image--Height);
+}
+
+.pf-v6-c-about-modal-box__header {
+  display: flex;
+  flex-direction: column;
+  grid-area: header;
+  padding-block-end: var(--pf-v6-c-about-modal-box__header--PaddingBlockEnd);
+  padding-inline-start: var(--pf-v6-c-about-modal-box__header--PaddingInlineStart);
+  padding-inline-end: var(--pf-v6-c-about-modal-box__header--PaddingInlineEnd);
+}
+
+.pf-v6-c-about-modal-box__strapline {
+  padding-block-start: var(--pf-v6-c-about-modal-box__strapline--PaddingBlockStart);
+  margin-block-start: auto;
+  font-size: var(--pf-v6-c-about-modal-box__strapline--FontSize);
+  color: var(--pf-v6-c-about-modal-box__strapline--Color);
+}
+
+.pf-v6-c-about-modal-box__content {
+  display: flex;
+  flex-direction: column;
+  grid-area: content;
+  margin-block-start: var(--pf-v6-c-about-modal-box__content--MarginBlockStart);
+  margin-block-end: var(--pf-v6-c-about-modal-box__content--MarginBlockEnd);
+  margin-inline-start: var(--pf-v6-c-about-modal-box__content--MarginInlineStart);
+  margin-inline-end: var(--pf-v6-c-about-modal-box__content--MarginInlineEnd);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-wrap: anywhere;
+  -webkit-overflow-scrolling: touch;
+}
+@media screen and (min-width: 36rem) {
+  .pf-v6-c-about-modal-box__content {
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+}
+
+.pf-v6-c-about-modal-box__close {
+  position: sticky;
+  inset-block-start: 0;
+  display: flex;
+  grid-area: close;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-block-start: var(--pf-v6-c-about-modal-box__close--PaddingBlockStart);
+  padding-block-end: var(--pf-v6-c-about-modal-box__close--PaddingBlockEnd);
+  padding-inline-end: var(--pf-v6-c-about-modal-box__close--PaddingInlineEnd);
+}
+@media only screen and (min-width: 36rem) {
+  .pf-v6-c-about-modal-box__close {
+    grid-area: 1/2;
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 62rem) {
+  .pf-v6-c-about-modal-box__close {
+    justify-content: flex-end;
+  }
+}
+.pf-v6-c-about-modal-box__close .pf-v6-c-button.pf-m-plain {
+  font-size: var(--pf-v6-c-about-modal-box__close--c-button--FontSize);
+}.pf-v6-c-title {
+  --pf-v6-c-title--FontFamily: var(--pf-t--global--font--family--heading);
+  --pf-v6-c-title--m-4xl--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-4xl--FontSize: var(--pf-t--global--font--size--heading--2xl);
+  --pf-v6-c-title--m-4xl--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-3xl--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-3xl--FontSize: var(--pf-t--global--font--size--heading--xl);
+  --pf-v6-c-title--m-3xl--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-2xl--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-2xl--FontSize: var(--pf-t--global--font--size--heading--lg);
+  --pf-v6-c-title--m-2xl--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-xl--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-xl--FontSize: var(--pf-t--global--font--size--heading--md);
+  --pf-v6-c-title--m-xl--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-lg--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-lg--FontSize: var(--pf-t--global--font--size--heading--sm);
+  --pf-v6-c-title--m-lg--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-md--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-md--FontSize: var(--pf-t--global--font--size--heading--xs);
+  --pf-v6-c-title--m-md--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-h1--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-h1--FontSize: var(--pf-t--global--font--size--heading--h1);
+  --pf-v6-c-title--m-h1--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-h2--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-h2--FontSize: var(--pf-t--global--font--size--heading--h2);
+  --pf-v6-c-title--m-h2--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-h3--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-h3--FontSize: var(--pf-t--global--font--size--heading--h3);
+  --pf-v6-c-title--m-h3--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-h4--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-h4--FontSize: var(--pf-t--global--font--size--heading--h4);
+  --pf-v6-c-title--m-h4--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-h5--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-h5--FontSize: var(--pf-t--global--font--size--heading--h5);
+  --pf-v6-c-title--m-h5--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-h6--LineHeight: var(--pf-t--global--font--line-height--heading);
+  --pf-v6-c-title--m-h6--FontSize: var(--pf-t--global--font--size--heading--h6);
+  --pf-v6-c-title--m-h6--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-title--m-page-title--FontWeight: var(--pf-t--global--font--weight--heading--bold);
+}
+
+.pf-v6-c-title {
+  font-family: var(--pf-v6-c-title--FontFamily);
+  overflow-wrap: anywhere;
+}
+.pf-v6-c-title.pf-m-4xl {
+  font-size: var(--pf-v6-c-title--m-4xl--FontSize);
+  font-weight: var(--pf-v6-c-title--m-4xl--FontWeight);
+  line-height: var(--pf-v6-c-title--m-4xl--LineHeight);
+}
+.pf-v6-c-title.pf-m-3xl {
+  font-size: var(--pf-v6-c-title--m-3xl--FontSize);
+  font-weight: var(--pf-v6-c-title--m-3xl--FontWeight);
+  line-height: var(--pf-v6-c-title--m-3xl--LineHeight);
+}
+.pf-v6-c-title.pf-m-2xl {
+  font-size: var(--pf-v6-c-title--m-2xl--FontSize);
+  font-weight: var(--pf-v6-c-title--m-2xl--FontWeight);
+  line-height: var(--pf-v6-c-title--m-2xl--LineHeight);
+}
+.pf-v6-c-title.pf-m-xl {
+  font-size: var(--pf-v6-c-title--m-xl--FontSize);
+  font-weight: var(--pf-v6-c-title--m-xl--FontWeight);
+  line-height: var(--pf-v6-c-title--m-xl--LineHeight);
+}
+.pf-v6-c-title.pf-m-lg {
+  font-size: var(--pf-v6-c-title--m-lg--FontSize);
+  font-weight: var(--pf-v6-c-title--m-lg--FontWeight);
+  line-height: var(--pf-v6-c-title--m-lg--LineHeight);
+}
+.pf-v6-c-title.pf-m-md {
+  font-size: var(--pf-v6-c-title--m-md--FontSize);
+  font-weight: var(--pf-v6-c-title--m-md--FontWeight);
+  line-height: var(--pf-v6-c-title--m-md--LineHeight);
+}
+.pf-v6-c-title.pf-m-h1 {
+  font-size: var(--pf-v6-c-title--m-h1--FontSize);
+  font-weight: var(--pf-v6-c-title--m-h1--FontWeight);
+  line-height: var(--pf-v6-c-title--m-h1--LineHeight);
+}
+.pf-v6-c-title.pf-m-h2 {
+  font-size: var(--pf-v6-c-title--m-h2--FontSize);
+  font-weight: var(--pf-v6-c-title--m-h2--FontWeight);
+  line-height: var(--pf-v6-c-title--m-h2--LineHeight);
+}
+.pf-v6-c-title.pf-m-h3 {
+  font-size: var(--pf-v6-c-title--m-h3--FontSize);
+  font-weight: var(--pf-v6-c-title--m-h3--FontWeight);
+  line-height: var(--pf-v6-c-title--m-h3--LineHeight);
+}
+.pf-v6-c-title.pf-m-h4 {
+  font-size: var(--pf-v6-c-title--m-h4--FontSize);
+  font-weight: var(--pf-v6-c-title--m-h4--FontWeight);
+  line-height: var(--pf-v6-c-title--m-h4--LineHeight);
+}
+.pf-v6-c-title.pf-m-h5 {
+  font-size: var(--pf-v6-c-title--m-h5--FontSize);
+  font-weight: var(--pf-v6-c-title--m-h5--FontWeight);
+  line-height: var(--pf-v6-c-title--m-h5--LineHeight);
+}
+.pf-v6-c-title.pf-m-h6 {
+  font-size: var(--pf-v6-c-title--m-h6--FontSize);
+  font-weight: var(--pf-v6-c-title--m-h6--FontWeight);
+  line-height: var(--pf-v6-c-title--m-h6--LineHeight);
+}
+.pf-v6-c-title.pf-m-page-title {
+  font-weight: var(--pf-v6-c-title--m-page-title--FontWeight);
 }.pf-v6-l-gallery {
   --pf-v6-l-gallery--m-gutter--GridGap: var(--pf-t--global--spacer--gutter--default);
   --pf-v6-l-gallery--GridTemplateColumns--min: 250px;
@@ -19205,4 +19512,15 @@ label.pf-v6-c-input-group__text {
 }
 .pf-v6-l-grid.pf-m-gutter {
   gap: var(--pf-v6-l-grid--m-gutter--GridGap);
+}.pf-v6-l-bullseye {
+  --pf-v6-l-bullseye--Padding: 0;
+}
+
+.pf-v6-l-bullseye {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--pf-v6-l-bullseye--Padding);
+  margin: 0;
 }
