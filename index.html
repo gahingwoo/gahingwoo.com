@@ -39,7 +39,7 @@
 }
 </script>
 <link rel="stylesheet" href="/assets/patternfly/patternfly-site.css?v=19f057f3">
-<link rel="stylesheet" href="/assets/site.css?v=8c130868">
+<link rel="stylesheet" href="/assets/site.css?v=151d944b">
 </head>
 <body>
 <div class="pf-v6-c-page">
@@ -65,7 +65,7 @@
             <div class="pf-v6-c-text-input-group__main pf-m-icon">
               <span class="pf-v6-c-text-input-group__text">
                 <span class="pf-v6-c-text-input-group__icon"><svg class="pf-v6-svg" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true" role="img" width="1em" height="1em"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
-                <input class="pf-v6-c-text-input-group__text-input" type="text" id="search-input" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=096cdde9">
+                <input class="pf-v6-c-text-input-group__text-input" type="text" id="search-input" placeholder="Search this site" autocomplete="off" spellcheck="false" aria-label="Search this site" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" data-index="/assets/search-index.json?v=fad1e7e4">
               </span>
             </div>
           </div>
@@ -166,7 +166,8 @@
 </div>
 <div class="pf-v6-c-card " id="in-mainline-linux">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">In mainline Linux</h2></div>
-  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
+  <div class="pf-v6-c-card__body"><p class="card-lede">No one merges their own work into Linux; each part of the kernel has a maintainer who reads submissions in public and can refuse them. What got through is below: memory protection for the chip's AI accelerator, support for two new boards, and a fix to Ethernet timing. Each line names the maintainer who took it.</p>
+<dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">iommu/rockchip</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#iommu-fixes">Two fixes for the RK3576 NPU's IOMMU instances</a><span class="meta">Applied by Will Deacon, IOMMU co-maintainer. Linux 7.3.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">arm64 dts</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#cm5-dts">ArmSoM CM5 and CM5-IO board support</a><span class="meta">Applied by Heiko St&uuml;bner, Rockchip SoC maintainer; Acked-by Krzysztof Kozlowski. Linux 7.3.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">net/phy motorcomm</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#yt8521">Reference clock for the YT8521 PHY</a><span class="meta">Applied by Jakub Kicinski, net maintainer; Reviewed-by Andrew Lunn. Linux 7.3.</span></div></dd></div>
@@ -175,7 +176,8 @@
 </div>
 <div class="pf-v6-c-card " id="firmware-and-trusted-execution">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Firmware and trusted execution</h2></div>
-  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
+  <div class="pf-v6-c-card__body"><p class="card-lede">Firmware is the code that runs before the operating system starts. A trusted execution environment is a sealed-off part of the chip that keeps holding keys and fingerprints even if the operating system itself is broken into. This chip had no such environment until the port below, which the project that maintains the standard reviewed and merged. The rest is secure boot, the same kind of isolation on a second chip, and firmware that boots an ordinary Fedora desktop.</p>
+<dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">OP-TEE</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#optee">First RK3576 platform port</a><span class="meta">Merged. Reviewed-by Cherry Embedded Solutions; run by Flipper Devices on Flipper One, 35,681 subtests, zero failures.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Trusted Firmware-A</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#tfa">Redundant secure-boot override removed</a><span class="meta">Merged. Reviewed by engineers at STMicroelectronics, Arm and Rockchip.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">RP2350</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#rp2350">TrustZone-M isolation example</a><span class="meta">SecureFault verified over SWD rather than trusted from source.</span></div></dd></div>
@@ -185,7 +187,8 @@
 </div>
 <div class="pf-v6-c-card " id="under-review">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Under review</h2></div>
-  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
+  <div class="pf-v6-c-card__body"><p class="card-lede">Nothing on this card has been accepted yet. The first item is a driver that would let a stock Linux use this chip's AI accelerator; it is on its eleventh public revision, and everyone named can still refuse it. Unfinished work is listed because leaving it out would make the record look tidier than it is.</p>
+<dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Linux, accel/rocket</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#npu-series">RK3576 NPU enablement, 14 patches, v11</a><span class="meta">Reviewed-by &times;4, Acked-by &times;2, Tested-by &times;2 on RK3588. The driver's author is reviewing.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Mesa</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#mesa-mr">RK3576 in the Teflon delegate, !43804</a><span class="meta">The bare minimum the maintainer asked for first.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Linux, media</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#vepu510">RFC V4L2 driver for the VEPU510 encoder</a><span class="meta">Reviewed by Heiko St&uuml;bner and Nicolas Dufresne; redirected to the DRM/Vulkan-Video split on their advice.</span></div></dd></div>
@@ -194,7 +197,8 @@
 </div>
 <div class="pf-v6-c-card " id="what-is-next">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">What is next</h2></div>
-  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
+  <div class="pf-v6-c-card__body"><p class="card-lede">Nothing here is done. Each line says where the work stands today and what finishing it would mean, so the distance between the two is stated rather than left to the reader.</p>
+<dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">RK3576 NPU</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#npu-series">Into the accel tree</a><span class="meta">The 14-patch series is at v11 with the driver's author reviewing. The goal is for it to be applied, so the RK3576 NPU works on a stock kernel.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Mesa</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#mesa-mr">Depthwise, pointwise and image-input convolutions</a><span class="meta">!43804 covers one regular convolution on purpose. The layer types MobileNet is actually built from follow in later series.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">charsiu</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#charsiu">An open runtime that matches or beats the vendor's</a><span class="meta">Nine models already run end to end on the mainline driver with output identical to the CPU reference. The goal is performance at or above the closed vendor stack, with no vendor code in the path.</span></div></dd></div>
@@ -205,7 +209,8 @@
 </div>
 <div class="pf-v6-c-card " id="published-and-cited">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Published and cited</h2></div>
-  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
+  <div class="pf-v6-c-card__body"><p class="card-lede">A DOI is a permanent address for a document, and once it is issued the version behind it cannot be quietly changed. Version 1 of this preprint got its central result wrong, so version 2 withdraws it on the first page and explains the cause. Five findings from the same work were later confirmed on a different chip by people with no contact with this project.</p>
+<dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Preprint</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#preprint">RK3576 NPU bring-up, version 2</a><span class="meta">Zenodo DOI. Version 1's central result is withdrawn on the first page of version 2, with the cause.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Cross-checked</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#cross-confirmed">Five register-model findings confirmed on RK3588</a><span class="meta">By an independent reverse-engineering effort with no contact with this project.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Coverage</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#collabora">Collabora</a>, <a href="/evidence/#tracker">Collabora's RK3576 tracker</a>, <a href="https://www.cnx-software.com/2026/07/15/reverse-engineering-brings-rk3576-npu-support-to-open-source-rocket-driver-for-mainline-linux/">CNX Software</a><span class="meta">The Rockchip kernel maintainer commented on Collabora's summary.</span></div></dd></div>
@@ -214,7 +219,8 @@
 </div>
 <div class="pf-v6-c-card " id="tools-used-by-others">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Tools used by others</h2></div>
-  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
+  <div class="pf-v6-c-card__body"><p class="card-lede">Writing a tool proves nothing on its own. The test is whether people who have never spoken to you package it, document it and depend on it. One of these was packaged into Arch Linux by a maintainer I have never contacted, one has its own page in the board vendor's documentation, and one is the subject of that vendor's tutorial.</p>
+<dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">SoC-Consistency</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#soc-consistency">Static analysis of devicetree power trees</a><span class="meta">PyPI; packaged into Arch Linux by an unaffiliated maintainer.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">RKDevelopTool-GUI</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#rkdeveloptool-gui">Rockchip flashing front end</a><span class="meta">Arch AUR; its own page in Radxa's documentation.</span></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">kiln</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#kiln">Local LLM inference on the RK3576 NPU</a><span class="meta">Subject of a Radxa tutorial.</span></div></dd></div>
@@ -224,7 +230,8 @@
 </div>
 <div class="pf-v6-c-card " id="writing">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Writing</h2></div>
-  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
+  <div class="pf-v6-c-card__body"><p class="card-lede">Notes written while the work was happening rather than after it succeeded. They include the wrong turns, because a post that records only the version that worked is not much use to the next person.</p>
+<dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">17 Jul 2026</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com/posts/rk3576-armsom-cm5-devicetree/">ArmSoM Noticed the Work, and the CM5 Device Tree Hits v4</a></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">13 Jul 2026</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com/posts/rp2350-trustzone-vs-pmp/">Same Chip, Two Walls: TrustZone-M vs RISC-V PMP on the RP2350</a></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">15 Jun 2026</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="https://blog.gahingwoo.com/posts/rk3576-npu-mainline/">Bringing Up the RK3576 NPU on Mainline Linux</a></div></dd></div>
@@ -233,7 +240,8 @@
 </div>
 <div class="pf-v6-c-card " id="verification">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">Verification</h2></div>
-  <div class="pf-v6-c-card__body"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
+  <div class="pf-v6-c-card__body"><p class="card-lede">Every claim on this site can be checked without taking my word for it. The links lead to servers I do not control: git.kernel.org, the kernel mailing list archive, and Zenodo.</p>
+<dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Evidence appendix</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Every claim, each with a link to the merged commit, review thread or DOI. <a href="/evidence/">Open the appendix</a></div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Kernel commits</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Linked to git.kernel.org and to the GitHub mirror of Linus's tree.</div></dd></div>
 <div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">Names</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text">Kernel patches carry a legal name, so kernel work appears as Jiaxing Hu. Everywhere else I go by gahingwoo, which is also the name to search.</div></dd></div>

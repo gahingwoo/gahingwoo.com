@@ -316,6 +316,16 @@ a.pf-v6-c-nav__link[href^="http"]::after { content: none; }
 .pf-v6-c-card__body { font-size: 1rem; line-height: 1.5; }
 .pf-v6-c-card__footer { font-size: 1rem; }
 .card-text p { margin: 0 0 var(--pf-t--global--spacer--md) 0; }
+/* The card's own opening. It carries the same job the About paragraph does:
+   say what the thing is and why it is hard before naming it, so a reader who
+   does not know what an IOMMU is still knows what was at stake. It sits above
+   the key/value rows and reads as body text, because it is the part a
+   non-specialist most needs, not a caption on the part they can skip. */
+.card-lede {
+  margin: 0 0 var(--pf-t--global--spacer--md) 0;
+  max-width: 789px;
+  color: var(--pf-t--global--text--color--regular);
+}
 .card-text p:last-child { margin-bottom: 0; }
 
 /* Key/value rows with hairlines, as Cockpit lays out system information. */
