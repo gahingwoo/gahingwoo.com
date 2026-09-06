@@ -106,7 +106,57 @@ var ANALYTICS_TOKEN = 'dfe72f19b00e48d6b340a87d6041beef';
     }
   }
   window.addEventListener('hashchange', function () { unfold(document.getElementById(location.hash.slice(1))); });
-  if (location.hash) unfold(document.getElementById(location.hash.slice(1)));
+
+  // Arriving on a #hash from somewhere else. The folding above takes about five
+  // thousand pixels out of this page, and the browser made its jump against the
+  // taller layout that existed before the folds went in, so the reader lands
+  // past the entry they followed the link for.
+  //
+  // Putting them back once is not enough: the browser's own jump is animated by
+  // scroll-behavior, so it finishes after this code runs and would win. Place
+  // the entry again at each point the layout can still move under it, and stop
+  // the moment the reader scrolls for themselves, so this never fights them.
+  // In-page jumps are left alone: by then the folds are in and the heights have
+  // settled, and unfolding the target only grows what is below it.
+  var userMoved = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (t) {
+    window.addEventListener(t, function () { userMoved = true; }, { passive: true, once: true });
+  });
+  function goToHash() {
+    var el = null;
+    if (userMoved || !location.hash) return;
+    try { el = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (e) {}
+    if (!el) return;
+    unfold(el);
+    // Not scrollIntoView: PatternFly's card carries overflow:auto, which makes
+    // it the nearest scrolling ancestor even though it never scrolls, and the
+    // alignment is satisfied there before the scroller that actually moves is
+    // reached. Work out the position against the scroller this site knows it
+    // has, and set it.
+    var sc = scroller();
+    var height = sc.clientHeight;
+    var r = el.getBoundingClientRect();
+    var want = sc.scrollTop + (r.top - viewportTop()) - (height - r.height) / 2;
+    // The scroller is set to scroll smoothly, which makes even a direct
+    // assignment here an animation, and the browser's own animated jump to the
+    // hash is already running: two animations race and this one loses. Turn the
+    // smoothness off for the assignment so it lands at once and cancels the
+    // other, then give it back for the reader's own scrolling.
+    var was = sc.style.scrollBehavior;
+    sc.style.scrollBehavior = 'auto';
+    sc.scrollTop = Math.max(0, Math.min(want, sc.scrollHeight - height));
+    sc.style.scrollBehavior = was;
+  }
+  if (location.hash) {
+    goToHash();
+    window.requestAnimationFrame(goToHash);
+    window.addEventListener('load', goToHash);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(goToHash);
+    // The animated jump the browser started can still be running; give it the
+    // length of one and take the position back after.
+    window.setTimeout(goToHash, 700);
+  }
+
   // Print (and the CV PDF, which is printed by headless Chrome) is always the
   // light theme: drop the dark class while printing and put it back after.
   var wasDark = false;
