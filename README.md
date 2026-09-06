@@ -4,18 +4,18 @@ Static site, served by GitHub Pages from the `main` branch. No build step. Built
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | Overview: eight cards summarising the work, each row linking into the evidence appendix. |
+| `index.html` | Overview: nine cards summarising the work, each row linking into the evidence appendix. |
 | `evidence/index.html` | Evidence appendix. Every claim with a link to its public record, one card per group with a sticky section rail (an expandable toggle on phones). This is the source of truth; the other two pages summarise it. |
 | `cv/index.html` | The CV, as a page with a print stylesheet. |
 | `cv/ga-hing-woo-cv.pdf` | Printed from `/cv/` by `.github/workflows/site.yml` on every push that touches `cv/`, `assets/site.css` or `assets/patternfly/`. Do not edit by hand. |
-| `assets/patternfly/` | `patternfly-site.css`, assembled by `build.sh` from the parts of `@patternfly/patternfly` 6.6.1 the site uses (base tokens, fonts and icons; page, masthead, button, card, description list, table, data list, back-to-top, skip link, jump links; gallery and stack layouts), plus the Red Hat variable fonts and icon fonts the CSS references. Upgrade with `npm pack @patternfly/patternfly@6`, unpack, and run `sh assets/patternfly/build.sh package`. |
+| `assets/patternfly/` | `patternfly-site.css`, assembled by `build.sh` from the parts of `@patternfly/patternfly` 6.6.1 the site uses (base tokens, fonts and icons; page, masthead, button, card, backdrop, description list, table, data list, nav, text input group, input group, menu, back-to-top, skip link, jump links, about modal box, title; gallery, stack, grid and bullseye layouts), plus the Red Hat variable fonts and icon fonts the CSS references. Upgrade with `npm pack @patternfly/patternfly@6`, unpack, and run `sh assets/patternfly/build.sh package`. |
 | `tools/build_search.py` | Builds `assets/search-index.json` from the three pages, so the sidebar search covers whatever is actually on them. Run it after changing page content; the workflow also runs it on every push. |
 | `tools/build_jsonld.py` | Writes the evidence page's structured data from its own entries, so the machine-readable record cannot drift from the visible one. The workflow runs it on every push. |
 | `tools/build_og.sh` | Renders the three link-preview images from `assets/og-card.html`. Run it with a local server up: `sh tools/build_og.sh`. |
 | `tools/stamp.py` | Rewrites asset links to carry a hash of the file's contents, so a changed stylesheet is a changed URL. Run it after editing anything under `assets/`; the workflow also runs it on every push. |
 | `assets/site.css`, `assets/site.js` | The few site rules on top of PatternFly: document scrolling, lighter headings, key/value rows, folding of long evidence entries, theme toggle, print. |
 | `404.html` | Not-found page, served by GitHub Pages for any missing address. |
-| `assets/og-card.html` | Template for the link-preview image `assets/og.png`. |
+| `assets/og-card.html` | Template for the link-preview images `assets/og-{home,evidence,cv}.png`. |
 
 ## Updating
 
@@ -40,3 +40,12 @@ Cloudflare Web Analytics between the quotes and push; leave it empty and no
 analytics script is loaded and no request is made. Cloudflare was chosen
 because it sets no cookies and stores nothing on the reader's machine, so the
 site needs no consent banner.
+
+## Licence
+
+The code is free software under the [GNU General Public License, version 2](LICENSE):
+the pages' markup, `assets/site.css`, `assets/site.js` and everything under `tools/`.
+The vendored PatternFly under `assets/patternfly/` keeps its own MIT licence.
+
+The content is not covered by that licence and is not offered for reuse: the CV, the
+evidence entries and their prose, and the avatar. Copy the machinery, not the claims.
