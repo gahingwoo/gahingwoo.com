@@ -493,10 +493,15 @@ a.pf-v6-c-nav__link[href^="http"]::after { content: none; }
 html.pf-v6-theme-dark .credit-badge__mark { fill: #8b73c9; }
 html.pf-v6-theme-dark .credit-badge__name { fill: var(--pf-t--global--text--color--subtle); }
 html.pf-v6-theme-dark .credit-badge__label { fill: var(--pf-t--global--text--color--subtle); opacity: 0.7; }
+/* Every group in this component is its own grid, so a term column given a
+   minmax() is resolved per row: the row holding a long URL squeezes its own
+   term column and that row's value starts further along than the rest. A fixed
+   width lines them all up, and the value wraps instead. */
 .about-backdrop .pf-v6-c-description-list {
-  --pf-v6-c-description-list--m-horizontal__term--width: minmax(0, 10rem);
+  --pf-v6-c-description-list--m-horizontal__term--width: 10rem;
   --pf-v6-c-description-list--RowGap: var(--pf-t--global--spacer--md);
 }
+.about-backdrop .pf-v6-c-description-list__description a { overflow-wrap: anywhere; }
 
 /* Back to top: PatternFly positions this inside a scrolling container; the
    page scrolls as a document, so it is fixed to the viewport instead, at the
