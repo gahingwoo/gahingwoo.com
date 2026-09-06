@@ -15,8 +15,11 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+# The icons are here because a favicon is cached harder than anything else
+# on the page: change the file alone and a returning visitor keeps the old
+# one for as long as the browser feels like it.
 ASSETS = ["assets/patternfly/patternfly-site.css", "assets/site.css", "assets/site.js",
-          "assets/search-index.json"]
+          "assets/search-index.json", "assets/avatar.png", "assets/apple-touch-icon.png"]
 PAGES = ["index.html", "evidence/index.html", "cv/index.html", "404.html", "assets/og-card.html"]
 
 
