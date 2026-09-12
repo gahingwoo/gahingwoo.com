@@ -309,10 +309,10 @@
             <h2 class="section-title">Under review</h2>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence/#npu-series">Linux: RK3576 NPU enablement, 14 patches, PATCH v11</a></p>
-              <p class="cv-when">posted 31 Aug 2026</p>
+              <p class="cv-title"><a href="/evidence/#npu-series">Linux: RK3576 NPU enablement, 14 patches, PATCH v12</a></p>
+              <p class="cv-when">posted 12 Sep 2026</p>
               <p class="cv-desc">Bindings, power domains, IOMMU and accel/rocket changes to run the RK3576's NPU on the mainline driver. Reviewed-by &times;4 (Krzysztof Kozlowski, Igor Paunovic, Abel Vesa &times;2), Acked-by &times;2 (Conor Dooley), Tested-by &times;2 on RK3588 hardware I do not own. Tomeu Vizoso, the driver's author, has said he will review it. The root cause of the long-standing failure was a register field one word wide: a 16-bit task count where the RK3588 header assumed 12, confirmed on the list by Rockchip.</p>
-              <div class="cv-refs"><a href="https://lore.kernel.org/all/20260831081956.84871-1-gahing@gahingwoo.com/">lore: PATCH v11 00/14</a><a href="https://lore.kernel.org/all/20260831040804.24111-1-gahing@gahingwoo.com/">lore: Tomeu Vizoso on v10</a><a href="https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/">lore: Rockchip confirms the field layout</a></div>
+              <div class="cv-refs"><a href="https://lore.kernel.org/all/20260912065053.1519165-1-gahing@gahingwoo.com/">lore: PATCH v12 00/14</a><a href="https://lore.kernel.org/all/20260831040804.24111-1-gahing@gahingwoo.com/">lore: Tomeu Vizoso on v10</a><a href="https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/">lore: Rockchip confirms the field layout</a></div>
             </div>
 
             <div class="cv-item">
@@ -333,7 +333,7 @@
           <section class="cv-section" id="cv-what-is-next">
             <h2 class="section-title">What is next</h2>
             <ul class="cv-list">
-              <li><a href="/evidence/#npu-series">RK3576 NPU series</a>: into the accel tree. v11 is under review by the driver's author; the goal is for the 14 patches to be applied, so the NPU works on a stock kernel.</li>
+              <li><a href="/evidence/#npu-series">RK3576 NPU series</a>: into the accel tree. v12 is posted and waiting on a human reply; the goal is for the 14 patches to be applied, so the NPU works on a stock kernel.</li>
               <li><a href="/evidence/#mesa-mr">Mesa</a>: after the single regular convolution in !43804, the depthwise, pointwise and image-input layer types MobileNet is built from, as separate series.</li>
               <li><a href="/evidence/#charsiu">charsiu</a>: an open runtime that matches or beats the vendor's performance on the mainline driver, with no vendor code in the path. Nine models already run end to end with output identical to the CPU reference.</li>
               <li><a href="/evidence/#vepu510">VEPU510 encoder</a>: rebase on the DRM/Vulkan-Video split being built for the RK3588 once it lands, as the maintainers advised.</li>
