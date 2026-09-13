@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ga Hing Woo (Jiaxing Hu)</title>
-<meta name="description" content="Firmware and embedded Linux engineer in Auckland. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.">
+<meta name="description" content="Firmware and embedded Linux engineer in Auckland. Five commits in the mainline kernel since v7.3-rc1, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.">
 <link rel="canonical" href="https://gahingwoo.com/">
 <link rel="icon" href="/assets/avatar.png?v=f68d7437" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=b347f963">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Ga Hing Woo (Jiaxing Hu)">
-<meta property="og:description" content="Firmware and embedded Linux engineer in Auckland. Five commits in mainline Linux 7.3, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.">
+<meta property="og:description" content="Firmware and embedded Linux engineer in Auckland. Five commits in the mainline kernel since v7.3-rc1, the first OP-TEE port for the RK3576, and an NPU brought up from nothing, each linked to its public record.">
 <meta property="og:url" content="https://gahingwoo.com/">
 <meta property="og:image" content="https://gahingwoo.com/assets/og-home.png">
 <meta property="og:image:width" content="1200">
@@ -153,7 +153,7 @@
 <div class="pf-v6-c-card " id="about">
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">About</h2></div>
   <div class="pf-v6-c-card__body"><div class="card-text">
-<p>Linux runs most of the world's servers and every Android phone. Every change to it is reviewed in public by a maintainer who can refuse it. Five of mine were accepted into Linux 7.3, and the review threads are linked below.</p>
+<p>Linux runs most of the world's servers and every Android phone. Every change to it is reviewed in public by a maintainer who can refuse it. Five of mine are in mainline, merged in the 7.3 window and present since v7.3-rc1, and the review threads are linked below.</p>
 <p>Year 13 student at Mount Albert Grammar School in Auckland, working on firmware and embedded Linux, mostly on Rockchip silicon that nobody had brought up yet. Beyond the kernel, the first OP-TEE port for the RK3576 and a Trusted Firmware-A secure-boot fix are merged too.</p>
 <p>Every claim on this site links to the public record behind it. Where an earlier claim of mine turned out to be wrong, the record says so.</p>
 </div><div class="pf-v6-u-mt-lg"><dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
@@ -168,9 +168,9 @@
   <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text">In mainline Linux</h2></div>
   <div class="pf-v6-c-card__body"><p class="card-lede">You cannot put code into Linux yourself. It goes in only if the maintainer who owns that part of the kernel takes it, and that happens on a public mailing list where a refusal is as visible as an acceptance and the archive keeps every revision, including the ones that were wrong. Nothing in that thread counts except the patch. What they took is below, each line naming the maintainer who applied it: memory protection for the chip's AI accelerator, support for two new boards, and a fix to Ethernet timing.</p>
 <dl class="pf-v6-c-description-list pf-m-horizontal-on-sm kv">
-<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">iommu/rockchip</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#iommu-fixes">Two fixes for the RK3576 NPU's IOMMU instances</a><span class="meta">Applied by Will Deacon, IOMMU co-maintainer. Linux 7.3.</span></div></dd></div>
-<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">arm64 dts</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#cm5-dts">ArmSoM CM5 and CM5-IO board support</a><span class="meta">Applied by Heiko St&uuml;bner, Rockchip SoC maintainer; Acked-by Krzysztof Kozlowski. Linux 7.3.</span></div></dd></div>
-<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">net/phy motorcomm</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#yt8521">Reference clock for the YT8521 PHY</a><span class="meta">Applied by Jakub Kicinski, net maintainer; Reviewed-by Andrew Lunn. Linux 7.3.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">iommu/rockchip</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#iommu-fixes">Two fixes for the RK3576 NPU's IOMMU instances</a><span class="meta">Applied by Will Deacon, IOMMU co-maintainer. Mainline, v7.3-rc1.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">arm64 dts</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#cm5-dts">ArmSoM CM5 and CM5-IO board support</a><span class="meta">Applied by Heiko St&uuml;bner, Rockchip SoC maintainer; Acked-by Krzysztof Kozlowski. Mainline, v7.3-rc1.</span></div></dd></div>
+<div class="pf-v6-c-description-list__group"><dt class="pf-v6-c-description-list__term"><span class="pf-v6-c-description-list__text">net/phy motorcomm</span></dt><dd class="pf-v6-c-description-list__description"><div class="pf-v6-c-description-list__text"><a href="/evidence/#yt8521">Reference clock for the YT8521 PHY</a><span class="meta">Applied by Jakub Kicinski, net maintainer; Reviewed-by Andrew Lunn. Mainline, v7.3-rc1.</span></div></dd></div>
 </dl></div>
   <div class="pf-v6-c-card__footer"><a href="/evidence/#mainline-linux">View commits and review threads</a></div>
 </div>
