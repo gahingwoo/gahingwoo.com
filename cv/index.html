@@ -335,7 +335,7 @@
             <ul class="cv-list">
               <li><a href="/evidence/#npu-series">RK3576 NPU series</a>: into the accel tree. v13 is posted, carrying Igor Paunovic's corrections to his own test reports, and the driver's author has yet to reply; the goal is for the 14 patches to be applied, so the NPU works on a stock kernel.</li>
               <li><a href="/evidence/#mesa-mr">Mesa</a>: after the single regular convolution in !43804, the depthwise, pointwise and image-input layer types MobileNet is built from, as separate series.</li>
-              <li><a href="/evidence/#charsiu">charsiu</a>: an open runtime that matches or beats the vendor's performance on the mainline driver, with no vendor code in the path. Nine models already run end to end with output identical to the CPU reference.</li>
+              <li><a href="/evidence/#charsiu">charsiu</a>: an open runtime that matches or beats the vendor's performance on the mainline driver, with no vendor code in the path. Nine models already run end to end with output identical to the CPU reference. Against the vendor runtime on the same board, Llama-3.2-1B decodes 1.39x faster at 594 MHz and prompts are ahead to 602 tokens; against Rockchip's published table, time to first token is still behind on all four models.</li>
               <li><a href="/evidence/#vepu510">VEPU510 encoder</a>: rebase on the DRM/Vulkan-Video split being built for the RK3588 once it lands, as the maintainers advised.</li>
               <li><a href="/evidence/#edk2">edk2-rk3576</a>: a complete, polished UEFI for the RK3576. It boots a mainline Fedora 44 desktop today; the goal is every board it builds for verified and the platform support upstreamable.</li>
             </ul>
