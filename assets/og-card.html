@@ -62,7 +62,8 @@
       eyebrow: 'Ga Hing Woo (Jiaxing Hu)',
       title: 'Evidence appendix',
       lede: 'Every claim about my own work, each with a link to the merged commit, review thread or DOI behind it.',
-      foot: '28 entries · retractions included'
+      foot: 'retractions included',
+      countEntries: true
     },
     cv: {
       eyebrow: 'Ga Hing Woo (Jiaxing Hu)',
@@ -77,6 +78,15 @@
   document.getElementById('title').innerHTML = p.title;
   document.getElementById('lede').innerHTML = p.lede;
   document.getElementById('foot').textContent = p.foot;
+  // The evidence card counts the entries on the evidence page itself, the way
+  // site.js does for the page title, so the number cannot go stale. If the
+  // page cannot be read the card says nothing about a count rather than 0.
+  if (p.countEntries) {
+    fetch('/evidence/').then(function (r) { return r.text(); }).then(function (t) {
+      var n = new DOMParser().parseFromString(t, 'text/html').querySelectorAll('.entry').length;
+      if (n > 0) document.getElementById('foot').textContent = n + ' entries · ' + p.foot;
+    });
+  }
   document.title = p.title.replace(/<[^>]+>/g, '');
 </script>
 </body>

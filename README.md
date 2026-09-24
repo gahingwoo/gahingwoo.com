@@ -11,7 +11,7 @@ Static site, served by GitHub Pages from the `main` branch. No build step. Built
 | `assets/patternfly/` | `patternfly-site.css`, assembled by `build.sh` from the parts of `@patternfly/patternfly` 6.6.1 the site uses (base tokens, fonts and icons; page, masthead, button, card, backdrop, description list, table, data list, nav, text input group, input group, menu, back-to-top, skip link, jump links, about modal box, title; gallery, stack, grid and bullseye layouts), plus the Red Hat variable fonts and icon fonts the CSS references. Upgrade with `npm pack @patternfly/patternfly@6`, unpack, and run `sh assets/patternfly/build.sh package`. |
 | `tools/build_search.py` | Builds `assets/search-index.json` from the three pages, so the sidebar search covers whatever is actually on them. Run it after changing page content; the workflow also runs it on every push. |
 | `tools/build_jsonld.py` | Writes the evidence page's structured data from its own entries, so the machine-readable record cannot drift from the visible one. The workflow runs it on every push. |
-| `tools/build_og.sh` | Renders the three link-preview images from `assets/og-card.html`. Run it with a local server up: `sh tools/build_og.sh`. |
+| `tools/build_og.sh` | Renders the three link-preview images from `assets/og-card.html`. The workflow runs it on every push; locally, with a server up: `sh tools/build_og.sh`. |
 | `tools/stamp.py` | Rewrites asset links to carry a hash of the file's contents, so a changed stylesheet is a changed URL. Run it after editing anything under `assets/`; the workflow also runs it on every push. |
 | `assets/site.css`, `assets/site.js` | The few site rules on top of PatternFly: document scrolling, lighter headings, key/value rows, folding of long evidence entries, theme toggle, print. |
 | `404.html` | Not-found page, served by GitHub Pages for any missing address. |
@@ -27,11 +27,7 @@ python3 -m http.server 8000 & sleep 1
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --virtual-time-budget=10000 --no-pdf-header-footer --print-to-pdf=cv/ga-hing-woo-cv.pdf http://localhost:8000/cv/
 ```
 
-- Link-preview image, after editing `assets/og-card.html` (needs the local server as above):
-
-```bash
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=5000 --window-size=1200,630 --screenshot=assets/og.png http://localhost:8000/assets/og-card.html
-```
+- Link-preview images: edit `assets/og-card.html` and push; the workflow renders `assets/og-{home,evidence,cv}.png`. The evidence card counts its entries from the page. Locally, with the server as above: `sh tools/build_og.sh http://localhost:8000`.
 
 ## Visitor counts
 

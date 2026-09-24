@@ -1,9 +1,11 @@
-name: Stamp assets and regenerate CV PDF
+name: Stamp assets, regenerate CV PDF and preview images
 
 # Two things that must not lag the source, both derived from it:
 #   - asset links carry a hash of the file's contents, so a changed stylesheet
 #     is a changed URL and no visitor gets yesterday's CSS from cache;
-#   - the CV PDF is printed from /cv/.
+#   - the CV PDF is printed from /cv/;
+#   - the three link-preview images are rendered from assets/og-card.html,
+#     which counts the evidence entries itself.
 # The commit this workflow pushes carries [skip ci] so it cannot start another
 # run of itself.
 on:
@@ -47,6 +49,9 @@ jobs:
             http://localhost:8000/cv/
           ls -la cv/ga-hing-woo-cv.pdf
 
+      - name: Render the link-preview images
+        run: CHROME=google-chrome sh tools/build_og.sh http://localhost:8000
+
       - name: Commit what changed
         run: |
           git config user.name "${GITHUB_ACTOR}"
@@ -55,6 +60,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "nothing to commit"
           else
-            git commit -m "Stamp assets, regenerate CV PDF [skip ci]"
+            git commit -m "Stamp assets, regenerate CV PDF and preview images [skip ci]"
             git push
           fi
