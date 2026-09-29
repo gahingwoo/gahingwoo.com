@@ -278,6 +278,16 @@ a.pf-v6-c-nav__link[href^="http"]::after { content: none; }
 .page-rail { margin-bottom: var(--pf-t--global--spacer--md); }
 .page-rail .pf-v6-c-jump-links__label { font-family: var(--pf-t--global--font--family--heading); color: var(--pf-t--global--text--color--subtle); }
 .page-rail .pf-v6-c-jump-links__toggle .pf-v6-c-button { padding-inline-start: 0; }
+
+/* Each jump link is a Button, and a Button is built to centre its label and
+   never wrap it. In a 15rem rail that is wrong twice over: the labels that
+   fit sit flush left while the two that do not fit overflow the rail on both
+   sides. Take the three button assumptions back. */
+.page-rail .pf-v6-c-jump-links__link .pf-v6-c-button {
+  --pf-v6-c-button--JustifyContent: flex-start;
+  text-align: start;
+  white-space: normal;
+}
 @media (max-width: 74.99rem) {
   .page-rail .pf-v6-c-jump-links:not(.pf-m-expanded) .pf-v6-c-jump-links__list { display: none; }
 }
