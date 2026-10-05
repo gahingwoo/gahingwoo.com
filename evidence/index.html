@@ -635,7 +635,7 @@
           </aside>
           <div class="page-content">
           <div class="page-head">
-            <h1 class="page-title" id="page-title">Evidence appendix <span class="subtitle"><span id="entry-count">29</span> entries, updated 24 September 2026</span></h1>
+            <h1 class="page-title" id="page-title">Evidence appendix <span class="subtitle"><span id="entry-count">29</span> entries, updated 5 October 2026</span></h1>
           </div>
 
           <div class="evidence-main">
@@ -797,7 +797,7 @@
           </section>
           <section class="section" id="independent-projects" aria-labelledby="independent-projects-title">
             <div class="pf-v6-c-card">
-              <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text" id="independent-projects-title">Independent projects&nbsp;<span class="count">4</span></h2></div>
+              <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text" id="independent-projects-title">Independent projects&nbsp;<span class="count">5</span></h2></div>
               <div class="pf-v6-c-card__body">
                 <ul class="pf-v6-c-data-list" role="list" aria-label="Independent projects">
 <li class="pf-v6-c-data-list__item entry" id="findings"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
@@ -823,6 +823,11 @@
   <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#rp2350">rp2350-tz-tee: minimal TrustZone-M isolation example on the RP2350</a></h3><span class="status">Self-verified, SWD</span></div>
   <div class="entry-desc">The Pico SDK still can't build a Non-Secure binary that runs under a Secure one (open upstream since pico-examples#708), so there was no minimal Secure/Non-Secure starting point. Built one from scratch on a Pico 2: a Secure world guarding a secret behind NSC veneers, verified over SWD rather than trusted from source: a direct Secure-RAM read from the Non-Secure side is caught as a SecureFault with the expected fault-status bits set, not just "the demo prints the right thing." Also documents a build recipe for TF-M on rpi/rp2350 and the DMA-has-its-own-MPU pitfall (the SAU alone doesn't stop Non-Secure code from using DMA to walk around TrustZone). Extends the TF-A/OP-TEE trusted-execution work above down to the microcontroller class.</div>
   <div class="entry-links"><a href="https://github.com/gahingwoo/rp2350-tz-tee">github.com/gahingwoo/rp2350-tz-tee</a> <a href="https://old.reddit.com/r/embedded/comments/1uubies/minimal_trustzonem_example_on_the_rp2350_pico_2/">r/embedded thread</a></div>
+</div></div></div></li>
+<li class="pf-v6-c-data-list__item entry" id="wddm-mali-g52"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
+  <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#wddm-mali-g52">wddm-mali-g52: a Windows driver for the RK3576's Mali-G52</a></h3><span class="status">Early results, one board, desktop not on the GPU yet</span></div>
+  <div class="entry-desc">Windows on the RK3576 has no GPU driver, so the desktop is drawn on the CPU by WARP. This is an attempt at one, in two halves: Mesa's Panfrost and its Bifrost compiler as the user-mode driver under Mesa's D3D10 frontend, and a kernel driver of my own, first with its own job interface and now as a WDDM driver. <strong>As of 3 October, on the ArmSoM CM5-IO:</strong> a D3D11 triangle is drawn by the Mali and is byte identical to what the CPU renderer draws, first through my own kernel interface on 2 October, then through the WDDM driver, and on 3 October with the D3D runtime loading Mesa as the adapter's user-mode driver. That last run was in WinPE (build 22621), where the Mali is DXGI adapter 0 ahead of Basic Render, and the driver's counters read 17 jobs, 0 failed, 0 faults, 0 resets. <strong>What this is not:</strong> the Windows desktop is still drawn on the CPU, Present and swap chains on the Mali are in progress, and inside the UMD Panfrost still reaches the kernel driver through its own shim rather than the runtime's callbacks. One board, one triangle. GPL-2.0.</div>
+  <div class="entry-links"><a href="https://github.com/gahingwoo/wddm-mali-g52">github.com/gahingwoo/wddm-mali-g52</a> <a href="https://github.com/gahingwoo/wddm-mali-g52/blob/main/docs/results/m4/m4-out.txt">m4 log: the triangle, PASS</a> <a href="https://github.com/gahingwoo/wddm-mali-g52/blob/main/docs/results/m5.2-step-c2/README.md">m5.2 step c2: Mesa loaded by the D3D runtime</a></div>
 </div></div></div></li>
                 </ul>
               </div>
@@ -869,8 +874,8 @@
 </div></div></div></li>
 <li class="pf-v6-c-data-list__item entry" id="edk2"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
   <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#edk2">edk2-rk3576: UEFI port pinned by a Radxa engineer</a></h3><span class="status">Third-party</span></div>
-  <div class="entry-desc">A complete EDK2/TianoCore UEFI port for the RK3576, booting a mainline Fedora 44 desktop. Builds for six boards, hardware-verified on two (Radxa ROCK 4D, ArmSoM CM5-IO). The write-up was pinned to the ROCK 4 series section of the official Radxa community forum by Zhang Yuntian, a Radxa engineer, not by me. As of 18 September it also reaches Windows 10 21H2 ARM64 Setup on the CM5-IO, after tracing a persistent <code>ACPI_BIOS_ERROR</code> bugcheck to an ACPI SCMI device carried over from RK3588 board files, driving a doorbell register this SoC does not have. Setup runs; it does not see storage yet.</div>
-  <div class="entry-links"><a href="https://forum.radxa.com/t/uefi-firmware-support-for-rock-4d-rk3576/30790/">forum.radxa.com: pinned thread</a> <a href="https://github.com/gahingwoo/edk2-rk3576">github.com/gahingwoo/edk2-rk3576</a></div>
+  <div class="entry-desc">A complete EDK2/TianoCore UEFI port for the RK3576, booting a mainline Fedora 44 desktop. Builds for six boards, hardware-verified on two (Radxa ROCK 4D, ArmSoM CM5-IO). The write-up was pinned to the ROCK 4 series section of the official Radxa community forum by Zhang Yuntian, a Radxa engineer, not by me. On 18 September it reached Windows 10 21H2 ARM64 Setup on the CM5-IO, after I traced a persistent <code>ACPI_BIOS_ERROR</code> bugcheck to an ACPI SCMI device carried over from RK3588 board files, driving a doorbell register this SoC does not have; Setup saw no storage then. <strong>As of 1 October, Windows 11 23H2 boots to the desktop on the CM5-IO</strong> from eMMC, with all eight cores, the NVMe, the SD card, Ethernet and both USB controllers, using Windows drivers I wrote in a separate repo. Display is the firmware framebuffer only and audio does not work. Measured on that one board.</div>
+  <div class="entry-links"><a href="https://forum.radxa.com/t/uefi-firmware-support-for-rock-4d-rk3576/30790/">forum.radxa.com: pinned thread</a> <a href="https://github.com/gahingwoo/edk2-rk3576">github.com/gahingwoo/edk2-rk3576</a> <a href="https://github.com/gahingwoo/woa-rk3576">github.com/gahingwoo/woa-rk3576, the Windows drivers</a></div>
 </div></div></div></li>
 <li class="pf-v6-c-data-list__item entry" id="kiln"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
   <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#kiln">kiln: official Radxa tutorial for local LLM/vision on the RK3576 NPU</a></h3><span class="status">Third-party, official tutorial</span></div>
