@@ -130,6 +130,22 @@ html.pf-v6-theme-dark .theme-toggle .icon-moon { display: none; }
 @media (min-width: 75rem) { .site-backdrop { display: none !important; } }
 @media (prefers-reduced-motion: reduce) { .site-backdrop { transition: none; } }
 
+/* The About dialog fades in and its box drifts up a little as it arrives, the
+   way EzySpeech's does; site.js holds [hidden] off until the fade out has run. */
+.about-backdrop {
+  opacity: 0;
+  transition: opacity var(--pf-t--global--motion--duration--fade--default, 0.2s) var(--pf-t--global--motion--timing-function--accelerate, ease-in);
+}
+.about-backdrop.is-open {
+  opacity: 1;
+  transition-timing-function: var(--pf-t--global--motion--timing-function--decelerate, ease-out);
+}
+.about-backdrop .pf-v6-c-about-modal-box {
+  translate: 0 -0.75rem;
+  transition: translate var(--pf-t--global--motion--duration--fade--default, 0.2s) var(--pf-t--global--motion--timing-function--decelerate, ease-out);
+}
+.about-backdrop.is-open .pf-v6-c-about-modal-box { translate: 0 0; }
+
 /* The hamburger morph runs at the icon default, which reads as a flick on a
    phone where the panel beside it takes a slide-in to arrive. Give it the
    slide's duration so the two finish together. */

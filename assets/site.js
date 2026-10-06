@@ -481,8 +481,16 @@ var ANALYTICS_TOKEN = 'dfe72f19b00e48d6b340a87d6041beef';
         about.querySelectorAll('a[href], button:not([disabled])'),
         function (el) { return el.offsetParent !== null; });
     };
+    // It fades, as the drawer's backdrop does. [hidden] comes off and the
+    // dialog is laid out at no opacity before the class that fades it in goes
+    // on; going, the class comes off first and [hidden] goes back only once
+    // the fade has run. Toggling [hidden] alone snapped it open and shut.
     var closeAbout = function () {
-      about.hidden = true;
+      if (!about.classList.contains('is-open')) return;
+      about.classList.remove('is-open');
+      window.setTimeout(function () {
+        if (!about.classList.contains('is-open')) about.hidden = true;
+      }, 250);
       background(false);
       if (opener && opener.focus) opener.focus();
       opener = null;
@@ -490,6 +498,8 @@ var ANALYTICS_TOKEN = 'dfe72f19b00e48d6b340a87d6041beef';
     aboutOpen.addEventListener('click', function () {
       opener = aboutOpen;
       about.hidden = false;
+      void about.offsetHeight;
+      about.classList.add('is-open');
       background(true);
       var first = focusable()[0];
       if (first) first.focus();
@@ -500,7 +510,7 @@ var ANALYTICS_TOKEN = 'dfe72f19b00e48d6b340a87d6041beef';
       b.addEventListener('click', closeAbout);
     });
     document.addEventListener('keydown', function (e) {
-      if (about.hidden) return;
+      if (!about.classList.contains('is-open')) return;
       if (e.key === 'Escape') { closeAbout(); return; }
       if (e.key !== 'Tab') return;
       var items = focusable();
