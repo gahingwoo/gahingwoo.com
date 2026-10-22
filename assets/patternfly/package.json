@@ -1,7 +1,7 @@
 {
   "name": "@patternfly/patternfly",
   "description": "Assets, source, tooling, and content for PatternFly",
-  "version": "6.6.1",
+  "version": "6.7.0",
   "keywords": [],
   "license": "MIT",
   "scripts": {
@@ -55,7 +55,7 @@
     "start": "gulp develop",
     "test": "npm run a11y",
     "workflows": "node .github/generate-workflows",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
@@ -71,12 +71,12 @@
     "@commitlint/config-conventional": "^19.1.0",
     "@fortawesome/fontawesome": "^1.1.8",
     "@octokit/rest": "^20.1.0",
-    "@patternfly/documentation-framework": "6.44.4",
-    "@patternfly/patternfly-a11y": "5.1.0",
-    "@patternfly/react-code-editor": "6.5.1",
-    "@patternfly/react-core": "6.5.1",
-    "@patternfly/react-icons": "6.5.1",
-    "@patternfly/react-table": "6.5.1",
+    "@patternfly/documentation-framework": "6.53.4",
+    "@patternfly/patternfly-a11y": "5.2.1",
+    "@patternfly/react-code-editor": "6.6.1",
+    "@patternfly/react-core": "6.6.1",
+    "@patternfly/react-icons": "6.6.1",
+    "@patternfly/react-table": "6.6.1",
     "@rspack/cli": "^1.6.0",
     "@rspack/core": "^1.6.0",
     "@rspack/dev-server": "^1.1.4",
