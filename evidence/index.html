@@ -681,7 +681,7 @@
           </aside>
           <div class="page-content">
           <div class="page-head">
-            <h1 class="page-title" id="page-title">Evidence appendix <span class="subtitle"><span id="entry-count">29</span> entries, updated 1 November 2026</span></h1>
+            <h1 class="page-title" id="page-title">Evidence appendix <span class="subtitle"><span id="entry-count">29</span> entries, updated 2 November 2026</span></h1>
           </div>
 
           <div class="evidence-main">
@@ -824,9 +824,14 @@
           </section>
           <section class="section" id="reviews-given" aria-labelledby="reviews-given-title">
             <div class="pf-v6-c-card">
-              <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text" id="reviews-given-title">Reviews given to other contributors&nbsp;<span class="count">1</span></h2></div>
+              <div class="pf-v6-c-card__title"><h2 class="pf-v6-c-card__title-text" id="reviews-given-title">Reviews given to other contributors&nbsp;<span class="count">2</span></h2></div>
               <div class="pf-v6-c-card__body">
                 <ul class="pf-v6-c-data-list" role="list" aria-label="Reviews given to other contributors">
+<li class="pf-v6-c-data-list__item entry" id="reviews-given-armbian"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
+  <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#reviews-given-armbian">Armbian: approved a zswap fix for the 6.1 kernels, after checking its scope</a></h3><span class="status">Approved 2 November 2026 (NZDT) &middot; not merged yet</span></div>
+  <div class="entry-desc">armbian/build#11171, from Igor Pe&#269;ovnik, backports upstream 8d9b63708ddd so zswap's temporary buffer comes from <code>GFP_KERNEL</code> instead of the atomic pool, on four 6.1 kernel families. I approved it as a code owner of the Rockchip vendor patches, after checking it against the trees it lands on: linux-6.1.y at 6.1.191 and Rockchip's rk-6.1 both still have the atomic allocation, and a failed load does fall back to the stale disk slot, so the data-loss description holds. The review also narrowed the claim. In 6.1 only zsmalloc takes this path, while Armbian builds default to zbud and switch zswap off in favour of zram, so default images never reach it. The fault-injection test it cites cannot fail the new allocation by design.</div>
+  <div class="entry-links"><a href="https://github.com/armbian/build/pull/11171">github.com/armbian/build/pull/11171</a> <a href="https://github.com/armbian/build/pull/11171#pullrequestreview-5730839110">my review</a></div>
+</div></div></div></li>
 <li class="pf-v6-c-data-list__item entry" id="reviews-given-rocket"><div class="pf-v6-c-data-list__item-row"><div class="pf-v6-c-data-list__item-content"><div class="pf-v6-c-data-list__cell">
   <div class="entry-head"><h3 class="entry-title"><a class="entry-anchor" href="#reviews-given-rocket">accel/rocket: Reviewed-by given to another contributor, twice, on real bugs</a></h3><span class="status">Reviewed-by given &times;2</span></div>
   <div class="entry-desc">As the RK3576 NPU work drew other people to the accel/rocket driver, Igor Paunovic asked before sending a fix, rather than after, and I gave two patches a formal Reviewed-by after checking them properly rather than rubber-stamping. The first (requesting clocks by name instead of by index) I cross-checked against the devicetree binding and my own board-tested RK3576 values. The second (fixing a shared-device lifecycle bug on probe failure) I did not wave through on v1: I traced a real out-of-bounds write in the driver's scheduler array back to a stale "live" core slot left over from a partial probe failure, with the exact one-line fix, and only gave the Reviewed-by once v2 addressed all three points. It came back around: Igor then gave my own RK3576 NPU RFC v3 a Tested-by on RK3588 hardware I don't have, including 4260 bit-identical inference iterations against the stock driver, a genuine two-way review relationship in the subsystem, not a one-off. When Igor posted his own RFC on an RK3588 DVFS hardware constraint, I brought in a third contributor's (Olaf001au) vendor-BSP clock trace to correct an assumption about which clock the driver actually scales, and cross-checked the constraint against RK3576, discussion and analysis rather than a formal tag, but the same pattern of being asked in.</div>
