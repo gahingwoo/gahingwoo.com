@@ -269,7 +269,7 @@
                 <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/">linkedin.com/in/ga-hing-woo-906aa7423</a>
                 <a href="https://orcid.org/0009-0002-0840-8951">orcid.org/0009-0002-0840-8951</a>
               </div>
-              <div class="print-date pf-v6-u-text-color-subtle" style="display:none;font-size:8pt;margin-top:2pt">Content as of 2 November 2026. Sources: gahingwoo.com/evidence &middot; this page: gahingwoo.com/cv</div>
+              <div class="print-date pf-v6-u-text-color-subtle" style="display:none;font-size:8pt;margin-top:2pt">Content as of 4 November 2026. Sources: gahingwoo.com/evidence &middot; this page: gahingwoo.com/cv</div>
             </div>
           </header>
 
@@ -302,8 +302,8 @@
             <div class="cv-item">
               <p class="cv-title"><a href="/evidence/#armbian">Armbian: board maintainer for the ArmSoM CM5-IO</a></p>
               <p class="cv-when">merged 27 Oct 2026</p>
-              <p class="cv-desc">Edge kernel and mainline U-Boot for the CM5-IO, merged by Igor Pe&#269;ovnik, with me named as the board's maintainer. A code owner for the board and the Rockchip kernel configs and patches, and a member of the Armbian GitHub organisation.</p>
-              <div class="cv-refs"><a href="https://github.com/armbian/build/pull/11097">github: armbian/build#11097</a><a href="https://github.com/armbian/build/blob/main/config/boards/armsom-cm5-io.csc">github: armsom-cm5-io.csc</a></div>
+              <p class="cv-desc">Edge kernel and mainline U-Boot for the CM5-IO, merged by Igor Pe&#269;ovnik, with me named as the board's maintainer. On 2 November the RK3576 NPU series went into Armbian's edge kernel for the CM5-IO and the ROCK 4D. A code owner for the board and the Rockchip kernel configs and patches, and a member of the Armbian GitHub organisation.</p>
+              <div class="cv-refs"><a href="https://github.com/armbian/build/pull/11097">github: armbian/build#11097</a><a href="https://github.com/armbian/build/blob/main/config/boards/armsom-cm5-io.csc">github: armsom-cm5-io.csc</a><a href="https://github.com/armbian/build/pull/11162">github: armbian/build#11162</a></div>
             </div>
 
             <div class="cv-item">
@@ -329,6 +329,13 @@
               <p class="cv-when">posted 1 Nov 2026</p>
               <p class="cv-desc">Bindings, power domains, IOMMU and accel/rocket changes to run the RK3576's NPU on the mainline driver. Reviewed-by &times;5 (Krzysztof Kozlowski, Igor Paunovic, Abel Vesa &times;2, Heiko St&uuml;bner), Acked-by &times;2 (Conor Dooley), Tested-by &times;3 on RK3588 hardware I do not own. Tomeu Vizoso, the driver's author, has said he will review it; Heiko St&uuml;bner and Ulf Hansson reviewed v13, and Ulf has offered to take the power-domain patches. The root cause of the long-standing failure was a register field one word wide: a 16-bit task count where the RK3588 header assumed 12, confirmed on the list by Rockchip.</p>
               <div class="cv-refs"><a href="https://lore.kernel.org/all/20261101082307.151957-1-gahing@gahingwoo.com/">lore: PATCH v15 00/15</a><a href="https://lore.kernel.org/all/20260831040804.24111-1-gahing@gahingwoo.com/">lore: Tomeu Vizoso on v10</a><a href="https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/">lore: Rockchip confirms the field layout</a></div>
+            </div>
+
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence/#qos-fix">Linux, pmdomain/rockchip: restore only the QoS that was saved</a></p>
+              <p class="cv-when">posted 1 Nov 2026</p>
+              <p class="cv-desc">On the RK3576 the GPU's QoS registers read all zeros after its first power-on, on plain mainline. Found by measurement on a CM5-IO; Reviewed-by Shawn Lin and Finley Xiao of Rockchip.</p>
+              <div class="cv-refs"><a href="https://lore.kernel.org/all/20261101055633.101309-1-gahing@gahingwoo.com/">lore: the patch</a></div>
             </div>
 
             <div class="cv-item">
@@ -413,7 +420,7 @@
           </section>
 
           <footer class="cv-foot">
-            <span>Content as of 2 November 2026. Sources: gahingwoo.com/evidence</span>
+            <span>Content as of 4 November 2026. Sources: gahingwoo.com/evidence</span>
             <span>gahingwoo.com/cv</span>
           </footer>
           </div>
