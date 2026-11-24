@@ -273,7 +273,7 @@
             </div>
           </header>
 
-          <p class="cv-summary pf-v6-u-mb-xl">I bring up new Rockchip silicon on mainline software and send the work upstream. Five of my commits are in the mainline kernel, merged in the 7.3 window and present since v7.3-rc1, applied by the IOMMU, Rockchip and networking maintainers. The first OP-TEE port for the RK3576 and a Trusted Firmware-A secure-boot fix are merged. I reverse-engineered the RK3576's NPU from vendor model files to a working driver stack, and when a published result of mine turned out to be wrong I retracted it by name. Kernel work is signed off as Jiaxing Hu; everywhere else I am gahingwoo.</p>
+          <p class="cv-summary pf-v6-u-mb-xl">I bring up new Rockchip silicon on mainline software and send the work upstream. Nine of my commits are in the mainline kernel since v7.3-rc1, applied by the IOMMU, Rockchip, networking and NPU driver maintainers. The first OP-TEE port for the RK3576 and a Trusted Firmware-A secure-boot fix are merged. I reverse-engineered the RK3576's NPU from vendor model files to a working driver stack, and when a published result of mine turned out to be wrong I retracted it by name. Kernel work is signed off as Jiaxing Hu; everywhere else I am gahingwoo.</p>
 
           <section class="cv-section" id="cv-upstream-contributions-accepted">
             <h2 class="section-title">Upstream contributions, accepted</h2>
@@ -283,6 +283,13 @@
               <p class="cv-when">Mainline, v7.3-rc1 &middot; 2026</p>
               <p class="cv-desc">Take every clock the devicetree provides instead of a fixed pair, so register writes behind extra clock gates are no longer silently dropped; and acknowledge a stale page fault left by boot firmware before enabling stall, which otherwise hangs the poll. Applied by Will Deacon, IOMMU co-maintainer, with his own Signed-off-by.</p>
               <div class="cv-refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=841363ebb5082a06c69ac34719e26659fe63dbd6">git.kernel.org: 841363ebb508</a><a href="https://github.com/torvalds/linux/commit/841363ebb5082a06c69ac34719e26659fe63dbd6">github: 841363ebb508</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b10d5920cafa292ee3cab9c20f813da4fe4f00b8">git.kernel.org: b10d5920cafa</a><a href="https://github.com/torvalds/linux/commit/b10d5920cafa292ee3cab9c20f813da4fe4f00b8">github: b10d5920cafa</a><a href="https://lore.kernel.org/all/178507139795.2055528.4355657426833307310.b4-ty@kernel.org/">lore: Will Deacon, applied</a></div>
+            </div>
+
+            <div class="cv-item">
+              <p class="cv-title"><a href="/evidence/#rocket-fixes">Linux, accel/rocket: three reset and completion fixes for the NPU driver</a></p>
+              <p class="cv-when">Mainline, v7.4-rc4 &middot; 2026</p>
+              <p class="cv-desc">Completion register writes under the job lock, waiting for a running interrupt handler before a core reset, and letting the core suspend after a reset. Applied by Tomeu Vizoso, the driver's author, with his own Signed-off-by; Reviewed-by Heiko St&uuml;bner.</p>
+              <div class="cv-refs"><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=6995680ff5bb79c82edcdc46e9d762d7cb72ac64">git.kernel.org: 6995680ff5bb</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=dce0eba182f2e18c5b5312d6ca18eb23dce73531">git.kernel.org: dce0eba182f2</a><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=36161ff0c00fd52f725c14748ca54c83d86d1626">git.kernel.org: 36161ff0c00f</a></div>
             </div>
 
             <div class="cv-item">
@@ -325,10 +332,10 @@
             <h2 class="section-title">Under review</h2>
 
             <div class="cv-item">
-              <p class="cv-title"><a href="/evidence/#npu-series">Linux: RK3576 NPU enablement, 16 patches, PATCH v16</a></p>
-              <p class="cv-when">posted 8 Nov 2026</p>
-              <p class="cv-desc">Bindings, power domains, IOMMU and accel/rocket changes to run the RK3576's NPU on the mainline driver. Reviewed-by &times;10 (Heiko St&uuml;bner &times;6, Abel Vesa &times;2, Krzysztof Kozlowski, Igor Paunovic), Acked-by &times;2 (Conor Dooley), Tested-by &times;2 on RK3588 hardware I do not own. Tomeu Vizoso, the driver's author, replied to v15 and v16 answers him; Ulf Hansson has offered to take the power-domain patches. The root cause of the long-standing failure was a register field one word wide: a 16-bit task count where the RK3588 header assumed 12, confirmed on the list by Rockchip.</p>
-              <div class="cv-refs"><a href="https://lore.kernel.org/all/20261108065917.135194-1-gahing@gahingwoo.com/">lore: PATCH v16 00/16</a><a href="https://lore.kernel.org/all/20260831040804.24111-1-gahing@gahingwoo.com/">lore: Tomeu Vizoso on v10</a><a href="https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/">lore: Rockchip confirms the field layout</a></div>
+              <p class="cv-title"><a href="/evidence/#npu-series">Linux: RK3576 NPU enablement, PATCH v18</a></p>
+              <p class="cv-when">posted 24 Nov 2026</p>
+              <p class="cv-desc">Bindings, power domains, IOMMU and accel/rocket changes to run the RK3576's NPU on the mainline driver. Reviewed-by &times;10 (Heiko St&uuml;bner &times;6, Abel Vesa &times;2, Krzysztof Kozlowski, Igor Paunovic), Acked-by &times;2 (Conor Dooley), Tested-by &times;2 on RK3588 hardware I do not own. Ulf Hansson has applied the power-domain patches, Tomeu Vizoso, the driver's author, applied the first four driver patches for v7.4-rc4, and v18 carries the remaining eight. The root cause of the long-standing failure was a register field one word wide: a 16-bit task count where the RK3588 header assumed 12, confirmed on the list by Rockchip.</p>
+              <div class="cv-refs"><a href="https://lore.kernel.org/all/cover.1795478392.git.gahing@gahingwoo.com/">lore: PATCH v18 0/8</a><a href="https://lore.kernel.org/all/20260831040804.24111-1-gahing@gahingwoo.com/">lore: Tomeu Vizoso on v10</a><a href="https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/">lore: Rockchip confirms the field layout</a></div>
             </div>
 
             <div class="cv-item">
@@ -341,7 +348,7 @@
             <div class="cv-item">
               <p class="cv-title"><a href="/evidence/#mesa-mr">Mesa: RK3576 support in the Teflon delegate, !43804</a></p>
               <p class="cv-when">posted &middot; 2026</p>
-              <p class="cv-desc">Five patches for one regular convolution on the rocket/Teflon path, deliberately the bare minimum the maintainer asked for first. Not yet reviewed.</p>
+              <p class="cv-desc">Six patches for one regular convolution on the rocket/Teflon path, deliberately the bare minimum the maintainer asked for first. Not yet reviewed.</p>
               <div class="cv-refs"><a href="https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/43804">gitlab.freedesktop.org: mesa!43804</a></div>
             </div>
 
@@ -356,7 +363,7 @@
           <section class="cv-section" id="cv-what-is-next">
             <h2 class="section-title">What is next</h2>
             <ul class="cv-list">
-              <li><a href="/evidence/#npu-series">RK3576 NPU series</a>: into the accel tree. v16 is posted and answers Tomeu Vizoso and Heiko St&uuml;bner on v15; Ulf Hansson has offered to take the power-domain patches, and Armbian's edge kernel already carries v14. The goal is for the 16 patches to be applied, so the NPU works on a stock kernel.</li>
+              <li><a href="/evidence/#npu-series">RK3576 NPU series</a>: into the accel tree. the power-domain patches are applied and four driver patches are in v7.4-rc4; v18 carries the remaining eight, and Armbian's edge kernel already carries v14. The goal is for those to be applied too, so the NPU works on a stock kernel.</li>
               <li><a href="/evidence/#mesa-mr">Mesa</a>: after the single regular convolution in !43804, the depthwise, pointwise and image-input layer types MobileNet is built from, as separate series.</li>
               <li><a href="/evidence/#charsiu">charsiu</a>: an open runtime that matches or beats the vendor's performance on the mainline driver, with no vendor code in the path. Nine models run end to end, Llama-3.2-1B with output identical to the exact CPU arithmetic. Against the vendor runtime on the same board, Llama-3.2-1B decodes 1.39x faster at 594 MHz and prompts are ahead to 602 tokens; against Rockchip's published table, time to first token reached parity on all four models on 18 September, on figures not yet written up.</li>
               <li><a href="/evidence/#vepu510">VEPU510 encoder</a>: rebase on the DRM/Vulkan-Video split being built for the RK3588 once it lands, as the maintainers advised.</li>
