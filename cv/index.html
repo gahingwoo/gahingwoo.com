@@ -269,7 +269,7 @@
                 <a href="https://www.linkedin.com/in/ga-hing-woo-906aa7423/">linkedin.com/in/ga-hing-woo-906aa7423</a>
                 <a href="https://orcid.org/0009-0002-0840-8951">orcid.org/0009-0002-0840-8951</a>
               </div>
-              <div class="print-date pf-v6-u-text-color-subtle" style="display:none;font-size:8pt;margin-top:2pt">Content as of 24 November 2026. Sources: gahingwoo.com/evidence &middot; this page: gahingwoo.com/cv</div>
+              <div class="print-date pf-v6-u-text-color-subtle" style="display:none;font-size:8pt;margin-top:2pt">Content as of 26 November 2026. Sources: gahingwoo.com/evidence &middot; this page: gahingwoo.com/cv</div>
             </div>
           </header>
 
@@ -365,7 +365,7 @@
             <ul class="cv-list">
               <li><a href="/evidence/#npu-series">RK3576 NPU series</a>: into the accel tree. the power-domain patches are applied and four driver patches are in v7.4-rc4; v18 carries the remaining eight, and Armbian's edge kernel already carries v14. The goal is for those to be applied too, so the NPU works on a stock kernel.</li>
               <li><a href="/evidence/#mesa-mr">Mesa</a>: after the single regular convolution in !43804, the depthwise, pointwise and image-input layer types MobileNet is built from, as separate series.</li>
-              <li><a href="/evidence/#charsiu">charsiu</a>: an open runtime that matches or beats the vendor's performance on the mainline driver, with no vendor code in the path. Nine models run end to end, Llama-3.2-1B with output identical to the exact CPU arithmetic. Against the vendor runtime on the same board, Llama-3.2-1B decodes 1.39x faster at 594 MHz and prompts are ahead to 602 tokens; against Rockchip's published table, time to first token reached parity on all four models on 18 September, on figures not yet written up.</li>
+              <li><a href="/evidence/#charsiu">charsiu</a>: an open runtime that matches or beats the vendor's performance on the mainline driver, with no vendor code in the path. Nine models run end to end, Llama-3.2-1B with output identical to the exact CPU arithmetic. Against the vendor runtime on the same board, Llama-3.2-1B decodes 1.39x faster at 594 MHz and prompts are ahead to 602 tokens (15 September). On 26 November, on Qwen3-0.6B on a CM5-IO, v0.2.0 at 594 MHz reached the first token 10% to 21% sooner and decoded 14% to 21% faster than the vendor at 950 MHz, its maximum clock.</li>
               <li><a href="/evidence/#vepu510">VEPU510 encoder</a>: rebase on the DRM/Vulkan-Video split being built for the RK3588 once it lands, as the maintainers advised.</li>
               <li><a href="/evidence/#edk2">edk2-rk3576</a>: a complete, polished UEFI for the RK3576. It boots a mainline Fedora 44 desktop on the CM5-IO today, and Windows 11 on the CM5-IO and the TaishanPi 3M; the goal is every board it builds for verified and the platform support upstreamable.</li>
             </ul>
@@ -427,7 +427,7 @@
           </section>
 
           <footer class="cv-foot">
-            <span>Content as of 24 November 2026. Sources: gahingwoo.com/evidence</span>
+            <span>Content as of 26 November 2026. Sources: gahingwoo.com/evidence</span>
             <span>gahingwoo.com/cv</span>
           </footer>
           </div>
